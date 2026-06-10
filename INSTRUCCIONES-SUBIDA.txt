@@ -1,0 +1,19 @@
+Cómo subir esta versión a GitHub
+
+1) Entrá a tu repositorio Rincon-Entre-Pensamientos.
+2) Tocá Add file > Upload files.
+3) Arrastrá estos 5 archivos:
+   - index.html
+   - style.css
+   - main.js
+   - pergamino-farol.jpeg
+   - pergamino.png
+4) GitHub te va a avisar que index.html, style.css y main.js ya existen.
+   Aceptá reemplazarlos.
+5) Abajo tocá Commit changes.
+6) Esperá 1 a 3 minutos y abrí:
+   https://dontbeshylittlesoul-hue.github.io/Rincon-Entre-Pensamientos/
+
+Nota:
+- ambiente.mp3 todavía no está incluido. Cuando tengas tu audio, subilo con ese nombre exacto.
+- El botón Descargar PDF todavía queda como placeholder hasta que subas el PDF y cambiemos el href.
