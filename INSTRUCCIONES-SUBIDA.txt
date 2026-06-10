@@ -1,19 +1,20 @@
-Cómo subir esta versión a GitHub
+Corrección mobile v3
 
-1) Entrá a tu repositorio Rincon-Entre-Pensamientos.
-2) Tocá Add file > Upload files.
-3) Arrastrá estos 5 archivos:
-   - index.html
-   - style.css
-   - main.js
-   - pergamino-farol.jpeg
-   - pergamino.png
-4) GitHub te va a avisar que index.html, style.css y main.js ya existen.
-   Aceptá reemplazarlos.
-5) Abajo tocá Commit changes.
-6) Esperá 1 a 3 minutos y abrí:
-   https://dontbeshylittlesoul-hue.github.io/Rincon-Entre-Pensamientos/
+Para corregir lo que se ve en el video, alcanza con reemplazar style.css.
+Pero si querés evitar errores, subí estos 5 archivos sueltos:
+- index.html
+- style.css
+- main.js
+- pergamino-farol.jpeg
+- pergamino.png
 
-Nota:
-- ambiente.mp3 todavía no está incluido. Cuando tengas tu audio, subilo con ese nombre exacto.
-- El botón Descargar PDF todavía queda como placeholder hasta que subas el PDF y cambiemos el href.
+Cambio principal:
+- se elimina el scroll horizontal;
+- los pergaminos quedan limitados a calc(100vw - 24px);
+- se centra portada y lectura;
+- se reduce el ancho visual en celular para que no se corra hacia la derecha.
+
+Luego de Commit changes:
+- esperá 1 a 3 minutos;
+- abrí en incógnito o recargá fuerte;
+- en iPhone, cerrá la pestaña anterior para evitar caché.
