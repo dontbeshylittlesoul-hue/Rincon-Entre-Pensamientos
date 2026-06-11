@@ -243,7 +243,9 @@ section, main {
   font-size: clamp(1.06rem, 2.1vw, 1.24rem);
   font-weight: 400;
   line-height: 1.78;
-  color: rgba(32, 18, 8, .88);
+  color: rgba(58, 35, 17, .96);
+  text-shadow: 0 1px 0 rgba(255, 238, 190, .22);
+}
 }
 
 .texto-destacado {
@@ -604,7 +606,7 @@ section, main {
   }
 
   .lectura {
-    padding: 2.4rem 0.5rem;
+padding: 4.5rem 2.35rem 4.7rem;
   }
 
   .lectura-marco {
@@ -641,8 +643,11 @@ section, main {
   }
 
   .texto-bloque p {
-    font-size: .98rem;
-    line-height: 1.6;
+  font-size: .98rem;
+  line-height: 1.6;
+  color: rgba(65, 39, 19, .98);
+  text-shadow: 0 1px 0 rgba(255, 239, 198, .28);
+}
   }
 
   .numero-bloque {
