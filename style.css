@@ -628,7 +628,36 @@ section, main {
     width: 68%;
     padding-top: 6.7rem;
   }
+/* FIX emergencia: que la portada se vea aunque falle la imagen */
+.reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
 
+.reveal.visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.hero-pergamino {
+  background-color: #d8b77c !important;
+  background-image: url("pergamino-farol.jpeg");
+  border-radius: 18px;
+}
+
+.hero-contenido {
+  color: #211207 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.hero-title,
+.hero-title em,
+.hero-subtitle,
+.hero-eyebrow {
+  color: #211207 !important;
+  opacity: 1 !important;
+}
   .muestra-paginas {
     padding-left: .45rem;
     padding-right: .45rem;
