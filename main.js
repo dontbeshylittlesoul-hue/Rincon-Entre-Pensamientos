@@ -81,3 +81,24 @@ if (audio && playBtn && progressFill && progressWrap && volSlider) {
     audio.volume = parseFloat(volSlider.value);
   });
 }
+
+
+// ── Mobile anchor fix: evita que el botón "Entrar al rincón" deje el scroll trabado en iPhone
+document.querySelectorAll('a[href="#lectura"]').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    const target = document.getElementById('lectura');
+    if (!target) return;
+
+    link.blur();
+
+    const y = target.getBoundingClientRect().top + window.pageYOffset - 6;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+
+    window.setTimeout(() => {
+      history.replaceState(null, '', '#lectura');
+      document.activeElement && document.activeElement.blur && document.activeElement.blur();
+    }, 450);
+  });
+});
