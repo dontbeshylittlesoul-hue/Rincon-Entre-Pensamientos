@@ -1,104 +1,169 @@
-/* ── main.js ────────────────────────────────────────────────────── */
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rincón entre Pensamientos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-// Scroll reveal: Intersection Observer
-const revealEls = document.querySelectorAll('.reveal');
+  <div class="bg-layer bg-noise" aria-hidden="true"></div>
+  <div class="bg-layer bg-vignette" aria-hidden="true"></div>
+  <div class="ember-glow" aria-hidden="true"></div>
 
-if ('IntersectionObserver' in window) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-  );
+  <section class="hero" id="inicio">
+    <div class="hero-pergamino reveal">
+      <div class="hero-contenido">
+        <p class="hero-eyebrow">una experiencia de lectura</p>
+        <h1 class="hero-title">
+          Rincón entre<br /><em>Pensamientos</em>
+        </h1>
+        <p class="hero-subtitle">
+          Una muestra para bajar el ruido,<br />
+          leer sin apuro y volver a escucharte.
+        </p>
+        <a href="#lectura" class="btn-primary">
+          <span>Leer muestra gratis</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 2v12M2 8l6 6 6-6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">deslizá para entrar</div>
+  </section>
 
-  revealEls.forEach((el) => observer.observe(el));
-} else {
-  revealEls.forEach((el) => el.classList.add('visible'));
-}
+  <main class="site-main">
+    <section class="intro-muestra" id="lectura">
+      <div class="intro-inner reveal">
+        <p class="section-mini">muestra gratis</p>
+        <h2>Prólogo, Capítulo I e Interludio I</h2>
+        <p>
+          Esta es una primera entrada al rincón: una lectura breve para sentir el tono del ebook
+          antes de acceder a la experiencia completa.
+        </p>
+      </div>
+    </section>
 
-// ── Custom Audio Player ──────────────────────────────────────────
-const audio = document.getElementById('audioAmbiente');
-const playBtn = document.getElementById('playPauseBtn');
-const progressFill = document.getElementById('progressFill');
-const progressWrap = document.getElementById('progressWrap');
-const volSlider = document.getElementById('volumen');
+    <section class="muestra-paginas" aria-label="Muestra gratis del ebook">
+        <figure class="muestra-pagina reveal">
+          <img src="muestra/pagina-04.webp" alt="Página 1 de la muestra de Rincón entre Pensamientos" loading="lazy" />
+        </figure>
+        <figure class="muestra-pagina reveal">
+          <img src="muestra/pagina-05.webp" alt="Página 2 de la muestra de Rincón entre Pensamientos" loading="lazy" />
+        </figure>
+        <figure class="muestra-pagina reveal">
+          <img src="muestra/pagina-06.webp" alt="Página 3 de la muestra de Rincón entre Pensamientos" loading="lazy" />
+        </figure>
+        <figure class="muestra-pagina reveal">
+          <img src="muestra/pagina-07.webp" alt="Página 4 de la muestra de Rincón entre Pensamientos" loading="lazy" />
+        </figure>
+        <figure class="muestra-pagina reveal">
+          <img src="muestra/pagina-08.webp" alt="Página 5 de la muestra de Rincón entre Pensamientos" loading="lazy" />
+        </figure>
+        <figure class="muestra-pagina reveal">
+          <img src="muestra/pagina-09.webp" alt="Página 6 de la muestra de Rincón entre Pensamientos" loading="lazy" />
+        </figure>
+        <figure class="muestra-pagina reveal">
+          <img src="muestra/pagina-10.webp" alt="Página 7 de la muestra de Rincón entre Pensamientos" loading="lazy" />
+        </figure>
+        <figure class="muestra-pagina reveal">
+          <img src="muestra/pagina-11.webp" alt="Página 8 de la muestra de Rincón entre Pensamientos" loading="lazy" />
+        </figure>
+        <figure class="muestra-pagina reveal">
+          <img src="muestra/pagina-12.webp" alt="Página 9 de la muestra de Rincón entre Pensamientos" loading="lazy" />
+        </figure>
+        <figure class="muestra-pagina reveal">
+          <img src="muestra/pagina-13.webp" alt="Página 10 de la muestra de Rincón entre Pensamientos" loading="lazy" />
+        </figure>
+    </section>
 
-if (audio && playBtn && progressFill && progressWrap && volSlider) {
-  const iconPlay = playBtn.querySelector('.icon-play');
-  const iconPause = playBtn.querySelector('.icon-pause');
+    <section class="audio-seccion reveal" id="ambiente">
+      <div class="audio-inner">
+        <p class="audio-mini">ambiente</p>
+        <div class="audio-icono" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <circle cx="18" cy="18" r="17" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.45"/>
+            <path d="M14 12v12l10-6-10-6z" fill="currentColor" fill-opacity="0.8"/>
+          </svg>
+        </div>
+        <p class="audio-texto">Poné la lluvia de fondo y leé a tu ritmo.</p>
 
-  audio.volume = parseFloat(volSlider.value);
+        <div class="audio-player-wrap">
+          <audio id="audioAmbiente" loop preload="none">
+            <source src="ambiente.mp3" type="audio/mpeg" />
+            Tu navegador no soporta audio HTML5.
+          </audio>
+          <div class="custom-player">
+            <button class="play-pause-btn" id="playPauseBtn" aria-label="Reproducir / Pausar">
+              <svg class="icon-play" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M5 3.5l11 5.5-11 5.5V3.5z" fill="currentColor"/>
+              </svg>
+              <svg class="icon-pause hidden" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <rect x="4" y="3" width="3.5" height="12" rx="1" fill="currentColor"/>
+                <rect x="10.5" y="3" width="3.5" height="12" rx="1" fill="currentColor"/>
+              </svg>
+            </button>
+            <div class="progress-wrap" id="progressWrap" role="slider" aria-label="Progreso del audio" tabindex="0">
+              <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+            </div>
+            <div class="volume-wrap">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 6H1v4h2l4 3V3L3 6z" fill="currentColor" fill-opacity="0.6"/>
+                <path d="M11 4.5a5 5 0 010 7M9 6.5a2.5 2.5 0 010 3" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-opacity="0.6"/>
+              </svg>
+              <input type="range" id="volumen" class="volumen-slider" min="0" max="1" step="0.05" value="0.7" aria-label="Volumen" />
+            </div>
+          </div>
+          <p class="audio-nota">sonido de fondo · reproducción continua</p>
+        </div>
+      </div>
+    </section>
 
-  function setPlaying(playing) {
-    if (!iconPlay || !iconPause) return;
+    <section class="cta-final reveal" id="ebook">
+      <div class="cta-card">
+        <p class="section-mini">versión completa</p>
+        <h2>Seguir leyendo el ebook completo</h2>
+        <p>
+          Si esta muestra te encontró en un momento necesario, podés acceder al ebook completo
+          en PDF y a la experiencia inmersiva completa.
+        </p>
 
-    if (playing) {
-      iconPlay.classList.add('hidden');
-      iconPause.classList.remove('hidden');
-    } else {
-      iconPause.classList.add('hidden');
-      iconPlay.classList.remove('hidden');
-    }
-  }
+        <ul class="cta-lista">
+          <li>PDF descargable</li>
+          <li>Lectura inmersiva completa</li>
+          <li>Audio ambiente para leer a tu ritmo</li>
+        </ul>
 
-  playBtn.addEventListener('click', () => {
-    if (audio.paused) {
-      audio.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
-    } else {
-      audio.pause();
-      setPlaying(false);
-    }
-  });
+        <a href="#" class="btn-primary btn-hotmart">
+          <span>Acceder al ebook completo</span>
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+            <path d="M3 12L12 3M5 3h7v7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <p class="cta-nota">Cuando tengas el link de Hotmart, reemplazamos este botón.</p>
+      </div>
+    </section>
 
-  audio.addEventListener('pause', () => setPlaying(false));
-  audio.addEventListener('play', () => setPlaying(true));
+    <section class="cierre reveal" id="cierre">
+      <div class="cierre-inner">
+        <p class="cierre-texto">
+          No se trata de cambiar tu vida en un día.<br />
+          <em>Se trata de volver a escucharte.</em>
+        </p>
+        <a href="#inicio" class="btn-volver" aria-label="Volver al inicio">
+          volver al comienzo
+        </a>
+      </div>
+    </section>
+  </main>
 
-  audio.addEventListener('timeupdate', () => {
-    if (!audio.duration) return;
-    const pct = (audio.currentTime / audio.duration) * 100;
-    progressFill.style.width = pct + '%';
-  });
-
-  progressWrap.addEventListener('click', (e) => {
-    if (!audio.duration) return;
-    const rect = progressWrap.getBoundingClientRect();
-    const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-    audio.currentTime = ratio * audio.duration;
-  });
-
-  progressWrap.addEventListener('keydown', (e) => {
-    if (!audio.duration) return;
-    if (e.key === 'ArrowRight') audio.currentTime = Math.min(audio.currentTime + 5, audio.duration);
-    if (e.key === 'ArrowLeft') audio.currentTime = Math.max(audio.currentTime - 5, 0);
-  });
-
-  volSlider.addEventListener('input', () => {
-    audio.volume = parseFloat(volSlider.value);
-  });
-}
-
-
-// ── Mobile anchor fix: evita que el botón "Entrar al rincón" deje el scroll trabado en iPhone
-document.querySelectorAll('a[href="#lectura"]').forEach((link) => {
-  link.addEventListener('click', (event) => {
-    event.preventDefault();
-
-    const target = document.getElementById('lectura');
-    if (!target) return;
-
-    link.blur();
-
-    const y = target.getBoundingClientRect().top + window.pageYOffset - 6;
-    window.scrollTo({ top: y, behavior: 'smooth' });
-
-    window.setTimeout(() => {
-      history.replaceState(null, '', '#lectura');
-      document.activeElement && document.activeElement.blur && document.activeElement.blur();
-    }, 450);
-  });
-});
+  <script src="main.js"></script>
+</body>
+</html>
