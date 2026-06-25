@@ -1176,3 +1176,6 @@ section, main {
     font-size: 0.78rem;
   }
 }
+.muestra-paginas {
+  display: none;
+}
