@@ -1224,3 +1224,87 @@ section, main {
     aspect-ratio: 4 / 4.8;
   }
 }
+/* ==============================
+   DETALLE LEÍBLE DE HERRAMIENTAS
+   ============================== */
+
+.herramienta-detalle {
+  margin-top: 22px;
+  border-top: 1px solid rgba(233, 199, 139, 0.14);
+  padding-top: 18px;
+}
+
+.herramienta-detalle summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  list-style: none;
+  cursor: pointer;
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(236, 203, 145, 0.22);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(245, 209, 144, 0.14), transparent 60%),
+    rgba(42, 27, 18, 0.72);
+  color: rgba(255, 235, 198, 0.92);
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.herramienta-detalle summary::-webkit-details-marker {
+  display: none;
+}
+
+.herramienta-detalle summary::after {
+  content: "↓";
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.herramienta-detalle[open] summary::after {
+  content: "↑";
+}
+
+.herramienta-detalle summary:hover {
+  transform: translateY(-2px);
+  border-color: rgba(236, 203, 145, 0.42);
+  background: rgba(67, 43, 27, 0.78);
+}
+
+.herramienta-texto {
+  margin-top: 20px;
+  padding: 22px 20px;
+  border-radius: 20px;
+  background:
+    linear-gradient(180deg, rgba(255, 230, 184, 0.07), rgba(35, 22, 15, 0.22)),
+    rgba(18, 11, 7, 0.22);
+  border: 1px solid rgba(233, 199, 139, 0.12);
+  text-align: left;
+}
+
+.herramienta-texto h4 {
+  margin: 18px 0 7px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.28rem;
+  font-weight: 500;
+  color: rgba(255, 239, 208, 0.96);
+}
+
+.herramienta-texto h4:first-child {
+  margin-top: 0;
+}
+
+.herramienta-texto p {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: rgba(238, 216, 180, 0.82);
+}
+
+@media (max-width: 900px) {
+  .herramienta-texto {
+    text-align: center;
+  }
+}
