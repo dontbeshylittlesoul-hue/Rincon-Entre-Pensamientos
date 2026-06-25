@@ -167,3 +167,72 @@
   <script src="main.js"></script>
 </body>
 </html>
+const libroDemo = document.getElementById("libroDemo");
+const paginasLibro = document.querySelectorAll(".libro-pagina");
+const btnPrev = document.querySelector(".libro-prev");
+const btnNext = document.querySelector(".libro-next");
+const contadorLibro = document.getElementById("contadorLibro");
+
+let paginaActual = 0;
+
+function actualizarLibro(direccion = "siguiente") {
+  paginasLibro.forEach((pagina, index) => {
+    pagina.classList.remove("activa", "sale-izquierda", "sale-derecha");
+
+    if (index === paginaActual) {
+      pagina.classList.add("activa");
+
+      if (direccion === "siguiente") {
+        pagina.classList.add("entra-derecha");
+        setTimeout(() => pagina.classList.remove("entra-derecha"), 450);
+      }
+
+      if (direccion === "anterior") {
+        pagina.classList.add("entra-izquierda");
+        setTimeout(() => pagina.classList.remove("entra-izquierda"), 450);
+      }
+    }
+  });
+
+  if (contadorLibro) {
+    contadorLibro.textContent = `Página ${paginaActual + 1} de ${paginasLibro.length}`;
+  }
+
+  if (btnPrev) {
+    btnPrev.disabled = paginaActual === 0;
+  }
+
+  if (btnNext) {
+    btnNext.disabled = paginaActual === paginasLibro.length - 1;
+  }
+}
+
+if (libroDemo && paginasLibro.length > 0) {
+  actualizarLibro();
+
+  btnNext?.addEventListener("click", () => {
+    if (paginaActual < paginasLibro.length - 1) {
+      paginasLibro[paginaActual].classList.add("sale-izquierda");
+      paginaActual++;
+      setTimeout(() => actualizarLibro("siguiente"), 180);
+    }
+  });
+
+  btnPrev?.addEventListener("click", () => {
+    if (paginaActual > 0) {
+      paginasLibro[paginaActual].classList.add("sale-derecha");
+      paginaActual--;
+      setTimeout(() => actualizarLibro("anterior"), 180);
+    }
+  });
+
+  libroDemo.addEventListener("click", (event) => {
+    const clicEnBoton = event.target.closest("button");
+
+    if (!clicEnBoton && paginaActual < paginasLibro.length - 1) {
+      paginasLibro[paginaActual].classList.add("sale-izquierda");
+      paginaActual++;
+      setTimeout(() => actualizarLibro("siguiente"), 180);
+    }
+  });
+}
