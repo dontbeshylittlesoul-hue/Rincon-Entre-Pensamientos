@@ -1179,3 +1179,48 @@ section, main {
 .muestra-paginas {
   display: none;
 }
+/* ==============================
+   PERGAMINOS EN HERRAMIENTAS
+   ============================== */
+
+.herramienta-imagen {
+  width: 100%;
+  margin-bottom: 24px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(18, 11, 7, 0.28);
+  border: 1px solid rgba(233, 199, 139, 0.13);
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.25),
+    inset 0 0 28px rgba(255, 214, 146, 0.035);
+}
+
+.herramienta-imagen img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.45s ease, filter 0.45s ease;
+}
+
+.tarjeta-herramienta:hover .herramienta-imagen img {
+  transform: scale(1.035);
+  filter: brightness(1.06);
+}
+
+.herramienta-contenido {
+  position: relative;
+  z-index: 2;
+}
+
+.tarjeta-herramienta {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 900px) {
+  .herramienta-imagen img {
+    aspect-ratio: 4 / 4.8;
+  }
+}
