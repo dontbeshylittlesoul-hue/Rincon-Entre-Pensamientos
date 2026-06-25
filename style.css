@@ -1308,3 +1308,87 @@ section, main {
     text-align: center;
   }
 }
+/* ==============================
+   AJUSTE PREVIEW PERGAMINOS
+   ============================== */
+
+.herramienta-imagen {
+  margin-bottom: 26px;
+}
+
+.herramienta-link {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 20px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.herramienta-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.02) 0%,
+      rgba(0, 0, 0, 0.08) 42%,
+      rgba(18, 11, 7, 0.72) 100%
+    );
+  opacity: 1;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ver-pergamino {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  max-width: calc(100% - 34px);
+  padding: 11px 18px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(245, 209, 144, 0.18), transparent 65%),
+    rgba(30, 19, 12, 0.88);
+  border: 1px solid rgba(236, 203, 145, 0.36);
+  color: rgba(255, 236, 202, 0.98);
+  font-size: 0.86rem;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  opacity: 1;
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.34),
+    0 0 24px rgba(226, 168, 82, 0.10);
+  pointer-events: none;
+}
+
+.ver-pergamino::after {
+  content: "↗";
+  margin-left: 8px;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.herramienta-link:hover img {
+  transform: scale(1.035);
+  filter: brightness(1.06);
+}
+
+.herramienta-link:hover .ver-pergamino {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(245, 209, 144, 0.24), transparent 65%),
+    rgba(48, 30, 18, 0.94);
+  border-color: rgba(236, 203, 145, 0.55);
+}
+
+.descargar-pergamino {
+  display: none !important;
+}
