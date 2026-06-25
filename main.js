@@ -1,238 +1,181 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rincón entre Pensamientos</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+document.addEventListener("DOMContentLoaded", function () {
+  /* ==============================
+     ANIMACIÓN REVEAL
+     ============================== */
 
-  <div class="bg-layer bg-noise" aria-hidden="true"></div>
-  <div class="bg-layer bg-vignette" aria-hidden="true"></div>
-  <div class="ember-glow" aria-hidden="true"></div>
+  const revealElements = document.querySelectorAll(".reveal");
 
-  <section class="hero" id="inicio">
-    <div class="hero-pergamino reveal">
-      <div class="hero-contenido">
-        <p class="hero-eyebrow">una experiencia de lectura</p>
-        <h1 class="hero-title">
-          Rincón entre<br /><em>Pensamientos</em>
-        </h1>
-        <p class="hero-subtitle">
-          Una muestra para bajar el ruido,<br />
-          leer sin apuro y volver a escucharte.
-        </p>
-        <a href="#lectura" class="btn-primary">
-          <span>Leer muestra gratis</span>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M8 2v12M2 8l6 6 6-6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-    <div class="hero-scroll-hint">deslizá para entrar</div>
-  </section>
-
-  <main class="site-main">
-    <section class="intro-muestra" id="lectura">
-      <div class="intro-inner reveal">
-        <p class="section-mini">muestra gratis</p>
-        <h2>Prólogo, Capítulo I e Interludio I</h2>
-        <p>
-          Esta es una primera entrada al rincón: una lectura breve para sentir el tono del ebook
-          antes de acceder a la experiencia completa.
-        </p>
-      </div>
-    </section>
-
-    <section class="muestra-paginas" aria-label="Muestra gratis del ebook">
-        <figure class="muestra-pagina reveal">
-          <img src="muestra/pagina-04.webp" alt="Página 1 de la muestra de Rincón entre Pensamientos" loading="lazy" />
-        </figure>
-        <figure class="muestra-pagina reveal">
-          <img src="muestra/pagina-05.webp" alt="Página 2 de la muestra de Rincón entre Pensamientos" loading="lazy" />
-        </figure>
-        <figure class="muestra-pagina reveal">
-          <img src="muestra/pagina-06.webp" alt="Página 3 de la muestra de Rincón entre Pensamientos" loading="lazy" />
-        </figure>
-        <figure class="muestra-pagina reveal">
-          <img src="muestra/pagina-07.webp" alt="Página 4 de la muestra de Rincón entre Pensamientos" loading="lazy" />
-        </figure>
-        <figure class="muestra-pagina reveal">
-          <img src="muestra/pagina-08.webp" alt="Página 5 de la muestra de Rincón entre Pensamientos" loading="lazy" />
-        </figure>
-        <figure class="muestra-pagina reveal">
-          <img src="muestra/pagina-09.webp" alt="Página 6 de la muestra de Rincón entre Pensamientos" loading="lazy" />
-        </figure>
-        <figure class="muestra-pagina reveal">
-          <img src="muestra/pagina-10.webp" alt="Página 7 de la muestra de Rincón entre Pensamientos" loading="lazy" />
-        </figure>
-        <figure class="muestra-pagina reveal">
-          <img src="muestra/pagina-11.webp" alt="Página 8 de la muestra de Rincón entre Pensamientos" loading="lazy" />
-        </figure>
-        <figure class="muestra-pagina reveal">
-          <img src="muestra/pagina-12.webp" alt="Página 9 de la muestra de Rincón entre Pensamientos" loading="lazy" />
-        </figure>
-        <figure class="muestra-pagina reveal">
-          <img src="muestra/pagina-13.webp" alt="Página 10 de la muestra de Rincón entre Pensamientos" loading="lazy" />
-        </figure>
-    </section>
-
-    <section class="audio-seccion reveal" id="ambiente">
-      <div class="audio-inner">
-        <p class="audio-mini">ambiente</p>
-        <div class="audio-icono" aria-hidden="true">
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-            <circle cx="18" cy="18" r="17" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.45"/>
-            <path d="M14 12v12l10-6-10-6z" fill="currentColor" fill-opacity="0.8"/>
-          </svg>
-        </div>
-        <p class="audio-texto">Poné la lluvia de fondo y leé a tu ritmo.</p>
-
-        <div class="audio-player-wrap">
-          <audio id="audioAmbiente" loop preload="none">
-            <source src="ambiente.mp3" type="audio/mpeg" />
-            Tu navegador no soporta audio HTML5.
-          </audio>
-          <div class="custom-player">
-            <button class="play-pause-btn" id="playPauseBtn" aria-label="Reproducir / Pausar">
-              <svg class="icon-play" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                <path d="M5 3.5l11 5.5-11 5.5V3.5z" fill="currentColor"/>
-              </svg>
-              <svg class="icon-pause hidden" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                <rect x="4" y="3" width="3.5" height="12" rx="1" fill="currentColor"/>
-                <rect x="10.5" y="3" width="3.5" height="12" rx="1" fill="currentColor"/>
-              </svg>
-            </button>
-            <div class="progress-wrap" id="progressWrap" role="slider" aria-label="Progreso del audio" tabindex="0">
-              <div class="progress-track">
-                <div class="progress-fill" id="progressFill"></div>
-              </div>
-            </div>
-            <div class="volume-wrap">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M3 6H1v4h2l4 3V3L3 6z" fill="currentColor" fill-opacity="0.6"/>
-                <path d="M11 4.5a5 5 0 010 7M9 6.5a2.5 2.5 0 010 3" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-opacity="0.6"/>
-              </svg>
-              <input type="range" id="volumen" class="volumen-slider" min="0" max="1" step="0.05" value="0.7" aria-label="Volumen" />
-            </div>
-          </div>
-          <p class="audio-nota">sonido de fondo · reproducción continua</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta-final reveal" id="ebook">
-      <div class="cta-card">
-        <p class="section-mini">versión completa</p>
-        <h2>Seguir leyendo el ebook completo</h2>
-        <p>
-          Si esta muestra te encontró en un momento necesario, podés acceder al ebook completo
-          en PDF y a la experiencia inmersiva completa.
-        </p>
-
-        <ul class="cta-lista">
-          <li>PDF descargable</li>
-          <li>Lectura inmersiva completa</li>
-          <li>Audio ambiente para leer a tu ritmo</li>
-        </ul>
-
-        <a href="#" class="btn-primary btn-hotmart">
-          <span>Acceder al ebook completo</span>
-          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
-            <path d="M3 12L12 3M5 3h7v7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-        <p class="cta-nota">Cuando tengas el link de Hotmart, reemplazamos este botón.</p>
-      </div>
-    </section>
-
-    <section class="cierre reveal" id="cierre">
-      <div class="cierre-inner">
-        <p class="cierre-texto">
-          No se trata de cambiar tu vida en un día.<br />
-          <em>Se trata de volver a escucharte.</em>
-        </p>
-        <a href="#inicio" class="btn-volver" aria-label="Volver al inicio">
-          volver al comienzo
-        </a>
-      </div>
-    </section>
-  </main>
-
-  <script src="main.js"></script>
-</body>
-</html>
-const libroDemo = document.getElementById("libroDemo");
-const paginasLibro = document.querySelectorAll(".libro-pagina");
-const btnPrev = document.querySelector(".libro-prev");
-const btnNext = document.querySelector(".libro-next");
-const contadorLibro = document.getElementById("contadorLibro");
-
-let paginaActual = 0;
-
-function actualizarLibro(direccion = "siguiente") {
-  paginasLibro.forEach((pagina, index) => {
-    pagina.classList.remove("activa", "sale-izquierda", "sale-derecha");
-
-    if (index === paginaActual) {
-      pagina.classList.add("activa");
-
-      if (direccion === "siguiente") {
-        pagina.classList.add("entra-derecha");
-        setTimeout(() => pagina.classList.remove("entra-derecha"), 450);
-      }
-
-      if (direccion === "anterior") {
-        pagina.classList.add("entra-izquierda");
-        setTimeout(() => pagina.classList.remove("entra-izquierda"), 450);
-      }
+  const revealObserver = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.12,
     }
+  );
+
+  revealElements.forEach(function (element) {
+    revealObserver.observe(element);
   });
 
-  if (contadorLibro) {
-    contadorLibro.textContent = `Página ${paginaActual + 1} de ${paginasLibro.length}`;
+  /* ==============================
+     AUDIO AMBIENTE
+     ============================== */
+
+  const audioAmbiente = document.getElementById("audioAmbiente");
+  const playPauseBtn = document.getElementById("playPauseBtn");
+  const volumen = document.getElementById("volumen");
+  const progressWrap = document.getElementById("progressWrap");
+  const progressFill = document.getElementById("progressFill");
+  const iconPlay = document.querySelector(".icon-play");
+  const iconPause = document.querySelector(".icon-pause");
+
+  if (audioAmbiente && playPauseBtn) {
+    audioAmbiente.volume = volumen ? parseFloat(volumen.value) : 0.7;
+
+    playPauseBtn.addEventListener("click", function () {
+      if (audioAmbiente.paused) {
+        audioAmbiente.play().then(function () {
+          if (iconPlay) iconPlay.classList.add("hidden");
+          if (iconPause) iconPause.classList.remove("hidden");
+        }).catch(function (error) {
+          console.log("Error al reproducir audio:", error);
+        });
+      } else {
+        audioAmbiente.pause();
+        if (iconPlay) iconPlay.classList.remove("hidden");
+        if (iconPause) iconPause.classList.add("hidden");
+      }
+    });
+
+    if (volumen) {
+      volumen.addEventListener("input", function () {
+        audioAmbiente.volume = parseFloat(volumen.value);
+      });
+    }
+
+    audioAmbiente.addEventListener("timeupdate", function () {
+      if (!progressFill || !audioAmbiente.duration) return;
+
+      const progreso = (audioAmbiente.currentTime / audioAmbiente.duration) * 100;
+      progressFill.style.width = progreso + "%";
+    });
+
+    if (progressWrap) {
+      progressWrap.addEventListener("click", function (event) {
+        if (!audioAmbiente.duration) return;
+
+        const rect = progressWrap.getBoundingClientRect();
+        const clickX = event.clientX - rect.left;
+        const porcentaje = clickX / rect.width;
+
+        audioAmbiente.currentTime = porcentaje * audioAmbiente.duration;
+      });
+    }
   }
 
-  if (btnPrev) {
-    btnPrev.disabled = paginaActual === 0;
+  /* ==============================
+     VISOR EBOOK INTERACTIVO
+     ============================== */
+
+  const libroDemo = document.getElementById("libroDemo");
+  const paginasLibro = document.querySelectorAll(".libro-pagina");
+  const btnPrev = document.querySelector(".libro-prev");
+  const btnNext = document.querySelector(".libro-next");
+  const contadorLibro = document.getElementById("contadorLibro");
+
+  if (!libroDemo || paginasLibro.length === 0) {
+    return;
+  }
+
+  let paginaActual = 0;
+
+  function mostrarPagina(nuevaPagina, direccion) {
+    paginasLibro.forEach(function (pagina, index) {
+      pagina.classList.remove(
+        "activa",
+        "sale-izquierda",
+        "sale-derecha",
+        "entra-derecha",
+        "entra-izquierda"
+      );
+
+      if (index === nuevaPagina) {
+        pagina.classList.add("activa");
+
+        if (direccion === "siguiente") {
+          pagina.classList.add("entra-derecha");
+        }
+
+        if (direccion === "anterior") {
+          pagina.classList.add("entra-izquierda");
+        }
+      }
+    });
+
+    paginaActual = nuevaPagina;
+
+    if (contadorLibro) {
+      contadorLibro.textContent = "Página " + (paginaActual + 1) + " de " + paginasLibro.length;
+    }
+
+    if (btnPrev) {
+      btnPrev.disabled = paginaActual === 0;
+    }
+
+    if (btnNext) {
+      btnNext.disabled = paginaActual === paginasLibro.length - 1;
+    }
+  }
+
+  function paginaSiguiente() {
+    if (paginaActual >= paginasLibro.length - 1) return;
+
+    paginasLibro[paginaActual].classList.add("sale-izquierda");
+
+    setTimeout(function () {
+      mostrarPagina(paginaActual + 1, "siguiente");
+    }, 220);
+  }
+
+  function paginaAnterior() {
+    if (paginaActual <= 0) return;
+
+    paginasLibro[paginaActual].classList.add("sale-derecha");
+
+    setTimeout(function () {
+      mostrarPagina(paginaActual - 1, "anterior");
+    }, 220);
   }
 
   if (btnNext) {
-    btnNext.disabled = paginaActual === paginasLibro.length - 1;
+    btnNext.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      paginaSiguiente();
+    });
   }
-}
 
-if (libroDemo && paginasLibro.length > 0) {
-  actualizarLibro();
+  if (btnPrev) {
+    btnPrev.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      paginaAnterior();
+    });
+  }
 
-  btnNext?.addEventListener("click", () => {
-    if (paginaActual < paginasLibro.length - 1) {
-      paginasLibro[paginaActual].classList.add("sale-izquierda");
-      paginaActual++;
-      setTimeout(() => actualizarLibro("siguiente"), 180);
-    }
-  });
+  const marcoLibro = document.querySelector(".libro-marco");
 
-  btnPrev?.addEventListener("click", () => {
-    if (paginaActual > 0) {
-      paginasLibro[paginaActual].classList.add("sale-derecha");
-      paginaActual--;
-      setTimeout(() => actualizarLibro("anterior"), 180);
-    }
-  });
+  if (marcoLibro) {
+    marcoLibro.addEventListener("click", function () {
+      paginaSiguiente();
+    });
+  }
 
-  libroDemo.addEventListener("click", (event) => {
-    const clicEnBoton = event.target.closest("button");
-
-    if (!clicEnBoton && paginaActual < paginasLibro.length - 1) {
-      paginasLibro[paginaActual].classList.add("sale-izquierda");
-      paginaActual++;
-      setTimeout(() => actualizarLibro("siguiente"), 180);
-    }
-  });
-}
+  mostrarPagina(0);
+});
