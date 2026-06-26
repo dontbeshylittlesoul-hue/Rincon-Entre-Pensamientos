@@ -15,12 +15,14 @@
   <div class="bg-layer bg-vignette" aria-hidden="true"></div>
   <div class="ember-glow" aria-hidden="true"></div>
 
-<audio id="audioAmbiente" src="ambiente-lluvia.mp3" preload="auto" loop></audio>
+<div class="audio-prueba">
+  <span>Ambiente de lluvia</span>
 
-<button class="ambiente-toggle" id="ambienteToggle" type="button" aria-label="Activar ambiente">
-  <span class="ambiente-icono">♪</span>
-  <span class="ambiente-texto">Activar ambiente</span>
-</button>
+  <audio id="audioAmbiente" controls loop preload="auto">
+    <source src="./ambiente-lluvia.mp3" type="audio/mpeg">
+    Tu navegador no puede reproducir este audio.
+  </audio>
+</div>
   
   <section class="hero" id="inicio">
     <div class="hero-pergamino reveal">
