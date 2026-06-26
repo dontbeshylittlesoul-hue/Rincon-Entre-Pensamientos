@@ -15,6 +15,13 @@
   <div class="bg-layer bg-vignette" aria-hidden="true"></div>
   <div class="ember-glow" aria-hidden="true"></div>
 
+  <audio id="audioAmbiente" src="ambiente-rincon.mp3" preload="auto" loop></audio>
+
+<button class="ambiente-toggle" id="ambienteToggle" type="button" aria-label="Activar ambiente">
+  <span class="ambiente-icono">♪</span>
+  <span class="ambiente-texto">Activar ambiente</span>
+</button>
+  
   <section class="hero" id="inicio">
     <div class="hero-pergamino reveal">
       <div class="hero-contenido">
@@ -33,7 +40,7 @@
   y descubrir una experiencia creada para volver a escucharte.
 </p>
 
-<a href="#lectura" class="btn-primary">
+<a href="#lectura" class="btn-primary" id="entrarMuestra">
   <span>Entrar a la muestra </span>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M8 2v12M2 8l6 6 6-6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -272,3 +279,47 @@
   <script src="main.js"></script>
 </body>
 </html>
+// Ambiente sonoro de la landing
+
+document.addEventListener("DOMContentLoaded", function () {
+  const audioAmbiente = document.getElementById("audioAmbiente");
+  const ambienteToggle = document.getElementById("ambienteToggle");
+  const entrarMuestra = document.getElementById("entrarMuestra");
+
+  if (!audioAmbiente || !ambienteToggle) return;
+
+  audioAmbiente.volume = 0.28;
+
+  function activarAmbiente() {
+    audioAmbiente.play()
+      .then(function () {
+        ambienteToggle.classList.add("activo");
+        ambienteToggle.querySelector(".ambiente-texto").textContent = "Pausar ambiente";
+      })
+      .catch(function (error) {
+        console.log("No se pudo reproducir el ambiente:", error);
+      });
+  }
+
+  function pausarAmbiente() {
+    audioAmbiente.pause();
+    ambienteToggle.classList.remove("activo");
+    ambienteToggle.querySelector(".ambiente-texto").textContent = "Activar ambiente";
+  }
+
+  ambienteToggle.addEventListener("click", function () {
+    if (audioAmbiente.paused) {
+      activarAmbiente();
+    } else {
+      pausarAmbiente();
+    }
+  });
+
+  if (entrarMuestra) {
+    entrarMuestra.addEventListener("click", function () {
+      if (audioAmbiente.paused) {
+        activarAmbiente();
+      }
+    });
+  }
+});
