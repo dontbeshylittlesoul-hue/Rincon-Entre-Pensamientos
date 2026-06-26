@@ -1889,3 +1889,41 @@ font-size: 1rem;
     text-align: center;
   }
 }
+/* Fondo con imagen para la sección del cuento */
+
+.cuento-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    linear-gradient(180deg, rgba(24, 14, 9, 0.88), rgba(12, 8, 5, 0.92));
+}
+
+.cuento-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("./images/fondo-cuento.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 0.16; /* probá entre 0.10 y 0.18 */
+  z-index: 0;
+  transform: scale(1.03);
+  filter: blur(1px);
+}
+
+.cuento-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(22, 13, 8, 0.30), rgba(10, 7, 5, 0.52)),
+    radial-gradient(circle at center, rgba(191, 133, 67, 0.10), transparent 60%);
+  z-index: 1;
+}
+
+.cuento-card > * {
+  position: relative;
+  z-index: 2;
+}
