@@ -1786,3 +1786,106 @@ font-size: 1rem;
     margin-right: auto;
   }
 }
+/* Ajuste final landing venta pública */
+
+.muestra-paginas {
+  display: none !important;
+}
+
+.cuento-muestra {
+  width: min(920px, calc(100% - 36px));
+  margin: 70px auto 20px;
+  padding: 0;
+}
+
+.cuento-card {
+  position: relative;
+  padding: clamp(2rem, 5vw, 3.5rem);
+  border-radius: 30px;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(221, 177, 103, 0.14), transparent 42%),
+    linear-gradient(180deg, rgba(50, 34, 22, 0.46), rgba(20, 13, 9, 0.28));
+  border: 1px solid rgba(226, 198, 148, 0.14);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.24);
+}
+
+.cuento-card h2 {
+  max-width: 760px;
+  margin: 0 auto 1rem;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  font-weight: 400;
+  line-height: 1.02;
+  color: rgba(255, 240, 211, 0.96);
+}
+
+.cuento-intro,
+.cuento-cierre {
+  max-width: 680px;
+  margin: 0 auto 1.6rem;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: rgba(241, 221, 186, 0.82);
+}
+
+.cuento-preview {
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: clamp(1.4rem, 4vw, 2.2rem);
+  border-radius: 24px;
+  text-align: left;
+  background: rgba(255, 222, 168, 0.06);
+  border: 1px solid rgba(236, 203, 145, 0.13);
+}
+
+.cuento-etiqueta {
+  margin: 0 0 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  color: rgba(238, 190, 111, 0.84);
+}
+
+.cuento-preview h3 {
+  margin: 0 0 1rem;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 400;
+  color: rgba(255, 239, 208, 0.96);
+}
+
+.cuento-preview p {
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: rgba(238, 216, 180, 0.84);
+}
+
+.cuento-detalle {
+  margin-top: 1.2rem;
+}
+
+.cuento-detalle summary {
+  cursor: pointer;
+  color: rgba(238, 190, 111, 0.95);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+}
+
+.cuento-texto {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(236, 203, 145, 0.13);
+}
+
+@media (max-width: 520px) {
+  .cuento-muestra {
+    width: min(100% - 24px, 920px);
+    margin-top: 50px;
+  }
+
+  .cuento-preview {
+    text-align: center;
+  }
+}
