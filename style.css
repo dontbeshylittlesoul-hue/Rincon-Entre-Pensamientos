@@ -1907,7 +1907,7 @@ font-size: 1rem;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  opacity: 0.16; /* probá entre 0.10 y 0.18 */
+  opacity: 0.20; /* probá entre 0.10 y 0.18 */
   z-index: 0;
   transform: scale(1.03);
   filter: blur(1px);
