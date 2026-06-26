@@ -1,9 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-  /* ==============================
-     ANIMACIÓN REVEAL
-     ============================== */
+  /* Animaciones al aparecer */
 
-  const revealElements = document.querySelectorAll(".reveal");
+  const reveals = document.querySelectorAll(".reveal");
 
   const revealObserver = new IntersectionObserver(
     function (entries) {
@@ -15,239 +13,111 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     },
     {
-      threshold: 0.12,
+      threshold: 0.15
     }
   );
 
-  revealElements.forEach(function (element) {
-    revealObserver.observe(element);
+  reveals.forEach(function (el) {
+    revealObserver.observe(el);
   });
 
-  /* ==============================
-     AUDIO AMBIENTE
-     ============================== */
-
-  const audioAmbiente = document.getElementById("audioAmbiente");
-  const playPauseBtn = document.getElementById("playPauseBtn");
-  const volumen = document.getElementById("volumen");
-  const progressWrap = document.getElementById("progressWrap");
-  const progressFill = document.getElementById("progressFill");
-  const iconPlay = document.querySelector(".icon-play");
-  const iconPause = document.querySelector(".icon-pause");
-
-  if (audioAmbiente && playPauseBtn) {
-    audioAmbiente.volume = volumen ? parseFloat(volumen.value) : 0.7;
-
-    playPauseBtn.addEventListener("click", function () {
-      if (audioAmbiente.paused) {
-        audioAmbiente.play().then(function () {
-          if (iconPlay) iconPlay.classList.add("hidden");
-          if (iconPause) iconPause.classList.remove("hidden");
-        }).catch(function (error) {
-          console.log("Error al reproducir audio:", error);
-        });
-      } else {
-        audioAmbiente.pause();
-        if (iconPlay) iconPlay.classList.remove("hidden");
-        if (iconPause) iconPause.classList.add("hidden");
-      }
-    });
-
-    if (volumen) {
-      volumen.addEventListener("input", function () {
-        audioAmbiente.volume = parseFloat(volumen.value);
-      });
-    }
-
-    audioAmbiente.addEventListener("timeupdate", function () {
-      if (!progressFill || !audioAmbiente.duration) return;
-
-      const progreso = (audioAmbiente.currentTime / audioAmbiente.duration) * 100;
-      progressFill.style.width = progreso + "%";
-    });
-
-    if (progressWrap) {
-      progressWrap.addEventListener("click", function (event) {
-        if (!audioAmbiente.duration) return;
-
-        const rect = progressWrap.getBoundingClientRect();
-        const clickX = event.clientX - rect.left;
-        const porcentaje = clickX / rect.width;
-
-        audioAmbiente.currentTime = porcentaje * audioAmbiente.duration;
-      });
-    }
-  }
-
-  /* ==============================
-     VISOR EBOOK INTERACTIVO
-     ============================== */
+  /* Visor de páginas del ebook */
 
   const libroDemo = document.getElementById("libroDemo");
-  const paginasLibro = document.querySelectorAll(".libro-pagina");
-  const btnPrev = document.querySelector(".libro-prev");
-  const btnNext = document.querySelector(".libro-next");
-  const contadorLibro = document.getElementById("contadorLibro");
 
-  if (!libroDemo || paginasLibro.length === 0) {
-    return;
-  }
+  if (libroDemo) {
+    const paginas = libroDemo.querySelectorAll(".libro-pagina");
+    const btnPrev = libroDemo.querySelector(".libro-prev");
+    const btnNext = libroDemo.querySelector(".libro-next");
+    const contador = document.getElementById("contadorLibro");
 
-  let paginaActual = 0;
+    let paginaActual = 0;
 
-  function mostrarPagina(nuevaPagina, direccion) {
-    paginasLibro.forEach(function (pagina, index) {
-      pagina.classList.remove(
-        "activa",
-        "sale-izquierda",
-        "sale-derecha",
-        "entra-derecha",
-        "entra-izquierda"
-      );
+    function mostrarPagina(index) {
+      if (!paginas.length) return;
 
-      if (index === nuevaPagina) {
-        pagina.classList.add("activa");
+      paginaActual = index;
 
-        if (direccion === "siguiente") {
-          pagina.classList.add("entra-derecha");
-        }
-
-        if (direccion === "anterior") {
-          pagina.classList.add("entra-izquierda");
-        }
+      if (paginaActual < 0) {
+        paginaActual = paginas.length - 1;
       }
-    });
 
-    paginaActual = nuevaPagina;
+      if (paginaActual >= paginas.length) {
+        paginaActual = 0;
+      }
 
-    if (contadorLibro) {
-      contadorLibro.textContent = "Página " + (paginaActual + 1) + " de " + paginasLibro.length;
+      paginas.forEach(function (pagina, i) {
+        pagina.classList.toggle("activa", i === paginaActual);
+      });
+
+      if (contador) {
+        contador.textContent = "Página " + (paginaActual + 1) + " de " + paginas.length;
+      }
     }
 
     if (btnPrev) {
-      btnPrev.disabled = paginaActual === 0;
+      btnPrev.addEventListener("click", function () {
+        mostrarPagina(paginaActual - 1);
+      });
     }
 
     if (btnNext) {
-      btnNext.disabled = paginaActual === paginasLibro.length - 1;
+      btnNext.addEventListener("click", function () {
+        mostrarPagina(paginaActual + 1);
+      });
     }
+
+    const marco = libroDemo.querySelector(".libro-marco");
+
+    if (marco) {
+      marco.addEventListener("click", function () {
+        mostrarPagina(paginaActual + 1);
+      });
+    }
+
+    mostrarPagina(0);
   }
 
-  function paginaSiguiente() {
-    if (paginaActual >= paginasLibro.length - 1) return;
+  /* Ambiente sonoro */
 
-    paginasLibro[paginaActual].classList.add("sale-izquierda");
-
-    setTimeout(function () {
-      mostrarPagina(paginaActual + 1, "siguiente");
-    }, 220);
-  }
-
-  function paginaAnterior() {
-    if (paginaActual <= 0) return;
-
-    paginasLibro[paginaActual].classList.add("sale-derecha");
-
-    setTimeout(function () {
-      mostrarPagina(paginaActual - 1, "anterior");
-    }, 220);
-  }
-
-  if (btnNext) {
-    btnNext.addEventListener("click", function (event) {
-      event.preventDefault();
-      event.stopPropagation();
-      paginaSiguiente();
-    });
-  }
-
-  if (btnPrev) {
-    btnPrev.addEventListener("click", function (event) {
-      event.preventDefault();
-      event.stopPropagation();
-      paginaAnterior();
-    });
-  }
-
-  const marcoLibro = document.querySelector(".libro-marco");
-
-  if (marcoLibro) {
-    marcoLibro.addEventListener("click", function () {
-      paginaSiguiente();
-    });
-  }
-
-  mostrarPagina(0);
-});
-// Ambiente sonoro de la landing
-
-document.addEventListener("DOMContentLoaded", function () {
   const audioAmbiente = document.getElementById("audioAmbiente");
   const ambienteToggle = document.getElementById("ambienteToggle");
   const entrarMuestra = document.getElementById("entrarMuestra");
 
-  if (!audioAmbiente || !ambienteToggle) return;
+  if (audioAmbiente && ambienteToggle) {
+    audioAmbiente.volume = 0.22;
 
-  audioAmbiente.volume = 0.28;
-
-  function activarAmbiente() {
-    audioAmbiente.play()
-      .then(function () {
-        ambienteToggle.classList.add("activo");
-        ambienteToggle.querySelector(".ambiente-texto").textContent = "Pausar ambiente";
-      })
-      .catch(function (error) {
-        console.log("No se pudo reproducir el ambiente:", error);
-      });
-  }
-
-  function pausarAmbiente() {
-    audioAmbiente.pause();
-    ambienteToggle.classList.remove("activo");
-    ambienteToggle.querySelector(".ambiente-texto").textContent = "Activar ambiente";
-  }
-
-  ambienteToggle.addEventListener("click", function () {
-    if (audioAmbiente.paused) {
-      activarAmbiente();
-    } else {
-      pausarAmbiente();
+    function activarAmbiente() {
+      audioAmbiente.play()
+        .then(function () {
+          ambienteToggle.classList.add("activo");
+          ambienteToggle.textContent = "☔ Pausar lluvia";
+        })
+        .catch(function (error) {
+          console.log("No se pudo reproducir el ambiente:", error);
+        });
     }
-  });
 
-  if (entrarMuestra) {
-    entrarMuestra.addEventListener("click", function () {
+    function pausarAmbiente() {
+      audioAmbiente.pause();
+      ambienteToggle.classList.remove("activo");
+      ambienteToggle.textContent = "☔ Activar lluvia";
+    }
+
+    ambienteToggle.addEventListener("click", function () {
       if (audioAmbiente.paused) {
         activarAmbiente();
+      } else {
+        pausarAmbiente();
       }
     });
+
+    if (entrarMuestra) {
+      entrarMuestra.addEventListener("click", function () {
+        if (audioAmbiente.paused) {
+          activarAmbiente();
+        }
+      });
+    }
   }
 });
-/* Prueba visible del audio */
-
-.audio-prueba {
-  position: fixed;
-  right: 18px;
-  bottom: 18px;
-  z-index: 9999;
-  width: min(320px, calc(100% - 36px));
-  padding: 0.9rem;
-  border-radius: 18px;
-  background: rgba(20, 12, 8, 0.88);
-  border: 1px solid rgba(232, 190, 124, 0.35);
-  color: rgba(255, 235, 198, 0.95);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.38);
-  backdrop-filter: blur(10px);
-}
-
-.audio-prueba span {
-  display: block;
-  margin-bottom: 0.45rem;
-  font-family: "Crimson Pro", serif;
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
-}
-
-.audio-prueba audio {
-  width: 100%;
-}
