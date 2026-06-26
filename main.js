@@ -223,3 +223,31 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+/* Prueba visible del audio */
+
+.audio-prueba {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 9999;
+  width: min(320px, calc(100% - 36px));
+  padding: 0.9rem;
+  border-radius: 18px;
+  background: rgba(20, 12, 8, 0.88);
+  border: 1px solid rgba(232, 190, 124, 0.35);
+  color: rgba(255, 235, 198, 0.95);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(10px);
+}
+
+.audio-prueba span {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-family: "Crimson Pro", serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+.audio-prueba audio {
+  width: 100%;
+}
