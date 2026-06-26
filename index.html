@@ -15,15 +15,13 @@
   <div class="bg-layer bg-vignette" aria-hidden="true"></div>
   <div class="ember-glow" aria-hidden="true"></div>
 
-<div class="audio-prueba">
-  <span>Ambiente de lluvia</span>
+<div class="bg-layer bg-noise" aria-hidden="true"></div>
+<div class="bg-layer bg-vignette" aria-hidden="true"></div>
+<div class="ember-glow" aria-hidden="true"></div>
 
-  <audio id="audioAmbiente" controls loop preload="auto">
-    <source src="./ambiente-lluvia.mp3" type="audio/mpeg">
-    Tu navegador no puede reproducir este audio.
-  </audio>
-</div>
-  
+<audio id="audioAmbiente" preload="auto" loop>
+  <source src="./ambiente-lluvia.mp3" type="audio/mpeg">
+</audio>
   <section class="hero" id="inicio">
     <div class="hero-pergamino reveal">
       <div class="hero-contenido">
@@ -43,11 +41,19 @@
 </p>
 
 <a href="#lectura" class="btn-primary" id="entrarMuestra">
-  <span>Entrar a la muestra </span>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M8 2v12M2 8l6 6 6-6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
+  <span>Entrar a la muestra</span>
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <path d="M8 2v12M2 8l6 6 6-6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>
+
+<button class="btn-ambiente" id="ambienteToggle" type="button">
+  ☔ Activar lluvia
+</button>
+
+<button class="btn-ambiente" id="ambienteToggle" type="button">
+  ☔ Activar lluvia
+</button>
       </div>
     </div>
     <div class="hero-scroll-hint">deslizá para entrar</div>
@@ -278,6 +284,6 @@
 
 </main>
 
-  <script src="main.js"></script>
+  <script src="main.js?v=3"></script>
 </body>
 </html>
