@@ -27,6 +27,7 @@
 <audio id="audioAmbiente" preload="auto" loop>
   <source src="./ambiente-lluvia.mp3" type="audio/mpeg">
 </audio>
+  <audio id="sonidoPagina" src="./pasar-pagina.mp3" preload="auto"></audio>
   <section class="hero" id="inicio">
     <div class="hero-pergamino reveal">
       <div class="hero-contenido">
@@ -319,5 +320,26 @@
 </main>
 
   <script src="main.js?v=3"></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const sonidoPagina = document.getElementById("sonidoPagina");
+    const botonesPagina = document.querySelectorAll(".libro-prev, .libro-next");
+
+    function reproducirSonidoPagina() {
+      if (!sonidoPagina) return;
+
+      sonidoPagina.currentTime = 0;
+      sonidoPagina.volume = 0.38;
+
+      sonidoPagina.play().catch(function (error) {
+        console.log("No se pudo reproducir el sonido de página:", error);
+      });
+    }
+
+    botonesPagina.forEach(function (boton) {
+      boton.addEventListener("click", reproducirSonidoPagina);
+    });
+  });
+</script>
 </body>
 </html>
