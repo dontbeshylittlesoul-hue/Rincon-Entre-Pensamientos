@@ -2460,3 +2460,58 @@ header nav a,
     width: min(100%, 300px) !important;
   }
 }
+/* ================================
+   BOTÓN LLUVIA IGUAL AL PRINCIPAL
+   ================================ */
+
+#ambienteToggle,
+.btn-ambiente {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+
+  min-height: 48px !important;
+  padding: 13px 24px !important;
+  border-radius: 999px !important;
+
+  background: rgba(226, 186, 112, 0.64) !important;
+  color: #2a170c !important;
+  border: 1px solid rgba(93, 54, 22, 0.38) !important;
+
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 1.12rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+
+  box-shadow: 0 10px 26px rgba(24, 13, 7, 0.22) !important;
+  backdrop-filter: blur(5px) !important;
+  cursor: pointer !important;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+#ambienteToggle:hover,
+.btn-ambiente:hover {
+  transform: translateY(-2px) !important;
+  background: rgba(241, 219, 181, 0.68) !important;
+  box-shadow: 0 14px 34px rgba(24, 13, 7, 0.3) !important;
+}
+
+/* opcional cuando está activa */
+#ambienteToggle.activo {
+  background: rgba(235, 200, 132, 0.78) !important;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  #ambienteToggle,
+  .btn-ambiente {
+    width: min(100%, 310px) !important;
+    justify-content: center !important;
+  }
+}
