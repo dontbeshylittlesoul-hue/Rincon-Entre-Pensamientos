@@ -2515,3 +2515,48 @@ header nav a,
     justify-content: center !important;
   }
 }
+/* ================================
+   CORREGIR MAYÚSCULAS EN BOTONES
+   ================================ */
+
+.btn-primary,
+.btn-primary span,
+.btn-ambiente,
+#ambienteToggle,
+.btn-pergamino-descarga,
+.btn-hotmart,
+.btn-hotmart span,
+.hero-actions a,
+.hero-actions button,
+.intro-actions a,
+.intro-actions button,
+.actions a,
+.actions button {
+  text-transform: none !important;
+}
+
+/* Botón lluvia igual al principal pero con texto normal */
+#ambienteToggle,
+.btn-ambiente {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+
+  min-height: 48px !important;
+  padding: 13px 24px !important;
+  border-radius: 999px !important;
+
+  background: rgba(226, 186, 112, 0.64) !important;
+  color: #2a170c !important;
+  border: 1px solid rgba(93, 54, 22, 0.38) !important;
+
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 1.12rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  white-space: nowrap !important;
+
+  box-shadow: 0 10px 26px rgba(24, 13, 7, 0.22) !important;
+  backdrop-filter: blur(5px) !important;
+}
