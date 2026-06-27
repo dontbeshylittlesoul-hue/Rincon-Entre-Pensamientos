@@ -2560,3 +2560,85 @@ header nav a,
   box-shadow: 0 10px 26px rgba(24, 13, 7, 0.22) !important;
   backdrop-filter: blur(5px) !important;
 }
+/* ================================
+   IGUALAR BOTONES HERO
+   Entrar a la muestra + lluvia
+   ================================ */
+
+#entrarMuestra,
+#ambienteToggle {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+
+  width: 230px !important;
+  min-width: 230px !important;
+  height: 56px !important;
+  padding: 0 24px !important;
+
+  border-radius: 999px !important;
+  background: rgba(226, 186, 112, 0.72) !important;
+  color: #2a170c !important;
+  border: 1px solid rgba(93, 54, 22, 0.38) !important;
+
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 1.08rem !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: none !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+
+  box-shadow: 0 10px 26px rgba(24, 13, 7, 0.22) !important;
+  backdrop-filter: blur(5px) !important;
+  cursor: pointer !important;
+}
+
+/* Texto interno del botón principal */
+#entrarMuestra span {
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 1.08rem !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: none !important;
+}
+
+/* Iconos */
+#entrarMuestra svg {
+  width: 16px !important;
+  height: 16px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Botón lluvia */
+#ambienteToggle {
+  font-size: 1.08rem !important;
+}
+
+/* Hover igual para ambos */
+#entrarMuestra:hover,
+#ambienteToggle:hover {
+  transform: translateY(-2px) !important;
+  background: rgba(241, 219, 181, 0.78) !important;
+  box-shadow: 0 14px 34px rgba(24, 13, 7, 0.3) !important;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  #entrarMuestra,
+  #ambienteToggle {
+    width: 235px !important;
+    min-width: 235px !important;
+    height: 54px !important;
+    font-size: 1.04rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  #entrarMuestra span {
+    font-size: 1.04rem !important;
+  }
+}
