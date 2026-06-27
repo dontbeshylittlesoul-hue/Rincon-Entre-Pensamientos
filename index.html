@@ -51,8 +51,8 @@
         </a>
 
         <button class="btn-ambiente" id="ambienteToggle" type="button">
-          ☔ Activar lluvia
-        </button>
+  ☂ Activar lluvia
+</button>
       </div>
     </div>
 
@@ -332,7 +332,7 @@
           if (audioAmbiente.paused) {
             audioAmbiente.play()
               .then(function () {
-                ambienteToggle.textContent = "☔ Pausar lluvia";
+                ambienteToggle.textContent = "☂ Pausar lluvia";
                 ambienteToggle.classList.add("activo");
               })
               .catch(function (error) {
@@ -340,7 +340,7 @@
               });
           } else {
             audioAmbiente.pause();
-            ambienteToggle.textContent = "☔ Activar lluvia";
+        ambienteToggle.textContent = "☂ Activar lluvia";
             ambienteToggle.classList.remove("activo");
           }
         });
