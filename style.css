@@ -2642,3 +2642,111 @@ header nav a,
     font-size: 1.04rem !important;
   }
 }
+/* ================================
+   AJUSTE FINAL BOTONES HERO
+   Más chicos, más finos y en tono
+   ================================ */
+
+#entrarMuestra,
+#ambienteToggle {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+
+  width: 205px !important;
+  min-width: 205px !important;
+  max-width: 205px !important;
+  height: 45px !important;
+
+  padding: 0 18px !important;
+  border-radius: 999px !important;
+
+  background: rgba(224, 185, 112, 0.58) !important;
+  color: #2d190c !important;
+  border: 1px solid rgba(91, 54, 24, 0.28) !important;
+
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: none !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+
+  box-shadow: 0 7px 18px rgba(24, 13, 7, 0.18) !important;
+  backdrop-filter: blur(4px) !important;
+  cursor: pointer !important;
+}
+
+/* Texto interno del botón Entrar */
+#entrarMuestra span {
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: none !important;
+}
+
+/* Flecha del botón entrar */
+#entrarMuestra svg {
+  width: 14px !important;
+  height: 14px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Botón lluvia más sobrio */
+#ambienteToggle {
+  font-size: 0.95rem !important;
+}
+
+/* Hover suave */
+#entrarMuestra:hover,
+#ambienteToggle:hover {
+  transform: translateY(-1px) !important;
+  background: rgba(232, 199, 139, 0.68) !important;
+  box-shadow: 0 10px 22px rgba(24, 13, 7, 0.24) !important;
+}
+
+/* Cuando la lluvia está activa */
+#ambienteToggle.activo {
+  background: rgba(220, 178, 104, 0.68) !important;
+}
+
+/* Separación entre botones */
+#entrarMuestra {
+  margin-bottom: 12px !important;
+}
+
+#ambienteToggle {
+  margin-top: 0 !important;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  #entrarMuestra,
+  #ambienteToggle {
+    width: 205px !important;
+    min-width: 205px !important;
+    max-width: 205px !important;
+    height: 44px !important;
+
+    font-size: 0.92rem !important;
+    padding: 0 16px !important;
+    letter-spacing: 0.07em !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  #entrarMuestra span {
+    font-size: 0.92rem !important;
+    letter-spacing: 0.07em !important;
+  }
+
+  #entrarMuestra svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+}
