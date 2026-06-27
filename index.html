@@ -27,7 +27,7 @@
 <audio id="audioAmbiente" preload="auto" loop>
   <source src="./ambiente-lluvia.mp3" type="audio/mpeg">
 </audio>
-  <audio id="sonidoPagina" src="./pasar-pagina.mp3" preload="auto"></audio>
+<audio id="sonidoPagina" src="./pasar-pagina.mp3" preload="auto"></audio>
   <section class="hero" id="inicio">
     <div class="hero-pergamino reveal">
       <div class="hero-contenido">
@@ -319,25 +319,24 @@
 
 </main>
 
-  <script src="main.js?v=3"></script>
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
+<script>
+  document.addEventListener("click", function (event) {
+    const botonPagina = event.target.closest(".libro-prev, .libro-next");
+
+    if (!botonPagina) return;
+
     const sonidoPagina = document.getElementById("sonidoPagina");
-    const botonesPagina = document.querySelectorAll(".libro-prev, .libro-next");
 
-    function reproducirSonidoPagina() {
-      if (!sonidoPagina) return;
-
-      sonidoPagina.currentTime = 0;
-      sonidoPagina.volume = 0.38;
-
-      sonidoPagina.play().catch(function (error) {
-        console.log("No se pudo reproducir el sonido de página:", error);
-      });
+    if (!sonidoPagina) {
+      console.log("No existe el audio con id sonidoPagina");
+      return;
     }
 
-    botonesPagina.forEach(function (boton) {
-      boton.addEventListener("click", reproducirSonidoPagina);
+    sonidoPagina.volume = 0.45;
+    sonidoPagina.currentTime = 0;
+
+    sonidoPagina.play().catch(function (error) {
+      console.log("No se pudo reproducir el sonido de página:", error);
     });
   });
 </script>
