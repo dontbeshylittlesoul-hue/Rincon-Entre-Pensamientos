@@ -2050,3 +2050,261 @@ font-size: 1rem;
     max-width: 320px;
   }
 }
+.lista-pergamino {
+  max-width: 620px;
+  margin: 24px auto 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.lista-pergamino li {
+  position: relative;
+  margin-bottom: 12px;
+  padding-left: 28px;
+  color: rgba(250, 235, 205, 0.82);
+  font-family: "Crimson Pro", serif;
+  font-size: 1.08rem;
+  line-height: 1.55;
+}
+
+.lista-pergamino li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #e4c98d;
+  font-size: 0.95rem;
+}
+/* ================================
+   AJUSTE HERO PERGAMINO INICIAL
+   ================================ */
+
+body {
+  font-family: "Crimson Pro", serif;
+}
+
+.hero-title,
+.hero h1,
+.intro-title {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  max-width: 92%;
+  font-family: "Cinzel", "Cormorant Garamond", serif;
+  font-weight: 500;
+  font-size: clamp(3.2rem, 6.2vw, 5.7rem);
+  line-height: 0.96;
+  letter-spacing: 0.01em;
+  color: rgba(45, 25, 12, 0.96);
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255, 236, 200, 0.2);
+}
+
+.hero-title span {
+  display: block;
+}
+
+.hero-subtitle,
+.hero .subtitle,
+.intro-subtitle {
+  margin: 34px auto 0;
+  max-width: 520px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.08;
+  font-weight: 400;
+  color: rgba(78, 45, 24, 0.92);
+  text-align: center;
+}
+
+.hero-description,
+.hero .description,
+.intro-description {
+  margin: 28px auto 0;
+  max-width: 540px;
+  font-family: "Crimson Pro", serif;
+  font-size: 1.22rem;
+  line-height: 1.8;
+  color: rgba(82, 55, 35, 0.9);
+  text-align: center;
+}
+
+/* BOTONES DEL HERO */
+
+.hero-actions,
+.intro-actions,
+.actions {
+  margin-top: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.hero-actions a,
+.hero-actions button,
+.intro-actions a,
+.intro-actions button,
+.actions a,
+.actions button,
+#playPauseBtn {
+  appearance: none;
+  min-height: 48px;
+  padding: 13px 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(95, 58, 28, 0.34);
+  background: rgba(232, 202, 154, 0.48);
+  color: rgba(48, 27, 13, 0.96);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.12rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  box-shadow: 0 10px 26px rgba(24, 13, 7, 0.22);
+  backdrop-filter: blur(5px);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-actions a:hover,
+.hero-actions button:hover,
+.intro-actions a:hover,
+.intro-actions button:hover,
+.actions a:hover,
+.actions button:hover,
+#playPauseBtn:hover {
+  transform: translateY(-2px);
+  background: rgba(241, 219, 181, 0.68);
+  box-shadow: 0 14px 34px rgba(24, 13, 7, 0.3);
+}
+
+/* BOTÓN PRINCIPAL: ENTRAR A LA MUESTRA */
+
+.btn-primary,
+.btn-principal,
+#entrarMuestra {
+  background: rgba(226, 186, 112, 0.64) !important;
+  color: #2a170c !important;
+  border: 1px solid rgba(93, 54, 22, 0.38) !important;
+}
+
+/* BOTÓN DE LLUVIA */
+
+#playPauseBtn,
+.btn-audio,
+.btn-lluvia,
+.audio-button {
+  min-width: 170px;
+  background: rgba(222, 194, 151, 0.62) !important;
+  color: #3e2412 !important;
+  border: 1px solid rgba(83, 50, 25, 0.38) !important;
+}
+
+/* MENÚ SUPERIOR */
+
+header nav a,
+.nav a,
+.top-nav a {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(243, 222, 188, 0.76);
+}
+
+header nav a:hover,
+.nav a:hover,
+.top-nav a:hover {
+  color: rgba(255, 239, 211, 0.98);
+}
+
+/* AJUSTE GENERAL DEL PERGAMINO / HERO */
+
+.hero,
+.hero-section,
+.intro,
+.portada {
+  overflow: hidden;
+}
+
+.hero-content,
+.hero-card,
+.intro-content,
+.pergamino-content {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+  .hero-title,
+  .hero h1,
+  .intro-title {
+    font-size: clamp(2.6rem, 10vw, 4.1rem);
+    line-height: 0.98;
+    max-width: 96%;
+  }
+
+  .hero-subtitle,
+  .hero .subtitle,
+  .intro-subtitle {
+    margin-top: 28px;
+    font-size: clamp(1.7rem, 7vw, 2.4rem);
+    max-width: 92%;
+  }
+
+  .hero-description,
+  .hero .description,
+  .intro-description {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    max-width: 92%;
+  }
+
+  .hero-actions,
+  .intro-actions,
+  .actions {
+    margin-top: 34px;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-actions a,
+  .hero-actions button,
+  .intro-actions a,
+  .intro-actions button,
+  .actions a,
+  .actions button,
+  #playPauseBtn {
+    width: min(100%, 310px);
+  }
+}
+/* ================================
+   AJUSTE FINAL PORTADA PERGAMINO
+   ================================ */
+
+/* Paso 4: achicar título principal */
+.hero-title,
+.hero h1,
+.intro-title {
+  font-size: clamp(3rem, 5.6vw, 5.1rem) !important;
+  line-height: 0.98 !important;
+}
+
+/* Paso 5: hacer más visible el botón de lluvia */
+#playPauseBtn,
+.btn-audio,
+.btn-lluvia,
+.audio-button {
+  background: rgba(235, 207, 164, 0.78) !important;
+  color: #3e2412 !important;
+  border: 1px solid rgba(83, 50, 25, 0.45) !important;
+  box-shadow: 0 10px 26px rgba(24, 13, 7, 0.28) !important;
+}
