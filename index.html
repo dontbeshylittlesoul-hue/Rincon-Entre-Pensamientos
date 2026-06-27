@@ -20,325 +20,440 @@
   <div class="bg-layer bg-vignette" aria-hidden="true"></div>
   <div class="ember-glow" aria-hidden="true"></div>
 
-<div class="bg-layer bg-noise" aria-hidden="true"></div>
-<div class="bg-layer bg-vignette" aria-hidden="true"></div>
-<div class="ember-glow" aria-hidden="true"></div>
+  <!-- AUDIOS -->
+  <audio id="audioAmbiente" src="./ambiente-lluvia.mp3" preload="auto" loop></audio>
+  <audio id="sonidoPagina" src="./pasar-pagina.mp3" preload="auto"></audio>
 
-<audio id="audioAmbiente" preload="auto" loop>
-  <source src="./ambiente-lluvia.mp3" type="audio/mpeg">
-</audio>
-<audio id="sonidoPagina" src="./pasar-pagina.mp3" preload="auto"></audio>
   <section class="hero" id="inicio">
     <div class="hero-pergamino reveal">
       <div class="hero-contenido">
-<p class="hero-eyebrow">lectura inmersiva · calma · herramientas</p>
+        <p class="hero-eyebrow">lectura inmersiva · calma · herramientas</p>
 
-<h1 class="hero-title">
-  <span>Rincón</span>
-  <span>entre</span>
-  <span>Pensamientos</span>
-</h1>
+        <h1 class="hero-title">
+          <span>Rincón</span>
+          <span>entre</span>
+          <span>Pensamientos</span>
+        </h1>
 
-<p class="hero-subtitle">
-  Para cuando el ruido pesa demasiado.
-</p>
+        <p class="hero-subtitle">
+          Para cuando el ruido pesa demasiado.
+        </p>
 
-<p class="hero-description">
-  Una muestra para bajar un cambio, leer sin apuro y descubrir una experiencia creada para volver a escucharte.
-</p>
+        <p class="hero-description">
+          Una muestra para bajar un cambio, leer sin apuro y descubrir una experiencia creada para volver a escucharte.
+        </p>
 
-<a href="#lectura" class="btn-primary" id="entrarMuestra">
-  <span>Entrar a la muestra</span>
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <path d="M8 2v12M2 8l6 6 6-6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-</a>
+        <a href="#lectura" class="btn-primary" id="entrarMuestra">
+          <span>Entrar a la muestra</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 2v12M2 8l6 6 6-6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
 
-<button class="btn-ambiente" id="ambienteToggle" type="button">
-  ☔ Activar lluvia
-</button>
-
+        <button class="btn-ambiente" id="ambienteToggle" type="button">
+          ☔ Activar lluvia
+        </button>
       </div>
     </div>
+
     <div class="hero-scroll-hint">deslizá para entrar</div>
   </section>
 
-<section class="pergamino-regalo" id="pergamino-gratis">
-  <div class="pergamino-regalo-contenido">
-    <span class="etiqueta-regalo">Herramientas gratuitas del Rincón</span>
+  <section class="pergamino-regalo" id="pergamino-gratis">
+    <div class="pergamino-regalo-contenido">
+      <span class="etiqueta-regalo">Herramientas gratuitas del Rincón</span>
 
-    <h2>Las 7 preguntas para bajar el ruido</h2>
+      <h2>Las 7 preguntas para bajar el ruido</h2>
 
-    <p>
-      Es una pequeña guía con herramientas simples para esos momentos en los que la mente se llena de ruido, cuesta ordenar lo que sentís o no sabés por dónde empezar.
-    </p>
+      <p>
+        Es una pequeña guía con herramientas simples para esos momentos en los que la mente se llena de ruido, cuesta ordenar lo que sentís o no sabés por dónde empezar.
+      </p>
 
-    <p class="texto-suave">
-      Adentro vas a encontrar ejercicios breves para bajar la ansiedad, volver al presente, soltar un poco la carga y dar un primer paso sin exigirte tener todo resuelto.
-    </p>
+      <p class="texto-suave">
+        Adentro vas a encontrar ejercicios breves para bajar la ansiedad, volver al presente, soltar un poco la carga y dar un primer paso sin exigirte tener todo resuelto.
+      </p>
 
-    <ul class="lista-pergamino">
-      <li>Para cuando estás saturado mentalmente.</li>
-      <li>Para cuando venís postergando algo que te pesa.</li>
-      <li>Para cuando necesitás volver a vos sin presión.</li>
-      <li>Para cuando querés una pausa real, no solo distraerte.</li>
-    </ul>
+      <ul class="lista-pergamino">
+        <li>Para cuando estás saturado mentalmente.</li>
+        <li>Para cuando venís postergando algo que te pesa.</li>
+        <li>Para cuando necesitás volver a vos sin presión.</li>
+        <li>Para cuando querés una pausa real, no solo distraerte.</li>
+      </ul>
 
-    <a 
-      href="el-primer-pergamino-del-rincon-liviano.pdf" 
-      download 
-      class="btn-pergamino-descarga"
-    >
-      Descargar herramientas gratis
-    </a>
-  </div>
-</section>
-  
-  <main class="site-main">
-   <section class="intro-muestra" id="lectura">
-  <div class="intro-inner reveal">
-    <p class="section-mini">muestra gratis</p>
-    <h2>Abrí la puerta y quedate un momento leyendo las bases de este rincón</h2>
-    <p>
-      Leé una parte y fijate si te toca..sentí si esta experiencia habla con ese lugar tuyo
-      que muchas veces no encuentra palabras. La versión completa suma lectura inmersiva,
-      audio ambiente, cuentos reflexivos y herramientas prácticas para esos momentos en los que no sabes como seguir.
-    </p>
-  </div>
-</section>
-<section class="visor-ebook reveal visible" aria-label="Visor interactivo de muestra gratis">
-  <div class="visor-ebook-header">
-    <p class="section-mini">lectura interactiva</p>
-    <h2>Pasá las páginas como si entraras al libro</h2>
-    <p>
-     Usá los botones para recorrer la muestra, parte de la experiencia digital completa.
-     Un espacio privado en crecimiento, creado para quienes buscan leer, pausar y volver a escucharse.
-    </p>
-  </div>
-
-  <div class="libro-demo" id="libroDemo">
-    <button class="libro-btn libro-prev" type="button" aria-label="Página anterior">‹</button>
-
-    <div class="libro-marco">
-      <div class="libro-pagina activa">
-        <img src="./muestra/pagina-04.png" alt="Página 1 de la muestra" loading="eager" decoding="async" />
-      </div>
-
-      <div class="libro-pagina">
-        <img src="./muestra/pagina-05.png" alt="Página 2 de la muestra" loading="eager" decoding="async" />
-      </div>
-
-      <div class="libro-pagina">
-        <img src="./muestra/pagina-06.png" alt="Página 3 de la muestra" loading="eager" decoding="async" />
-      </div>
-
-      <div class="libro-pagina">
-        <img src="./muestra/pagina-07.png" alt="Página 4 de la muestra" loading="eager" decoding="async" />
-      </div>
-
-      <div class="libro-pagina">
-        <img src="./muestra/pagina-08.png" alt="Página 5 de la muestra" loading="eager" decoding="async" />
-      </div>
-
-      <div class="libro-pagina">
-        <img src="./muestra/pagina-09.png" alt="Página 6 de la muestra" loading="eager" decoding="async" />
-      </div>
-
-      <div class="libro-pagina">
-        <img src="./muestra/pagina-10.png" alt="Página 7 de la muestra" loading="eager" decoding="async" />
-      </div>
-
-      <div class="libro-pagina">
-        <img src="./muestra/pagina-11.png" alt="Página 8 de la muestra" loading="eager" decoding="async" />
-      </div>
-
-      <div class="libro-pagina">
-        <img src="./muestra/pagina-12.png" alt="Página 9 de la muestra" loading="eager" decoding="async" />
-      </div>
-
-      <div class="libro-pagina">
-        <img src="./muestra/pagina-13.png" alt="Página 10 de la muestra" loading="eager" decoding="async" />
-      </div>
+      <a 
+        href="./el-primer-pergamino-del-rincon-liviano.pdf" 
+        download="el-primer-pergamino-del-rincon-liviano.pdf"
+        class="btn-pergamino-descarga"
+      >
+        Descargar herramientas gratis
+      </a>
     </div>
+  </section>
 
-    <button class="libro-btn libro-next" type="button" aria-label="Página siguiente">›</button>
-  </div>
+  <main class="site-main">
 
-  <p class="contador-libro" id="contadorLibro">Página 1 de 10</p>
-</section>
-  
-
-<section class="herramientas-muestra reveal">
-  <p class="etiqueta">también incluye herramientas</p>
-
-  <h2>No es solo una lectura.<br>Es un rincón para volver a vos.</h2>
-
-  <p>
-    La experiencia completa de <strong>Rincón entre Pensamientos</strong> no se queda solo en leer.
-    También incluye herramientas simples para esos momentos en los que necesitás ordenar lo que sentís,
-    bajar el ruido o dar un primer paso sin exigirte de más.
-  </p>
-
-  <div class="tarjetas-herramientas">
-
-    <article class="tarjeta-herramienta">
-      <a class="herramienta-preview" href="./herramientas/mascara-carton.png" target="_blank" rel="noopener">
-        <img src="./herramientas/mascara-carton.png" alt="Pergamino de La máscara de cartón" loading="lazy" />
-        <span>Ver pergamino completo</span>
-      </a>
-
-      <div class="herramienta-contenido">
-        <span class="numero-herramienta">01</span>
-        <h3>La máscara de cartón</h3>
+    <section class="intro-muestra" id="lectura">
+      <div class="intro-inner reveal">
+        <p class="section-mini">muestra gratis</p>
+        <h2>Abrí la puerta y quedate un momento leyendo las bases de este rincón</h2>
         <p>
-          Para cuando estás cansado de sostener una versión de vos que ya pesa demasiado.
+          Leé una parte y fijate si te toca..sentí si esta experiencia habla con ese lugar tuyo
+          que muchas veces no encuentra palabras. La versión completa suma lectura inmersiva,
+          audio ambiente, cuentos reflexivos y herramientas prácticas para esos momentos en los que no sabes como seguir.
         </p>
       </div>
-    </article>
+    </section>
 
-    <article class="tarjeta-herramienta">
-      <a class="herramienta-preview" href="./herramientas/ruido-no-alcanza.png" target="_blank" rel="noopener">
-        <img src="./herramientas/ruido-no-alcanza.png" alt="Pergamino de Cuando el ruido ya no alcanza" loading="lazy" />
-        <span>Ver pergamino completo</span>
-      </a>
-
-      <div class="herramienta-contenido">
-        <span class="numero-herramienta">02</span>
-        <h3>Cuando el ruido ya no alcanza</h3>
+    <section class="visor-ebook reveal" aria-label="Visor interactivo de muestra gratis">
+      <div class="visor-ebook-header">
+        <p class="section-mini">lectura interactiva</p>
+        <h2>Pasá las páginas como si entraras al libro</h2>
         <p>
-          Para esos días en los que la cabeza no se apaga y todo parece demasiado.
+          Usá los botones para recorrer la muestra, parte de la experiencia digital completa.
+          Un espacio privado en crecimiento, creado para quienes buscan leer, pausar y volver a escucharse.
         </p>
       </div>
-    </article>
 
-    <article class="tarjeta-herramienta">
-      <a class="herramienta-preview" href="./herramientas/tren-10-minutos.png" target="_blank" rel="noopener">
-        <img src="./herramientas/tren-10-minutos.png" alt="Pergamino de Subir al tren por 10 minutos" loading="lazy" />
-        <span>Ver pergamino completo</span>
-      </a>
+      <div class="libro-demo" id="libroDemo">
+        <button class="libro-btn libro-prev" type="button" aria-label="Página anterior">‹</button>
 
-      <div class="herramienta-contenido">
-        <span class="numero-herramienta">03</span>
-        <h3>Subir al tren por 10 minutos</h3>
-        <p>
-          Para cuando venís postergando algo importante y no sabés cómo empezar.
-        </p>
-      </div>
-    </article>
+        <div class="libro-marco">
+          <div class="libro-pagina activa">
+            <img src="./muestra/pagina-04.png" alt="Página 1 de la muestra" loading="eager" decoding="async" />
+          </div>
 
-  </div>
+          <div class="libro-pagina">
+            <img src="./muestra/pagina-05.png" alt="Página 2 de la muestra" loading="eager" decoding="async" />
+          </div>
 
-  <p class="cierre-herramientas">
-    Estas son solo algunas puertas de entrada. En la versión completa encontrás más lecturas, interludios y herramientas para acompañar distintos momentos:
-    cansancio emocional, ruido mental, cierres pendientes, soledad, pausa y nuevos comienzos.
-  </p>
-</section>
-          
- 
-    <section class="cuento-muestra reveal" id="cuento">
-  <div class="cuento-card">
-    <p class="section-mini">cuento incluido</p>
+          <div class="libro-pagina">
+            <img src="./muestra/pagina-06.png" alt="Página 3 de la muestra" loading="eager" decoding="async" />
+          </div>
 
-    <h2>Un cuento para leer cuando algo por dentro pide pausa</h2>
+          <div class="libro-pagina">
+            <img src="./muestra/pagina-07.png" alt="Página 4 de la muestra" loading="eager" decoding="async" />
+          </div>
 
-    <p class="cuento-intro">
-      Además de herramientas, la versión completa incluye cuentos e interludios pensados para acompañar esos momentos donde no siempre hay respuestas claras, pero sí una necesidad de volver a mirar hacia adentro.
-    </p>
+          <div class="libro-pagina">
+            <img src="./muestra/pagina-08.png" alt="Página 5 de la muestra" loading="eager" decoding="async" />
+          </div>
 
-    <article class="cuento-preview">
-      <p class="cuento-etiqueta">Muestra breve</p>
+          <div class="libro-pagina">
+            <img src="./muestra/pagina-09.png" alt="Página 6 de la muestra" loading="eager" decoding="async" />
+          </div>
 
-      <h3>La habitación donde nadie entraba</h3>
+          <div class="libro-pagina">
+            <img src="./muestra/pagina-10.png" alt="Página 7 de la muestra" loading="eager" decoding="async" />
+          </div>
 
-      <p>
-        Durante mucho tiempo, creyó que cerrar la puerta era una forma de protegerse.
-        No de los demás, sino de todo aquello que no sabía explicar sin romperse un poco.
-      </p>
+          <div class="libro-pagina">
+            <img src="./muestra/pagina-11.png" alt="Página 8 de la muestra" loading="eager" decoding="async" />
+          </div>
 
-      <p>
-        La habitación no era grande. Tenía una silla, una mesa antigua y una ventana que apenas dejaba entrar la luz.
-        Pero ahí, entre el polvo y el silencio, guardaba pensamientos que nunca se habían animado a salir.
-      </p>
+          <div class="libro-pagina">
+            <img src="./muestra/pagina-12.png" alt="Página 9 de la muestra" loading="eager" decoding="async" />
+          </div>
 
-      <p>
-        Una noche, cansado de sostener el ruido afuera, se sentó frente a la mesa y dejó de escapar.
-        No encontró una respuesta. Encontró algo más simple: un lugar donde poder escucharse sin tener que fingir.
-      </p>
-
-      <details class="cuento-detalle">
-        <summary>Leer cierre del cuento</summary>
-
-        <div class="cuento-texto">
-          <p>
-            A veces, sanar no empieza cuando alguien abre la puerta desde afuera.
-            A veces empieza cuando uno deja de tener miedo de entrar a la habitación que venía evitando.
-          </p>
-
-          <p>
-            Y esa noche, por primera vez en mucho tiempo, no salió corriendo de sí mismo.
-          </p>
+          <div class="libro-pagina">
+            <img src="./muestra/pagina-13.png" alt="Página 10 de la muestra" loading="eager" decoding="async" />
+          </div>
         </div>
-      </details>
-    </article>
 
-    <p class="cuento-cierre">
-      En la versión completa encontrás más cuentos, interludios y pausas para leer cuando necesitás bajar el ruido y volver a vos.
-    </p>
-  </div>
-</section>
+        <button class="libro-btn libro-next" type="button" aria-label="Página siguiente">›</button>
+      </div>
 
-<section class="cta-final reveal" id="ebook">
-  <div class="cta-card">
-    <p class="section-mini">versión completa</p>
+      <p class="contador-libro" id="contadorLibro">Página 1 de 10</p>
+    </section>
 
-    <h2>Accedé a la experiencia completa</h2>
+    <section class="herramientas-muestra reveal">
+      <p class="etiqueta">también incluye herramientas</p>
 
-    <p>
-      Si esta muestra te dejó una pregunta dando vueltas, la versión completa te invita a seguir entrando:
-      lectura en PDF, experiencia inmersiva, audio ambiente, cuentos reflexivos y herramientas para acompañar
-      lo que muchas veces no se sabe cómo explicar.
-    </p>
+      <h2>No es solo una lectura.<br>Es un rincón para volver a vos.</h2>
 
-    <ul class="cta-lista">
-      <li>PDF completo descargable</li>
-      <li>Lectura inmersiva desde la página</li>
-      <li>Audio ambiente para leer con calma</li>
-      <li>Interludios y cuentos reflexivos</li>
-      <li>Herramientas prácticas para momentos reales</li>
-    </ul>
+      <p>
+        La experiencia completa de <strong>Rincón entre Pensamientos</strong> no se queda solo en leer.
+        También incluye herramientas simples para esos momentos en los que necesitás ordenar lo que sentís,
+        bajar el ruido o dar un primer paso sin exigirte de más.
+      </p>
 
-    <a href="https://go.hotmart.com/L106304893W" class="btn-primary btn-hotmart" target="_blank" rel="noopener">
-      <span>Acceder a la experiencia completa</span>
-      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
-        <path d="M3 12L12 3M5 3h7v7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
-  </div>
-</section>
+      <div class="tarjetas-herramientas">
 
+        <article class="tarjeta-herramienta">
+          <a class="herramienta-preview" href="./herramientas/mascara-carton.png" target="_blank" rel="noopener">
+            <img src="./herramientas/mascara-carton.png" alt="Pergamino de La máscara de cartón" loading="lazy" />
+            <span>Ver pergamino completo</span>
+          </a>
 
-</main>
+          <div class="herramienta-contenido">
+            <span class="numero-herramienta">01</span>
+            <h3>La máscara de cartón</h3>
+            <p>
+              Para cuando estás cansado de sostener una versión de vos que ya pesa demasiado.
+            </p>
+          </div>
+        </article>
 
-<script>
-  document.addEventListener("click", function (event) {
-    const botonPagina = event.target.closest(".libro-prev, .libro-next");
+        <article class="tarjeta-herramienta">
+          <a class="herramienta-preview" href="./herramientas/ruido-no-alcanza.png" target="_blank" rel="noopener">
+            <img src="./herramientas/ruido-no-alcanza.png" alt="Pergamino de Cuando el ruido ya no alcanza" loading="lazy" />
+            <span>Ver pergamino completo</span>
+          </a>
 
-    if (!botonPagina) return;
+          <div class="herramienta-contenido">
+            <span class="numero-herramienta">02</span>
+            <h3>Cuando el ruido ya no alcanza</h3>
+            <p>
+              Para esos días en los que la cabeza no se apaga y todo parece demasiado.
+            </p>
+          </div>
+        </article>
 
-    const sonidoPagina = document.getElementById("sonidoPagina");
+        <article class="tarjeta-herramienta">
+          <a class="herramienta-preview" href="./herramientas/tren-10-minutos.png" target="_blank" rel="noopener">
+            <img src="./herramientas/tren-10-minutos.png" alt="Pergamino de Subir al tren por 10 minutos" loading="lazy" />
+            <span>Ver pergamino completo</span>
+          </a>
 
-    if (!sonidoPagina) {
-      console.log("No existe el audio con id sonidoPagina");
-      return;
-    }
+          <div class="herramienta-contenido">
+            <span class="numero-herramienta">03</span>
+            <h3>Subir al tren por 10 minutos</h3>
+            <p>
+              Para cuando venís postergando algo importante y no sabés cómo empezar.
+            </p>
+          </div>
+        </article>
 
-    sonidoPagina.volume = 0.45;
-    sonidoPagina.currentTime = 0;
+      </div>
 
-    sonidoPagina.play().catch(function (error) {
-      console.log("No se pudo reproducir el sonido de página:", error);
+      <p class="cierre-herramientas">
+        Estas son solo algunas puertas de entrada. En la versión completa encontrás más lecturas, interludios y herramientas para acompañar distintos momentos:
+        cansancio emocional, ruido mental, cierres pendientes, soledad, pausa y nuevos comienzos.
+      </p>
+    </section>
+
+    <section class="cuento-muestra reveal" id="cuento">
+      <div class="cuento-card">
+        <p class="section-mini">cuento incluido</p>
+
+        <h2>Un cuento para leer cuando algo por dentro pide pausa</h2>
+
+        <p class="cuento-intro">
+          Además de herramientas, la versión completa incluye cuentos e interludios pensados para acompañar esos momentos donde no siempre hay respuestas claras, pero sí una necesidad de volver a mirar hacia adentro.
+        </p>
+
+        <article class="cuento-preview">
+          <p class="cuento-etiqueta">Muestra breve</p>
+
+          <h3>La habitación donde nadie entraba</h3>
+
+          <p>
+            Durante mucho tiempo, creyó que cerrar la puerta era una forma de protegerse.
+            No de los demás, sino de todo aquello que no sabía explicar sin romperse un poco.
+          </p>
+
+          <p>
+            La habitación no era grande. Tenía una silla, una mesa antigua y una ventana que apenas dejaba entrar la luz.
+            Pero ahí, entre el polvo y el silencio, guardaba pensamientos que nunca se habían animado a salir.
+          </p>
+
+          <p>
+            Una noche, cansado de sostener el ruido afuera, se sentó frente a la mesa y dejó de escapar.
+            No encontró una respuesta. Encontró algo más simple: un lugar donde poder escucharse sin tener que fingir.
+          </p>
+
+          <details class="cuento-detalle">
+            <summary>Leer cierre del cuento</summary>
+
+            <div class="cuento-texto">
+              <p>
+                A veces, sanar no empieza cuando alguien abre la puerta desde afuera.
+                A veces empieza cuando uno deja de tener miedo de entrar a la habitación que venía evitando.
+              </p>
+
+              <p>
+                Y esa noche, por primera vez en mucho tiempo, no salió corriendo de sí mismo.
+              </p>
+            </div>
+          </details>
+        </article>
+
+        <p class="cuento-cierre">
+          En la versión completa encontrás más cuentos, interludios y pausas para leer cuando necesitás bajar el ruido y volver a vos.
+        </p>
+      </div>
+    </section>
+
+    <section class="cta-final reveal" id="ebook">
+      <div class="cta-card">
+        <p class="section-mini">versión completa</p>
+
+        <h2>Accedé a la experiencia completa</h2>
+
+        <p>
+          Si esta muestra te dejó una pregunta dando vueltas, la versión completa te invita a seguir entrando:
+          lectura en PDF, experiencia inmersiva, audio ambiente, cuentos reflexivos y herramientas para acompañar
+          lo que muchas veces no se sabe cómo explicar.
+        </p>
+
+        <ul class="cta-lista">
+          <li>PDF completo descargable</li>
+          <li>Lectura inmersiva desde la página</li>
+          <li>Audio ambiente para leer con calma</li>
+          <li>Interludios y cuentos reflexivos</li>
+          <li>Herramientas prácticas para momentos reales</li>
+        </ul>
+
+        <a href="https://go.hotmart.com/L106304893W" class="btn-primary btn-hotmart" target="_blank" rel="noopener">
+          <span>Acceder a la experiencia completa</span>
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+            <path d="M3 12L12 3M5 3h7v7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SCRIPT ÚNICO: LLUVIA + PÁGINAS + SONIDO + REVEAL -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      /* =========================
+         AUDIO AMBIENTE / LLUVIA
+         ========================= */
+
+      const audioAmbiente = document.getElementById("audioAmbiente");
+      const ambienteToggle = document.getElementById("ambienteToggle");
+
+      if (audioAmbiente && ambienteToggle) {
+        audioAmbiente.volume = 0.42;
+
+        ambienteToggle.addEventListener("click", function () {
+          if (audioAmbiente.paused) {
+            audioAmbiente.play()
+              .then(function () {
+                ambienteToggle.textContent = "☔ Pausar lluvia";
+                ambienteToggle.classList.add("activo");
+              })
+              .catch(function (error) {
+                console.log("No se pudo reproducir la lluvia:", error);
+              });
+          } else {
+            audioAmbiente.pause();
+            ambienteToggle.textContent = "☔ Activar lluvia";
+            ambienteToggle.classList.remove("activo");
+          }
+        });
+      }
+
+      /* =========================
+         VISOR DE PÁGINAS
+         ========================= */
+
+      const paginas = Array.from(document.querySelectorAll("#libroDemo .libro-pagina"));
+      const botonAnterior = document.querySelector(".libro-prev");
+      const botonSiguiente = document.querySelector(".libro-next");
+      const contadorLibro = document.getElementById("contadorLibro");
+      const sonidoPagina = document.getElementById("sonidoPagina");
+
+      let paginaActual = paginas.findIndex(function (pagina) {
+        return pagina.classList.contains("activa");
+      });
+
+      if (paginaActual === -1) {
+        paginaActual = 0;
+      }
+
+      function reproducirSonidoPagina() {
+        if (!sonidoPagina) return;
+
+        sonidoPagina.volume = 0.42;
+        sonidoPagina.currentTime = 0;
+
+        sonidoPagina.play().catch(function (error) {
+          console.log("No se pudo reproducir el sonido de página:", error);
+        });
+      }
+
+      function mostrarPagina(indice) {
+        if (!paginas.length) return;
+
+        if (indice < 0) {
+          indice = 0;
+        }
+
+        if (indice >= paginas.length) {
+          indice = paginas.length - 1;
+        }
+
+        paginas.forEach(function (pagina) {
+          pagina.classList.remove("activa");
+        });
+
+        paginas[indice].classList.add("activa");
+        paginaActual = indice;
+
+        if (contadorLibro) {
+          contadorLibro.textContent = "Página " + (paginaActual + 1) + " de " + paginas.length;
+        }
+
+        if (botonAnterior) {
+          botonAnterior.disabled = paginaActual === 0;
+        }
+
+        if (botonSiguiente) {
+          botonSiguiente.disabled = paginaActual === paginas.length - 1;
+        }
+      }
+
+      if (botonAnterior) {
+        botonAnterior.addEventListener("click", function () {
+          if (paginaActual > 0) {
+            reproducirSonidoPagina();
+            mostrarPagina(paginaActual - 1);
+          }
+        });
+      }
+
+      if (botonSiguiente) {
+        botonSiguiente.addEventListener("click", function () {
+          if (paginaActual < paginas.length - 1) {
+            reproducirSonidoPagina();
+            mostrarPagina(paginaActual + 1);
+          }
+        });
+      }
+
+      mostrarPagina(paginaActual);
+
+      /* =========================
+         REVEAL AL HACER SCROLL
+         ========================= */
+
+      const elementosReveal = document.querySelectorAll(".reveal");
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(function (entradas) {
+          entradas.forEach(function (entrada) {
+            if (entrada.isIntersecting) {
+              entrada.target.classList.add("visible");
+            }
+          });
+        }, {
+          threshold: 0.12
+        });
+
+        elementosReveal.forEach(function (elemento) {
+          observer.observe(elemento);
+        });
+      } else {
+        elementosReveal.forEach(function (elemento) {
+          elemento.classList.add("visible");
+        });
+      }
+
     });
-  });
-</script>
+  </script>
+
 </body>
 </html>
