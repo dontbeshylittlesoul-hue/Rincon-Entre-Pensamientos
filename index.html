@@ -2,14 +2,14 @@
 <html lang="es">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BLC4N5CQHX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLC4N5CQHX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-BLC4N5CQHX");
+  </script>
 
-  gtag('config', 'G-BLC4N5CQHX');
-</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -33,6 +33,7 @@
   <audio id="audioAmbiente" src="./ambiente-lluvia.mp3" preload="auto" loop></audio>
   <audio id="sonidoPagina" src="./pasar-pagina.mp3" preload="auto"></audio>
 
+  <!-- HERO -->
   <section class="hero" id="inicio">
     <div class="hero-pergamino reveal">
       <div class="hero-contenido">
@@ -45,78 +46,119 @@
         </h1>
 
         <p class="hero-subtitle">
-          Para cuando el ruido pesa demasiado.
+          Una experiencia digital para cuando la cabeza no se apaga.
         </p>
 
         <p class="hero-description">
-          Una muestra para bajar un cambio, leer sin apuro y descubrir una experiencia creada para volver a escucharte.
+          Leé una muestra gratis, probá el ambiente de lluvia y descubrí un espacio creado para bajar el ruido, ordenar lo que sentís y volver un poco a vos.
         </p>
 
-        <a href="#lectura" class="btn-primary" id="entrarMuestra">
-          <span>Entrar a la muestra</span>
+        <p class="hero-description">
+          Incluye lectura inmersiva · PDF descargable · audio ambiente · cuentos · ejercicios simples.
+        </p>
+
+        <a href="#lectura" class="btn-primary" id="entrarMuestra" data-ga-event="click_muestra_gratis">
+          <span>Leer muestra gratis</span>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M8 2v12M2 8l6 6 6-6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
 
-        <button class="btn-ambiente" id="ambienteToggle" type="button">
-  ☂ Activar lluvia
-</button>
+        <a href="#pergamino-gratis" class="btn-pergamino-descarga" data-ga-event="click_ver_herramientas">
+          Ver herramientas gratis
+        </a>
+
+        <button class="btn-ambiente" id="ambienteToggle" type="button" data-ga-event="click_activar_lluvia">
+          ☂ Activar lluvia
+        </button>
       </div>
     </div>
 
     <div class="hero-scroll-hint">deslizá para entrar</div>
   </section>
 
-  <section class="pergamino-regalo" id="pergamino-gratis">
-    <div class="pergamino-regalo-contenido">
-      <span class="etiqueta-regalo">Herramientas gratuitas del Rincón</span>
-
-      <h2>Las 7 preguntas para bajar el ruido</h2>
-
-      <p>
-        Es una pequeña guía con herramientas simples para esos momentos en los que la mente se llena de ruido, cuesta ordenar lo que sentís o no sabés por dónde empezar.
-      </p>
-
-      <p class="texto-suave">
-        Adentro vas a encontrar ejercicios breves para bajar la ansiedad, volver al presente, soltar un poco la carga y dar un primer paso sin exigirte tener todo resuelto.
-      </p>
-
-      <ul class="lista-pergamino">
-        <li>Para cuando estás saturado mentalmente.</li>
-        <li>Para cuando venís postergando algo que te pesa.</li>
-        <li>Para cuando necesitás volver a vos sin presión.</li>
-        <li>Para cuando querés una pausa real, no solo distraerte.</li>
-      </ul>
-
-      <a 
-        href="./el-primer-pergamino-del-rincon-liviano.pdf" 
-        download="el-primer-pergamino-del-rincon-liviano.pdf"
-        class="btn-pergamino-descarga"
-      >
-        Descargar herramientas gratis
-      </a>
-    </div>
-  </section>
-
   <main class="site-main">
 
-    <section class="intro-muestra" id="lectura">
-      <div class="intro-inner reveal">
-        <p class="section-mini">muestra gratis</p>
-        <h2>Abrí la puerta y quedate un momento leyendo las bases de este rincón</h2>
+    <!-- QUÉ ES RINCÓN -->
+    <section class="que-es-rincon reveal" id="que-es-rincon">
+      <div class="que-es-card">
+        <p class="section-mini">qué es esto</p>
+
+        <h2>¿Qué es Rincón entre Pensamientos?</h2>
+
         <p>
-          Leé una parte y fijate si te toca..sentí si esta experiencia habla con ese lugar tuyo
-          que muchas veces no encuentra palabras. La versión completa suma lectura inmersiva,
-          audio ambiente, cuentos reflexivos y herramientas prácticas para esos momentos en los que no sabes como seguir.
+          <strong>Rincón</strong> es una experiencia digital de lectura, calma y herramientas simples
+          para momentos donde la mente pesa más de la cuenta.
+        </p>
+
+        <p>
+          No es solo un PDF. Es un espacio para entrar despacio, leer sin apuro,
+          acompañarte con audio ambiente y encontrar palabras, cuentos y ejercicios
+          que te ayuden a ordenar lo que sentís.
+        </p>
+
+        <p>
+          Adentro vas a encontrar una lectura completa en formato PDF, una versión inmersiva
+          desde la página, sonidos para acompañar la experiencia, cuentos reflexivos,
+          interludios y herramientas prácticas para volver a vos cuando el ruido se vuelve demasiado.
+        </p>
+
+        <div class="rincon-incluye">
+          <div>
+            <span>01</span>
+            <p>PDFs completos descargables para leer a tu ritmo.</p>
+          </div>
+
+          <div>
+            <span>02</span>
+            <p>Lectura inmersiva desde la página.</p>
+          </div>
+
+          <div>
+            <span>03</span>
+            <p>Audio ambiente para acompañar la experiencia con calma.</p>
+          </div>
+
+          <div>
+            <span>04</span>
+            <p>Cuentos, interludios y herramientas prácticas para momentos reales.</p>
+          </div>
+        </div>
+
+        <p>
+          También es un espacio en crecimiento. Rincón se va actualizando con nuevos contenidos,
+          nuevas pausas y nuevas herramientas.
+        </p>
+
+        <p class="que-es-cierre">
+          Está creado para acompañar, no para darte respuestas cerradas. Para esos momentos
+          en los que no necesitás más información, sino una pausa real y un lugar donde volver a escucharte.
         </p>
       </div>
     </section>
 
+    <!-- INTRO MUESTRA -->
+    <section class="intro-muestra" id="lectura">
+      <div class="intro-inner reveal">
+        <p class="section-mini">muestra gratis</p>
+
+        <h2>Abrí la puerta y quedate un momento leyendo las bases de este rincón</h2>
+
+        <p>
+          Leé una parte y fijate si te toca. Sentí si esta experiencia habla con ese lugar tuyo
+          que muchas veces no encuentra palabras. La versión completa suma lectura inmersiva,
+          audio ambiente, cuentos reflexivos y herramientas prácticas para esos momentos en los que no sabés cómo seguir.
+        </p>
+      </div>
+    </section>
+
+    <!-- VISOR INTERACTIVO -->
     <section class="visor-ebook reveal" aria-label="Visor interactivo de muestra gratis">
       <div class="visor-ebook-header">
         <p class="section-mini">lectura interactiva</p>
+
         <h2>Pasá las páginas como si entraras al libro</h2>
+
         <p>
           Usá los botones para recorrer la muestra, parte de la experiencia digital completa.
           Un espacio privado en crecimiento, creado para quienes buscan leer, pausar y volver a escucharse.
@@ -174,6 +216,40 @@
       <p class="contador-libro" id="contadorLibro">Página 1 de 10</p>
     </section>
 
+    <!-- PERGAMINO GRATIS -->
+    <section class="pergamino-regalo" id="pergamino-gratis">
+      <div class="pergamino-regalo-contenido">
+        <span class="etiqueta-regalo">Herramientas gratuitas del Rincón</span>
+
+        <h2>Las 7 preguntas para bajar el ruido</h2>
+
+        <p>
+          Es una pequeña guía con herramientas simples para esos momentos en los que la mente se llena de ruido, cuesta ordenar lo que sentís o no sabés por dónde empezar.
+        </p>
+
+        <p class="texto-suave">
+          Adentro vas a encontrar ejercicios breves para bajar la ansiedad, volver al presente, soltar un poco la carga y dar un primer paso sin exigirte tener todo resuelto.
+        </p>
+
+        <ul class="lista-pergamino">
+          <li>Para cuando estás saturado mentalmente.</li>
+          <li>Para cuando venís postergando algo que te pesa.</li>
+          <li>Para cuando necesitás volver a vos sin presión.</li>
+          <li>Para cuando querés una pausa real, no solo distraerte.</li>
+        </ul>
+
+        <a 
+          href="./el-primer-pergamino-del-rincon-liviano.pdf" 
+          download="el-primer-pergamino-del-rincon-liviano.pdf"
+          class="btn-pergamino-descarga"
+          data-ga-event="click_descargar_herramientas"
+        >
+          Descargar herramientas gratis
+        </a>
+      </div>
+    </section>
+
+    <!-- HERRAMIENTAS -->
     <section class="herramientas-muestra reveal">
       <p class="etiqueta">también incluye herramientas</p>
 
@@ -188,14 +264,16 @@
       <div class="tarjetas-herramientas">
 
         <article class="tarjeta-herramienta">
-          <a class="herramienta-preview" href="./herramientas/mascara-carton.png" target="_blank" rel="noopener">
+          <a class="herramienta-preview" href="./herramientas/mascara-carton.png" target="_blank" rel="noopener" data-ga-event="click_ver_pergamino">
             <img src="./herramientas/mascara-carton.png" alt="Pergamino de La máscara de cartón" loading="lazy" />
             <span>Ver pergamino completo</span>
           </a>
 
           <div class="herramienta-contenido">
             <span class="numero-herramienta">01</span>
+
             <h3>La máscara de cartón</h3>
+
             <p>
               Para cuando estás cansado de sostener una versión de vos que ya pesa demasiado.
             </p>
@@ -203,14 +281,16 @@
         </article>
 
         <article class="tarjeta-herramienta">
-          <a class="herramienta-preview" href="./herramientas/ruido-no-alcanza.png" target="_blank" rel="noopener">
+          <a class="herramienta-preview" href="./herramientas/ruido-no-alcanza.png" target="_blank" rel="noopener" data-ga-event="click_ver_pergamino">
             <img src="./herramientas/ruido-no-alcanza.png" alt="Pergamino de Cuando el ruido ya no alcanza" loading="lazy" />
             <span>Ver pergamino completo</span>
           </a>
 
           <div class="herramienta-contenido">
             <span class="numero-herramienta">02</span>
+
             <h3>Cuando el ruido ya no alcanza</h3>
+
             <p>
               Para esos días en los que la cabeza no se apaga y todo parece demasiado.
             </p>
@@ -218,14 +298,16 @@
         </article>
 
         <article class="tarjeta-herramienta">
-          <a class="herramienta-preview" href="./herramientas/tren-10-minutos.png" target="_blank" rel="noopener">
+          <a class="herramienta-preview" href="./herramientas/tren-10-minutos.png" target="_blank" rel="noopener" data-ga-event="click_ver_pergamino">
             <img src="./herramientas/tren-10-minutos.png" alt="Pergamino de Subir al tren por 10 minutos" loading="lazy" />
             <span>Ver pergamino completo</span>
           </a>
 
           <div class="herramienta-contenido">
             <span class="numero-herramienta">03</span>
+
             <h3>Subir al tren por 10 minutos</h3>
+
             <p>
               Para cuando venís postergando algo importante y no sabés cómo empezar.
             </p>
@@ -240,6 +322,7 @@
       </p>
     </section>
 
+    <!-- CUENTO -->
     <section class="cuento-muestra reveal" id="cuento">
       <div class="cuento-card">
         <p class="section-mini">cuento incluido</p>
@@ -291,62 +374,8 @@
         </p>
       </div>
     </section>
-<section class="que-es-rincon reveal" id="que-es-rincon">
-  <div class="que-es-card">
-    <p class="section-mini">qué estás por comprar</p>
 
-    <h2>¿Qué es Rincón entre Pensamientos?</h2>
-
-    <p>
-      <strong>Rincón</strong> es una experiencia digital de lectura, calma y herramientas simples
-      para momentos donde la mente pesa más de la cuenta.
-    </p>
-
-    <p>
-      No es solo un PDF. Es un espacio para entrar despacio, leer sin apuro,
-      acompañarte con audio ambiente y encontrar palabras, cuentos y ejercicios
-      que te ayuden a ordenar lo que sentís.
-    </p>
-
-    <p>
-      Adentro vas a encontrar una lectura completa en formato PDF, una versión inmersiva
-      desde la página, sonidos para acompañar la experiencia, cuentos reflexivos,
-      interludios y herramientas prácticas para volver a vos cuando el ruido se vuelve demasiado.
-    </p>
-
-    <div class="rincon-incluye">
-      <div>
-        <span>01</span>
-        <p>PDF´s completos descargables para leer a tu ritmo.</p>
-      </div>
-
-      <div>
-        <span>02</span>
-        <p>Lectura inmersiva desde la página.</p>
-      </div>
-
-      <div>
-        <span>03</span>
-        <p>Audio ambiente para acompañar la experiencia con calma.</p>
-      </div>
-
-      <div>
-        <span>04</span>
-        <p>Cuentos, interludios y herramientas prácticas para momentos reales.</p>
-      </div>
-    </div>
-
-    <p>
-      También es un espacio en crecimiento. Rincón se va actualizando con nuevos contenidos,
-      nuevas pausas y nuevas herramientas.
-    </p>
-
-    <p class="que-es-cierre">
-      Está creado para acompañar, no para darte respuestas cerradas. Para esos momentos
-      en los que no necesitás más información, sino una pausa real y un lugar donde volver a escucharte.
-    </p>
-  </div>
-</section>
+    <!-- CTA FINAL -->
     <section class="cta-final reveal" id="ebook">
       <div class="cta-card">
         <p class="section-mini">versión completa</p>
@@ -367,7 +396,7 @@
           <li>Herramientas prácticas para momentos reales</li>
         </ul>
 
-        <a href="https://go.hotmart.com/L106304893W" class="btn-primary btn-hotmart" target="_blank" rel="noopener">
+        <a href="https://go.hotmart.com/L106304893W" class="btn-primary btn-hotmart" target="_blank" rel="noopener" data-ga-event="click_comprar click_hotmart">
           <span>Acceder a la experiencia completa</span>
           <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
             <path d="M3 12L12 3M5 3h7v7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -378,9 +407,71 @@
 
   </main>
 
-  <!-- SCRIPT ÚNICO: LLUVIA + PÁGINAS + SONIDO + REVEAL -->
+  <!-- SCRIPT ÚNICO: GA4 + LLUVIA + PÁGINAS + SONIDO + REVEAL -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+
+      /* =========================
+         TRACKING GA4
+         ========================= */
+
+      function trackGAEvent(eventName, params) {
+        if (typeof gtag === "function") {
+          gtag("event", eventName, Object.assign({
+            event_category: "landing_github",
+            page_location: window.location.href,
+            transport_type: "beacon"
+          }, params || {}));
+        }
+      }
+
+      document.querySelectorAll("[data-ga-event]").forEach(function (elemento) {
+        elemento.addEventListener("click", function () {
+          const atributoEventos = elemento.getAttribute("data-ga-event") || "";
+          const eventos = atributoEventos.split(/\s+/).filter(Boolean);
+          const texto = elemento.innerText ? elemento.innerText.trim() : "";
+          const href = elemento.getAttribute("href") || "";
+
+          eventos.forEach(function (evento) {
+            trackGAEvent(evento, {
+              event_label: texto,
+              link_url: href
+            });
+          });
+        });
+      });
+
+      const scrollMarcado = {
+        50: false,
+        75: false,
+        90: false
+      };
+
+      function porcentajeScroll() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const altoDocumento = document.documentElement.scrollHeight - window.innerHeight;
+
+        if (altoDocumento <= 0) return 100;
+
+        return Math.round((scrollTop / altoDocumento) * 100);
+      }
+
+      function revisarScroll() {
+        const porcentaje = porcentajeScroll();
+
+        [50, 75, 90].forEach(function (punto) {
+          if (porcentaje >= punto && !scrollMarcado[punto]) {
+            scrollMarcado[punto] = true;
+
+            trackGAEvent("scroll_" + punto, {
+              event_label: punto + "% de scroll"
+            });
+          }
+        });
+      }
+
+      window.addEventListener("scroll", revisarScroll, { passive: true });
+      revisarScroll();
 
       /* =========================
          AUDIO AMBIENTE / LLUVIA
@@ -404,7 +495,7 @@
               });
           } else {
             audioAmbiente.pause();
-        ambienteToggle.textContent = "☂ Activar lluvia";
+            ambienteToggle.textContent = "☂ Activar lluvia";
             ambienteToggle.classList.remove("activo");
           }
         });
