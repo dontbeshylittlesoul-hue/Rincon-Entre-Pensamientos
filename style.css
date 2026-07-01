@@ -3343,3 +3343,191 @@ header nav a,
     font-size: .52rem !important;
   }
 }
+/* =========================================
+   HERO LIMPIO - BOTONES UNIFICADOS
+   Pegar al final del style.css
+========================================= */
+
+.hero-contenido {
+  padding-top: 5.6rem !important;
+}
+
+.hero-title {
+  font-size: clamp(2.05rem, 4.2vw, 3.45rem) !important;
+  line-height: .94 !important;
+  letter-spacing: -0.035em !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+}
+
+.hero-subtitle {
+  max-width: 270px !important;
+  margin: .78rem auto .75rem !important;
+  font-size: 1rem !important;
+  line-height: 1.22 !important;
+  font-weight: 600 !important;
+  color: #211207 !important;
+}
+
+.hero-description,
+.hero-description-main,
+.hero-note {
+  display: none !important;
+}
+
+.hero-benefits {
+  display: grid !important;
+  gap: .34rem !important;
+  width: 100% !important;
+  max-width: 235px !important;
+  margin: .65rem auto .85rem !important;
+}
+
+.hero-benefit {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 25px !important;
+  padding: .32rem .55rem !important;
+  border-radius: 999px !important;
+  background: rgba(255, 246, 220, .48) !important;
+  border: 1px solid rgba(73, 39, 13, .18) !important;
+  box-shadow: 0 3px 10px rgba(60, 30, 8, .07) !important;
+}
+
+.hero-benefit-title {
+  display: block !important;
+  font-size: .61rem !important;
+  line-height: 1.1 !important;
+  font-weight: 700 !important;
+  color: #211207 !important;
+  text-align: center !important;
+}
+
+.hero-benefit-text {
+  display: none !important;
+}
+
+.hero-actions,
+.hero-actions-clean {
+  display: grid !important;
+  gap: .55rem !important;
+  width: 100% !important;
+  max-width: 225px !important;
+  margin: 0 auto !important;
+}
+
+.hero-action-btn,
+.hero-action-btn:visited,
+.btn-ambiente {
+  width: 100% !important;
+  min-height: 38px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: .62rem .85rem !important;
+  border-radius: 999px !important;
+  background: rgba(255, 246, 220, .66) !important;
+  border: 1px solid rgba(73, 39, 13, .24) !important;
+  color: #211207 !important;
+  text-decoration: none !important;
+  text-align: center !important;
+  font-family: inherit !important;
+  font-size: .63rem !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+  letter-spacing: .04em !important;
+  cursor: pointer !important;
+  box-shadow: 0 8px 18px rgba(56, 28, 7, .12) !important;
+  white-space: normal !important;
+  overflow: visible !important;
+}
+
+.hero-action-main {
+  background: rgba(255, 238, 188, .78) !important;
+  border-color: rgba(73, 39, 13, .32) !important;
+}
+
+.hero-action-btn span,
+.btn-ambiente span {
+  display: block !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+
+.btn-ambiente {
+  margin: 0 !important;
+}
+
+.hero-scroll-hint {
+  margin-top: -1.1rem !important;
+}
+
+/* CELULAR */
+@media (max-width: 768px) {
+  .hero-contenido {
+    padding-top: 6.2rem !important;
+  }
+
+  .hero-title {
+    font-size: clamp(1.9rem, 8vw, 2.45rem) !important;
+    line-height: .95 !important;
+  }
+
+  .hero-subtitle {
+    max-width: 230px !important;
+    font-size: .86rem !important;
+    line-height: 1.22 !important;
+    margin: .62rem auto .62rem !important;
+  }
+
+  .hero-benefits {
+    max-width: 215px !important;
+    gap: .3rem !important;
+    margin: .5rem auto .72rem !important;
+  }
+
+  .hero-benefit {
+    min-height: 23px !important;
+    padding: .28rem .48rem !important;
+  }
+
+  .hero-benefit-title {
+    font-size: .55rem !important;
+  }
+
+  .hero-actions,
+  .hero-actions-clean {
+    max-width: 205px !important;
+    gap: .5rem !important;
+  }
+
+  .hero-action-btn,
+  .btn-ambiente {
+    min-height: 35px !important;
+    padding: .55rem .72rem !important;
+    font-size: .56rem !important;
+    line-height: 1.15 !important;
+  }
+}
+
+/* CELULAR MUY CHICO */
+@media (max-width: 370px) {
+  .hero-contenido {
+    padding-top: 6rem !important;
+  }
+
+  .hero-title {
+    font-size: 1.78rem !important;
+  }
+
+  .hero-subtitle {
+    font-size: .8rem !important;
+  }
+
+  .hero-benefit-title,
+  .hero-action-btn,
+  .btn-ambiente {
+    font-size: .52rem !important;
+  }
+}
