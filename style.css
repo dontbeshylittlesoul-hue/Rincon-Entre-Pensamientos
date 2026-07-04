@@ -3562,3 +3562,54 @@ header nav a,
     min-height: 585px !important;
   }
 }
+/* BOTONES HERO UNIFORMES */
+.hero-actions-clean {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  margin-top: 28px;
+}
+
+.hero-actions-clean .hero-action-btn {
+  width: min(100%, 370px);
+  min-height: 58px;
+  padding: 0 28px;
+  border-radius: 999px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.18rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  text-align: center;
+
+  white-space: nowrap;
+}
+
+.hero-actions-clean .hero-action-btn span {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+}
+
+.hero-actions-clean .btn-ambiente {
+  width: min(100%, 370px);
+}
+
+@media (max-width: 480px) {
+  .hero-actions-clean .hero-action-btn {
+    width: min(100%, 330px);
+    min-height: 56px;
+    font-size: 1.02rem;
+    letter-spacing: 0.06em;
+    padding: 0 20px;
+  }
+}
