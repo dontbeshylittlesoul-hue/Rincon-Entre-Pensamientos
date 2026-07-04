@@ -21,6 +21,170 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Crimson+Pro:wght@300;400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
+
+  <!-- ESTILOS NUEVOS: CUENTO GRATIS EN PERGAMINO + NARRADOR -->
+  <style>
+    .cuento-gratis-pergamino {
+      position: relative;
+      padding: 78px 18px 86px;
+      overflow: hidden;
+    }
+
+    .cuento-gratis-pergamino::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(255, 199, 112, 0.13), transparent 44%),
+        radial-gradient(circle at 20% 80%, rgba(255, 182, 85, 0.08), transparent 36%);
+      pointer-events: none;
+    }
+
+    .cuento-gratis-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1040px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .cuento-gratis-intro {
+      max-width: 760px;
+      margin: 0 auto 34px;
+    }
+
+    .cuento-gratis-intro h2 {
+      margin: 10px 0 18px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 5vw, 3.45rem);
+      font-weight: 500;
+      line-height: 1.05;
+      color: #fff0c9;
+    }
+
+    .cuento-gratis-intro p {
+      margin: 0 auto 16px;
+      font-family: "Crimson Pro", serif;
+      font-size: clamp(1.08rem, 2.4vw, 1.24rem);
+      line-height: 1.75;
+      color: rgba(247, 225, 185, 0.88);
+    }
+
+    .cuento-audio-box {
+      max-width: 760px;
+      margin: 26px auto 34px;
+      padding: 16px 18px;
+      border: 1px solid rgba(255, 219, 153, 0.22);
+      border-radius: 22px;
+      background: rgba(22, 14, 8, 0.46);
+      box-shadow: 0 18px 52px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .btn-narrador {
+      appearance: none;
+      border: 1px solid rgba(255, 226, 170, 0.42);
+      border-radius: 999px;
+      padding: 12px 24px;
+      background: linear-gradient(180deg, rgba(255, 221, 153, 0.17), rgba(122, 73, 28, 0.22));
+      color: #fff1cb;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.18rem;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-narrador:hover {
+      transform: translateY(-1px);
+      border-color: rgba(255, 226, 170, 0.68);
+      background: linear-gradient(180deg, rgba(255, 221, 153, 0.24), rgba(122, 73, 28, 0.28));
+    }
+
+    .btn-narrador.activo {
+      border-color: rgba(255, 210, 130, 0.75);
+      box-shadow: 0 0 26px rgba(255, 181, 82, 0.16);
+    }
+
+    .cuento-volumen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      color: rgba(247, 225, 185, 0.86);
+      font-family: "Crimson Pro", serif;
+      font-size: 1.03rem;
+    }
+
+    .cuento-volumen input[type="range"] {
+      width: min(220px, 48vw);
+      accent-color: #d9a75f;
+      cursor: pointer;
+    }
+
+    .pergamino-cuento-imagen {
+      max-width: 980px;
+      margin: 0 auto;
+      border-radius: 24px;
+      overflow: hidden;
+      filter: drop-shadow(0 24px 70px rgba(0, 0, 0, 0.55));
+    }
+
+    .pergamino-cuento-imagen img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cuento-gratis-cierre {
+      max-width: 760px;
+      margin: 34px auto 0;
+      font-family: "Crimson Pro", serif;
+      font-size: clamp(1.05rem, 2.4vw, 1.22rem);
+      line-height: 1.75;
+      color: rgba(247, 225, 185, 0.86);
+    }
+
+    .cuento-gratis-cierre a {
+      color: #fff0c9;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 240, 201, 0.38);
+    }
+
+    .cuento-gratis-cierre a:hover {
+      border-bottom-color: rgba(255, 240, 201, 0.8);
+    }
+
+    @media (max-width: 640px) {
+      .cuento-gratis-pergamino {
+        padding: 58px 12px 68px;
+      }
+
+      .cuento-audio-box {
+        margin-top: 22px;
+        padding: 14px 12px;
+        gap: 14px;
+      }
+
+      .btn-narrador {
+        width: 100%;
+        max-width: 260px;
+      }
+
+      .cuento-volumen {
+        width: 100%;
+      }
+
+      .pergamino-cuento-imagen {
+        border-radius: 16px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -32,6 +196,7 @@
   <!-- AUDIOS -->
   <audio id="audioAmbiente" src="./ambiente-lluvia.mp3" preload="auto" loop></audio>
   <audio id="sonidoPagina" src="./pasar-pagina.mp3" preload="auto"></audio>
+  <audio id="audioNarrador" src="./narracion-cuento-tren.mp3" preload="metadata"></audio>
 
   <!-- HERO -->
   <section class="hero" id="inicio">
@@ -45,37 +210,37 @@
           <span>Pensamientos</span>
         </h1>
 
-    <p class="hero-subtitle">
-  Cuando la cabeza no se apaga, entrá un momento al Rincón.
-</p>
+        <p class="hero-subtitle">
+          Cuando la cabeza no se apaga, entrá un momento al Rincón.
+        </p>
 
-<div class="hero-benefits" aria-label="Qué encontrás en Rincón entre Pensamientos">
-  <div class="hero-benefit">
-    <span class="hero-benefit-title">Lecturas para pausar</span>
-  </div>
+        <div class="hero-benefits" aria-label="Qué encontrás en Rincón entre Pensamientos">
+          <div class="hero-benefit">
+            <span class="hero-benefit-title">Lecturas para pausar</span>
+          </div>
 
-  <div class="hero-benefit">
-    <span class="hero-benefit-title">Cuentos para reflejarte</span>
-  </div>
+          <div class="hero-benefit">
+            <span class="hero-benefit-title">Cuentos para reflejarte</span>
+          </div>
 
-  <div class="hero-benefit">
-    <span class="hero-benefit-title">Herramientas simples</span>
-  </div>
-</div>
+          <div class="hero-benefit">
+            <span class="hero-benefit-title">Herramientas simples</span>
+          </div>
+        </div>
 
-<div class="hero-actions hero-actions-clean">
-  <a href="#lectura" class="hero-action-btn hero-action-main" id="entrarMuestra" data-ga-event="click_muestra_gratis">
-    <span>Leer muestra gratis</span>
-  </a>
+        <div class="hero-actions hero-actions-clean">
+          <a href="#lectura" class="hero-action-btn hero-action-main" id="entrarMuestra" data-ga-event="click_muestra_gratis">
+            <span>Leer muestra gratis</span>
+          </a>
 
-  <a href="#pergamino-gratis" class="hero-action-btn" data-ga-event="click_pergamino_gratis">
-    <span>Descargar 7 preguntas</span>
-  </a>
+          <a href="#pergamino-gratis" class="hero-action-btn" data-ga-event="click_pergamino_gratis">
+            <span>Descargar 7 preguntas</span>
+          </a>
 
-  <button class="hero-action-btn btn-ambiente" id="ambienteToggle" type="button" data-ga-event="click_activar_lluvia">
-    <span>☂ Activar lluvia</span>
-  </button>
-</div>
+          <button class="hero-action-btn btn-ambiente" id="ambienteToggle" type="button" data-ga-event="click_activar_lluvia">
+            <span>☂ Activar lluvia</span>
+          </button>
+        </div>
 
         <p class="hero-note">
           Muestra gratis · audio ambiente · cuentos reflexivos · ejercicios simples
@@ -141,6 +306,66 @@
         <p class="que-es-cierre">
           Está creado para acompañar, no para darte respuestas cerradas. Para esos momentos
           en los que no necesitás más información, sino una pausa real y un lugar donde volver a escucharte.
+        </p>
+      </div>
+    </section>
+
+    <!-- CUENTO GRATIS EN PERGAMINO -->
+    <section class="cuento-gratis-pergamino reveal" id="cuento-gratis">
+      <div class="cuento-gratis-inner">
+        <div class="cuento-gratis-intro">
+          <p class="section-mini">cuento gratis</p>
+
+          <h2>El tren que no esperaba ser perfecto</h2>
+
+          <p>
+            Una lectura breve para esos momentos en los que uno sigue esperando sentirse listo,
+            mientras la vida pasa como trenes que no siempre avisan dos veces.
+          </p>
+
+          <p>
+            Podés leerla directamente en el pergamino o activar el narrador para acompañar la pausa.
+          </p>
+        </div>
+
+        <div class="cuento-audio-box" aria-label="Controles del narrador del cuento gratis">
+          <button
+            class="btn-narrador"
+            id="narradorToggle"
+            type="button"
+            data-ga-event="click_narrador_cuento"
+          >
+            Narrador
+          </button>
+
+          <label class="cuento-volumen" for="volumenNarrador">
+            <span>Volumen</span>
+            <input
+              id="volumenNarrador"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.82"
+              aria-label="Volumen del narrador"
+            >
+          </label>
+        </div>
+
+        <div class="pergamino-cuento-imagen">
+          <img
+            src="./pergamino-cuento-tren.png"
+            alt="Cuento gratis del Rincón: El tren que no esperaba ser perfecto"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <p class="cuento-gratis-cierre">
+          Si esta historia te dejó una pregunta dando vueltas, la experiencia completa sigue por ese mismo camino:
+          lecturas, cuentos, audio ambiente y herramientas simples para volver a vos cuando el ruido se vuelve demasiado.
+          <br>
+          <a href="#ebook">Ver experiencia completa</a>
         </p>
       </div>
     </section>
@@ -415,7 +640,7 @@
 
   </main>
 
-  <!-- SCRIPT ÚNICO: GA4 + LLUVIA + PÁGINAS + SONIDO + REVEAL -->
+  <!-- SCRIPT ÚNICO: GA4 + LLUVIA + NARRADOR + PÁGINAS + SONIDO + REVEAL -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
 
@@ -506,6 +731,80 @@
             ambienteToggle.textContent = "☂ Activar lluvia";
             ambienteToggle.classList.remove("activo");
           }
+        });
+      }
+
+      /* =========================
+         NARRADOR DEL CUENTO GRATIS
+         ========================= */
+
+      const audioNarrador = document.getElementById("audioNarrador");
+      const narradorToggle = document.getElementById("narradorToggle");
+      const volumenNarrador = document.getElementById("volumenNarrador");
+
+      let volumenAmbientePrevio = 0.42;
+
+      function bajarAmbienteParaNarrador() {
+        if (!audioAmbiente) return;
+
+        volumenAmbientePrevio = audioAmbiente.volume || 0.42;
+
+        if (!audioAmbiente.paused) {
+          audioAmbiente.volume = 0.16;
+        }
+      }
+
+      function restaurarAmbienteDespuesNarrador() {
+        if (!audioAmbiente) return;
+
+        audioAmbiente.volume = volumenAmbientePrevio || 0.42;
+      }
+
+      if (audioNarrador && narradorToggle) {
+        audioNarrador.volume = volumenNarrador ? Number(volumenNarrador.value) : 0.82;
+
+        narradorToggle.addEventListener("click", function () {
+          if (audioNarrador.paused) {
+            bajarAmbienteParaNarrador();
+
+            audioNarrador.play()
+              .then(function () {
+                narradorToggle.textContent = "Pausar narrador";
+                narradorToggle.classList.add("activo");
+
+                trackGAEvent("narrador_play", {
+                  event_label: "Narrador cuento gratis"
+                });
+              })
+              .catch(function (error) {
+                console.log("No se pudo reproducir el narrador:", error);
+              });
+          } else {
+            audioNarrador.pause();
+            narradorToggle.textContent = "Narrador";
+            narradorToggle.classList.remove("activo");
+            restaurarAmbienteDespuesNarrador();
+
+            trackGAEvent("narrador_pause", {
+              event_label: "Narrador cuento gratis"
+            });
+          }
+        });
+
+        audioNarrador.addEventListener("ended", function () {
+          narradorToggle.textContent = "Narrador";
+          narradorToggle.classList.remove("activo");
+          restaurarAmbienteDespuesNarrador();
+
+          trackGAEvent("narrador_ended", {
+            event_label: "Narrador cuento gratis"
+          });
+        });
+      }
+
+      if (audioNarrador && volumenNarrador) {
+        volumenNarrador.addEventListener("input", function () {
+          audioNarrador.volume = Number(volumenNarrador.value);
         });
       }
 
