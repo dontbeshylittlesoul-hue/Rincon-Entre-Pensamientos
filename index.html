@@ -228,17 +228,17 @@
           </div>
         </div>
 
- <div class="hero-actions hero-actions-clean">
+<div class="hero-actions hero-actions-clean" id="heroActions">
   <a href="#lectura" class="hero-action-btn hero-action-main" id="entrarMuestra" data-ga-event="click_muestra_gratis">
     <span>Leer muestra</span>
   </a>
 
-  <a href="#cuento-gratis" class="hero-action-btn" data-ga-event="click_cuento_gratis">
+  <a href="#cuento-gratis" class="hero-action-btn" id="botonCuentoHero" data-ga-event="click_cuento_gratis">
     <span>Me aturde la vida...</span>
   </a>
 
   <button class="hero-action-btn btn-ambiente" id="ambienteToggle" type="button" data-ga-event="click_activar_lluvia">
-    <span>Activar lluvia ambientativa</span>
+    <span>☂ Activar lluvia ambientativa</span>
   </button>
 </div>
 
@@ -710,29 +710,35 @@
          AUDIO AMBIENTE / LLUVIA
          ========================= */
 
-      const audioAmbiente = document.getElementById("audioAmbiente");
-      const ambienteToggle = document.getElementById("ambienteToggle");
+const audioAmbiente = document.getElementById("audioAmbiente");
+const ambienteToggle = document.getElementById("ambienteToggle");
 
-      if (audioAmbiente && ambienteToggle) {
-        audioAmbiente.volume = 0.42;
+if (audioAmbiente && ambienteToggle) {
+  audioAmbiente.volume = 0.42;
 
-        ambienteToggle.addEventListener("click", function () {
-          if (audioAmbiente.paused) {
-            audioAmbiente.play()
-              .then(function () {
-                ambienteToggle.textContent = "☂ Pausar lluvia";
-                ambienteToggle.classList.add("activo");
-              })
-              .catch(function (error) {
-                console.log("No se pudo reproducir la lluvia:", error);
-              });
-          } else {
-            audioAmbiente.pause();
-            ambienteToggle.textContent = "☂ Activar lluvia";
-            ambienteToggle.classList.remove("activo");
-          }
+  function actualizarBotonAmbiente(texto) {
+    ambienteToggle.innerHTML = "<span>" + texto + "</span>";
+  }
+
+  actualizarBotonAmbiente("☂ Activar lluvia ambientativa");
+
+  ambienteToggle.addEventListener("click", function () {
+    if (audioAmbiente.paused) {
+      audioAmbiente.play()
+        .then(function () {
+          actualizarBotonAmbiente("☂ Pausar lluvia ambientativa");
+          ambienteToggle.classList.add("activo");
+        })
+        .catch(function (error) {
+          console.log("No se pudo reproducir la lluvia:", error);
         });
-      }
+    } else {
+      audioAmbiente.pause();
+      actualizarBotonAmbiente("☂ Activar lluvia ambientativa");
+      ambienteToggle.classList.remove("activo");
+    }
+  });
+}
 
       /* =========================
          NARRADOR DEL CUENTO GRATIS
