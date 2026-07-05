@@ -5086,3 +5086,139 @@ header nav a,
     animation: none;
   }
 }
+/* =====================================================
+   FONDOS QUE RESPIRAN
+   Movimiento lento y sutil para dar profundidad
+   Pegar al final de style.css
+   ===================================================== */
+
+
+/* HERO: fondo ambiental detrás del pergamino */
+.hero::before {
+  animation: respirarFondoHero 24s ease-in-out infinite;
+  will-change: transform, opacity, filter;
+}
+
+
+/* SECCIÓN LECTURA: fondo ambiental grande detrás del visor */
+.intro-muestra::before {
+  animation: respirarFondoLectura 28s ease-in-out infinite;
+  will-change: transform, opacity, filter;
+}
+
+
+/* LAS 7 PREGUNTAS: fondo dentro de la caja */
+.fondo-preguntas-section .pergamino-regalo-contenido::before {
+  animation: respirarFondoCaja 22s ease-in-out infinite;
+  will-change: transform, opacity, filter;
+}
+
+
+/* CUENTO: fondo ambiental si usás fondo-cuento.png */
+.cuento-card::before {
+  animation: respirarFondoCaja 24s ease-in-out infinite;
+  will-change: transform, opacity, filter;
+}
+
+
+/* CUENTO GRATIS: luz ambiental general */
+.cuento-gratis-pergamino::before {
+  animation: respirarLuzSuave 20s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+
+/* HERRAMIENTAS: luz de fondo de la sección */
+.herramientas-muestra::before {
+  animation: respirarLuzSuave 24s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+
+/* =========================
+   ANIMACIONES
+   ========================= */
+
+@keyframes respirarFondoHero {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.25;
+    filter: blur(1px) brightness(1);
+  }
+
+  50% {
+    transform: scale(1.035);
+    opacity: 0.34;
+    filter: blur(1.2px) brightness(1.08);
+  }
+}
+
+
+/* Esta mantiene el translateX(-50%) porque tu fondo de lectura está centrado así */
+@keyframes respirarFondoLectura {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.34;
+    filter: blur(1px) brightness(1);
+  }
+
+  50% {
+    transform: translateX(-50%) scale(1.035);
+    opacity: 0.44;
+    filter: blur(1.2px) brightness(1.08);
+  }
+}
+
+
+@keyframes respirarFondoCaja {
+  0%, 100% {
+    transform: scale(1.03);
+    opacity: 0.32;
+    filter: blur(1px) brightness(1);
+  }
+
+  50% {
+    transform: scale(1.07);
+    opacity: 0.42;
+    filter: blur(1.2px) brightness(1.08);
+  }
+}
+
+
+@keyframes respirarLuzSuave {
+  0%, 100% {
+    opacity: 0.82;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.025);
+  }
+}
+
+
+/* En celular, un poco más visible */
+@media (max-width: 700px) {
+  .hero::before {
+    animation-duration: 22s;
+  }
+
+  .fondo-preguntas-section .pergamino-regalo-contenido::before,
+  .cuento-card::before {
+    opacity: 0.42;
+  }
+}
+
+
+/* Respeta usuarios con reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .hero::before,
+  .intro-muestra::before,
+  .fondo-preguntas-section .pergamino-regalo-contenido::before,
+  .cuento-card::before,
+  .cuento-gratis-pergamino::before,
+  .herramientas-muestra::before {
+    animation: none !important;
+  }
+}
