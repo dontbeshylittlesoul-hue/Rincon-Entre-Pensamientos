@@ -4645,8 +4645,8 @@ header nav a,
 
 /* Si el farol del cuento no cae exacto, tocás estos valores */
 .pergamino-cuento-imagen {
-  --cuento-farol-alto-x: 11%;
-  --cuento-farol-alto-y: 15%;
+ --cuento-farol-alto-x: 18%;
+  --cuento-farol-alto-y: 44%;
   --cuento-farol-bajo-x: 50%;
   --cuento-farol-bajo-y: 94%;
 }
@@ -4824,5 +4824,87 @@ header nav a,
     left: 28.5%;
     top: 31.5%;
     opacity: 0.78;
+  }
+}
+/* =====================================================
+   CORRECCIÓN HERRAMIENTAS:
+   quitar brillo inferior y dejar solo el farol superior
+   ===================================================== */
+
+.herramienta-preview {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Posición del farol superior en cada tarjeta */
+.tarjeta-herramienta:nth-child(1) .herramienta-preview {
+  --farol-x: 12%;
+  --farol-y: 16%;
+}
+
+.tarjeta-herramienta:nth-child(2) .herramienta-preview {
+  --farol-x: 12%;
+  --farol-y: 16%;
+}
+
+.tarjeta-herramienta:nth-child(3) .herramienta-preview {
+  --farol-x: 12%;
+  --farol-y: 16%;
+}
+
+/* Solo luz y chispas del farol de arriba */
+.herramienta-preview::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(circle at var(--farol-x) var(--farol-y),
+      rgba(255, 239, 174, 0.92) 0%,
+      rgba(255, 188, 72, 0.66) 4.5%,
+      rgba(219, 94, 24, 0.34) 9%,
+      transparent 17%
+    ),
+
+    radial-gradient(circle at calc(var(--farol-x) + 4%) calc(var(--farol-y) + 6%),
+      rgba(255, 225, 143, 0.62) 0 1.2px,
+      transparent 2.8px
+    ),
+
+    radial-gradient(circle at calc(var(--farol-x) + 8%) calc(var(--farol-y) + 1%),
+      rgba(255, 168, 58, 0.46) 0 1px,
+      transparent 2.5px
+    ),
+
+    radial-gradient(circle at calc(var(--farol-x) - 2%) calc(var(--farol-y) + 9%),
+      rgba(255, 238, 178, 0.34) 0 1px,
+      transparent 2.5px
+    );
+
+  opacity: 0.82;
+  mix-blend-mode: screen;
+  filter: blur(0.2px);
+  animation: fuegoImagenes 2.4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Mantiene el degradado oscuro de abajo, pero sin fuego */
+.herramienta-preview::after {
+  z-index: 2;
+}
+
+/* Botón por arriba de la luz */
+.herramienta-preview span {
+  position: absolute;
+  z-index: 5;
+}
+
+/* Más visible en celular, sin crear brillo abajo */
+@media (max-width: 700px) {
+  .herramienta-preview::before {
+    opacity: 0.98;
+    filter: brightness(1.12) blur(0.15px);
   }
 }
