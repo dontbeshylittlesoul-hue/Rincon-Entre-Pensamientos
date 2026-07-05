@@ -4135,3 +4135,29 @@ header nav a,
     letter-spacing: 0.015em !important;
   }
 }
+/* Fondo ambiental del hero */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at center, rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.88)),
+    url("./fondo-hero.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.25;
+  filter: blur(1px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
