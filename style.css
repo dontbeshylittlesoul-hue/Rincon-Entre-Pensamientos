@@ -5329,3 +5329,172 @@ body.lluvia-activa .lluvia-visual {
     animation: none !important;
   }
 }
+/* =====================================================
+   LLUVIA VISUAL MÁS NATURAL
+   Reemplaza visualmente la lluvia anterior
+   ===================================================== */
+
+.lluvia-visual {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  mix-blend-mode: screen;
+
+  background:
+    radial-gradient(circle at 50% 20%, rgba(180, 205, 230, 0.035), transparent 42%),
+    linear-gradient(180deg, rgba(255,255,255,0.015), transparent 55%);
+}
+
+body.lluvia-activa .lluvia-visual {
+  opacity: 0.42;
+}
+
+/* Gotas principales: más largas y separadas */
+.lluvia-visual::before {
+  content: "";
+  position: absolute;
+  inset: auto !important;
+  top: -120vh;
+  left: -18vw;
+  right: auto !important;
+  bottom: auto !important;
+
+  width: 1px;
+  height: 78px;
+  border-radius: 999px;
+
+  background: rgba(225, 238, 255, 0.18);
+  box-shadow:
+    4vw 10vh 0 0 rgba(225,238,255,0.12),
+    12vw 42vh 0 0 rgba(225,238,255,0.18),
+    21vw 18vh 0 0 rgba(225,238,255,0.10),
+    29vw 66vh 0 0 rgba(225,238,255,0.16),
+    36vw 28vh 0 0 rgba(225,238,255,0.12),
+    43vw 82vh 0 0 rgba(225,238,255,0.20),
+    51vw 36vh 0 0 rgba(225,238,255,0.11),
+    58vw 95vh 0 0 rgba(225,238,255,0.18),
+    65vw 22vh 0 0 rgba(225,238,255,0.13),
+    73vw 74vh 0 0 rgba(225,238,255,0.17),
+    82vw 48vh 0 0 rgba(225,238,255,0.12),
+    91vw 90vh 0 0 rgba(225,238,255,0.19),
+    100vw 30vh 0 0 rgba(225,238,255,0.11),
+    108vw 70vh 0 0 rgba(225,238,255,0.15),
+
+    8vw 130vh 0 0 rgba(225,238,255,0.14),
+    17vw 166vh 0 0 rgba(225,238,255,0.18),
+    26vw 118vh 0 0 rgba(225,238,255,0.10),
+    34vw 188vh 0 0 rgba(225,238,255,0.17),
+    42vw 142vh 0 0 rgba(225,238,255,0.12),
+    50vw 205vh 0 0 rgba(225,238,255,0.20),
+    59vw 126vh 0 0 rgba(225,238,255,0.13),
+    68vw 176vh 0 0 rgba(225,238,255,0.18),
+    77vw 112vh 0 0 rgba(225,238,255,0.11),
+    86vw 196vh 0 0 rgba(225,238,255,0.17),
+    96vw 148vh 0 0 rgba(225,238,255,0.13),
+    106vw 220vh 0 0 rgba(225,238,255,0.18);
+
+  filter: blur(0.45px);
+  transform: translate3d(0, 0, 0) rotate(17deg);
+  animation: lluviaNaturalPrincipal 1.05s linear infinite;
+}
+
+/* Gotas finas: más cantidad, más suaves */
+.lluvia-visual::after {
+  content: "";
+  position: absolute;
+  inset: auto !important;
+  top: -120vh;
+  left: -22vw;
+  right: auto !important;
+  bottom: auto !important;
+
+  width: 1px;
+  height: 42px;
+  border-radius: 999px;
+
+  background: rgba(235, 244, 255, 0.10);
+  box-shadow:
+    2vw 22vh 0 0 rgba(235,244,255,0.08),
+    7vw 58vh 0 0 rgba(235,244,255,0.13),
+    15vw 34vh 0 0 rgba(235,244,255,0.07),
+    20vw 88vh 0 0 rgba(235,244,255,0.12),
+    27vw 14vh 0 0 rgba(235,244,255,0.08),
+    33vw 72vh 0 0 rgba(235,244,255,0.11),
+    39vw 46vh 0 0 rgba(235,244,255,0.07),
+    46vw 98vh 0 0 rgba(235,244,255,0.12),
+    53vw 26vh 0 0 rgba(235,244,255,0.08),
+    61vw 80vh 0 0 rgba(235,244,255,0.13),
+    69vw 40vh 0 0 rgba(235,244,255,0.07),
+    76vw 108vh 0 0 rgba(235,244,255,0.11),
+    84vw 18vh 0 0 rgba(235,244,255,0.08),
+    92vw 64vh 0 0 rgba(235,244,255,0.12),
+    101vw 38vh 0 0 rgba(235,244,255,0.07),
+    111vw 92vh 0 0 rgba(235,244,255,0.11),
+
+    5vw 138vh 0 0 rgba(235,244,255,0.09),
+    13vw 172vh 0 0 rgba(235,244,255,0.13),
+    22vw 124vh 0 0 rgba(235,244,255,0.07),
+    30vw 202vh 0 0 rgba(235,244,255,0.12),
+    37vw 156vh 0 0 rgba(235,244,255,0.08),
+    45vw 226vh 0 0 rgba(235,244,255,0.11),
+    52vw 132vh 0 0 rgba(235,244,255,0.07),
+    60vw 186vh 0 0 rgba(235,244,255,0.13),
+    67vw 146vh 0 0 rgba(235,244,255,0.08),
+    75vw 214vh 0 0 rgba(235,244,255,0.12),
+    83vw 128vh 0 0 rgba(235,244,255,0.07),
+    91vw 194vh 0 0 rgba(235,244,255,0.11),
+    99vw 152vh 0 0 rgba(235,244,255,0.08),
+    109vw 232vh 0 0 rgba(235,244,255,0.12);
+
+  filter: blur(0.25px);
+  transform: translate3d(0, 0, 0) rotate(17deg);
+  animation: lluviaNaturalFina 1.55s linear infinite;
+}
+
+@keyframes lluviaNaturalPrincipal {
+  0% {
+    transform: translate3d(0, -8vh, 0) rotate(17deg);
+  }
+
+  100% {
+    transform: translate3d(-18vw, 120vh, 0) rotate(17deg);
+  }
+}
+
+@keyframes lluviaNaturalFina {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(17deg);
+  }
+
+  100% {
+    transform: translate3d(-14vw, 125vh, 0) rotate(17deg);
+  }
+}
+
+/* Celular: más visible, pero sin exagerar */
+@media (max-width: 700px) {
+  body.lluvia-activa .lluvia-visual {
+    opacity: 0.54;
+  }
+
+  .lluvia-visual::before {
+    height: 64px;
+    filter: blur(0.35px);
+  }
+
+  .lluvia-visual::after {
+    height: 36px;
+  }
+}
+
+/* Respeta reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .lluvia-visual::before,
+  .lluvia-visual::after {
+    animation: none !important;
+  }
+}
