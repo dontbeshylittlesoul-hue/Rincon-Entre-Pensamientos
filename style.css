@@ -4291,7 +4291,7 @@ header nav a,
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.34;
+  opacity: 0.50;
   filter: blur(1px);
   z-index: -2;
   pointer-events: none;
