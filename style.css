@@ -5222,3 +5222,110 @@ header nav a,
     animation: none !important;
   }
 }
+/* =====================================================
+   LLUVIA VISUAL ACTIVABLE
+   Aparece solo cuando se activa el audio de lluvia
+   ===================================================== */
+
+.lluvia-visual {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  mix-blend-mode: screen;
+}
+
+/* Se activa cuando el JS agrega la clase al body */
+body.lluvia-activa .lluvia-visual {
+  opacity: 0.34;
+}
+
+/* Capa principal de lluvia */
+.lluvia-visual::before {
+  content: "";
+  position: absolute;
+  inset: -25%;
+
+  background-image:
+    linear-gradient(
+      115deg,
+      transparent 0%,
+      transparent 46%,
+      rgba(210, 226, 242, 0.24) 47%,
+      transparent 49%,
+      transparent 100%
+    );
+
+  background-size: 95px 150px;
+  background-position: 0 0;
+  filter: blur(0.25px);
+  animation: lluviaCae 0.95s linear infinite;
+}
+
+/* Segunda capa: gotas más finas y lentas */
+.lluvia-visual::after {
+  content: "";
+  position: absolute;
+  inset: -25%;
+
+  background-image:
+    linear-gradient(
+      115deg,
+      transparent 0%,
+      transparent 54%,
+      rgba(235, 244, 255, 0.16) 55%,
+      transparent 57%,
+      transparent 100%
+    );
+
+  background-size: 140px 210px;
+  background-position: 40px 80px;
+  filter: blur(0.35px);
+  animation: lluviaCaeSuave 1.45s linear infinite;
+}
+
+@keyframes lluviaCae {
+  0% {
+    transform: translate3d(0, -8%, 0);
+  }
+
+  100% {
+    transform: translate3d(-7%, 10%, 0);
+  }
+}
+
+@keyframes lluviaCaeSuave {
+  0% {
+    transform: translate3d(0, -10%, 0);
+  }
+
+  100% {
+    transform: translate3d(-5%, 12%, 0);
+  }
+}
+
+/* Un poco más visible en celular */
+@media (max-width: 700px) {
+  body.lluvia-activa .lluvia-visual {
+    opacity: 0.48;
+  }
+
+  .lluvia-visual::before {
+    background-size: 70px 120px;
+  }
+
+  .lluvia-visual::after {
+    background-size: 105px 170px;
+  }
+}
+
+/* Respeta reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .lluvia-visual::before,
+  .lluvia-visual::after {
+    animation: none !important;
+  }
+}
