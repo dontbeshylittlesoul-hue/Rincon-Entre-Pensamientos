@@ -4465,7 +4465,7 @@ header nav a,
   position: absolute;
 
   /* Ajustado para caer más arriba y más sobre el fuego */
-  left: 29.5%;
+  left: 18%;
   top: 31.5%;
 
   width: 9.5rem;
@@ -4495,8 +4495,8 @@ header nav a,
   content: "";
   position: absolute;
 
-  left: 29.5%;
-  top: 33.5%;
+  left: 28%;
+  top: 29%;
 
   width: 9rem;
   height: 12rem;
