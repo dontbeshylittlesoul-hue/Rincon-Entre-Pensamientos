@@ -4442,3 +4442,387 @@ header nav a,
     opacity: 0.26;
   }
 }
+/* =====================================================
+   FAROLES VIVOS + CHISPAS
+   Rincón entre Pensamientos
+   Pegar al final de style.css
+   ===================================================== */
+
+
+/* =========================
+   1) FAROL DEL HERO
+   ========================= */
+
+.hero-pergamino {
+  position: relative !important;
+  isolation: isolate;
+  overflow: visible !important;
+}
+
+/* Luz principal del farol del hero */
+.hero-pergamino::before {
+  content: "";
+  position: absolute;
+
+  /* Ajustado para caer más arriba y más sobre el fuego */
+  left: 29.5%;
+  top: 31.5%;
+
+  width: 9.5rem;
+  height: 9.5rem;
+  border-radius: 999px;
+
+  background:
+    radial-gradient(circle,
+      rgba(255, 239, 176, 0.95) 0%,
+      rgba(255, 194, 82, 0.72) 18%,
+      rgba(224, 105, 30, 0.42) 38%,
+      rgba(173, 70, 18, 0.18) 58%,
+      transparent 74%
+    );
+
+  filter: blur(8px);
+  opacity: 0.86;
+  mix-blend-mode: screen;
+  transform: translate(-50%, -50%) scale(1);
+  animation: fuegoHeroVivo 2.15s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Chispas del farol del hero */
+.hero-pergamino::after {
+  content: "";
+  position: absolute;
+
+  left: 29.5%;
+  top: 33.5%;
+
+  width: 9rem;
+  height: 12rem;
+
+  background:
+    radial-gradient(circle at 42% 76%, rgba(255, 221, 139, 0.72) 0 1.6px, transparent 3px),
+    radial-gradient(circle at 57% 66%, rgba(255, 174, 67, 0.58) 0 1.4px, transparent 3px),
+    radial-gradient(circle at 38% 52%, rgba(255, 236, 173, 0.46) 0 1.2px, transparent 3px),
+    radial-gradient(circle at 62% 42%, rgba(255, 166, 59, 0.38) 0 1px, transparent 3px),
+    radial-gradient(circle at 50% 28%, rgba(255, 211, 121, 0.28) 0 1px, transparent 3px);
+
+  opacity: 0.52;
+  mix-blend-mode: screen;
+  transform: translate(-50%, 16px);
+  animation: chispasHero 4.8s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hero-contenido {
+  position: relative;
+  z-index: 4;
+}
+
+
+/* =========================
+   2) FAROLES DE HERRAMIENTAS
+   Aplica a las 3 tarjetas actuales
+   ========================= */
+
+.herramienta-preview {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Variables base: farol grande arriba izquierda + farol chico abajo centro */
+.herramienta-preview {
+  --farol-alto-x: 12%;
+  --farol-alto-y: 15%;
+  --farol-bajo-x: 50%;
+  --farol-bajo-y: 94%;
+}
+
+/* Ajuste fino tarjeta 01: Máscara */
+.tarjeta-herramienta:nth-child(1) .herramienta-preview {
+  --farol-alto-x: 10.5%;
+  --farol-alto-y: 15.5%;
+  --farol-bajo-x: 50%;
+  --farol-bajo-y: 94%;
+}
+
+/* Ajuste fino tarjeta 02: Ruido */
+.tarjeta-herramienta:nth-child(2) .herramienta-preview {
+  --farol-alto-x: 12%;
+  --farol-alto-y: 15%;
+  --farol-bajo-x: 50%;
+  --farol-bajo-y: 94%;
+}
+
+/* Ajuste fino tarjeta 03: Tren */
+.tarjeta-herramienta:nth-child(3) .herramienta-preview {
+  --farol-alto-x: 9%;
+  --farol-alto-y: 15%;
+  --farol-bajo-x: 50%;
+  --farol-bajo-y: 94%;
+}
+
+/* Luz + chispas sobre los faroles de las imágenes */
+.herramienta-preview::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    /* Luz del farol grande */
+    radial-gradient(circle at var(--farol-alto-x) var(--farol-alto-y),
+      rgba(255, 239, 174, 0.96) 0%,
+      rgba(255, 188, 72, 0.72) 4.2%,
+      rgba(219, 94, 24, 0.36) 9%,
+      transparent 18%
+    ),
+
+    /* Luz del farol chico inferior */
+    radial-gradient(circle at var(--farol-bajo-x) var(--farol-bajo-y),
+      rgba(255, 231, 151, 0.86) 0%,
+      rgba(255, 178, 63, 0.54) 3.2%,
+      rgba(209, 91, 22, 0.26) 7%,
+      transparent 13%
+    ),
+
+    /* Chispas cerca del farol grande */
+    radial-gradient(circle at calc(var(--farol-alto-x) + 4%) calc(var(--farol-alto-y) + 8%),
+      rgba(255, 225, 143, 0.74) 0 1.2px,
+      transparent 2.8px
+    ),
+    radial-gradient(circle at calc(var(--farol-alto-x) + 8%) calc(var(--farol-alto-y) + 1%),
+      rgba(255, 168, 58, 0.55) 0 1px,
+      transparent 2.5px
+    ),
+    radial-gradient(circle at calc(var(--farol-alto-x) - 2%) calc(var(--farol-alto-y) + 11%),
+      rgba(255, 238, 178, 0.42) 0 1px,
+      transparent 2.5px
+    ),
+
+    /* Chispas cerca del farol chico inferior */
+    radial-gradient(circle at calc(var(--farol-bajo-x) + 3%) calc(var(--farol-bajo-y) - 6%),
+      rgba(255, 219, 132, 0.54) 0 1px,
+      transparent 2.5px
+    ),
+    radial-gradient(circle at calc(var(--farol-bajo-x) - 3%) calc(var(--farol-bajo-y) - 9%),
+      rgba(255, 168, 58, 0.38) 0 1px,
+      transparent 2.4px
+    );
+
+  opacity: 0.88;
+  mix-blend-mode: screen;
+  filter: blur(0.25px);
+  animation: fuegoImagenes 2.4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Mantiene la sombra/gradiente de la preview, pero debajo del texto */
+.herramienta-preview::after {
+  z-index: 2;
+}
+
+/* Botón "Ver pergamino completo" siempre por encima */
+.herramienta-preview span {
+  position: absolute;
+  z-index: 5;
+}
+
+
+/* =========================
+   3) FAROL DEL CUENTO/PERGAMINO
+   Para pergamino-cuento-tren.png si lo usás
+   ========================= */
+
+.pergamino-cuento-imagen {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Si el farol del cuento no cae exacto, tocás estos valores */
+.pergamino-cuento-imagen {
+  --cuento-farol-alto-x: 11%;
+  --cuento-farol-alto-y: 15%;
+  --cuento-farol-bajo-x: 50%;
+  --cuento-farol-bajo-y: 94%;
+}
+
+.pergamino-cuento-imagen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(circle at var(--cuento-farol-alto-x) var(--cuento-farol-alto-y),
+      rgba(255, 239, 174, 0.92) 0%,
+      rgba(255, 188, 72, 0.68) 4%,
+      rgba(219, 94, 24, 0.34) 9%,
+      transparent 18%
+    ),
+    radial-gradient(circle at var(--cuento-farol-bajo-x) var(--cuento-farol-bajo-y),
+      rgba(255, 231, 151, 0.82) 0%,
+      rgba(255, 178, 63, 0.50) 3%,
+      rgba(209, 91, 22, 0.24) 7%,
+      transparent 13%
+    ),
+    radial-gradient(circle at calc(var(--cuento-farol-alto-x) + 5%) calc(var(--cuento-farol-alto-y) + 7%),
+      rgba(255, 225, 143, 0.70) 0 1.3px,
+      transparent 2.8px
+    ),
+    radial-gradient(circle at calc(var(--cuento-farol-alto-x) + 8%) calc(var(--cuento-farol-alto-y) + 1%),
+      rgba(255, 168, 58, 0.48) 0 1px,
+      transparent 2.5px
+    ),
+    radial-gradient(circle at calc(var(--cuento-farol-bajo-x) + 3%) calc(var(--cuento-farol-bajo-y) - 6%),
+      rgba(255, 219, 132, 0.46) 0 1px,
+      transparent 2.5px
+    );
+
+  opacity: 0.82;
+  mix-blend-mode: screen;
+  animation: fuegoImagenes 2.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.pergamino-cuento-imagen img {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* =========================
+   ANIMACIONES
+   ========================= */
+
+@keyframes fuegoHeroVivo {
+  0%, 100% {
+    opacity: 0.74;
+    transform: translate(-50%, -50%) scale(0.94);
+    filter: blur(8px);
+  }
+
+  18% {
+    opacity: 0.96;
+    transform: translate(-50.5%, -51%) scale(1.04);
+    filter: blur(9px);
+  }
+
+  38% {
+    opacity: 0.78;
+    transform: translate(-49.5%, -49.5%) scale(0.98);
+    filter: blur(7px);
+  }
+
+  63% {
+    opacity: 1;
+    transform: translate(-51%, -50%) scale(1.08);
+    filter: blur(10px);
+  }
+
+  82% {
+    opacity: 0.80;
+    transform: translate(-50%, -49%) scale(0.96);
+    filter: blur(8px);
+  }
+}
+
+@keyframes chispasHero {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 24px) scale(0.96);
+  }
+
+  18% {
+    opacity: 0.58;
+  }
+
+  52% {
+    opacity: 0.42;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -42px) scale(1.04);
+  }
+}
+
+@keyframes fuegoImagenes {
+  0%, 100% {
+    opacity: 0.72;
+    transform: scale(0.995) translateY(0);
+    filter: brightness(1) blur(0.2px);
+  }
+
+  22% {
+    opacity: 0.96;
+    transform: scale(1.01) translateY(-1px);
+    filter: brightness(1.08) blur(0.3px);
+  }
+
+  46% {
+    opacity: 0.80;
+    transform: scale(1.002) translateY(1px);
+    filter: brightness(1.02) blur(0.2px);
+  }
+
+  71% {
+    opacity: 1;
+    transform: scale(1.014) translateY(-2px);
+    filter: brightness(1.10) blur(0.3px);
+  }
+}
+
+
+/* =========================
+   MÁS VISIBLE EN CELULAR
+   ========================= */
+
+@media (max-width: 700px) {
+  .hero-pergamino::before {
+    left: 29%;
+    top: 30.5%;
+    width: 7.4rem;
+    height: 7.4rem;
+    opacity: 0.98;
+    filter: blur(7px);
+  }
+
+  .hero-pergamino::after {
+    left: 29%;
+    top: 32%;
+    width: 7rem;
+    height: 10rem;
+    opacity: 0.72;
+  }
+
+  .herramienta-preview::before {
+    opacity: 1;
+    filter: brightness(1.12) blur(0.15px);
+  }
+
+  .pergamino-cuento-imagen::before {
+    opacity: 0.96;
+    filter: brightness(1.1);
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-pergamino::before {
+    left: 28.5%;
+    top: 30%;
+    width: 6.6rem;
+    height: 6.6rem;
+    opacity: 1;
+  }
+
+  .hero-pergamino::after {
+    left: 28.5%;
+    top: 31.5%;
+    opacity: 0.78;
+  }
+}
