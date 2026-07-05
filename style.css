@@ -5498,3 +5498,52 @@ body.lluvia-activa .lluvia-visual {
     animation: none !important;
   }
 }
+/* =====================================================
+   FIX LLUVIA VISIBLE EN CELULAR
+   Hace la lluvia más presente sin tapar la lectura
+   ===================================================== */
+
+.lluvia-visual {
+  z-index: 20 !important;
+  pointer-events: none !important;
+}
+
+body.lluvia-activa .lluvia-visual {
+  opacity: 0.52 !important;
+}
+
+/* Celular: lluvia más visible */
+@media (max-width: 700px) {
+  body.lluvia-activa .lluvia-visual {
+    opacity: 0.82 !important;
+  }
+
+  .lluvia-visual::before {
+    height: 82px !important;
+    width: 1.4px !important;
+    background: rgba(235, 244, 255, 0.28) !important;
+    filter: blur(0.25px) brightness(1.35) !important;
+  }
+
+  .lluvia-visual::after {
+    height: 52px !important;
+    width: 1.1px !important;
+    background: rgba(235, 244, 255, 0.20) !important;
+    filter: blur(0.2px) brightness(1.25) !important;
+  }
+}
+
+/* Celulares muy chicos: todavía un poco más marcada */
+@media (max-width: 430px) {
+  body.lluvia-activa .lluvia-visual {
+    opacity: 0.92 !important;
+  }
+
+  .lluvia-visual::before {
+    height: 88px !important;
+  }
+
+  .lluvia-visual::after {
+    height: 58px !important;
+  }
+}
