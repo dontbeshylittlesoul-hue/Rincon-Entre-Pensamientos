@@ -4161,3 +4161,43 @@ header nav a,
   position: relative;
   z-index: 1;
 }
+/* Fondo ambiental para la sección de Las 7 preguntas */
+.preguntas-section {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Imagen de fondo suave */
+.preguntas-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(
+      rgba(14, 8, 4, 0.78),
+      rgba(14, 8, 4, 0.88)
+    ),
+    url("./fondo-preguntas.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.28;
+  filter: blur(1px);
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Oscurece bordes y mantiene legibilidad */
+.preguntas-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.05),
+    rgba(0, 0, 0, 0.65)
+  );
+  z-index: -1;
+  pointer-events: none;
+}
