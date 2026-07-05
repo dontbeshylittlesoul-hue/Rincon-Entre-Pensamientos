@@ -4201,3 +4201,55 @@ header nav a,
   z-index: -1;
   pointer-events: none;
 }
+/* ==========================================
+   FONDO AMBIENTAL - LAS 7 PREGUNTAS
+   Imagen: fondo-preguntas.png
+   ========================================== */
+
+.fondo-preguntas-section .pergamino-regalo-contenido {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Imagen de fondo visible pero suave */
+.fondo-preguntas-section .pergamino-regalo-contenido::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("./fondo-preguntas.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.34;
+  filter: blur(1px);
+  transform: scale(1.03);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Capa oscura para que el texto siga leyendo bien */
+.fondo-preguntas-section .pergamino-regalo-contenido::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18, 10, 6, 0.58),
+      rgba(12, 7, 4, 0.78)
+    ),
+    radial-gradient(
+      circle at center,
+      rgba(214, 157, 74, 0.10),
+      rgba(0, 0, 0, 0.58)
+    );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Todo el contenido queda arriba del fondo */
+.fondo-preguntas-section .pergamino-regalo-contenido > * {
+  position: relative;
+  z-index: 2;
+}
