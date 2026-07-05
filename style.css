@@ -4253,3 +4253,58 @@ header nav a,
   position: relative;
   z-index: 2;
 }
+/* ==========================================
+   FONDO AMBIENTAL WEB - LECTURA INTERACTIVA
+   Imagen: fondo-lectura.png
+   Va detrás de la zona, no dentro del bloque
+   ========================================== */
+
+.intro-muestra {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+}
+
+/* Fondo grande detrás de la intro + visor */
+.intro-muestra::before {
+  content: "";
+  position: absolute;
+  top: -140px;
+  left: 50%;
+  width: 100vw;
+  height: 1150px;
+  transform: translateX(-50%);
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(7, 5, 3, 0.82) 0%,
+      rgba(7, 5, 3, 0.42) 34%,
+      rgba(7, 5, 3, 0.52) 66%,
+      rgba(7, 5, 3, 0.92) 100%
+    ),
+    radial-gradient(
+      circle at center,
+      rgba(218, 157, 78, 0.08),
+      rgba(0, 0, 0, 0.76) 72%
+    ),
+    url("./fondo-lectura.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.34;
+  filter: blur(1px);
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Asegura que el texto de la intro quede arriba */
+.intro-muestra > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Asegura que el visor quede arriba del fondo */
+.visor-ebook {
+  position: relative;
+  z-index: 2;
+}
