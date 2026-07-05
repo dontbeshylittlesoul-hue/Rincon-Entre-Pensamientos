@@ -741,6 +741,29 @@ if (audioAmbiente && ambienteToggle) {
     }
   });
 }
+      /* =========================
+   LLUVIA VISUAL
+   Se activa junto al audio ambiente
+   ========================= */
+
+const lluviaVisual = document.querySelector(".lluvia-visual");
+
+function actualizarLluviaVisual() {
+  if (!audioAmbiente || !lluviaVisual) return;
+
+  const lluviaActiva = !audioAmbiente.paused;
+
+  document.body.classList.toggle("lluvia-activa", lluviaActiva);
+  lluviaVisual.classList.toggle("activa", lluviaActiva);
+}
+
+if (audioAmbiente && lluviaVisual) {
+  audioAmbiente.addEventListener("play", actualizarLluviaVisual);
+  audioAmbiente.addEventListener("pause", actualizarLluviaVisual);
+  audioAmbiente.addEventListener("ended", actualizarLluviaVisual);
+
+  actualizarLluviaVisual();
+}
 
       /* =========================
          NARRADOR DEL CUENTO GRATIS
