@@ -4919,8 +4919,8 @@ header nav a,
   overflow: hidden !important;
 
   /* Punto exacto del fuego del farol del cuento */
-  --cuento-fuego-x: 39%;
-  --cuento-fuego-y: 45%;
+  --cuento-fuego-x: 15%;
+  --cuento-fuego-y: 30%;
 }
 
 .pergamino-cuento-imagen::before {
