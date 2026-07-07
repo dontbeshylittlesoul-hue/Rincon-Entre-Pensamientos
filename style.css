@@ -5634,3 +5634,106 @@ body.lluvia-activa .lluvia-visual {
     top: 12px;
   }
 }
+.entrada-sonora {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  background:
+    radial-gradient(circle at 50% 25%, rgba(210, 150, 75, 0.22), transparent 360px),
+    linear-gradient(180deg, rgba(7, 5, 3, 0.96), rgba(15, 9, 5, 0.98));
+  transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+
+.entrada-sonora.oculta {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.entrada-sonora-card {
+  width: min(520px, 100%);
+  text-align: center;
+  padding: 34px 24px;
+  border-radius: 28px;
+  border: 1px solid rgba(230, 185, 110, 0.34);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 210, 130, 0.13), transparent 280px),
+    rgba(28, 17, 9, 0.78);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.62),
+    0 0 42px rgba(214, 147, 66, 0.14);
+  backdrop-filter: blur(8px);
+}
+
+.entrada-sonora-mini {
+  margin: 0 0 10px;
+  font-family: "Crimson Pro", Georgia, serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(236, 196, 132, 0.72);
+}
+
+.entrada-sonora-card h2 {
+  margin: 0 0 14px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2rem, 7vw, 3.4rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: #f3d49c;
+}
+
+.entrada-sonora-texto {
+  max-width: 390px;
+  margin: 0 auto 24px;
+  font-family: "Crimson Pro", Georgia, serif;
+  font-size: 1.08rem;
+  line-height: 1.55;
+  color: rgba(238, 222, 198, 0.76);
+}
+
+.entrada-sonora-opciones {
+  display: grid;
+  gap: 11px;
+}
+
+.entrada-sonora-opciones button {
+  width: 100%;
+  min-height: 48px;
+  border-radius: 999px;
+  border: 1px solid rgba(220, 175, 105, 0.36);
+  background: rgba(255, 230, 180, 0.10);
+  color: #f4dbac;
+  font-family: "Crimson Pro", Georgia, serif;
+  font-size: 1.02rem;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.entrada-sonora-opciones button:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 226, 170, 0.17);
+  border-color: rgba(240, 200, 130, 0.58);
+}
+
+.entrada-sonora-opciones .entrada-silencio {
+  opacity: 0.72;
+}
+
+@media (max-width: 520px) {
+  .entrada-sonora-card {
+    padding: 30px 18px;
+    border-radius: 22px;
+  }
+
+  .entrada-sonora-opciones button {
+    min-height: 46px;
+    font-size: 0.98rem;
+  }
+}
