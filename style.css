@@ -5737,3 +5737,255 @@ body.lluvia-activa .lluvia-visual {
     font-size: 0.98rem;
   }
 }
+/* =====================================================
+   FIX HERO PERGAMINO - CONTENIDO CENTRADO Y SIN MONTARSE
+   Pegarlo al final de style.css
+===================================================== */
+
+.hero {
+  min-height: 100svh;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 34px 16px 70px !important;
+}
+
+.hero-pergamino {
+  position: relative;
+  width: min(92vw, 720px) !important;
+  min-height: 760px !important;
+  height: min(86svh, 860px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-image: url("pergamino-farol.jpeg") !important;
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  overflow: visible !important;
+}
+
+.hero-contenido {
+  width: min(58%, 390px) !important;
+  max-width: 390px !important;
+  margin: 0 !important;
+  margin-left: 7% !important;
+  margin-top: 0 !important;
+  padding: 0 !important;
+  transform: translateY(12px);
+  text-align: center !important;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Texto superior más compacto */
+.hero-eyebrow {
+  margin-bottom: 14px !important;
+  font-size: 0.56rem !important;
+  letter-spacing: 0.18em !important;
+  line-height: 1.25 !important;
+}
+
+/* Título más controlado para que no empuje todo hacia abajo */
+.hero-title {
+  margin: 0 auto 10px !important;
+  font-size: clamp(3rem, 5.4vw, 4.7rem) !important;
+  line-height: 0.86 !important;
+  letter-spacing: -0.03em !important;
+}
+
+.hero-title span {
+  display: block;
+}
+
+.hero-subtitle {
+  max-width: 330px !important;
+  margin: 8px auto 14px !important;
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem) !important;
+  line-height: 1.28 !important;
+}
+
+/* Beneficios dentro del pergamino */
+.hero-benefits {
+  width: min(100%, 350px) !important;
+  max-width: 350px !important;
+  display: grid !important;
+  gap: 7px !important;
+  margin: 8px auto 0 !important;
+}
+
+.hero-benefit {
+  width: 100% !important;
+  min-height: 28px !important;
+  padding: 5px 12px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 239, 205, 0.72) !important;
+  color: #2a170c !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1.05 !important;
+  box-shadow: 0 6px 14px rgba(34, 18, 8, 0.10) !important;
+}
+
+.hero-benefit-title {
+  display: block !important;
+  font-size: clamp(0.66rem, 1.25vw, 0.78rem) !important;
+  line-height: 1.05 !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+}
+
+/* Botones de abajo del pergamino */
+.hero-actions,
+.hero-actions-clean {
+  width: min(100%, 360px) !important;
+  margin: 24px auto 0 !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 12px !important;
+  justify-items: center !important;
+}
+
+.hero-action-btn,
+.hero-actions a,
+.hero-actions button,
+#ambienteToggle,
+#rinconAmbienteControl,
+#rinconAmbienteToggle {
+  width: min(100%, 330px) !important;
+  min-height: 52px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.hero-note {
+  max-width: 360px !important;
+  margin: 18px auto 0 !important;
+  font-size: 0.76rem !important;
+  line-height: 1.35 !important;
+  opacity: 0.72 !important;
+}
+
+/* Evita que el texto "deslizá" se meta arriba de los botones */
+.hero-scroll-hint {
+  position: static !important;
+  transform: none !important;
+  margin-top: 14px !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media (max-width: 700px) {
+  .hero {
+    min-height: auto !important;
+    padding: 16px 12px 54px !important;
+    justify-content: flex-start !important;
+  }
+
+  .hero-pergamino {
+    width: min(100%, 430px) !important;
+    height: auto !important;
+    min-height: 660px !important;
+    background-size: 100% 100% !important;
+  }
+
+  .hero-contenido {
+    width: 62% !important;
+    max-width: 270px !important;
+    margin-left: 8% !important;
+    transform: translateY(8px) !important;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.46rem !important;
+    letter-spacing: 0.14em !important;
+    margin-bottom: 8px !important;
+  }
+
+  .hero-title {
+    font-size: clamp(2.35rem, 11vw, 3.45rem) !important;
+    line-height: 0.88 !important;
+    margin-bottom: 8px !important;
+  }
+
+  .hero-subtitle {
+    max-width: 230px !important;
+    margin: 6px auto 10px !important;
+    font-size: 0.82rem !important;
+    line-height: 1.22 !important;
+  }
+
+  .hero-benefits {
+    max-width: 235px !important;
+    gap: 5px !important;
+    margin-top: 6px !important;
+  }
+
+  .hero-benefit {
+    min-height: 24px !important;
+    padding: 4px 8px !important;
+  }
+
+  .hero-benefit-title {
+    font-size: 0.58rem !important;
+    line-height: 1.05 !important;
+  }
+
+  .hero-actions,
+  .hero-actions-clean {
+    width: min(100%, 330px) !important;
+    margin-top: 18px !important;
+    gap: 10px !important;
+  }
+
+  .hero-action-btn,
+  .hero-actions a,
+  .hero-actions button,
+  #ambienteToggle,
+  #rinconAmbienteControl,
+  #rinconAmbienteToggle {
+    width: min(100%, 310px) !important;
+    min-height: 48px !important;
+    font-size: 0.95rem !important;
+  }
+
+  .hero-note {
+    font-size: 0.68rem !important;
+    margin-top: 14px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-pergamino {
+    min-height: 620px !important;
+  }
+
+  .hero-contenido {
+    width: 64% !important;
+    max-width: 245px !important;
+  }
+
+  .hero-title {
+    font-size: 2.55rem !important;
+  }
+
+  .hero-benefits {
+    max-width: 220px !important;
+  }
+
+  .hero-benefit-title {
+    font-size: 0.54rem !important;
+  }
+}
+
