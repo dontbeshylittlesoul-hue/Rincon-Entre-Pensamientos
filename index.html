@@ -188,7 +188,46 @@
 </head>
 
 <body>
+<!-- Hero rápido para mobile / tráfico TikTok -->
+<section class="hero-mobile-rapido">
+  <div class="hero-mobile-rapido__inner">
+    <p class="hero-mobile-rapido__eyebrow">Una pausa breve</p>
 
+    <h1>
+      ¿Te aturde la vida?
+      <span>Entrá un minuto al Rincón.</span>
+    </h1>
+
+    <p>
+      Una lectura breve para bajar el ruido mental, respirar un poco
+      y ordenar lo que llevás dentro.
+    </p>
+
+    <div class="hero-mobile-rapido__acciones">
+      <a
+        href="#muestra"
+        class="hero-mobile-rapido__btn hero-mobile-rapido__btn--principal"
+        data-ga-event="click_leer_gratis"
+        onclick="window.gtag && window.gtag('event', 'click_leer_gratis', { event_category: 'cta', event_label: 'hero_mobile' });"
+      >
+        Leer gratis
+      </a>
+
+      <a
+        href="#herramientas-gratis"
+        class="hero-mobile-rapido__btn hero-mobile-rapido__btn--secundario"
+        data-ga-event="click_descargar_herramientas"
+        onclick="window.gtag && window.gtag('event', 'click_descargar_herramientas', { event_category: 'cta', event_label: 'hero_mobile' });"
+      >
+        Descargar 7 preguntas
+      </a>
+    </div>
+
+    <p class="hero-mobile-rapido__nota">
+      Sin apuro. Sin ruido. Solo una pausa para volver a escucharte.
+    </p>
+  </div>
+</section>
 <div class="bg-layer bg-noise" aria-hidden="true"></div>
 <div class="bg-layer bg-vignette" aria-hidden="true"></div>
 <div class="bg-layer polvo-dorado" aria-hidden="true"></div>
