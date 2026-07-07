@@ -188,51 +188,52 @@
 </head>
 
 <body>
-<!-- Hero rápido para mobile / tráfico TikTok -->
-<section class="hero-mobile-rapido">
-  <div class="hero-mobile-rapido__inner">
-    <p class="hero-mobile-rapido__eyebrow">Una pausa breve</p>
+  <!-- Hero rápido para mobile / tráfico TikTok -->
+  <section class="hero-mobile-rapido">
+    <div class="hero-mobile-rapido__inner">
+      <p class="hero-mobile-rapido__eyebrow">Una pausa breve</p>
 
-    <h1>
-      ¿Te aturde la vida?
-      <span>Entrá un minuto al Rincón.</span>
-    </h1>
+      <h1>
+        ¿Te aturde la vida?
+        <span>Entrá un minuto al Rincón.</span>
+      </h1>
 
-    <p>
-      Una lectura breve para bajar el ruido mental, respirar un poco
-      y ordenar lo que llevás dentro.
-    </p>
+      <p>
+        Una lectura breve para bajar el ruido mental, respirar un poco
+        y ordenar lo que llevás dentro.
+      </p>
 
-    <div class="hero-mobile-rapido__acciones">
-      <a
-        href="#muestra"
-        class="hero-mobile-rapido__btn hero-mobile-rapido__btn--principal"
-        data-ga-event="click_leer_gratis"
-        onclick="window.gtag && window.gtag('event', 'click_leer_gratis', { event_category: 'cta', event_label: 'hero_mobile' });"
-      >
-        Leer gratis
-      </a>
+      <div class="hero-mobile-rapido__acciones">
+        <a
+          href="#lectura"
+          class="hero-mobile-rapido__btn hero-mobile-rapido__btn--principal"
+          data-ga-event="click_leer_gratis"
+          onclick="window.gtag && window.gtag('event', 'click_leer_gratis', { event_category: 'cta', event_label: 'hero_mobile' });"
+        >
+          Leer gratis
+        </a>
 
-      <a
-        href="#herramientas-gratis"
-        class="hero-mobile-rapido__btn hero-mobile-rapido__btn--secundario"
-        data-ga-event="click_descargar_herramientas"
-        onclick="window.gtag && window.gtag('event', 'click_descargar_herramientas', { event_category: 'cta', event_label: 'hero_mobile' });"
-      >
-        Descargar 7 preguntas
-      </a>
+        <a
+          href="#herramientas-gratis"
+          class="hero-mobile-rapido__btn hero-mobile-rapido__btn--secundario"
+          data-ga-event="click_descargar_herramientas"
+          onclick="window.gtag && window.gtag('event', 'click_descargar_herramientas', { event_category: 'cta', event_label: 'hero_mobile' });"
+        >
+          Descargar 7 preguntas
+        </a>
+      </div>
+
+      <p class="hero-mobile-rapido__nota">
+        Sin apuro. Sin ruido. Solo una pausa para volver a escucharte.
+      </p>
     </div>
+  </section>
 
-    <p class="hero-mobile-rapido__nota">
-      Sin apuro. Sin ruido. Solo una pausa para volver a escucharte.
-    </p>
-  </div>
-</section>
-<div class="bg-layer bg-noise" aria-hidden="true"></div>
-<div class="bg-layer bg-vignette" aria-hidden="true"></div>
-<div class="bg-layer polvo-dorado" aria-hidden="true"></div>
-<div class="bg-layer lluvia-visual" aria-hidden="true"></div>
-<div class="ember-glow" aria-hidden="true"></div>
+  <div class="bg-layer bg-noise" aria-hidden="true"></div>
+  <div class="bg-layer bg-vignette" aria-hidden="true"></div>
+  <div class="bg-layer polvo-dorado" aria-hidden="true"></div>
+  <div class="bg-layer lluvia-visual" aria-hidden="true"></div>
+  <div class="ember-glow" aria-hidden="true"></div>
 
   <!-- AUDIOS -->
   <audio id="audioAmbiente" src="./ambiente-lluvia.mp3" preload="auto" loop></audio>
@@ -269,19 +270,19 @@
           </div>
         </div>
 
-<div class="hero-actions hero-actions-clean" id="heroActions">
-  <a href="#lectura" class="hero-action-btn hero-action-main" id="entrarMuestra" data-ga-event="click_muestra_gratis">
-    <span>Leer muestra</span>
-  </a>
+        <div class="hero-actions hero-actions-clean" id="heroActions">
+          <a href="#lectura" class="hero-action-btn hero-action-main" id="entrarMuestra" data-ga-event="click_muestra_gratis">
+            <span>Leer muestra</span>
+          </a>
 
-  <a href="#pergamino-gratis" class="hero-action-btn" id="botonCuentoHero" data-ga-event="click_pergamino_gratis">
-  <span>Necesito bajar el ruido</span>
-</a>
+          <a href="#herramientas-gratis" class="hero-action-btn" id="botonCuentoHero" data-ga-event="click_pergamino_gratis">
+            <span>Necesito bajar el ruido</span>
+          </a>
 
-  <button class="hero-action-btn btn-ambiente" id="ambienteToggle" type="button" data-ga-event="click_activar_lluvia">
-    <span>☂ Activar lluvia para leer</span>
-  </button>
-</div>
+          <button class="hero-action-btn btn-ambiente" id="ambienteToggle" type="button" data-ga-event="click_activar_lluvia">
+            <span>☂ Activar lluvia para leer</span>
+          </button>
+        </div>
 
         <p class="hero-note">
           Muestra gratis · audio ambiente · cuentos reflexivos · ejercicios simples
@@ -293,181 +294,196 @@
   </section>
 
   <!-- Entrada rápida mobile / TikTok -->
-<section class="entrada-rapida" id="entrada-rapida">
-  <div class="entrada-rapida__inner">
-    <p class="entrada-rapida__eyebrow">Elegí cómo entrar</p>
+  <section class="entrada-rapida" id="entrada-rapida">
+    <div class="entrada-rapida__inner">
+      <p class="entrada-rapida__eyebrow">Elegí cómo entrar</p>
 
-    <h2 class="entrada-rapida__title">
-      No tenés que recorrer todo. Empezá por una pausa.
-    </h2>
+      <h2 class="entrada-rapida__title">
+        No tenés que recorrer todo. Empezá por una pausa.
+      </h2>
 
-    <p class="entrada-rapida__text">
-      Si venís con la cabeza llena, elegí una entrada simple: leer una muestra,
-      bajar el ruido o ver de qué se trata la experiencia completa.
-    </p>
+      <p class="entrada-rapida__text">
+        Si venís con la cabeza llena, elegí una entrada simple: leer una muestra,
+        bajar el ruido o ver de qué se trata la experiencia completa.
+      </p>
 
-    <div class="entrada-rapida__grid">
-      <a class="entrada-card entrada-card--primary" href="#muestra" onclick="gtag?.('event','click_leer_gratis',{event_category:'cta',event_label:'entrada_rapida'});">
-        <span class="entrada-card__tag">1 minuto</span>
-        <strong>Leer gratis</strong>
-        <small>Una muestra breve para ver si el Rincón resuena con vos.</small>
-      </a>
+      <div class="entrada-rapida__grid">
+        <a
+          class="entrada-card entrada-card--primary"
+          href="#lectura"
+          data-ga-event="click_leer_gratis"
+          onclick="window.gtag && window.gtag('event', 'click_leer_gratis', { event_category: 'cta', event_label: 'entrada_rapida' });"
+        >
+          <span class="entrada-card__tag">1 minuto</span>
+          <strong>Leer gratis</strong>
+          <small>Una muestra breve para ver si el Rincón resuena con vos.</small>
+        </a>
 
-      <a class="entrada-card" href="#herramientas-gratis" onclick="gtag?.('event','click_bajar_ruido',{event_category:'cta',event_label:'entrada_rapida'});">
-        <span class="entrada-card__tag">Herramienta</span>
-        <strong>Necesito bajar el ruido</strong>
-        <small>Las 7 preguntas para ordenar lo que llevás dentro.</small>
-      </a>
+        <a
+          class="entrada-card"
+          href="#herramientas-gratis"
+          data-ga-event="click_bajar_ruido"
+          onclick="window.gtag && window.gtag('event', 'click_bajar_ruido', { event_category: 'cta', event_label: 'entrada_rapida' });"
+        >
+          <span class="entrada-card__tag">Herramienta</span>
+          <strong>Necesito bajar el ruido</strong>
+          <small>Las 7 preguntas para ordenar lo que llevás dentro.</small>
+        </a>
 
-      <a class="entrada-card" href="#version-completa" onclick="gtag?.('event','click_ver_experiencia',{event_category:'cta',event_label:'entrada_rapida'});">
-        <span class="entrada-card__tag">Completo</span>
-        <strong>Ver experiencia completa</strong>
-        <small>Lectura, audio ambiente, cuentos y herramientas.</small>
-      </a>
+        <a
+          class="entrada-card"
+          href="#version-completa"
+          data-ga-event="click_ver_experiencia"
+          onclick="window.gtag && window.gtag('event', 'click_ver_experiencia', { event_category: 'cta', event_label: 'entrada_rapida' });"
+        >
+          <span class="entrada-card__tag">Completo</span>
+          <strong>Ver experiencia completa</strong>
+          <small>Lectura, audio ambiente, cuentos y herramientas.</small>
+        </a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
- 
-    <!-- CUENTO GRATIS EN PERGAMINO -->
-    <section class="cuento-gratis-pergamino reveal" id="cuento-gratis">
-      <div class="cuento-gratis-inner">
-        <div class="cuento-gratis-intro">
-          <p class="section-mini">cuentos</p>
+  <!-- CUENTO GRATIS EN PERGAMINO -->
+  <section class="cuento-gratis-pergamino reveal" id="cuento-gratis">
+    <div class="cuento-gratis-inner">
+      <div class="cuento-gratis-intro">
+        <p class="section-mini">cuentos</p>
 
-          <h2>El tren que no esperaba ser perfecto</h2>
+        <h2>El tren que no esperaba ser perfecto</h2>
 
-          <p>
-            Una lectura breve para esos momentos en los que uno sigue esperando sentirse listo,
-            mientras la vida pasa como trenes que no siempre avisan dos veces.
-          </p>
+        <p>
+          Una lectura breve para esos momentos en los que uno sigue esperando sentirse listo,
+          mientras la vida pasa como trenes que no siempre avisan dos veces.
+        </p>
 
-          <p>
-            Podés leerla directamente en el pergamino o activar el narrador para acompañar la pausa.
-          </p>
-        </div>
+        <p>
+          Podés leerla directamente en el pergamino o activar el narrador para acompañar la pausa.
+        </p>
+      </div>
 
-        <div class="cuento-audio-box" aria-label="Controles del narrador del cuento gratis">
-          <button
-            class="btn-narrador"
-            id="narradorToggle"
-            type="button"
-            data-ga-event="click_narrador_cuento"
+      <div class="cuento-audio-box" aria-label="Controles del narrador del cuento gratis">
+        <button
+          class="btn-narrador"
+          id="narradorToggle"
+          type="button"
+          data-ga-event="click_narrador_cuento"
+        >
+          Narrador
+        </button>
+
+        <label class="cuento-volumen" for="volumenNarrador">
+          <span>Volumen</span>
+          <input
+            id="volumenNarrador"
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.82"
+            aria-label="Volumen del narrador"
           >
-            Narrador
-          </button>
+        </label>
+      </div>
 
-          <label class="cuento-volumen" for="volumenNarrador">
-            <span>Volumen</span>
-            <input
-              id="volumenNarrador"
-              type="range"
-              min="0"
-              max="1"
-              step="0.01"
-              value="0.82"
-              aria-label="Volumen del narrador"
-            >
-          </label>
+      <div class="pergamino-cuento-imagen">
+        <img
+          src="pergamino-cuento-tren.png"
+          alt="Cuento gratis del Rincón: El tren que no esperaba ser perfecto"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <p class="cuento-gratis-cierre">
+        Si esta historia te dejó una pregunta dando vueltas, la experiencia completa sigue por ese mismo camino:
+        lecturas, cuentos, audio ambiente y herramientas simples para volver a vos cuando el ruido se vuelve demasiado.
+        <br>
+        <a href="#version-completa">Ver experiencia completa</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- INTRO MUESTRA -->
+  <section class="intro-muestra" id="lectura">
+    <div class="intro-inner reveal">
+      <p class="section-mini">muestra</p>
+
+      <h2>Abrí la puerta y quedate un momento leyendo las bases de este rincón</h2>
+
+      <p>
+        Leé una parte y fijate si te toca. Sentí si esta experiencia habla con ese lugar tuyo
+        que muchas veces no encuentra palabras. La versión completa suma lectura inmersiva,
+        audio ambiente, cuentos reflexivos y herramientas prácticas para esos momentos en los que no sabés cómo seguir.
+      </p>
+    </div>
+  </section>
+
+  <!-- VISOR INTERACTIVO -->
+  <section class="visor-ebook reveal" aria-label="Visor interactivo de muestra gratis">
+    <div class="visor-ebook-header">
+      <p class="section-mini">lectura interactiva</p>
+
+      <h2>Pasá las páginas como si entraras al libro</h2>
+
+      <p>
+        Usá los botones para recorrer la muestra, parte de la experiencia digital completa.
+        Un espacio privado en crecimiento, creado para quienes buscan leer, pausar y volver a escucharse.
+      </p>
+    </div>
+
+    <div class="libro-demo" id="libroDemo">
+      <button class="libro-btn libro-prev" type="button" aria-label="Página anterior">‹</button>
+
+      <div class="libro-marco">
+        <div class="libro-pagina activa">
+          <img src="./muestra/pagina-04.png" alt="Página 1 de la muestra" loading="eager" decoding="async" />
         </div>
 
-<div class="pergamino-cuento-imagen">
-  <img
-    src="pergamino-cuento-tren.png"
-    alt="Cuento gratis del Rincón: El tren que no esperaba ser perfecto"
-    loading="lazy"
-    decoding="async"
-  />
-</div>
-
-        <p class="cuento-gratis-cierre">
-          Si esta historia te dejó una pregunta dando vueltas, la experiencia completa sigue por ese mismo camino:
-          lecturas, cuentos, audio ambiente y herramientas simples para volver a vos cuando el ruido se vuelve demasiado.
-          <br>
-          <a href="#ebook">Ver experiencia completa</a>
-        </p>
-      </div>
-    </section>
-
-    <!-- INTRO MUESTRA -->
-    <section class="intro-muestra" id="lectura">
-      <div class="intro-inner reveal">
-        <p class="section-mini">muestra</p>
-
-        <h2>Abrí la puerta y quedate un momento leyendo las bases de este rincón</h2>
-
-        <p>
-          Leé una parte y fijate si te toca. Sentí si esta experiencia habla con ese lugar tuyo
-          que muchas veces no encuentra palabras. La versión completa suma lectura inmersiva,
-          audio ambiente, cuentos reflexivos y herramientas prácticas para esos momentos en los que no sabés cómo seguir.
-        </p>
-      </div>
-    </section>
-
-    <!-- VISOR INTERACTIVO -->
-    <section class="visor-ebook reveal" aria-label="Visor interactivo de muestra gratis">
-      <div class="visor-ebook-header">
-        <p class="section-mini">lectura interactiva</p>
-
-        <h2>Pasá las páginas como si entraras al libro</h2>
-
-        <p>
-          Usá los botones para recorrer la muestra, parte de la experiencia digital completa.
-          Un espacio privado en crecimiento, creado para quienes buscan leer, pausar y volver a escucharse.
-        </p>
-      </div>
-
-      <div class="libro-demo" id="libroDemo">
-        <button class="libro-btn libro-prev" type="button" aria-label="Página anterior">‹</button>
-
-        <div class="libro-marco">
-          <div class="libro-pagina activa">
-            <img src="./muestra/pagina-04.png" alt="Página 1 de la muestra" loading="eager" decoding="async" />
-          </div>
-
-          <div class="libro-pagina">
-            <img src="./muestra/pagina-05.png" alt="Página 2 de la muestra" loading="eager" decoding="async" />
-          </div>
-
-          <div class="libro-pagina">
-            <img src="./muestra/pagina-06.png" alt="Página 3 de la muestra" loading="eager" decoding="async" />
-          </div>
-
-          <div class="libro-pagina">
-            <img src="./muestra/pagina-07.png" alt="Página 4 de la muestra" loading="eager" decoding="async" />
-          </div>
-
-          <div class="libro-pagina">
-            <img src="./muestra/pagina-08.png" alt="Página 5 de la muestra" loading="eager" decoding="async" />
-          </div>
-
-          <div class="libro-pagina">
-            <img src="./muestra/pagina-09.png" alt="Página 6 de la muestra" loading="eager" decoding="async" />
-          </div>
-
-          <div class="libro-pagina">
-            <img src="./muestra/pagina-10.png" alt="Página 7 de la muestra" loading="eager" decoding="async" />
-          </div>
-
-          <div class="libro-pagina">
-            <img src="./muestra/pagina-11.png" alt="Página 8 de la muestra" loading="eager" decoding="async" />
-          </div>
-
-          <div class="libro-pagina">
-            <img src="./muestra/pagina-12.png" alt="Página 9 de la muestra" loading="eager" decoding="async" />
-          </div>
-
-          <div class="libro-pagina">
-            <img src="./muestra/pagina-13.png" alt="Página 10 de la muestra" loading="eager" decoding="async" />
-          </div>
+        <div class="libro-pagina">
+          <img src="./muestra/pagina-05.png" alt="Página 2 de la muestra" loading="eager" decoding="async" />
         </div>
 
-        <button class="libro-btn libro-next" type="button" aria-label="Página siguiente">›</button>
+        <div class="libro-pagina">
+          <img src="./muestra/pagina-06.png" alt="Página 3 de la muestra" loading="eager" decoding="async" />
+        </div>
+
+        <div class="libro-pagina">
+          <img src="./muestra/pagina-07.png" alt="Página 4 de la muestra" loading="eager" decoding="async" />
+        </div>
+
+        <div class="libro-pagina">
+          <img src="./muestra/pagina-08.png" alt="Página 5 de la muestra" loading="eager" decoding="async" />
+        </div>
+
+        <div class="libro-pagina">
+          <img src="./muestra/pagina-09.png" alt="Página 6 de la muestra" loading="eager" decoding="async" />
+        </div>
+
+        <div class="libro-pagina">
+          <img src="./muestra/pagina-10.png" alt="Página 7 de la muestra" loading="eager" decoding="async" />
+        </div>
+
+        <div class="libro-pagina">
+          <img src="./muestra/pagina-11.png" alt="Página 8 de la muestra" loading="eager" decoding="async" />
+        </div>
+
+        <div class="libro-pagina">
+          <img src="./muestra/pagina-12.png" alt="Página 9 de la muestra" loading="eager" decoding="async" />
+        </div>
+
+        <div class="libro-pagina">
+          <img src="./muestra/pagina-13.png" alt="Página 10 de la muestra" loading="eager" decoding="async" />
+        </div>
       </div>
 
-      <p class="contador-libro" id="contadorLibro">Página 1 de 10</p>
-    </section>
- <main class="site-main">
+      <button class="libro-btn libro-next" type="button" aria-label="Página siguiente">›</button>
+    </div>
+
+    <p class="contador-libro" id="contadorLibro">Página 1 de 10</p>
+  </section>
+
+  <main class="site-main">
     <!-- QUÉ ES RINCÓN -->
     <section class="que-es-rincon reveal" id="que-es-rincon">
       <div class="que-es-card">
@@ -525,59 +541,60 @@
         </p>
       </div>
     </section>
-<!-- PERGAMINO GRATIS -->
-<section class="pergamino-regalo fondo-preguntas-section" id="herramientas-gratis">
-  <div class="pergamino-regalo-contenido" id="pergamino-gratis">
-    <span class="etiqueta-regalo">Herramientas gratuitas del Rincón</span>
 
-    <h2>Las 7 preguntas para bajar el ruido</h2>
+    <!-- PERGAMINO GRATIS -->
+    <section class="pergamino-regalo fondo-preguntas-section" id="herramientas-gratis">
+      <div class="pergamino-regalo-contenido" id="pergamino-gratis">
+        <span class="etiqueta-regalo">Herramientas gratuitas del Rincón</span>
 
-    <p>
-      Es una pequeña guía con herramientas simples para esos momentos en los que la mente se llena de ruido,
-      cuesta ordenar lo que sentís o no sabés por dónde empezar.
-    </p>
+        <h2>Las 7 preguntas para bajar el ruido</h2>
 
-    <p class="texto-suave">
-      Adentro vas a encontrar ejercicios breves para bajar la ansiedad, volver al presente,
-      soltar un poco la carga y dar un primer paso sin exigirte tener todo resuelto.
-    </p>
+        <p>
+          Es una pequeña guía con herramientas simples para esos momentos en los que la mente se llena de ruido,
+          cuesta ordenar lo que sentís o no sabés por dónde empezar.
+        </p>
 
-    <ul class="lista-pergamino">
-      <li>Para cuando estás saturado mentalmente.</li>
-      <li>Para cuando venís postergando algo que te pesa.</li>
-      <li>Para cuando necesitás volver a vos sin presión.</li>
-      <li>Para cuando querés una pausa real, no solo distraerte.</li>
-    </ul>
+        <p class="texto-suave">
+          Adentro vas a encontrar ejercicios breves para bajar la ansiedad, volver al presente,
+          soltar un poco la carga y dar un primer paso sin exigirte tener todo resuelto.
+        </p>
 
-    <div class="preguntas-pergamino">
-      <p class="preguntas-titulo">Dentro vas a encontrar preguntas como estas:</p>
+        <ul class="lista-pergamino">
+          <li>Para cuando estás saturado mentalmente.</li>
+          <li>Para cuando venís postergando algo que te pesa.</li>
+          <li>Para cuando necesitás volver a vos sin presión.</li>
+          <li>Para cuando querés una pausa real, no solo distraerte.</li>
+        </ul>
 
-      <div class="preguntas-grid">
-        <p>¿Qué estoy cargando hoy que no necesito resolver ahora?</p>
-        <p>¿Qué parte de mí está intentando sostener más de lo que puede?</p>
-        <p>Si tuviera que ponerle un nombre a lo que siento hoy, ¿cuál sería?</p>
-        <p>¿Qué parte de mí necesita silencio y no explicación?</p>
-        <p>¿Qué estoy midiendo en mí con una vara que no me pertenece?</p>
-        <p>¿Qué estoy intentando mantener vivo aunque ya me está pidiendo cierre?</p>
-        <p>¿Qué pequeño gesto puedo hacer hoy para volver a sentirme cerca de mí?</p>
+        <div class="preguntas-pergamino">
+          <p class="preguntas-titulo">Dentro vas a encontrar preguntas como estas:</p>
+
+          <div class="preguntas-grid">
+            <p>¿Qué estoy cargando hoy que no necesito resolver ahora?</p>
+            <p>¿Qué parte de mí está intentando sostener más de lo que puede?</p>
+            <p>Si tuviera que ponerle un nombre a lo que siento hoy, ¿cuál sería?</p>
+            <p>¿Qué parte de mí necesita silencio y no explicación?</p>
+            <p>¿Qué estoy midiendo en mí con una vara que no me pertenece?</p>
+            <p>¿Qué estoy intentando mantener vivo aunque ya me está pidiendo cierre?</p>
+            <p>¿Qué pequeño gesto puedo hacer hoy para volver a sentirme cerca de mí?</p>
+          </div>
+
+          <p class="preguntas-cierre">
+            Te dejo una herramienta para encontrar tus respuestas.
+          </p>
+        </div>
+
+        <a
+          href="./el-primer-pergamino-del-rincon-liviano.pdf"
+          download="el-primer-pergamino-del-rincon-liviano.pdf"
+          class="btn-pergamino-descarga"
+          data-ga-event="click_descargar_herramientas"
+          onclick="window.gtag && window.gtag('event', 'click_descargar_herramientas', { event_category: 'cta', event_label: 'pergamino_gratis' });"
+        >
+          Descargar herramientas gratis
+        </a>
       </div>
-
-      <p class="preguntas-cierre">
-        Te dejo una herramienta para encontrar tus respuestas.
-      </p>
-    </div>
-
-    <a
-      href="./el-primer-pergamino-del-rincon-liviano.pdf"
-      download="el-primer-pergamino-del-rincon-liviano.pdf"
-      class="btn-pergamino-descarga"
-      data-ga-event="click_descargar_herramientas"
-      onclick="window.gtag && window.gtag('event', 'click_descargar_herramientas', { event_category: 'cta', event_label: 'pergamino_gratis' });"
-    >
-      Descargar herramientas gratis
-    </a>
-  </div>
-</section>
+    </section>
 
     <!-- HERRAMIENTAS -->
     <section class="herramientas-muestra reveal">
@@ -592,22 +609,21 @@
       </p>
 
       <div class="tarjetas-herramientas">
-
         <article class="tarjeta-herramienta">
           <a class="herramienta-preview" href="./herramientas/mascara-carton.png" target="_blank" rel="noopener" data-ga-event="click_ver_pergamino">
             <img src="./herramientas/mascara-carton.png" alt="Pergamino de La máscara de cartón" loading="lazy" />
             <span>Ver pergamino completo</span>
           </a>
 
-      <div class="herramienta-contenido">
-  <span class="numero-herramienta">01</span>
+          <div class="herramienta-contenido">
+            <span class="numero-herramienta">01</span>
 
-  <h3>Para cuando estás cansado de sostener una versión de vos que ya pesa demasiado.</h3>
+            <h3>Para cuando estás cansado de sostener una versión de vos que ya pesa demasiado.</h3>
 
-  <p>
-    La máscara de cartón
-  </p>
-</div>
+            <p>
+              La máscara de cartón
+            </p>
+          </div>
         </article>
 
         <article class="tarjeta-herramienta">
@@ -617,14 +633,14 @@
           </a>
 
           <div class="herramienta-contenido">
-  <span class="numero-herramienta">02</span>
+            <span class="numero-herramienta">02</span>
 
-  <h3>Para esos días en los que la cabeza no se apaga y todo parece demasiado.</h3>
+            <h3>Para esos días en los que la cabeza no se apaga y todo parece demasiado.</h3>
 
-  <p>
-    Cuando el ruido ya no alcanza
-  </p>
-</div>
+            <p>
+              Cuando el ruido ya no alcanza
+            </p>
+          </div>
         </article>
 
         <article class="tarjeta-herramienta">
@@ -634,16 +650,15 @@
           </a>
 
           <div class="herramienta-contenido">
-  <span class="numero-herramienta">03</span>
+            <span class="numero-herramienta">03</span>
 
-  <h3>Para cuando venís postergando algo importante y no sabés cómo empezar.</h3>
+            <h3>Para cuando venís postergando algo importante y no sabés cómo empezar.</h3>
 
-  <p>
-    Subir al tren por 10 minutos
-  </p>
-</div>
+            <p>
+              Subir al tren por 10 minutos
+            </p>
+          </div>
         </article>
-
       </div>
 
       <p class="cierre-herramientas">
@@ -706,8 +721,8 @@
     </section>
 
     <!-- CTA FINAL -->
-    <section class="cta-final reveal" id="ebook">
-      <div class="cta-card">
+    <section class="cta-final reveal" id="version-completa">
+      <div class="cta-card" id="ebook">
         <p class="section-mini">versión completa</p>
 
         <h2>Accedé a la experiencia completa</h2>
@@ -734,7 +749,6 @@
         </a>
       </div>
     </section>
-
   </main>
 
   <!-- SCRIPT ÚNICO: GA4 + LLUVIA + NARRADOR + PÁGINAS + SONIDO + REVEAL -->
@@ -807,58 +821,59 @@
          AUDIO AMBIENTE / LLUVIA
          ========================= */
 
-const audioAmbiente = document.getElementById("audioAmbiente");
-const ambienteToggle = document.getElementById("ambienteToggle");
+      const audioAmbiente = document.getElementById("audioAmbiente");
+      const ambienteToggle = document.getElementById("ambienteToggle");
 
-if (audioAmbiente && ambienteToggle) {
-  audioAmbiente.volume = 0.42;
+      if (audioAmbiente && ambienteToggle) {
+        audioAmbiente.volume = 0.42;
 
-  function actualizarBotonAmbiente(texto) {
-    ambienteToggle.innerHTML = "<span>" + texto + "</span>";
-  }
+        function actualizarBotonAmbiente(texto) {
+          ambienteToggle.innerHTML = "<span>" + texto + "</span>";
+        }
 
-  actualizarBotonAmbiente("☂ Activar lluvia ambientativa");
+        actualizarBotonAmbiente("☂ Activar lluvia ambientativa");
 
-  ambienteToggle.addEventListener("click", function () {
-    if (audioAmbiente.paused) {
-      audioAmbiente.play()
-        .then(function () {
-          actualizarBotonAmbiente("☂ Pausar lluvia ambientativa");
-          ambienteToggle.classList.add("activo");
-        })
-        .catch(function (error) {
-          console.log("No se pudo reproducir la lluvia:", error);
+        ambienteToggle.addEventListener("click", function () {
+          if (audioAmbiente.paused) {
+            audioAmbiente.play()
+              .then(function () {
+                actualizarBotonAmbiente("☂ Pausar lluvia ambientativa");
+                ambienteToggle.classList.add("activo");
+              })
+              .catch(function (error) {
+                console.log("No se pudo reproducir la lluvia:", error);
+              });
+          } else {
+            audioAmbiente.pause();
+            actualizarBotonAmbiente("☂ Activar lluvia ambientativa");
+            ambienteToggle.classList.remove("activo");
+          }
         });
-    } else {
-      audioAmbiente.pause();
-      actualizarBotonAmbiente("☂ Activar lluvia ambientativa");
-      ambienteToggle.classList.remove("activo");
-    }
-  });
-}
+      }
+
       /* =========================
-   LLUVIA VISUAL
-   Se activa junto al audio ambiente
-   ========================= */
+         LLUVIA VISUAL
+         Se activa junto al audio ambiente
+         ========================= */
 
-const lluviaVisual = document.querySelector(".lluvia-visual");
+      const lluviaVisual = document.querySelector(".lluvia-visual");
 
-function actualizarLluviaVisual() {
-  if (!audioAmbiente || !lluviaVisual) return;
+      function actualizarLluviaVisual() {
+        if (!audioAmbiente || !lluviaVisual) return;
 
-  const lluviaActiva = !audioAmbiente.paused;
+        const lluviaActiva = !audioAmbiente.paused;
 
-  document.body.classList.toggle("lluvia-activa", lluviaActiva);
-  lluviaVisual.classList.toggle("activa", lluviaActiva);
-}
+        document.body.classList.toggle("lluvia-activa", lluviaActiva);
+        lluviaVisual.classList.toggle("activa", lluviaActiva);
+      }
 
-if (audioAmbiente && lluviaVisual) {
-  audioAmbiente.addEventListener("play", actualizarLluviaVisual);
-  audioAmbiente.addEventListener("pause", actualizarLluviaVisual);
-  audioAmbiente.addEventListener("ended", actualizarLluviaVisual);
+      if (audioAmbiente && lluviaVisual) {
+        audioAmbiente.addEventListener("play", actualizarLluviaVisual);
+        audioAmbiente.addEventListener("pause", actualizarLluviaVisual);
+        audioAmbiente.addEventListener("ended", actualizarLluviaVisual);
 
-  actualizarLluviaVisual();
-}
+        actualizarLluviaVisual();
+      }
 
       /* =========================
          NARRADOR DEL CUENTO GRATIS
@@ -1042,7 +1057,7 @@ if (audioAmbiente && lluviaVisual) {
 
     });
   </script>
-<!-- refresh deploy 2026-07-04 -->
+
+  <!-- refresh deploy 2026-07-04 -->
 </body>
 </html>
-
