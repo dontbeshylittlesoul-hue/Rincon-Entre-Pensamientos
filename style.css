@@ -5634,3 +5634,112 @@ body.lluvia-activa .lluvia-visual {
     top: 12px;
   }
 }
+/* Entrada rápida para mejorar retención mobile */
+.entrada-rapida {
+  position: relative;
+  padding: 3.5rem 1.15rem 3.25rem;
+  background:
+    radial-gradient(circle at top, rgba(214, 166, 91, 0.16), transparent 45%),
+    linear-gradient(180deg, rgba(24, 16, 10, 0.98), rgba(14, 9, 6, 1));
+  border-top: 1px solid rgba(214, 166, 91, 0.2);
+  border-bottom: 1px solid rgba(214, 166, 91, 0.14);
+}
+
+.entrada-rapida__inner {
+  width: min(100%, 980px);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.entrada-rapida__eyebrow {
+  margin: 0 0 0.9rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(214, 166, 91, 0.9);
+}
+
+.entrada-rapida__title {
+  max-width: 720px;
+  margin: 0 auto;
+  font-family: var(--font-title, Georgia, serif);
+  font-size: clamp(2rem, 7vw, 3.4rem);
+  line-height: 1.06;
+  font-weight: 400;
+  color: #f4e4c8;
+}
+
+.entrada-rapida__text {
+  max-width: 620px;
+  margin: 1.1rem auto 0;
+  font-size: clamp(1rem, 3.8vw, 1.15rem);
+  line-height: 1.75;
+  color: rgba(244, 228, 200, 0.72);
+}
+
+.entrada-rapida__grid {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 2rem;
+}
+
+.entrada-card {
+  display: block;
+  padding: 1.15rem 1rem;
+  text-align: left;
+  text-decoration: none;
+  color: #f4e4c8;
+  border: 1px solid rgba(214, 166, 91, 0.28);
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.entrada-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(214, 166, 91, 0.7);
+  background: rgba(214, 166, 91, 0.08);
+}
+
+.entrada-card--primary {
+  background: rgba(214, 166, 91, 0.16);
+  border-color: rgba(214, 166, 91, 0.72);
+}
+
+.entrada-card__tag {
+  display: inline-block;
+  margin-bottom: 0.55rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(214, 166, 91, 0.95);
+}
+
+.entrada-card strong {
+  display: block;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}
+
+.entrada-card small {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: rgba(244, 228, 200, 0.66);
+}
+
+@media (min-width: 760px) {
+  .entrada-rapida {
+    padding: 4.8rem 2rem;
+  }
+
+  .entrada-rapida__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .entrada-card {
+    padding: 1.35rem 1.2rem;
+  }
+}
