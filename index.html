@@ -827,39 +827,193 @@
       window.addEventListener("scroll", revisarScroll, { passive: true });
       revisarScroll();
 
-      /* =========================
-         AUDIO AMBIENTE / LLUVIA
-         ========================= */
+ /* =========================
+
+AUDIO AMBIENTE / LLUVIA + ENTRADA SONORA
+
+========================= */
 
 const audioAmbiente = document.getElementById("audioAmbiente");
 const ambienteToggle = document.getElementById("ambienteToggle");
 
-if (audioAmbiente && ambienteToggle) {
-  audioAmbiente.volume = 0.42;
+const entradaSonora = document.getElementById("entradaSonora");
+const sonidoPuerta = document.getElementById("sonidoPuerta");
+const sonidoClickPergamino = document.getElementById("sonidoClickPergamino");
 
-  function actualizarBotonAmbiente(texto) {
-    ambienteToggle.innerHTML = "<span>" + texto + "</span>";
+const ambienteFuego = document.getElementById("ambienteFuego");
+const ambienteBosque = document.getElementById("ambienteBosque");
+const ambienteSelva = document.getElementById("ambienteSelva");
+
+const ambientesExtra = [ambienteFuego, ambienteBosque, ambienteSelva].filter(Boolean);
+
+if (audioAmbiente) audioAmbiente.volume = 0.42;
+if (sonidoPuerta) sonidoPuerta.volume = 0.34;
+if (sonidoClickPergamino) sonidoClickPergamino.volume = 0.18;
+if (ambienteFuego) ambienteFuego.volume = 0.20;
+if (ambienteBosque) ambienteBosque.volume = 0.18;
+if (ambienteSelva) ambienteSelva.volume = 0.18;
+
+function reproducirCorto(audio, volumen) {
+  if (!audio) return;
+
+  try {
+    audio.volume = volumen;
+    audio.currentTime = 0;
+    audio.play().catch(function () {});
+  } catch (error) {}
+}
+
+function actualizarBotonAmbiente(texto) {
+  if (!ambienteToggle) return;
+  ambienteToggle.innerHTML = "<span>" + texto + "</span>";
+}
+
+function pausarAmbientesExtra() {
+  ambientesExtra.forEach(function (audio) {
+    audio.pause();
+    audio.currentTime = 0;
+  });
+}
+
+function pausarLluvia() {
+  if (!audioAmbiente) return;
+
+  audioAmbiente.pause();
+  audioAmbiente.currentTime = 0;
+
+  actualizarBotonAmbiente("☂ Activar lluvia para leer");
+
+  if (ambienteToggle) {
+    ambienteToggle.classList.remove("activo");
   }
 
-  actualizarBotonAmbiente("☂ Activar lluvia ambientativa");
+  if (typeof actualizarLluviaVisual === "function") {
+    actualizarLluviaVisual();
+  }
+}
 
+function activarLluvia() {
+  if (!audioAmbiente) return;
+
+  pausarAmbientesExtra();
+
+  audioAmbiente.play()
+    .then(function () {
+      actualizarBotonAmbiente("☂ Pausar lluvia para leer");
+
+      if (ambienteToggle) {
+        ambienteToggle.classList.add("activo");
+      }
+
+      if (typeof actualizarLluviaVisual === "function") {
+        actualizarLluviaVisual();
+      }
+
+      trackGAEvent("ambiente_inicio", {
+        event_label: "lluvia"
+      });
+    })
+    .catch(function (error) {
+      console.log("No se pudo reproducir la lluvia:", error);
+    });
+}
+
+function activarAmbienteExtra(audio, nombre) {
+  if (!audio) return;
+
+  pausarLluvia();
+  pausarAmbientesExtra();
+
+  audio.play()
+    .then(function () {
+      trackGAEvent("ambiente_inicio", {
+        event_label: nombre
+      });
+    })
+    .catch(function (error) {
+      console.log("No se pudo reproducir el ambiente " + nombre + ":", error);
+    });
+}
+
+function cerrarEntradaSonora() {
+  if (!entradaSonora) return;
+
+  entradaSonora.classList.add("oculta");
+
+  try {
+    sessionStorage.setItem("entradaSonoraRincon", "vista");
+  } catch (error) {}
+}
+
+function entrarConAmbiente(modo) {
+  reproducirCorto(sonidoPuerta, 0.34);
+
+  if (modo === "lluvia") {
+    activarLluvia();
+  }
+
+  if (modo === "fuego") {
+    activarAmbienteExtra(ambienteFuego, "fuego");
+  }
+
+  if (modo === "bosque") {
+    activarAmbienteExtra(ambienteBosque, "bosque");
+  }
+
+  if (modo === "selva") {
+    activarAmbienteExtra(ambienteSelva, "selva");
+  }
+
+  if (modo === "silencio") {
+    pausarLluvia();
+    pausarAmbientesExtra();
+
+    trackGAEvent("ambiente_inicio", {
+      event_label: "silencio"
+    });
+  }
+
+  cerrarEntradaSonora();
+}
+
+actualizarBotonAmbiente("☂ Activar lluvia para leer");
+
+if (ambienteToggle) {
   ambienteToggle.addEventListener("click", function () {
+    if (!audioAmbiente) return;
+
     if (audioAmbiente.paused) {
-      audioAmbiente.play()
-        .then(function () {
-          actualizarBotonAmbiente("☂ Pausar lluvia ambientativa");
-          ambienteToggle.classList.add("activo");
-        })
-        .catch(function (error) {
-          console.log("No se pudo reproducir la lluvia:", error);
-        });
+      activarLluvia();
     } else {
-      audioAmbiente.pause();
-      actualizarBotonAmbiente("☂ Activar lluvia ambientativa");
-      ambienteToggle.classList.remove("activo");
+      pausarLluvia();
     }
   });
 }
+
+if (entradaSonora) {
+  try {
+    if (sessionStorage.getItem("entradaSonoraRincon") === "vista") {
+      entradaSonora.classList.add("oculta");
+    }
+  } catch (error) {}
+
+  entradaSonora.querySelectorAll("[data-rincon-ambiente]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      const modo = boton.getAttribute("data-rincon-ambiente");
+      entrarConAmbiente(modo);
+    });
+  });
+}
+
+document.addEventListener("click", function (event) {
+  const elemento = event.target.closest("a, button");
+
+  if (!elemento) return;
+  if (elemento.closest("#entradaSonora")) return;
+  if (elemento.classList.contains("libro-btn")) return;
+
+  reproducirCorto(sonidoClickPergamino, 0.18);
+}, true);
       /* =========================
    LLUVIA VISUAL
    Se activa junto al audio ambiente
