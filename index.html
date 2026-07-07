@@ -1967,5 +1967,168 @@ Pegarlo justo arriba de </body>
     }
   })();
 </script>
+  <!-- =====================================================
+FIX: EVITAR DOBLE PREGUNTA INICIAL DE AMBIENTE
+Pegarlo justo arriba de </body>
+===================================================== -->
+
+<style>
+  body.rincon-entrada-cerrada #rinconSoundGate,
+  body.rincon-entrada-cerrada #entradaSonora,
+  body.rincon-entrada-cerrada .rincon-sound-gate,
+  body.rincon-entrada-cerrada .entrada-sonora,
+  body.rincon-entrada-cerrada .sound-entry {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .rincon-gate-duplicado {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+</style>
+
+<script>
+  (function () {
+    "use strict";
+
+    const CLAVE_ENTRADA = "rinconEntradaAmbienteCerradaV2";
+
+    const selectoresEntrada = [
+      "#rinconSoundGate",
+      "#entradaSonora",
+      ".rincon-sound-gate",
+      ".entrada-sonora",
+      ".sound-entry"
+    ];
+
+    const selectoresBotonesEntrada = [
+      "[data-rincon-start]",
+      "[data-sound-start]",
+      "[data-rincon-ambiente]"
+    ];
+
+    function obtenerEntradas() {
+      const encontrados = [];
+
+      selectoresEntrada.forEach(function (selector) {
+        document.querySelectorAll(selector).forEach(function (elemento) {
+          if (!encontrados.includes(elemento)) {
+            encontrados.push(elemento);
+          }
+        });
+      });
+
+      return encontrados;
+    }
+
+    function cerrarTodasLasEntradas() {
+      try {
+        sessionStorage.setItem(CLAVE_ENTRADA, "cerrada");
+        sessionStorage.setItem("rinconSoundGateV1", "vista");
+        sessionStorage.setItem("entradaSonoraRincon", "vista");
+        sessionStorage.setItem("rinconSoundStarted", "true");
+      } catch (error) {}
+
+      document.body.classList.add("rincon-entrada-cerrada");
+      document.body.classList.remove("rincon-gate-activo");
+
+      obtenerEntradas().forEach(function (entrada) {
+        entrada.classList.add("rincon-oculto");
+        entrada.classList.add("oculta");
+        entrada.classList.add("hidden");
+        entrada.style.setProperty("display", "none", "important");
+        entrada.style.setProperty("visibility", "hidden", "important");
+        entrada.style.setProperty("opacity", "0", "important");
+        entrada.style.setProperty("pointer-events", "none", "important");
+      });
+    }
+
+    function ordenarEntradasDuplicadas() {
+      const entradas = obtenerEntradas();
+
+      if (!entradas.length) return;
+
+      let entradaVisiblePermitida = null;
+
+      entradas.forEach(function (entrada) {
+        const estilos = window.getComputedStyle(entrada);
+        const estaOculta =
+          estilos.display === "none" ||
+          estilos.visibility === "hidden" ||
+          entrada.classList.contains("rincon-oculto") ||
+          entrada.classList.contains("oculta") ||
+          entrada.classList.contains("hidden");
+
+        if (!entradaVisiblePermitida && !estaOculta) {
+          entradaVisiblePermitida = entrada;
+        } else {
+          entrada.classList.add("rincon-gate-duplicado");
+          entrada.style.setProperty("display", "none", "important");
+          entrada.style.setProperty("visibility", "hidden", "important");
+          entrada.style.setProperty("opacity", "0", "important");
+          entrada.style.setProperty("pointer-events", "none", "important");
+        }
+      });
+    }
+
+    function entradaYaCerrada() {
+      try {
+        return sessionStorage.getItem(CLAVE_ENTRADA) === "cerrada";
+      } catch (error) {
+        return false;
+      }
+    }
+
+    function iniciarFixEntradaDuplicada() {
+      if (entradaYaCerrada()) {
+        cerrarTodasLasEntradas();
+      } else {
+        ordenarEntradasDuplicadas();
+      }
+
+      document.addEventListener("click", function (event) {
+        const tocoBotonEntrada = selectoresBotonesEntrada.some(function (selector) {
+          return event.target.closest(selector);
+        });
+
+        if (!tocoBotonEntrada) return;
+
+        const estaDentroDeEntrada = selectoresEntrada.some(function (selector) {
+          return event.target.closest(selector);
+        });
+
+        if (!estaDentroDeEntrada) return;
+
+        setTimeout(cerrarTodasLasEntradas, 450);
+      }, true);
+
+      const observer = new MutationObserver(function () {
+        if (entradaYaCerrada()) {
+          cerrarTodasLasEntradas();
+        } else {
+          ordenarEntradasDuplicadas();
+        }
+      });
+
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["class", "style"]
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", iniciarFixEntradaDuplicada);
+    } else {
+      iniciarFixEntradaDuplicada();
+    }
+  })();
+</script>
 </body>
 </html>
