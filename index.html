@@ -185,6 +185,210 @@
       }
     }
   </style>
+
+  <!-- ESTILOS LIMPIOS: entrada sonora + selector de ambientes -->
+  <style>
+    body.entrada-sonora-activa {
+      overflow: hidden;
+    }
+
+    .entrada-sonora {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background:
+        radial-gradient(circle at 50% 25%, rgba(220, 155, 75, 0.22), transparent 360px),
+        linear-gradient(180deg, rgba(7, 5, 3, 0.97), rgba(18, 10, 5, 0.98));
+      transition: opacity 0.65s ease, visibility 0.65s ease;
+    }
+
+    .entrada-sonora.oculta {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .entrada-sonora-card {
+      width: min(520px, 100%);
+      text-align: center;
+      padding: 34px 24px;
+      border-radius: 28px;
+      border: 1px solid rgba(230, 185, 110, 0.34);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 210, 130, 0.13), transparent 280px),
+        rgba(28, 17, 9, 0.82);
+      box-shadow:
+        0 24px 80px rgba(0, 0, 0, 0.62),
+        0 0 42px rgba(214, 147, 66, 0.14);
+      backdrop-filter: blur(8px);
+    }
+
+    .entrada-sonora-mini {
+      margin: 0 0 10px;
+      font-family: "Crimson Pro", Georgia, serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(236, 196, 132, 0.72);
+    }
+
+    .entrada-sonora-card h2 {
+      margin: 0 0 14px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(2rem, 7vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: #f3d49c;
+    }
+
+    .entrada-sonora-texto {
+      max-width: 390px;
+      margin: 0 auto 24px;
+      font-family: "Crimson Pro", Georgia, serif;
+      font-size: 1.08rem;
+      line-height: 1.55;
+      color: rgba(238, 222, 198, 0.78);
+    }
+
+    .entrada-sonora-opciones {
+      display: grid;
+      gap: 11px;
+    }
+
+    .entrada-sonora-opciones button,
+    .ambientes-modal-card button,
+    .btn-ambientes {
+      border-radius: 999px;
+      border: 1px solid rgba(220, 175, 105, 0.38);
+      background: rgba(255, 230, 180, 0.11);
+      color: #f4dbac;
+      font-family: "Crimson Pro", Georgia, serif;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .entrada-sonora-opciones button {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 18px;
+      font-size: 1.02rem;
+    }
+
+    .entrada-sonora-opciones button:hover,
+    .ambientes-modal-card button:hover,
+    .btn-ambientes:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 226, 170, 0.18);
+      border-color: rgba(240, 200, 130, 0.58);
+    }
+
+    .entrada-silencio {
+      opacity: 0.74;
+    }
+
+    .btn-ambientes {
+      min-height: 48px;
+      padding: 13px 24px;
+      background: rgba(226, 186, 112, 0.64) !important;
+      color: #2a170c !important;
+      border: 1px solid rgba(93, 54, 22, 0.38) !important;
+      font-family: "Cormorant Garamond", Georgia, serif !important;
+      font-size: 1.12rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      box-shadow: 0 10px 26px rgba(24, 13, 7, 0.22);
+      backdrop-filter: blur(5px);
+    }
+
+    .ambientes-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 99998;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .ambientes-modal.activo {
+      display: flex;
+    }
+
+    .ambientes-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(5, 3, 2, 0.58);
+      backdrop-filter: blur(3px);
+    }
+
+    .ambientes-modal-card {
+      position: relative;
+      width: min(340px, calc(100vw - 36px));
+      max-height: calc(100dvh - 70px);
+      overflow-y: auto;
+      padding: 18px 16px 16px;
+      border-radius: 24px;
+      border: 1px solid rgba(230, 185, 110, 0.38);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 215, 145, 0.14), transparent 220px),
+        rgba(18, 10, 5, 0.985);
+      box-shadow:
+        0 28px 90px rgba(0, 0, 0, 0.74),
+        0 0 40px rgba(214, 147, 66, 0.14);
+      backdrop-filter: blur(8px);
+      display: grid;
+      gap: 10px;
+    }
+
+    .ambientes-modal-card h3 {
+      margin: 0 0 8px;
+      text-align: center;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 500;
+      line-height: 1.1;
+      color: rgba(255, 235, 198, 0.96);
+    }
+
+    .ambientes-modal-card button {
+      width: 100%;
+      min-height: 50px;
+      padding: 12px 16px;
+      font-size: 1.05rem;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .ambientes-modal-card button.activo {
+      background: rgba(255, 218, 150, 0.28);
+      border-color: rgba(245, 205, 135, 0.76);
+      color: #fff2d0;
+    }
+
+    @media (max-width: 620px) {
+      .entrada-sonora-card {
+        padding: 30px 18px;
+        border-radius: 22px;
+      }
+
+      .btn-ambientes {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+        font-size: 1rem;
+      }
+
+      .ambientes-modal-card {
+        border-radius: 22px;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -229,6 +433,21 @@
   </div>
 </div>
 
+
+<div id="ambientesModal" class="ambientes-modal" aria-hidden="true">
+  <div class="ambientes-backdrop" data-cerrar-ambientes></div>
+
+  <div class="ambientes-modal-card" role="dialog" aria-modal="true" aria-label="Elegir ambiente del Rincón">
+    <h3>Elegí el ambiente</h3>
+
+    <button type="button" data-ambiente-menu="fuego">🔥 Fuego bajo</button>
+    <button type="button" data-ambiente-menu="bosque">🌙 Bosque noche</button>
+    <button type="button" data-ambiente-menu="selva">🌿 Selva noche</button>
+    <button type="button" data-ambiente-menu="silencio">🔇 Apagar ambiente</button>
+  </div>
+</div>
+
+
   <!-- HERO -->
   <section class="hero" id="inicio">
     <div class="hero-pergamino reveal">
@@ -271,6 +490,11 @@
   <button class="hero-action-btn btn-ambiente" id="ambienteToggle" type="button" data-ga-event="click_activar_lluvia">
     <span>☂ Activar lluvia para leer</span>
   </button>
+
+  <button class="hero-action-btn btn-ambientes" id="ambientesToggle" type="button" data-ga-event="click_cambiar_ambiente">
+    <span>🌙 Ambiente: silencio</span>
+  </button>
+
 </div>
 
         <p class="hero-note">
@@ -761,7 +985,7 @@
 
   </main>
 
-  <!-- SCRIPT ÚNICO: GA4 + LLUVIA + NARRADOR + PÁGINAS + SONIDO + REVEAL -->
+  <!-- SCRIPT ÚNICO LIMPIO: GA4 + LLUVIA + AMBIENTES + NARRADOR + PÁGINAS + REVEAL -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
 
@@ -827,216 +1051,316 @@
       window.addEventListener("scroll", revisarScroll, { passive: true });
       revisarScroll();
 
- /* =========================
+      /* =========================
+         AUDIO: LLUVIA + AMBIENTES
+         ========================= */
 
-AUDIO AMBIENTE / LLUVIA + ENTRADA SONORA
+      const audioAmbiente = document.getElementById("audioAmbiente");
+      const ambienteToggle = document.getElementById("ambienteToggle");
+      const lluviaVisual = document.querySelector(".lluvia-visual");
 
-========================= */
+      const entradaSonora = document.getElementById("entradaSonora");
+      const sonidoPuerta = document.getElementById("sonidoPuerta");
+      const sonidoClickPergamino = document.getElementById("sonidoClickPergamino");
 
-const audioAmbiente = document.getElementById("audioAmbiente");
-const ambienteToggle = document.getElementById("ambienteToggle");
+      const ambienteFuego = document.getElementById("ambienteFuego");
+      const ambienteBosque = document.getElementById("ambienteBosque");
+      const ambienteSelva = document.getElementById("ambienteSelva");
 
-const entradaSonora = document.getElementById("entradaSonora");
-const sonidoPuerta = document.getElementById("sonidoPuerta");
-const sonidoClickPergamino = document.getElementById("sonidoClickPergamino");
+      const ambientesToggle = document.getElementById("ambientesToggle");
+      const ambientesModal = document.getElementById("ambientesModal");
 
-const ambienteFuego = document.getElementById("ambienteFuego");
-const ambienteBosque = document.getElementById("ambienteBosque");
-const ambienteSelva = document.getElementById("ambienteSelva");
+      const ambientesExtra = {
+        fuego: {
+          audio: ambienteFuego,
+          label: "🔥 Ambiente: fuego",
+          volumen: 0.20
+        },
+        bosque: {
+          audio: ambienteBosque,
+          label: "🌙 Ambiente: bosque",
+          volumen: 0.18
+        },
+        selva: {
+          audio: ambienteSelva,
+          label: "🌿 Ambiente: selva",
+          volumen: 0.18
+        }
+      };
 
-const ambientesExtra = [ambienteFuego, ambienteBosque, ambienteSelva].filter(Boolean);
+      let ambienteExtraActivo = "silencio";
 
-if (audioAmbiente) audioAmbiente.volume = 0.42;
-if (sonidoPuerta) sonidoPuerta.volume = 0.34;
-if (sonidoClickPergamino) sonidoClickPergamino.volume = 0.18;
-if (ambienteFuego) ambienteFuego.volume = 0.20;
-if (ambienteBosque) ambienteBosque.volume = 0.18;
-if (ambienteSelva) ambienteSelva.volume = 0.18;
+      if (audioAmbiente) audioAmbiente.volume = 0.38;
+      if (sonidoPuerta) sonidoPuerta.volume = 0.34;
+      if (sonidoClickPergamino) sonidoClickPergamino.volume = 0.18;
 
-function reproducirCorto(audio, volumen) {
-  if (!audio) return;
+      Object.keys(ambientesExtra).forEach(function (nombre) {
+        const item = ambientesExtra[nombre];
 
-  try {
-    audio.volume = volumen;
-    audio.currentTime = 0;
-    audio.play().catch(function () {});
-  } catch (error) {}
-}
+        if (!item.audio) return;
 
-function actualizarBotonAmbiente(texto) {
-  if (!ambienteToggle) return;
-  ambienteToggle.innerHTML = "<span>" + texto + "</span>";
-}
+        item.audio.loop = true;
+        item.audio.volume = item.volumen;
+      });
 
-function pausarAmbientesExtra() {
-  ambientesExtra.forEach(function (audio) {
-    audio.pause();
-    audio.currentTime = 0;
-  });
-}
+      function reproducirCorto(audio, volumen) {
+        if (!audio) return;
 
-function pausarLluvia() {
-  if (!audioAmbiente) return;
+        try {
+          if (typeof volumen === "number") {
+            audio.volume = volumen;
+          }
 
-  audioAmbiente.pause();
-  audioAmbiente.currentTime = 0;
+          audio.currentTime = 0;
+          audio.play().catch(function () {});
+        } catch (error) {}
+      }
 
-  actualizarBotonAmbiente("☂ Activar lluvia para leer");
+      function actualizarLluviaVisual() {
+        if (!audioAmbiente || !lluviaVisual) return;
 
-  if (ambienteToggle) {
-    ambienteToggle.classList.remove("activo");
-  }
+        const lluviaActiva = !audioAmbiente.paused;
 
-  if (typeof actualizarLluviaVisual === "function") {
-    actualizarLluviaVisual();
-  }
-}
+        document.body.classList.toggle("lluvia-activa", lluviaActiva);
+        lluviaVisual.classList.toggle("activa", lluviaActiva);
+      }
 
-function activarLluvia() {
-  if (!audioAmbiente) return;
+      function actualizarBotonLluvia() {
+        if (!ambienteToggle || !audioAmbiente) return;
 
-  pausarAmbientesExtra();
+        ambienteToggle.innerHTML = audioAmbiente.paused
+          ? "<span>☂ Activar lluvia para leer</span>"
+          : "<span>☂ Pausar lluvia para leer</span>";
 
-  audioAmbiente.play()
-    .then(function () {
-      actualizarBotonAmbiente("☂ Pausar lluvia para leer");
+        ambienteToggle.classList.toggle("activo", !audioAmbiente.paused);
+      }
+
+      function activarLluvia() {
+        if (!audioAmbiente) return;
+
+        audioAmbiente.play()
+          .then(function () {
+            actualizarBotonLluvia();
+            actualizarLluviaVisual();
+
+            trackGAEvent("lluvia_inicio", {
+              event_label: "lluvia"
+            });
+          })
+          .catch(function (error) {
+            console.log("No se pudo reproducir la lluvia:", error);
+          });
+      }
+
+      function pausarLluvia() {
+        if (!audioAmbiente) return;
+
+        audioAmbiente.pause();
+        audioAmbiente.currentTime = 0;
+
+        actualizarBotonLluvia();
+        actualizarLluviaVisual();
+
+        trackGAEvent("lluvia_pausa", {
+          event_label: "lluvia"
+        });
+      }
+
+      function pausarAmbientesExtra() {
+        Object.keys(ambientesExtra).forEach(function (nombre) {
+          const audio = ambientesExtra[nombre].audio;
+
+          if (!audio) return;
+
+          audio.pause();
+          audio.currentTime = 0;
+        });
+      }
+
+      function actualizarBotonAmbienteExtra() {
+        if (!ambientesToggle) return;
+
+        if (ambienteExtraActivo === "silencio") {
+          ambientesToggle.innerHTML = "<span>🌙 Ambiente: silencio</span>";
+        } else {
+          ambientesToggle.innerHTML = "<span>" + ambientesExtra[ambienteExtraActivo].label + "</span>";
+        }
+
+        document.querySelectorAll("[data-ambiente-menu]").forEach(function (boton) {
+          const valor = boton.getAttribute("data-ambiente-menu");
+          boton.classList.toggle("activo", valor === ambienteExtraActivo);
+        });
+      }
+
+      function activarAmbienteExtra(nombre) {
+        pausarAmbientesExtra();
+
+        ambienteExtraActivo = nombre;
+
+        if (nombre !== "silencio" && ambientesExtra[nombre] && ambientesExtra[nombre].audio) {
+          ambientesExtra[nombre].audio.play()
+            .then(function () {
+              trackGAEvent("ambiente_inicio", {
+                event_label: nombre
+              });
+            })
+            .catch(function (error) {
+              console.log("No se pudo reproducir el ambiente " + nombre + ":", error);
+            });
+        } else {
+          trackGAEvent("ambiente_silencio", {
+            event_label: "silencio"
+          });
+        }
+
+        actualizarBotonAmbienteExtra();
+      }
+
+      function abrirModalAmbientes() {
+        if (!ambientesModal) return;
+
+        ambientesModal.classList.add("activo");
+        ambientesModal.setAttribute("aria-hidden", "false");
+      }
+
+      function cerrarModalAmbientes() {
+        if (!ambientesModal) return;
+
+        ambientesModal.classList.remove("activo");
+        ambientesModal.setAttribute("aria-hidden", "true");
+      }
+
+      function cerrarEntradaSonora() {
+        if (!entradaSonora) return;
+
+        entradaSonora.classList.add("oculta");
+        document.body.classList.remove("entrada-sonora-activa");
+
+        try {
+          sessionStorage.setItem("entradaSonoraRincon", "vista");
+        } catch (error) {}
+      }
+
+      function entrarConAmbiente(modo) {
+        reproducirCorto(sonidoPuerta, 0.34);
+
+        if (modo === "lluvia") {
+          activarLluvia();
+          activarAmbienteExtra("silencio");
+        }
+
+        if (modo === "fuego" || modo === "bosque" || modo === "selva") {
+          activarAmbienteExtra(modo);
+        }
+
+        if (modo === "silencio") {
+          pausarLluvia();
+          activarAmbienteExtra("silencio");
+
+          trackGAEvent("entrada_silencio", {
+            event_label: "silencio"
+          });
+        }
+
+        cerrarEntradaSonora();
+      }
+
+      actualizarBotonLluvia();
+      actualizarBotonAmbienteExtra();
+      actualizarLluviaVisual();
+
+      if (audioAmbiente && lluviaVisual) {
+        audioAmbiente.addEventListener("play", function () {
+          actualizarBotonLluvia();
+          actualizarLluviaVisual();
+        });
+
+        audioAmbiente.addEventListener("pause", function () {
+          actualizarBotonLluvia();
+          actualizarLluviaVisual();
+        });
+
+        audioAmbiente.addEventListener("ended", function () {
+          actualizarBotonLluvia();
+          actualizarLluviaVisual();
+        });
+      }
 
       if (ambienteToggle) {
-        ambienteToggle.classList.add("activo");
+        ambienteToggle.addEventListener("click", function () {
+          if (!audioAmbiente) return;
+
+          if (audioAmbiente.paused) {
+            activarLluvia();
+          } else {
+            pausarLluvia();
+          }
+        });
       }
 
-      if (typeof actualizarLluviaVisual === "function") {
-        actualizarLluviaVisual();
+      if (entradaSonora) {
+        try {
+          if (sessionStorage.getItem("entradaSonoraRincon") === "vista") {
+            entradaSonora.classList.add("oculta");
+            document.body.classList.remove("entrada-sonora-activa");
+          } else {
+            document.body.classList.add("entrada-sonora-activa");
+          }
+        } catch (error) {
+          document.body.classList.add("entrada-sonora-activa");
+        }
+
+        entradaSonora.querySelectorAll("[data-rincon-ambiente]").forEach(function (boton) {
+          boton.addEventListener("click", function () {
+            const modo = boton.getAttribute("data-rincon-ambiente");
+            entrarConAmbiente(modo);
+          });
+        });
       }
 
-      trackGAEvent("ambiente_inicio", {
-        event_label: "lluvia"
+      if (ambientesToggle) {
+        ambientesToggle.addEventListener("click", function () {
+          reproducirCorto(sonidoClickPergamino, 0.18);
+          abrirModalAmbientes();
+        });
+      }
+
+      if (ambientesModal) {
+        ambientesModal.addEventListener("click", function (event) {
+          if (event.target.closest("[data-cerrar-ambientes]")) {
+            cerrarModalAmbientes();
+            return;
+          }
+
+          const botonAmbiente = event.target.closest("[data-ambiente-menu]");
+
+          if (!botonAmbiente) return;
+
+          const ambiente = botonAmbiente.getAttribute("data-ambiente-menu");
+
+          reproducirCorto(sonidoClickPergamino, 0.18);
+          activarAmbienteExtra(ambiente);
+          cerrarModalAmbientes();
+        });
+      }
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          cerrarModalAmbientes();
+        }
       });
-    })
-    .catch(function (error) {
-      console.log("No se pudo reproducir la lluvia:", error);
-    });
-}
 
-function activarAmbienteExtra(audio, nombre) {
-  if (!audio) return;
+      document.addEventListener("click", function (event) {
+        const elemento = event.target.closest("a, button");
 
-  pausarLluvia();
-  pausarAmbientesExtra();
+        if (!elemento) return;
+        if (elemento.closest("#entradaSonora")) return;
+        if (elemento.closest("#ambientesModal")) return;
+        if (elemento.id === "ambientesToggle") return;
+        if (elemento.classList.contains("libro-btn")) return;
 
-  audio.play()
-    .then(function () {
-      trackGAEvent("ambiente_inicio", {
-        event_label: nombre
-      });
-    })
-    .catch(function (error) {
-      console.log("No se pudo reproducir el ambiente " + nombre + ":", error);
-    });
-}
-
-function cerrarEntradaSonora() {
-  if (!entradaSonora) return;
-
-  entradaSonora.classList.add("oculta");
-
-  try {
-    sessionStorage.setItem("entradaSonoraRincon", "vista");
-  } catch (error) {}
-}
-
-function entrarConAmbiente(modo) {
-  reproducirCorto(sonidoPuerta, 0.34);
-
-  if (modo === "lluvia") {
-    activarLluvia();
-  }
-
-  if (modo === "fuego") {
-    activarAmbienteExtra(ambienteFuego, "fuego");
-  }
-
-  if (modo === "bosque") {
-    activarAmbienteExtra(ambienteBosque, "bosque");
-  }
-
-  if (modo === "selva") {
-    activarAmbienteExtra(ambienteSelva, "selva");
-  }
-
-  if (modo === "silencio") {
-    pausarLluvia();
-    pausarAmbientesExtra();
-
-    trackGAEvent("ambiente_inicio", {
-      event_label: "silencio"
-    });
-  }
-
-  cerrarEntradaSonora();
-}
-
-actualizarBotonAmbiente("☂ Activar lluvia para leer");
-
-if (ambienteToggle) {
-  ambienteToggle.addEventListener("click", function () {
-    if (!audioAmbiente) return;
-
-    if (audioAmbiente.paused) {
-      activarLluvia();
-    } else {
-      pausarLluvia();
-    }
-  });
-}
-
-if (entradaSonora) {
-  try {
-    if (sessionStorage.getItem("entradaSonoraRincon") === "vista") {
-      entradaSonora.classList.add("oculta");
-    }
-  } catch (error) {}
-
-  entradaSonora.querySelectorAll("[data-rincon-ambiente]").forEach(function (boton) {
-    boton.addEventListener("click", function () {
-      const modo = boton.getAttribute("data-rincon-ambiente");
-      entrarConAmbiente(modo);
-    });
-  });
-}
-
-document.addEventListener("click", function (event) {
-  const elemento = event.target.closest("a, button");
-
-  if (!elemento) return;
-  if (elemento.closest("#entradaSonora")) return;
-  if (elemento.classList.contains("libro-btn")) return;
-
-  reproducirCorto(sonidoClickPergamino, 0.18);
-}, true);
-      /* =========================
-   LLUVIA VISUAL
-   Se activa junto al audio ambiente
-   ========================= */
-
-const lluviaVisual = document.querySelector(".lluvia-visual");
-
-function actualizarLluviaVisual() {
-  if (!audioAmbiente || !lluviaVisual) return;
-
-  const lluviaActiva = !audioAmbiente.paused;
-
-  document.body.classList.toggle("lluvia-activa", lluviaActiva);
-  lluviaVisual.classList.toggle("activa", lluviaActiva);
-}
-
-if (audioAmbiente && lluviaVisual) {
-  audioAmbiente.addEventListener("play", actualizarLluviaVisual);
-  audioAmbiente.addEventListener("pause", actualizarLluviaVisual);
-  audioAmbiente.addEventListener("ended", actualizarLluviaVisual);
-
-  actualizarLluviaVisual();
-}
+        reproducirCorto(sonidoClickPergamino, 0.18);
+      }, true);
 
       /* =========================
          NARRADOR DEL CUENTO GRATIS
@@ -1046,22 +1370,37 @@ if (audioAmbiente && lluviaVisual) {
       const narradorToggle = document.getElementById("narradorToggle");
       const volumenNarrador = document.getElementById("volumenNarrador");
 
-      let volumenAmbientePrevio = 0.42;
+      let volumenLluviaPrevio = 0.38;
+      let volumenExtraPrevio = {};
 
       function bajarAmbienteParaNarrador() {
-        if (!audioAmbiente) return;
-
-        volumenAmbientePrevio = audioAmbiente.volume || 0.42;
-
-        if (!audioAmbiente.paused) {
-          audioAmbiente.volume = 0.16;
+        if (audioAmbiente && !audioAmbiente.paused) {
+          volumenLluviaPrevio = audioAmbiente.volume || 0.38;
+          audioAmbiente.volume = 0.14;
         }
+
+        Object.keys(ambientesExtra).forEach(function (nombre) {
+          const audio = ambientesExtra[nombre].audio;
+
+          if (!audio || audio.paused) return;
+
+          volumenExtraPrevio[nombre] = audio.volume || ambientesExtra[nombre].volumen;
+          audio.volume = 0.10;
+        });
       }
 
       function restaurarAmbienteDespuesNarrador() {
-        if (!audioAmbiente) return;
+        if (audioAmbiente) {
+          audioAmbiente.volume = volumenLluviaPrevio || 0.38;
+        }
 
-        audioAmbiente.volume = volumenAmbientePrevio || 0.42;
+        Object.keys(ambientesExtra).forEach(function (nombre) {
+          const audio = ambientesExtra[nombre].audio;
+
+          if (!audio) return;
+
+          audio.volume = volumenExtraPrevio[nombre] || ambientesExtra[nombre].volumen;
+        });
       }
 
       if (audioNarrador && narradorToggle) {
@@ -1220,915 +1559,5 @@ if (audioAmbiente && lluviaVisual) {
 
     });
   </script>
-<!-- refresh deploy 2026-07-04 -->
-  <style>
-  body.rincon-gate-activo {
-    overflow: hidden;
-  }
-
-  .rincon-sound-gate {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    min-height: 100dvh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 22px;
-    background:
-      radial-gradient(circle at 50% 25%, rgba(220, 155, 75, 0.22), transparent 360px),
-      linear-gradient(180deg, rgba(7, 5, 3, 0.97), rgba(18, 10, 5, 0.98));
-    transition: opacity 0.7s ease, visibility 0.7s ease;
-  }
-
-  .rincon-sound-gate.rincon-oculto {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  .rincon-sound-card {
-    width: min(520px, 100%);
-    text-align: center;
-    padding: 34px 24px;
-    border-radius: 28px;
-    border: 1px solid rgba(230, 185, 110, 0.34);
-    background:
-      radial-gradient(circle at 50% 0%, rgba(255, 210, 130, 0.13), transparent 280px),
-      rgba(28, 17, 9, 0.82);
-    box-shadow:
-      0 24px 80px rgba(0, 0, 0, 0.62),
-      0 0 42px rgba(214, 147, 66, 0.14);
-    backdrop-filter: blur(8px);
-  }
-
-  .rincon-sound-mini {
-    margin: 0 0 10px;
-    font-family: Georgia, serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(236, 196, 132, 0.72);
-  }
-
-  .rincon-sound-card h2 {
-    margin: 0 0 14px;
-    font-family: Georgia, serif;
-    font-size: clamp(2rem, 7vw, 3.4rem);
-    font-weight: 300;
-    line-height: 1.05;
-    color: #f3d49c;
-  }
-
-  .rincon-sound-card p {
-    max-width: 390px;
-    margin: 0 auto 24px;
-    font-family: Georgia, serif;
-    font-size: 1.05rem;
-    line-height: 1.55;
-    color: rgba(238, 222, 198, 0.78);
-  }
-
-  .rincon-sound-options {
-    display: grid;
-    gap: 11px;
-  }
-
-  .rincon-sound-options button,
-  .rincon-ambiente-menu button,
-  .rincon-ambiente-toggle {
-    border-radius: 999px;
-    border: 1px solid rgba(220, 175, 105, 0.38);
-    background: rgba(255, 230, 180, 0.11);
-    color: #f4dbac;
-    font-family: Georgia, serif;
-    cursor: pointer;
-    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-  }
-
-  .rincon-sound-options button {
-    width: 100%;
-    min-height: 48px;
-    padding: 12px 18px;
-    font-size: 1.02rem;
-  }
-
-  .rincon-sound-options button:hover,
-  .rincon-ambiente-menu button:hover,
-  .rincon-ambiente-toggle:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 226, 170, 0.18);
-    border-color: rgba(240, 200, 130, 0.58);
-  }
-
-  .rincon-silencio {
-    opacity: 0.72;
-  }
-
-  .rincon-ambiente-control {
-    position: relative;
-    display: inline-block;
-    margin-left: 8px;
-  }
-
-  .rincon-ambiente-toggle {
-    min-height: 44px;
-    padding: 10px 18px;
-    font-size: 0.95rem;
-    box-shadow: 0 0 18px rgba(255, 190, 95, 0.08);
-  }
-
-  .rincon-ambiente-menu {
-    position: absolute;
-    top: calc(100% + 10px);
-    right: 0;
-    z-index: 50;
-    width: 230px;
-    padding: 10px;
-    border-radius: 18px;
-    border: 1px solid rgba(230, 185, 110, 0.28);
-    background: rgba(18, 10, 5, 0.96);
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
-    display: none;
-  }
-
-  .rincon-ambiente-control.abierto .rincon-ambiente-menu {
-    display: grid;
-    gap: 8px;
-  }
-
-  .rincon-ambiente-menu button {
-    width: 100%;
-    padding: 10px 12px;
-    font-size: 0.94rem;
-    text-align: left;
-  }
-
-  .rincon-ambiente-menu button.activo {
-    background: rgba(255, 218, 150, 0.23);
-    border-color: rgba(245, 205, 135, 0.66);
-  }
-
-  @media (max-width: 620px) {
-    .rincon-ambiente-control {
-      display: block;
-      width: 100%;
-      margin: 10px auto 0;
-    }
-
-    .rincon-ambiente-toggle {
-      width: 100%;
-    }
-
-    .rincon-ambiente-menu {
-      left: 0;
-      right: 0;
-      width: 100%;
-    }
-
-    .rincon-sound-card {
-      padding: 30px 18px;
-      border-radius: 22px;
-    }
-  }
-</style>
-
-<script>
-(function () {
-  "use strict";
-
-  function initRinconAmbientes() {
-    const botonViejoLluvia = document.getElementById("ambienteToggle");
-
-    const audioLluviaExistente =
-      document.getElementById("audioAmbiente") || new Audio("./ambiente-lluvia.mp3");
-
-    audioLluviaExistente.loop = true;
-
-    const sonidoPuerta = new Audio("./sounds/puerta-rincon.mp3");
-    const sonidoClick = new Audio("./sounds/click-pergamino.mp3");
-
-    const ambientes = {
-      lluvia: {
-        label: "☂ Lluvia suave",
-        boton: "☂ Ambiente: lluvia",
-        audio: audioLluviaExistente,
-        volume: 0.38
-      },
-      fuego: {
-        label: "🔥 Fuego bajo",
-        boton: "🔥 Ambiente: fuego",
-        audio: new Audio("./sounds/fuego-suave.mp3"),
-        volume: 0.20
-      },
-      bosque: {
-        label: "🌙 Bosque noche",
-        boton: "🌙 Ambiente: bosque",
-        audio: new Audio("./sounds/bosque-noche.mp3"),
-        volume: 0.18
-      },
-      selva: {
-        label: "🌿 Selva noche",
-        boton: "🌿 Ambiente: selva",
-        audio: new Audio("./sounds/selva-noche.mp3"),
-        volume: 0.18
-      }
-    };
-
-    Object.keys(ambientes).forEach(function (key) {
-      ambientes[key].audio.loop = true;
-      ambientes[key].audio.volume = ambientes[key].volume;
-    });
-
-    sonidoPuerta.volume = 0.32;
-    sonidoClick.volume = 0.16;
-
-    let ambienteActivo = "silencio";
-
-    function reproducirCorto(audio) {
-      if (!audio) return;
-
-      try {
-        audio.currentTime = 0;
-        audio.play().catch(function () {});
-      } catch (error) {}
-    }
-
-    function pausarTodosLosAmbientes() {
-      Object.keys(ambientes).forEach(function (key) {
-        const audio = ambientes[key].audio;
-        audio.pause();
-        audio.currentTime = 0;
-      });
-
-      if (botonViejoLluvia) {
-        botonViejoLluvia.classList.remove("activo");
-      }
-
-      if (typeof window.actualizarLluviaVisual === "function") {
-        window.actualizarLluviaVisual();
-      }
-    }
-
-    function registrarAmbiente(nombre) {
-      if (typeof window.trackGAEvent === "function") {
-        window.trackGAEvent("ambiente_cambio", {
-          event_label: nombre
-        });
-      } else if (typeof window.gtag === "function") {
-        window.gtag("event", "ambiente_cambio", {
-          event_label: nombre
-        });
-      }
-    }
-
-    function actualizarBotones() {
-      const toggle = document.getElementById("rinconAmbienteToggle");
-      const opciones = document.querySelectorAll("[data-rincon-ambiente-opcion]");
-
-      if (toggle) {
-        if (ambienteActivo === "silencio") {
-          toggle.textContent = "🔇 Ambiente apagado";
-        } else {
-          toggle.textContent = ambientes[ambienteActivo].boton;
-        }
-      }
-
-      opciones.forEach(function (boton) {
-        const valor = boton.getAttribute("data-rincon-ambiente-opcion");
-        boton.classList.toggle("activo", valor === ambienteActivo);
-      });
-    }
-
-    function activarAmbiente(nombre) {
-      pausarTodosLosAmbientes();
-
-      ambienteActivo = nombre;
-
-      if (nombre !== "silencio" && ambientes[nombre]) {
-        const elegido = ambientes[nombre];
-
-        elegido.audio.play()
-          .then(function () {
-            if (nombre === "lluvia" && botonViejoLluvia) {
-              botonViejoLluvia.classList.add("activo");
-            }
-
-            if (typeof window.actualizarLluviaVisual === "function") {
-              window.actualizarLluviaVisual();
-            }
-          })
-          .catch(function (error) {
-            console.log("No se pudo reproducir el ambiente:", nombre, error);
-          });
-      }
-
-      registrarAmbiente(nombre);
-      actualizarBotones();
-    }
-
-    function cerrarEntrada() {
-      const gate = document.getElementById("rinconSoundGate");
-      if (!gate) return;
-
-      gate.classList.add("rincon-oculto");
-      document.body.classList.remove("rincon-gate-activo");
-
-      try {
-        sessionStorage.setItem("rinconSoundGateV1", "vista");
-      } catch (error) {}
-    }
-
-    function crearEntradaSonora() {
-      if (document.getElementById("rinconSoundGate")) return;
-
-      const yaVista = (function () {
-        try {
-          return sessionStorage.getItem("rinconSoundGateV1") === "vista";
-        } catch (error) {
-          return false;
-        }
-      })();
-
-      document.body.insertAdjacentHTML("afterbegin", `
-        <div id="rinconSoundGate" class="rincon-sound-gate ${yaVista ? "rincon-oculto" : ""}" role="dialog" aria-modal="true">
-          <div class="rincon-sound-card">
-            <div class="rincon-sound-mini">Antes de entrar</div>
-            <h2>Elegí cómo llega el Rincón hoy</h2>
-            <p>Una pequeña pausa antes de leer. Activá un ambiente o entrá en silencio.</p>
-
-            <div class="rincon-sound-options">
-              <button type="button" data-rincon-start="lluvia">☂ Lluvia suave</button>
-              <button type="button" data-rincon-start="fuego">🔥 Fuego bajo</button>
-              <button type="button" data-rincon-start="bosque">🌙 Bosque noche</button>
-              <button type="button" data-rincon-start="selva">🌿 Selva noche</button>
-              <button type="button" data-rincon-start="silencio" class="rincon-silencio">Entrar en silencio</button>
-            </div>
-          </div>
-        </div>
-      `);
-
-      if (!yaVista) {
-        document.body.classList.add("rincon-gate-activo");
-      }
-    }
-
-    function crearControlAmbiente() {
-      if (document.getElementById("rinconAmbienteControl")) return;
-
-      const htmlControl = `
-        <div id="rinconAmbienteControl" class="rincon-ambiente-control">
-          <button id="rinconAmbienteToggle" class="rincon-ambiente-toggle" type="button">
-            🔇 Ambiente apagado
-          </button>
-
-          <div class="rincon-ambiente-menu" aria-label="Elegir ambiente">
-            <button type="button" data-rincon-ambiente-opcion="lluvia">☂ Lluvia suave</button>
-            <button type="button" data-rincon-ambiente-opcion="fuego">🔥 Fuego bajo</button>
-            <button type="button" data-rincon-ambiente-opcion="bosque">🌙 Bosque noche</button>
-            <button type="button" data-rincon-ambiente-opcion="selva">🌿 Selva noche</button>
-            <button type="button" data-rincon-ambiente-opcion="silencio">🔇 Silencio</button>
-          </div>
-        </div>
-      `;
-
-      if (botonViejoLluvia && botonViejoLluvia.parentElement) {
-        botonViejoLluvia.style.display = "none";
-        botonViejoLluvia.insertAdjacentHTML("afterend", htmlControl);
-      } else {
-        document.body.insertAdjacentHTML("beforeend", htmlControl);
-      }
-
-      actualizarBotones();
-    }
-
-    crearEntradaSonora();
-    crearControlAmbiente();
-
-    document.addEventListener("click", function (event) {
-      const startButton = event.target.closest("[data-rincon-start]");
-      const ambienteButton = event.target.closest("[data-rincon-ambiente-opcion]");
-      const toggleButton = event.target.closest("#rinconAmbienteToggle");
-      const control = document.getElementById("rinconAmbienteControl");
-
-      if (startButton) {
-        const ambiente = startButton.getAttribute("data-rincon-start");
-        reproducirCorto(sonidoPuerta);
-        activarAmbiente(ambiente);
-        cerrarEntrada();
-        return;
-      }
-
-      if (toggleButton && control) {
-        reproducirCorto(sonidoClick);
-        control.classList.toggle("abierto");
-        return;
-      }
-
-      if (ambienteButton && control) {
-        const ambiente = ambienteButton.getAttribute("data-rincon-ambiente-opcion");
-        reproducirCorto(sonidoClick);
-        activarAmbiente(ambiente);
-        control.classList.remove("abierto");
-        return;
-      }
-
-      if (control && !event.target.closest("#rinconAmbienteControl")) {
-        control.classList.remove("abierto");
-      }
-    });
-
-    document.addEventListener("click", function (event) {
-      const elemento = event.target.closest("a, button");
-
-      if (!elemento) return;
-      if (elemento.closest("#rinconSoundGate")) return;
-      if (elemento.closest("#rinconAmbienteControl")) return;
-
-      reproducirCorto(sonidoClick);
-    }, true);
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initRinconAmbientes);
-  } else {
-    initRinconAmbientes();
-  }
-})();
-</script>
-<!-- =====================================================
-FIX MENÚ AMBIENTES SIN OCULTAR BOTÓN LLUVIA
-Pegarlo justo arriba de </body>
-===================================================== -->
-
-<style>
-  /* Recupera y mantiene visible el botón viejo de lluvia */
-  #ambienteToggle {
-    display: inline-flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    width: auto !important;
-    min-width: 170px !important;
-    height: auto !important;
-    min-height: 48px !important;
-    padding: 13px 24px !important;
-    margin: 12px auto 0 !important;
-    border-radius: 999px !important;
-    overflow: visible !important;
-    pointer-events: auto !important;
-  }
-
-  /* Botón nuevo de ambiente */
-  #rinconAmbienteControl {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    position: relative !important;
-    z-index: 9999 !important;
-    margin: 12px auto 0 !important;
-    width: auto !important;
-    max-width: 100% !important;
-  }
-
-  #rinconAmbienteToggle {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 8px !important;
-    min-height: 52px !important;
-    padding: 13px 24px !important;
-    border-radius: 999px !important;
-    background: rgba(226, 186, 112, 0.72) !important;
-    color: #2a170c !important;
-    border: 1px solid rgba(93, 54, 22, 0.38) !important;
-    font-family: "Cormorant Garamond", Georgia, serif !important;
-    font-size: 1.08rem !important;
-    font-weight: 600 !important;
-    line-height: 1 !important;
-    letter-spacing: 0.04em !important;
-    text-transform: none !important;
-    white-space: nowrap !important;
-    box-shadow: 0 10px 26px rgba(24, 13, 7, 0.22) !important;
-    backdrop-filter: blur(5px) !important;
-    cursor: pointer !important;
-  }
-
-  #rinconAmbienteToggle:hover {
-    transform: translateY(-2px) !important;
-    background: rgba(241, 219, 181, 0.76) !important;
-    box-shadow: 0 14px 34px rgba(24, 13, 7, 0.3) !important;
-  }
-
-  #rinconMenuBackdrop {
-    position: fixed !important;
-    inset: 0 !important;
-    z-index: 2147483646 !important;
-    display: none !important;
-    background: rgba(5, 3, 2, 0.58) !important;
-    backdrop-filter: blur(3px) !important;
-  }
-
-  #rinconMenuBackdrop.rincon-backdrop-visible {
-    display: block !important;
-  }
-
-  .rincon-ambiente-menu {
-    position: fixed !important;
-    top: 50% !important;
-    left: 50% !important;
-    right: auto !important;
-    bottom: auto !important;
-    transform: translate(-50%, -50%) !important;
-    z-index: 2147483647 !important;
-    width: min(340px, calc(100vw - 36px)) !important;
-    max-height: calc(100dvh - 90px) !important;
-    overflow-y: auto !important;
-    display: none !important;
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
-    padding: 16px !important;
-    border-radius: 24px !important;
-    border: 1px solid rgba(230, 185, 110, 0.38) !important;
-    background:
-      radial-gradient(circle at 50% 0%, rgba(255, 215, 145, 0.14), transparent 220px),
-      rgba(18, 10, 5, 0.985) !important;
-    box-shadow:
-      0 28px 90px rgba(0, 0, 0, 0.74),
-      0 0 40px rgba(214, 147, 66, 0.14) !important;
-    backdrop-filter: blur(8px) !important;
-  }
-
-  body.rincon-menu-abierto .rincon-ambiente-menu,
-  .rincon-ambiente-menu.rincon-menu-visible {
-    display: grid !important;
-  }
-
-  .rincon-ambiente-menu::before {
-    content: "Elegí el ambiente" !important;
-    display: block !important;
-    margin: 2px 0 8px !important;
-    text-align: center !important;
-    font-family: "Cormorant Garamond", Georgia, serif !important;
-    font-size: 1.35rem !important;
-    font-weight: 500 !important;
-    line-height: 1.1 !important;
-    color: rgba(255, 235, 198, 0.96) !important;
-  }
-
-  .rincon-ambiente-menu button {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 100% !important;
-    min-height: 50px !important;
-    padding: 12px 16px !important;
-    border-radius: 999px !important;
-    border: 1px solid rgba(220, 175, 105, 0.42) !important;
-    background: rgba(255, 230, 180, 0.14) !important;
-    color: #f4dbac !important;
-    font-family: "Cormorant Garamond", Georgia, serif !important;
-    font-size: 1.05rem !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.03em !important;
-    text-align: center !important;
-    text-transform: none !important;
-    cursor: pointer !important;
-  }
-
-  .rincon-ambiente-menu button:hover {
-    transform: translateY(-2px) !important;
-    background: rgba(255, 226, 170, 0.22) !important;
-    border-color: rgba(240, 200, 130, 0.66) !important;
-  }
-
-  .rincon-ambiente-menu button.activo {
-    background: rgba(255, 218, 150, 0.28) !important;
-    border-color: rgba(245, 205, 135, 0.76) !important;
-    color: #fff2d0 !important;
-  }
-
-  body.rincon-menu-abierto {
-    overflow: hidden !important;
-  }
-
-  @media (max-width: 620px) {
-    #ambienteToggle,
-    #rinconAmbienteControl {
-      display: flex !important;
-      width: 100% !important;
-      max-width: 300px !important;
-      margin: 12px auto 0 !important;
-    }
-
-    #rinconAmbienteToggle {
-      width: 100% !important;
-      min-height: 50px !important;
-      font-size: 1rem !important;
-    }
-
-    .rincon-ambiente-menu {
-      width: min(330px, calc(100vw - 30px)) !important;
-      max-height: calc(100dvh - 70px) !important;
-      padding: 14px !important;
-      border-radius: 22px !important;
-    }
-
-    .rincon-ambiente-menu button {
-      min-height: 48px !important;
-      font-size: 1rem !important;
-    }
-  }
-</style>
-
-<script>
-  (function () {
-    "use strict";
-
-    function aplicarFixMenuAmbienteSinOcultarLluvia() {
-      const botonLluvia = document.getElementById("ambienteToggle");
-      const control = document.getElementById("rinconAmbienteControl");
-      const toggle = document.getElementById("rinconAmbienteToggle");
-      const menu = document.querySelector(".rincon-ambiente-menu");
-
-      /* Importante: NO ocultamos el botón de lluvia */
-      if (botonLluvia) {
-        botonLluvia.removeAttribute("aria-hidden");
-        botonLluvia.removeAttribute("tabindex");
-
-        botonLluvia.style.setProperty("display", "inline-flex", "important");
-        botonLluvia.style.setProperty("visibility", "visible", "important");
-        botonLluvia.style.setProperty("opacity", "1", "important");
-        botonLluvia.style.setProperty("width", "auto", "important");
-        botonLluvia.style.setProperty("height", "auto", "important");
-        botonLluvia.style.setProperty("min-height", "48px", "important");
-        botonLluvia.style.setProperty("padding", "13px 24px", "important");
-        botonLluvia.style.setProperty("pointer-events", "auto", "important");
-      }
-
-      if (!control || !toggle || !menu) {
-        return false;
-      }
-
-      let backdrop = document.getElementById("rinconMenuBackdrop");
-
-      if (!backdrop) {
-        backdrop = document.createElement("div");
-        backdrop.id = "rinconMenuBackdrop";
-        document.body.appendChild(backdrop);
-      }
-
-      if (menu.parentElement !== document.body) {
-        document.body.appendChild(menu);
-      }
-
-      function cerrarMenu() {
-        control.classList.remove("abierto");
-        document.body.classList.remove("rincon-menu-abierto");
-        menu.classList.remove("rincon-menu-visible");
-        backdrop.classList.remove("rincon-backdrop-visible");
-        toggle.setAttribute("aria-expanded", "false");
-      }
-
-      function abrirMenu() {
-        control.classList.add("abierto");
-        document.body.classList.add("rincon-menu-abierto");
-        menu.classList.add("rincon-menu-visible");
-        backdrop.classList.add("rincon-backdrop-visible");
-        toggle.setAttribute("aria-expanded", "true");
-      }
-
-      if (control.dataset.fixMenuAmbienteSinOcultarLluvia === "1") {
-        return true;
-      }
-
-      control.dataset.fixMenuAmbienteSinOcultarLluvia = "1";
-
-      toggle.setAttribute("aria-haspopup", "true");
-      toggle.setAttribute("aria-expanded", "false");
-
-      toggle.addEventListener("click", function () {
-        setTimeout(function () {
-          if (control.classList.contains("abierto")) {
-            abrirMenu();
-          } else {
-            cerrarMenu();
-          }
-        }, 0);
-      });
-
-      menu.addEventListener("click", function (event) {
-        const opcion = event.target.closest("[data-rincon-ambiente-opcion]");
-
-        if (!opcion) return;
-
-        setTimeout(function () {
-          cerrarMenu();
-        }, 40);
-      });
-
-      backdrop.addEventListener("click", cerrarMenu);
-
-      document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-          cerrarMenu();
-        }
-      });
-
-      document.addEventListener("click", function (event) {
-        const tocoToggle = event.target.closest("#rinconAmbienteToggle");
-        const tocoMenu = event.target.closest(".rincon-ambiente-menu");
-
-        if (tocoToggle || tocoMenu) return;
-
-        if (control.classList.contains("abierto")) {
-          cerrarMenu();
-        }
-      });
-
-      return true;
-    }
-
-    let intentos = 0;
-
-    function intentar() {
-      intentos += 1;
-
-      const aplicado = aplicarFixMenuAmbienteSinOcultarLluvia();
-
-      if (!aplicado && intentos < 40) {
-        setTimeout(intentar, 150);
-      }
-    }
-
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", intentar);
-    } else {
-      intentar();
-    }
-  })();
-</script>
-  <!-- =====================================================
-FIX: EVITAR DOBLE PREGUNTA INICIAL DE AMBIENTE
-Pegarlo justo arriba de </body>
-===================================================== -->
-
-<style>
-  body.rincon-entrada-cerrada #rinconSoundGate,
-  body.rincon-entrada-cerrada #entradaSonora,
-  body.rincon-entrada-cerrada .rincon-sound-gate,
-  body.rincon-entrada-cerrada .entrada-sonora,
-  body.rincon-entrada-cerrada .sound-entry {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }
-
-  .rincon-gate-duplicado {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }
-</style>
-
-<script>
-  (function () {
-    "use strict";
-
-    const CLAVE_ENTRADA = "rinconEntradaAmbienteCerradaV2";
-
-    const selectoresEntrada = [
-      "#rinconSoundGate",
-      "#entradaSonora",
-      ".rincon-sound-gate",
-      ".entrada-sonora",
-      ".sound-entry"
-    ];
-
-    const selectoresBotonesEntrada = [
-      "[data-rincon-start]",
-      "[data-sound-start]",
-      "[data-rincon-ambiente]"
-    ];
-
-    function obtenerEntradas() {
-      const encontrados = [];
-
-      selectoresEntrada.forEach(function (selector) {
-        document.querySelectorAll(selector).forEach(function (elemento) {
-          if (!encontrados.includes(elemento)) {
-            encontrados.push(elemento);
-          }
-        });
-      });
-
-      return encontrados;
-    }
-
-    function cerrarTodasLasEntradas() {
-      try {
-        sessionStorage.setItem(CLAVE_ENTRADA, "cerrada");
-        sessionStorage.setItem("rinconSoundGateV1", "vista");
-        sessionStorage.setItem("entradaSonoraRincon", "vista");
-        sessionStorage.setItem("rinconSoundStarted", "true");
-      } catch (error) {}
-
-      document.body.classList.add("rincon-entrada-cerrada");
-      document.body.classList.remove("rincon-gate-activo");
-
-      obtenerEntradas().forEach(function (entrada) {
-        entrada.classList.add("rincon-oculto");
-        entrada.classList.add("oculta");
-        entrada.classList.add("hidden");
-        entrada.style.setProperty("display", "none", "important");
-        entrada.style.setProperty("visibility", "hidden", "important");
-        entrada.style.setProperty("opacity", "0", "important");
-        entrada.style.setProperty("pointer-events", "none", "important");
-      });
-    }
-
-    function ordenarEntradasDuplicadas() {
-      const entradas = obtenerEntradas();
-
-      if (!entradas.length) return;
-
-      let entradaVisiblePermitida = null;
-
-      entradas.forEach(function (entrada) {
-        const estilos = window.getComputedStyle(entrada);
-        const estaOculta =
-          estilos.display === "none" ||
-          estilos.visibility === "hidden" ||
-          entrada.classList.contains("rincon-oculto") ||
-          entrada.classList.contains("oculta") ||
-          entrada.classList.contains("hidden");
-
-        if (!entradaVisiblePermitida && !estaOculta) {
-          entradaVisiblePermitida = entrada;
-        } else {
-          entrada.classList.add("rincon-gate-duplicado");
-          entrada.style.setProperty("display", "none", "important");
-          entrada.style.setProperty("visibility", "hidden", "important");
-          entrada.style.setProperty("opacity", "0", "important");
-          entrada.style.setProperty("pointer-events", "none", "important");
-        }
-      });
-    }
-
-    function entradaYaCerrada() {
-      try {
-        return sessionStorage.getItem(CLAVE_ENTRADA) === "cerrada";
-      } catch (error) {
-        return false;
-      }
-    }
-
-    function iniciarFixEntradaDuplicada() {
-      if (entradaYaCerrada()) {
-        cerrarTodasLasEntradas();
-      } else {
-        ordenarEntradasDuplicadas();
-      }
-
-      document.addEventListener("click", function (event) {
-        const tocoBotonEntrada = selectoresBotonesEntrada.some(function (selector) {
-          return event.target.closest(selector);
-        });
-
-        if (!tocoBotonEntrada) return;
-
-        const estaDentroDeEntrada = selectoresEntrada.some(function (selector) {
-          return event.target.closest(selector);
-        });
-
-        if (!estaDentroDeEntrada) return;
-
-        setTimeout(cerrarTodasLasEntradas, 450);
-      }, true);
-
-      const observer = new MutationObserver(function () {
-        if (entradaYaCerrada()) {
-          cerrarTodasLasEntradas();
-        } else {
-          ordenarEntradasDuplicadas();
-        }
-      });
-
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ["class", "style"]
-      });
-    }
-
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", iniciarFixEntradaDuplicada);
-    } else {
-      iniciarFixEntradaDuplicada();
-    }
-  })();
-</script>
 </body>
 </html>
