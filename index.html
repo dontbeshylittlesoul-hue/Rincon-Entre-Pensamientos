@@ -1656,26 +1656,26 @@ if (audioAmbiente && lluviaVisual) {
   }
 })();
 </script>
-  <!-- =====================================================
-FIX FINAL MENÚ DE AMBIENTES - RINCÓN ENTRE PENSAMIENTOS
+<!-- =====================================================
+FIX MENÚ AMBIENTES SIN OCULTAR BOTÓN LLUVIA
 Pegarlo justo arriba de </body>
 ===================================================== -->
 
 <style>
-  /* Oculta definitivamente el botón viejo de lluvia */
+  /* Recupera y mantiene visible el botón viejo de lluvia */
   #ambienteToggle {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    width: 0 !important;
-    min-width: 0 !important;
-    height: 0 !important;
-    min-height: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    border: 0 !important;
-    overflow: hidden !important;
-    pointer-events: none !important;
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: auto !important;
+    min-width: 170px !important;
+    height: auto !important;
+    min-height: 48px !important;
+    padding: 13px 24px !important;
+    margin: 12px auto 0 !important;
+    border-radius: 999px !important;
+    overflow: visible !important;
+    pointer-events: auto !important;
   }
 
   /* Botón nuevo de ambiente */
@@ -1695,28 +1695,22 @@ Pegarlo justo arriba de </body>
     align-items: center !important;
     justify-content: center !important;
     gap: 8px !important;
-
     min-height: 52px !important;
     padding: 13px 24px !important;
     border-radius: 999px !important;
-
     background: rgba(226, 186, 112, 0.72) !important;
     color: #2a170c !important;
     border: 1px solid rgba(93, 54, 22, 0.38) !important;
-
     font-family: "Cormorant Garamond", Georgia, serif !important;
     font-size: 1.08rem !important;
     font-weight: 600 !important;
     line-height: 1 !important;
     letter-spacing: 0.04em !important;
     text-transform: none !important;
-    text-decoration: none !important;
     white-space: nowrap !important;
-
     box-shadow: 0 10px 26px rgba(24, 13, 7, 0.22) !important;
     backdrop-filter: blur(5px) !important;
     cursor: pointer !important;
-    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease !important;
   }
 
   #rinconAmbienteToggle:hover {
@@ -1725,7 +1719,6 @@ Pegarlo justo arriba de </body>
     box-shadow: 0 14px 34px rgba(24, 13, 7, 0.3) !important;
   }
 
-  /* Fondo oscuro cuando se abre el menú */
   #rinconMenuBackdrop {
     position: fixed !important;
     inset: 0 !important;
@@ -1739,7 +1732,6 @@ Pegarlo justo arriba de </body>
     display: block !important;
   }
 
-  /* Menú de ambientes como ventana centrada */
   .rincon-ambiente-menu {
     position: fixed !important;
     top: 50% !important;
@@ -1747,29 +1739,22 @@ Pegarlo justo arriba de </body>
     right: auto !important;
     bottom: auto !important;
     transform: translate(-50%, -50%) !important;
-
     z-index: 2147483647 !important;
-
     width: min(340px, calc(100vw - 36px)) !important;
     max-height: calc(100dvh - 90px) !important;
     overflow-y: auto !important;
-
     display: none !important;
     grid-template-columns: 1fr !important;
     gap: 10px !important;
-
     padding: 16px !important;
     border-radius: 24px !important;
     border: 1px solid rgba(230, 185, 110, 0.38) !important;
-
     background:
       radial-gradient(circle at 50% 0%, rgba(255, 215, 145, 0.14), transparent 220px),
       rgba(18, 10, 5, 0.985) !important;
-
     box-shadow:
       0 28px 90px rgba(0, 0, 0, 0.74),
       0 0 40px rgba(214, 147, 66, 0.14) !important;
-
     backdrop-filter: blur(8px) !important;
   }
 
@@ -1794,26 +1779,20 @@ Pegarlo justo arriba de </body>
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-
     width: 100% !important;
     min-height: 50px !important;
     padding: 12px 16px !important;
-
     border-radius: 999px !important;
     border: 1px solid rgba(220, 175, 105, 0.42) !important;
     background: rgba(255, 230, 180, 0.14) !important;
     color: #f4dbac !important;
-
     font-family: "Cormorant Garamond", Georgia, serif !important;
     font-size: 1.05rem !important;
     font-weight: 600 !important;
     letter-spacing: 0.03em !important;
     text-align: center !important;
     text-transform: none !important;
-
     cursor: pointer !important;
-    box-shadow: none !important;
-    transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease !important;
   }
 
   .rincon-ambiente-menu button:hover {
@@ -1833,14 +1812,16 @@ Pegarlo justo arriba de </body>
   }
 
   @media (max-width: 620px) {
+    #ambienteToggle,
     #rinconAmbienteControl {
       display: flex !important;
       width: 100% !important;
+      max-width: 300px !important;
       margin: 12px auto 0 !important;
     }
 
     #rinconAmbienteToggle {
-      width: min(100%, 300px) !important;
+      width: 100% !important;
       min-height: 50px !important;
       font-size: 1rem !important;
     }
@@ -1863,16 +1844,25 @@ Pegarlo justo arriba de </body>
   (function () {
     "use strict";
 
-    function aplicarFixMenuAmbiente() {
-      const botonViejo = document.getElementById("ambienteToggle");
+    function aplicarFixMenuAmbienteSinOcultarLluvia() {
+      const botonLluvia = document.getElementById("ambienteToggle");
       const control = document.getElementById("rinconAmbienteControl");
       const toggle = document.getElementById("rinconAmbienteToggle");
       const menu = document.querySelector(".rincon-ambiente-menu");
 
-      if (botonViejo) {
-        botonViejo.setAttribute("aria-hidden", "true");
-        botonViejo.setAttribute("tabindex", "-1");
-        botonViejo.style.setProperty("display", "none", "important");
+      /* Importante: NO ocultamos el botón de lluvia */
+      if (botonLluvia) {
+        botonLluvia.removeAttribute("aria-hidden");
+        botonLluvia.removeAttribute("tabindex");
+
+        botonLluvia.style.setProperty("display", "inline-flex", "important");
+        botonLluvia.style.setProperty("visibility", "visible", "important");
+        botonLluvia.style.setProperty("opacity", "1", "important");
+        botonLluvia.style.setProperty("width", "auto", "important");
+        botonLluvia.style.setProperty("height", "auto", "important");
+        botonLluvia.style.setProperty("min-height", "48px", "important");
+        botonLluvia.style.setProperty("padding", "13px 24px", "important");
+        botonLluvia.style.setProperty("pointer-events", "auto", "important");
       }
 
       if (!control || !toggle || !menu) {
@@ -1886,8 +1876,6 @@ Pegarlo justo arriba de </body>
         backdrop.id = "rinconMenuBackdrop";
         document.body.appendChild(backdrop);
       }
-
-      menu.classList.add("rincon-menu-modal");
 
       if (menu.parentElement !== document.body) {
         document.body.appendChild(menu);
@@ -1909,38 +1897,14 @@ Pegarlo justo arriba de </body>
         toggle.setAttribute("aria-expanded", "true");
       }
 
-      function sincronizarMenu() {
-        const abierto = control.classList.contains("abierto");
-
-        if (abierto) {
-          document.body.classList.add("rincon-menu-abierto");
-          menu.classList.add("rincon-menu-visible");
-          backdrop.classList.add("rincon-backdrop-visible");
-          toggle.setAttribute("aria-expanded", "true");
-        } else {
-          document.body.classList.remove("rincon-menu-abierto");
-          menu.classList.remove("rincon-menu-visible");
-          backdrop.classList.remove("rincon-backdrop-visible");
-          toggle.setAttribute("aria-expanded", "false");
-        }
-      }
-
-      if (control.dataset.fixMenuAmbienteAplicado === "1") {
-        sincronizarMenu();
+      if (control.dataset.fixMenuAmbienteSinOcultarLluvia === "1") {
         return true;
       }
 
-      control.dataset.fixMenuAmbienteAplicado = "1";
+      control.dataset.fixMenuAmbienteSinOcultarLluvia = "1";
 
       toggle.setAttribute("aria-haspopup", "true");
       toggle.setAttribute("aria-expanded", "false");
-
-      const observer = new MutationObserver(sincronizarMenu);
-
-      observer.observe(control, {
-        attributes: true,
-        attributeFilter: ["class"]
-      });
 
       toggle.addEventListener("click", function () {
         setTimeout(function () {
@@ -1962,9 +1926,7 @@ Pegarlo justo arriba de </body>
         }, 40);
       });
 
-      backdrop.addEventListener("click", function () {
-        cerrarMenu();
-      });
+      backdrop.addEventListener("click", cerrarMenu);
 
       document.addEventListener("keydown", function (event) {
         if (event.key === "Escape") {
@@ -1983,27 +1945,25 @@ Pegarlo justo arriba de </body>
         }
       });
 
-      sincronizarMenu();
-
       return true;
     }
 
     let intentos = 0;
 
-    function intentarAplicarFix() {
+    function intentar() {
       intentos += 1;
 
-      const aplicado = aplicarFixMenuAmbiente();
+      const aplicado = aplicarFixMenuAmbienteSinOcultarLluvia();
 
       if (!aplicado && intentos < 40) {
-        setTimeout(intentarAplicarFix, 150);
+        setTimeout(intentar, 150);
       }
     }
 
     if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", intentarAplicarFix);
+      document.addEventListener("DOMContentLoaded", intentar);
     } else {
-      intentarAplicarFix();
+      intentar();
     }
   })();
 </script>
