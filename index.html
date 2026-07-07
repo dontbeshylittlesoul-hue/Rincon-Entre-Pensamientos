@@ -253,8 +253,43 @@
     <div class="hero-scroll-hint">deslizá para entrar</div>
   </section>
 
- 
+  <!-- Entrada rápida mobile / TikTok -->
+<section class="entrada-rapida" id="entrada-rapida">
+  <div class="entrada-rapida__inner">
+    <p class="entrada-rapida__eyebrow">Elegí cómo entrar</p>
 
+    <h2 class="entrada-rapida__title">
+      No tenés que recorrer todo. Empezá por una pausa.
+    </h2>
+
+    <p class="entrada-rapida__text">
+      Si venís con la cabeza llena, elegí una entrada simple: leer una muestra,
+      bajar el ruido o ver de qué se trata la experiencia completa.
+    </p>
+
+    <div class="entrada-rapida__grid">
+      <a class="entrada-card entrada-card--primary" href="#muestra" onclick="gtag?.('event','click_leer_gratis',{event_category:'cta',event_label:'entrada_rapida'});">
+        <span class="entrada-card__tag">1 minuto</span>
+        <strong>Leer gratis</strong>
+        <small>Una muestra breve para ver si el Rincón resuena con vos.</small>
+      </a>
+
+      <a class="entrada-card" href="#herramientas-gratis" onclick="gtag?.('event','click_bajar_ruido',{event_category:'cta',event_label:'entrada_rapida'});">
+        <span class="entrada-card__tag">Herramienta</span>
+        <strong>Necesito bajar el ruido</strong>
+        <small>Las 7 preguntas para ordenar lo que llevás dentro.</small>
+      </a>
+
+      <a class="entrada-card" href="#version-completa" onclick="gtag?.('event','click_ver_experiencia',{event_category:'cta',event_label:'entrada_rapida'});">
+        <span class="entrada-card__tag">Completo</span>
+        <strong>Ver experiencia completa</strong>
+        <small>Lectura, audio ambiente, cuentos y herramientas.</small>
+      </a>
+    </div>
+  </div>
+</section>
+
+ 
     <!-- CUENTO GRATIS EN PERGAMINO -->
     <section class="cuento-gratis-pergamino reveal" id="cuento-gratis">
       <div class="cuento-gratis-inner">
