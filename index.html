@@ -1,5636 +1,970 @@
-/* ================================================================
-   Rincón entre Pensamientos — muestra pública con páginas del ebook
-   ================================================================ */
-
-:root {
-  --bg-deep: #080604;
-  --bg-warm: #120d08;
-  --amber: #c8965a;
-  --amber-dim: #8a5c2f;
-  --amber-pale: #f0d29a; 
-  --ink: #23170d;
-  --text-primary: #e9ddcd; 
-  --text-secondary: #ad9a83;
-
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'Crimson Pro', Georgia, serif;
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html {
-  scroll-behavior: smooth;
-  font-size: 18px;
-}
-
-body {
-  min-height: 100vh;
-  width: 100%;
-  overflow-x: hidden;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(204, 132, 48, 0.12), transparent 38rem),
-    radial-gradient(circle at 18% 18%, rgba(204, 132, 48, 0.10), transparent 22rem),
-    linear-gradient(180deg, #090604 0%, #120d08 48%, #070504 100%);
-  color: var(--text-primary);
-  font-family: var(--font-body);
-  font-weight: 300;
-  line-height: 1.75;
-  -webkit-font-smoothing: antialiased;
-}
-
-.bg-layer {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.bg-noise {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  mix-blend-mode: overlay;
-  opacity: 0.65;
-}
-
-.bg-vignette {
-  background:
-    radial-gradient(ellipse 70% 55% at 50% 30%, transparent 18%, rgba(3, 2, 1, 0.72) 100%),
-    linear-gradient(90deg, rgba(0,0,0,.44), transparent 28%, transparent 72%, rgba(0,0,0,.44));
-}
-
-.ember-glow {
-  position: fixed;
-  bottom: -22%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 680px;
-  height: 420px;
-  background: radial-gradient(ellipse at center bottom, rgba(214, 128, 39, 0.13) 0%, transparent 72%);
-  pointer-events: none;
-  z-index: 0;
-  animation: emberpulse 8s ease-in-out infinite;
-}
-
-@keyframes emberpulse {
-  0%, 100% { opacity: 0.45; transform: translateX(-50%) scale(1); }
-  50% { opacity: 0.85; transform: translateX(-50%) scale(1.08); }
-}
-
-section, main {
-  position: relative;
-  z-index: 1;
-}
-
-.reveal {
-  opacity: 1;
-  transform: none;
-  transition: opacity 0.9s ease, transform 0.9s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: none;
-}
-
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: .55rem;
-  padding: .82rem 1.65rem;
-  border: 1px solid rgba(84, 45, 18, .38);
-  background: rgba(255, 232, 170, .16);
-  color: #2b1b0d;
-  font-family: var(--font-body);
-  font-size: .86rem;
-  font-weight: 500;
-  letter-spacing: .11em;
-  text-transform: lowercase;
-  text-decoration: none;
-  cursor: pointer;
-  box-shadow: 0 8px 24px rgba(58, 28, 8, .16);
-  transition: transform .28s ease, background .28s ease, border-color .28s ease;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  background: rgba(255, 232, 170, .25);
-  border-color: rgba(84, 45, 18, .6);
-}
-
-.hero {
-  min-height: 100svh;
-  display: grid;
-  place-items: center;
-  padding: 2rem 1rem;
-}
-
-.hero-scroll-hint {
-  position: absolute;
-  bottom: 1.25rem;
-  left: 50%;
-  transform: translateX(-50%);
-  color: rgba(232, 201, 154, .55);
-  font-size: .72rem;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-}
-
-.hero-pergamino {
-  width: min(94vw, 760px);
-  min-height: min(92svh, 900px);
-  display: grid;
-  place-items: center;
-  background-image: url("pergamino-farol.jpeg");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: drop-shadow(0 28px 60px rgba(0,0,0,.68));
-}
-
-.hero-contenido {
-  width: min(70%, 460px);
-  margin-left: 8%;
-  margin-top: 4%;
-  text-align: center;
-  color: var(--ink);
-  text-shadow: 0 1px 0 rgba(255, 232, 170, .22);
-}
-
-.hero-eyebrow,
-.section-mini,
-.audio-mini {
-  font-size: .72rem;
-  letter-spacing: .27em;
-  text-transform: uppercase;
-  color: rgba(72, 42, 18, .72);
-  margin-bottom: 1rem;
-}
-
-.hero-title {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 7.6vw, 5rem);
-  font-weight: 400;
-  line-height: .96;
-  letter-spacing: -.03em;
-  color: #211207;
-}
-
-.hero-title em {
-  font-style: italic;
-  color: #4a2a10;
-}
-
-.hero-subtitle {
-  margin: 1.2rem auto 1.55rem;
-  max-width: 350px;
-  color: rgba(42, 25, 12, .78);
-  font-size: clamp(1rem, 2.5vw, 1.15rem);
-  line-height: 1.55;
-}
-
-.site-main {
-  background: linear-gradient(180deg, rgba(13,9,5,.4), rgba(7,5,3,.82));
-}
-
-.intro-muestra {
-  padding: clamp(3.5rem, 8vw, 6rem) 1.25rem 2rem;
-  text-align: center;
-  scroll-margin-top: 0;
-}
-
-.intro-inner {
-  max-width: 680px;
-  margin: 0 auto;
-}
-
-.intro-inner .section-mini {
-  color: rgba(232, 201, 154, .55);
-}
-
-.intro-inner h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 300;
-  color: var(--amber-pale);
-  line-height: 1.1;
-  margin-bottom: 1rem;
-}
-
-.intro-inner p {
-  color: var(--text-secondary);
-  font-size: clamp(1rem, 2.3vw, 1.15rem);
-  line-height: 1.7;
-}
-
-.muestra-paginas {
-  width: 100%;
-  max-width: 100vw;
-  overflow-x: hidden;
-  padding: 1rem 1rem clamp(4rem, 8vw, 6rem);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(1.5rem, 4vw, 2.8rem);
-}
-
-.muestra-pagina {
-  width: min(100%, 610px);
-  margin: 0 auto;
-  pointer-events: none;
-}
-
-.muestra-pagina img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 0;
-  filter: drop-shadow(0 18px 42px rgba(0,0,0,.62));
-  user-select: none;
-  -webkit-user-drag: none;
-  pointer-events: none;
-}
-
-.audio-seccion,
-.cta-final,
-.cierre {
-  padding: clamp(4.5rem, 10vw, 8rem) 1.2rem;
-}
-
-.audio-inner,
-.cta-card,
-.cierre-inner {
-  max-width: 760px;
-  margin: 0 auto;
-}
-
-.audio-inner {
-  max-width: 560px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.audio-mini {
-  color: rgba(232, 201, 154, .55);
-}
-
-.audio-icono {
-  color: var(--amber-pale);
-  opacity: .8;
-  margin-bottom: 1.1rem;
-  animation: breathe 4s ease-in-out infinite;
-}
-
-@keyframes breathe {
-  0%, 100% { opacity: .55; transform: scale(1); }
-  50% { opacity: .95; transform: scale(1.06); }
-}
-
-.audio-texto {
-  font-family: var(--font-display);
-  font-size: clamp(1.3rem, 3vw, 1.75rem);
-  font-style: italic;
-  color: var(--amber-pale);
-  margin-bottom: 1.5rem;
-}
-
-.custom-player {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  width: min(100%, 440px);
-  padding: 1rem 1.25rem;
-  background: rgba(255, 231, 173, .045);
-  border: 1px solid rgba(200, 150, 90, .18);
-  box-shadow: 0 18px 40px rgba(0,0,0,.24);
-}
-
-.play-pause-btn {
-  flex-shrink: 0;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: 1px solid rgba(200, 150, 90, .35);
-  background: transparent;
-  color: var(--amber-pale);
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  transition: transform .2s, background .3s;
-}
-
-.play-pause-btn:hover {
-  transform: scale(1.05);
-  background: rgba(200, 150, 90, .12);
-}
-
-.hidden { display: none; }
-
-.progress-wrap {
-  flex: 1;
-  cursor: pointer;
-  padding: 8px 0;
-}
-
-.progress-track {
-  height: 2px;
-  background: rgba(200, 150, 90, .18);
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, var(--amber-dim), var(--amber-pale));
-  transition: width .1s linear;
-}
-
-.volume-wrap {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  gap: .35rem;
-  color: rgba(232, 201, 154, .65);
-}
-
-.volumen-slider {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 58px;
-  height: 2px;
-  background: rgba(200, 150, 90, .22);
-  outline: none;
-  cursor: pointer;
-}
-
-.volumen-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--amber-pale);
-}
-
-.volumen-slider::-moz-range-thumb {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--amber-pale);
-  border: none;
-}
-
-.audio-nota {
-  margin-top: .7rem;
-  font-size: .76rem;
-  letter-spacing: .14em;
-  text-transform: lowercase;
-  color: rgba(232, 201, 154, .42);
-}
-
-.cta-card {
-  text-align: center;
-  padding: clamp(2rem, 5vw, 3.5rem);
-  border: 1px solid rgba(200, 150, 90, .18);
-  background:
-    radial-gradient(circle at 50% 0%, rgba(200, 150, 90, .10), transparent 16rem),
-    rgba(255, 231, 173, .035);
-  box-shadow: 0 28px 60px rgba(0,0,0,.28);
-}
-
-.cta-card .section-mini {
-  color: rgba(232, 201, 154, .55);
-}
-
-.cta-card h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 300;
-  color: var(--amber-pale);
-  line-height: 1.1;
-  margin-bottom: 1rem;
-}
-
-.cta-card p {
-  max-width: 560px;
-  margin: 0 auto 1.5rem;
-  color: var(--text-secondary);
-  font-size: clamp(1rem, 2.2vw, 1.15rem);
-}
-
-.cta-lista {
-  list-style: none;
-  display: grid;
-  gap: .5rem;
-  margin: 1.5rem auto 2rem;
-  color: var(--text-primary);
-}
-
-.cta-lista li::before {
-  content: "·";
-  color: var(--amber-pale);
-  margin-right: .4rem;
-}
-
-.btn-hotmart {
-  color: var(--amber-pale);
-  background: transparent;
-  border-color: rgba(200, 150, 90, .35);
-  box-shadow: none;
-}
-
-.btn-hotmart:hover {
-  background: rgba(200, 150, 90, .11);
-}
-
-.cta-nota {
-  margin-top: 1rem !important;
-  font-size: .84rem !important;
-  color: rgba(232, 201, 154, .42) !important;
-}
-
-.cierre {
-  text-align: center;
-  padding-bottom: 6rem;
-}
-
-.cierre-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-}
-
-.cierre-texto {
-  font-family: var(--font-display);
-  font-size: clamp(1.35rem, 3.5vw, 2.1rem);
-  color: var(--text-secondary);
-  line-height: 1.55;
-}
-
-.cierre-texto em {
-  color: var(--amber-pale);
-  font-style: italic;
-}
-
-.btn-volver {
-  display: inline-flex;
-  align-items: center;
-  color: rgba(232, 201, 154, .48);
-  text-decoration: none;
-  font-size: .8rem;
-  letter-spacing: .18em;
-  text-transform: lowercase;
-  transition: color .25s, transform .25s;
-}
-
-.btn-volver:hover {
-  color: var(--amber-pale);
-  transform: translateY(-3px);
-}
-
-::selection {
-  background: rgba(86, 48, 18, .28);
-  color: #160d06;
-}
-
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #090604; }
-::-webkit-scrollbar-thumb { background: rgba(200, 150, 90, .28); border-radius: 10px; }
-
-:focus-visible {
-  outline: 1px solid rgba(232, 201, 154, .6);
-  outline-offset: 4px;
-}
-
-@media (max-width: 700px) {
-  html,
-  body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden !important;
-    font-size: 16px;
-  }
-
-  .bg-layer,
-  .ember-glow,
-  section,
-  main,
-  .site-main {
-    max-width: 100vw;
-    overflow-x: hidden !important;
-  }
-
-  .hero {
-    min-height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0.7rem 0.75rem 2.5rem;
-  }
-
-  .hero-pergamino {
-    width: calc(100vw - 24px) !important;
-    max-width: 390px !important;
-    min-height: 575px;
-    margin: 0 auto !important;
-    background-size: 100% 100% !important;
-    background-position: center !important;
-    background-repeat: no-repeat;
-    transform: none !important;
-    filter: drop-shadow(0 18px 36px rgba(0,0,0,.58));
-    overflow: hidden;
-  }
-
-  .hero-contenido {
-    width: 66%;
-    max-width: 250px;
-    margin: 0 auto !important;
-    padding-top: 7.2rem;
-    transform: translateX(0);
-  }
-
-  .hero-eyebrow {
-    font-size: .54rem;
-    letter-spacing: .18em;
-    margin-bottom: .65rem;
-  }
-
-  .hero-title {
-    font-size: clamp(2rem, 10vw, 2.75rem);
-    line-height: 1;
-  }
-
-  .hero-subtitle {
-    font-size: .9rem;
-    line-height: 1.38;
-    margin: .85rem auto 1rem;
-  }
-
-  .btn-primary {
-    padding: .68rem .9rem;
-    font-size: .72rem;
-    letter-spacing: .08em;
-  }
-
-  .hero-scroll-hint {
-    position: static;
-    transform: none;
-    text-align: center;
-    margin-top: -1.45rem;
-    width: 100%;
-  }
-
-  .intro-muestra {
-    padding: 3rem 1.15rem 1rem;
-  }
-
-  .muestra-paginas {
-    padding-left: .65rem;
-    padding-right: .65rem;
-    gap: 1.35rem;
-  }
-
-  .muestra-pagina {
-    width: min(100%, 390px);
-  }
-
-  .audio-seccion,
-  .cta-final,
-  .cierre {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .custom-player {
-    width: 100%;
-    max-width: 350px;
-    gap: .7rem;
-  }
-
-  .volume-wrap {
-    display: none;
-  }
-
-  .cta-card {
-    padding: 2rem 1.1rem;
-  }
-}
-
-@media (max-width: 370px) {
-  .hero-pergamino {
-    min-height: 540px;
-  }
-
-  .hero-contenido {
-    width: 68%;
-    padding-top: 6.7rem;
-  }
-/* FIX emergencia: que la portada se vea aunque falle la imagen */
-.reveal {
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-.reveal.visible {
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-.hero-pergamino {
-  background-color: #d8b77c !important;
-  background-image: url("pergamino-farol.jpeg");
-  border-radius: 18px;
-}
-
-.hero-contenido {
-  color: #211207 !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-.hero-title,
-.hero-title em,
-.hero-subtitle,
-.hero-eyebrow {
-  color: #211207 !important;
-  opacity: 1 !important;
-}
-  .muestra-paginas {
-    padding-left: .45rem;
-    padding-right: .45rem;
-  }
-}
-/* ==============================
-   SECCIÓN HERRAMIENTAS MUESTRA
-   ============================== */
-
-.herramientas-muestra {
-  width: min(1120px, calc(100% - 36px));
-  margin: 90px auto 40px;
-  padding: 58px 28px;
-  text-align: center;
-  position: relative;
-}
-
-.herramientas-muestra::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 34px;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(221, 177, 103, 0.16), transparent 42%),
-    linear-gradient(180deg, rgba(50, 34, 22, 0.48), rgba(24, 15, 10, 0.26));
-  border: 1px solid rgba(226, 198, 148, 0.14);
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.22),
-    inset 0 0 70px rgba(224, 167, 79, 0.04);
-  z-index: -1;
-}
-
-.herramientas-muestra .etiqueta {
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  font-size: 0.76rem;
-  color: rgba(234, 207, 159, 0.78);
-  margin-bottom: 16px;
-}
-
-.herramientas-muestra h2 {
-  max-width: 820px;
-  margin: 0 auto 24px;
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(2.15rem, 5vw, 4.4rem);
-  font-weight: 400;
-  line-height: 0.98;
-  color: rgba(255, 240, 211, 0.96);
-}
-
-.herramientas-muestra > p:not(.etiqueta):not(.cierre-herramientas) {
-  max-width: 760px;
-  margin: 0 auto 42px;
-  font-size: 1.08rem;
-  line-height: 1.75;
-  color: rgba(241, 221, 186, 0.84);
-}
-
-.tarjetas-herramientas {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  margin: 42px auto 0;
-}
-
-.tarjeta-herramienta {
-  position: relative;
-  overflow: hidden;
-  min-height: 310px;
-  padding: 34px 28px 30px;
-  border-radius: 26px;
-  text-align: left;
-  background:
-    linear-gradient(180deg, rgba(84, 55, 31, 0.46), rgba(30, 19, 13, 0.58)),
-    radial-gradient(circle at 20% 0%, rgba(230, 183, 105, 0.14), transparent 38%);
-  border: 1px solid rgba(233, 199, 139, 0.18);
-  box-shadow:
-    0 22px 55px rgba(0, 0, 0, 0.26),
-    inset 0 0 45px rgba(255, 214, 146, 0.035);
-  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
-}
-
-.tarjeta-herramienta::before {
-  content: "";
-  position: absolute;
-  top: -80px;
-  right: -80px;
-  width: 160px;
-  height: 160px;
-  border-radius: 999px;
-  background: rgba(236, 183, 98, 0.12);
-  filter: blur(8px);
-}
-
-.tarjeta-herramienta:hover {
-  transform: translateY(-6px);
-  border-color: rgba(236, 203, 145, 0.34);
-  box-shadow:
-    0 30px 70px rgba(0, 0, 0, 0.34),
-    0 0 34px rgba(214, 151, 68, 0.08);
-}
-
-.tarjeta-herramienta span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  margin-bottom: 22px;
-  border-radius: 999px;
-  background: rgba(232, 190, 116, 0.12);
-  border: 1px solid rgba(232, 190, 116, 0.18);
-  color: rgba(245, 217, 166, 0.78);
-  font-size: 0.74rem;
-  letter-spacing: 0.12em;
-}
-
-.tarjeta-herramienta h3 {
-  margin: 0 0 14px;
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1.75rem;
-  font-weight: 500;
-  line-height: 1.08;
-  color: rgba(255, 239, 208, 0.96);
-}
-
-.tarjeta-herramienta p {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.68;
-  color: rgba(238, 216, 180, 0.8);
-}
-
-.cierre-herramientas {
-  max-width: 780px;
-  margin: 38px auto 0 !important;
-  font-style: italic;
-  font-size: 1.08rem;
-  line-height: 1.7;
-  color: rgba(241, 221, 186, 0.78);
-}
-
-/* ==============================
-   MEJORA CTA FINAL
-   ============================== */
-
-.cta-final {
-  margin-top: 70px;
-}
-
-.cta-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.cta-card::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(241, 185, 91, 0.16), transparent 38%),
-    radial-gradient(circle at 100% 100%, rgba(255, 222, 168, 0.08), transparent 36%);
-  pointer-events: none;
-}
-
-.cta-card > * {
-  position: relative;
-  z-index: 1;
-}
-
-.cta-lista {
-  display: grid;
-  gap: 12px;
-  max-width: 540px;
-  margin: 28px auto 34px;
-  padding: 0;
-  list-style: none;
-}
-
-.cta-lista li {
-  padding: 13px 16px;
-  border-radius: 16px;
-  background: rgba(255, 222, 168, 0.07);
-  border: 1px solid rgba(236, 203, 145, 0.13);
-  color: rgba(243, 223, 189, 0.88);
-}
-
-.cta-lista li::before {
-  content: "✦";
-  margin-right: 9px;
-  color: rgba(238, 190, 111, 0.84);
-}
-
-.btn-hotmart {
-  box-shadow:
-    0 16px 42px rgba(0, 0, 0, 0.28),
-    0 0 28px rgba(231, 173, 86, 0.12);
-}
-
-/* ==============================
-   RESPONSIVE
-   ============================== */
-
-@media (max-width: 900px) {
-  .herramientas-muestra {
-    margin: 70px auto 30px;
-    padding: 44px 20px;
-  }
-
-  .tarjetas-herramientas {
-    grid-template-columns: 1fr;
-    max-width: 560px;
-  }
-
-  .tarjeta-herramienta {
-    min-height: auto;
-    text-align: center;
-  }
-
-  .tarjeta-herramienta span {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-@media (max-width: 520px) {
-  .herramientas-muestra {
-    width: min(100% - 24px, 1120px);
-    padding: 38px 16px;
-    border-radius: 26px;
-  }
-
-  .herramientas-muestra h2 {
-    font-size: clamp(2rem, 12vw, 3rem);
-  }
-
-  .herramientas-muestra > p:not(.etiqueta):not(.cierre-herramientas),
-  .cierre-herramientas {
-    font-size: 1rem;
-  }
-
-  .tarjeta-herramienta {
-    padding: 30px 22px;
-    border-radius: 22px;
-  }
-
-  .tarjeta-herramienta h3 {
-    font-size: 1.55rem;
-  }
-}
-/* ==============================
-   VISOR EBOOK INTERACTIVO
-   ============================== */
-
-.visor-ebook {
-  width: min(1120px, calc(100% - 36px));
-  margin: 40px auto 80px;
-  padding: 54px 24px 46px;
-  text-align: center;
-  position: relative;
-}
-
-.visor-ebook::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 34px;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(221, 177, 103, 0.15), transparent 42%),
-    linear-gradient(180deg, rgba(50, 34, 22, 0.42), rgba(20, 13, 9, 0.24));
-  border: 1px solid rgba(226, 198, 148, 0.13);
-  box-shadow:
-    0 28px 80px rgba(0, 0, 0, 0.24),
-    inset 0 0 70px rgba(224, 167, 79, 0.035);
-  z-index: -1;
-}
-
-.visor-ebook-header {
-  max-width: 760px;
-  margin: 0 auto 34px;
-}
-
-.visor-ebook-header h2 {
-  margin: 0 0 16px;
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(2rem, 4.5vw, 4rem);
-  font-weight: 400;
-  line-height: 1;
-  color: rgba(255, 240, 211, 0.96);
-}
-
-.visor-ebook-header p {
-  margin: 0 auto;
-  font-size: 1.07rem;
-  line-height: 1.7;
-  color: rgba(241, 221, 186, 0.82);
-}
-
-.libro-demo {
-  position: relative;
-  display: grid;
-  grid-template-columns: 58px minmax(0, 1fr) 58px;
-  align-items: center;
-  gap: 18px;
-  max-width: 760px;
-  margin: 0 auto;
-}
-
-.libro-marco {
-  position: relative;
-  width: 100%;
-  max-width: 560px;
-  margin: 0 auto;
-  aspect-ratio: 0.72 / 1;
-  perspective: 1400px;
-  border-radius: 18px;
-  background:
-    linear-gradient(90deg, rgba(255, 225, 171, 0.1), rgba(50, 28, 15, 0.18)),
-    rgba(20, 13, 9, 0.34);
-  box-shadow:
-    0 34px 80px rgba(0, 0, 0, 0.38),
-    0 0 0 1px rgba(234, 205, 151, 0.16),
-    inset 18px 0 36px rgba(0, 0, 0, 0.18);
-  overflow: hidden;
-}
-
-.libro-marco::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 48%;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.18), transparent);
-  pointer-events: none;
-  z-index: 4;
-}
-
-.libro-pagina {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transform: rotateY(10deg) translateX(18px);
-  transform-origin: left center;
-  transition:
-    opacity 0.32s ease,
-    transform 0.52s ease,
-    filter 0.52s ease;
-  backface-visibility: hidden;
-  pointer-events: none;
-}
-
-.libro-pagina.activa {
-  opacity: 1;
-  transform: rotateY(0deg) translateX(0);
-  filter: brightness(1);
-  pointer-events: auto;
-  z-index: 2;
-}
-
-.libro-pagina.sale-izquierda {
-  opacity: 0;
-  transform: rotateY(-72deg) translateX(-34px);
-  filter: brightness(0.82);
-}
-
-.libro-pagina.sale-derecha {
-  opacity: 0;
-  transform: rotateY(72deg) translateX(34px);
-  filter: brightness(0.82);
-}
-
-.libro-pagina.entra-derecha {
-  animation: entraDerechaLibro 0.5s ease both;
-}
-
-.libro-pagina.entra-izquierda {
-  animation: entraIzquierdaLibro 0.5s ease both;
-}
-
-.libro-pagina img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-  background: rgba(20, 13, 9, 0.18);
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
-.libro-btn {
-  width: 52px;
-  height: 52px;
-  border-radius: 999px;
-  border: 1px solid rgba(236, 203, 145, 0.22);
-  background:
-    radial-gradient(circle at 50% 0%, rgba(245, 209, 144, 0.16), transparent 60%),
-    rgba(42, 27, 18, 0.72);
-  color: rgba(255, 235, 198, 0.92);
-  font-size: 2rem;
-  line-height: 1;
-  cursor: pointer;
-  box-shadow:
-    0 14px 35px rgba(0, 0, 0, 0.26),
-    inset 0 0 22px rgba(255, 214, 146, 0.04);
-  transition:
-    transform 0.25s ease,
-    opacity 0.25s ease,
-    border-color 0.25s ease;
-}
-
-.libro-btn:hover {
-  transform: translateY(-2px);
-  border-color: rgba(236, 203, 145, 0.42);
-}
-
-.libro-btn:disabled {
-  opacity: 0.28;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.contador-libro {
-  margin: 24px auto 0;
-  font-size: 0.9rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(236, 207, 157, 0.68);
-}
-
-/* Oculta la muestra vieja para que no aparezca dos veces */
-.muestra-paginas {
-  display: none;
-}
-
-@keyframes entraDerechaLibro {
-  from {
-    opacity: 0;
-    transform: rotateY(58deg) translateX(38px);
-    filter: brightness(0.82);
-  }
-
-  to {
-    opacity: 1;
-    transform: rotateY(0deg) translateX(0);
-    filter: brightness(1);
-  }
-}
-
-@keyframes entraIzquierdaLibro {
-  from {
-    opacity: 0;
-    transform: rotateY(-58deg) translateX(-38px);
-    filter: brightness(0.82);
-  }
-
-  to {
-    opacity: 1;
-    transform: rotateY(0deg) translateX(0);
-    filter: brightness(1);
-  }
-}
-
-@media (max-width: 760px) {
-  .visor-ebook {
-    width: min(100% - 24px, 1120px);
-    margin: 30px auto 65px;
-    padding: 42px 14px 36px;
-  }
-
-  .libro-demo {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .libro-marco {
-    max-width: 92vw;
-  }
-
-  .libro-btn {
-    position: absolute;
-    top: 50%;
-    z-index: 8;
-    transform: translateY(-50%);
-    width: 44px;
-    height: 44px;
-    font-size: 1.7rem;
-    background: rgba(35, 22, 15, 0.78);
-  }
-
-  .libro-btn:hover {
-    transform: translateY(-50%);
-  }
-
-  .libro-prev {
-    left: 4px;
-  }
-
-  .libro-next {
-    right: 4px;
-  }
-
-  .visor-ebook-header p {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 430px) {
-  .visor-ebook-header h2 {
-    font-size: 2.25rem;
-  }
-
-  .libro-marco {
-    border-radius: 14px;
-  }
-
-  .contador-libro {
-    font-size: 0.78rem;
-  }
-}
-.muestra-paginas {
-  display: none;
-}
-/* ==============================
-   PERGAMINOS EN HERRAMIENTAS
-   ============================== */
-
-.herramienta-imagen {
-  width: 100%;
-  margin-bottom: 24px;
-  border-radius: 20px;
-  overflow: hidden;
-  background: rgba(18, 11, 7, 0.28);
-  border: 1px solid rgba(233, 199, 139, 0.13);
-  box-shadow:
-    0 18px 42px rgba(0, 0, 0, 0.25),
-    inset 0 0 28px rgba(255, 214, 146, 0.035);
-}
-
-.herramienta-imagen img {
-  width: 100%;
-  display: block;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: center;
-  transition: transform 0.45s ease, filter 0.45s ease;
-}
-
-.tarjeta-herramienta:hover .herramienta-imagen img {
-  transform: scale(1.035);
-  filter: brightness(1.06);
-}
-
-.herramienta-contenido {
-  position: relative;
-  z-index: 2;
-}
-
-.tarjeta-herramienta {
-  display: flex;
-  flex-direction: column;
-}
-
-@media (max-width: 900px) {
-  .herramienta-imagen img {
-    aspect-ratio: 4 / 4.8;
-  }
-}
-/* ==============================
-   DETALLE LEÍBLE DE HERRAMIENTAS
-   ============================== */
-
-.herramienta-detalle {
-  margin-top: 22px;
-  border-top: 1px solid rgba(233, 199, 139, 0.14);
-  padding-top: 18px;
-}
-
-.herramienta-detalle summary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  list-style: none;
-  cursor: pointer;
-  padding: 12px 18px;
-  border-radius: 999px;
-  border: 1px solid rgba(236, 203, 145, 0.22);
-  background:
-    radial-gradient(circle at 50% 0%, rgba(245, 209, 144, 0.14), transparent 60%),
-    rgba(42, 27, 18, 0.72);
-  color: rgba(255, 235, 198, 0.92);
-  font-size: 0.92rem;
-  letter-spacing: 0.04em;
-  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
-}
-
-.herramienta-detalle summary::-webkit-details-marker {
-  display: none;
-}
-
-.herramienta-detalle summary::after {
-  content: "↓";
-  font-size: 0.9rem;
-  opacity: 0.8;
-}
-
-.herramienta-detalle[open] summary::after {
-  content: "↑";
-}
-
-.herramienta-detalle summary:hover {
-  transform: translateY(-2px);
-  border-color: rgba(236, 203, 145, 0.42);
-  background: rgba(67, 43, 27, 0.78);
-}
-
-.herramienta-texto {
-  margin-top: 20px;
-  padding: 22px 20px;
-  border-radius: 20px;
-  background:
-    linear-gradient(180deg, rgba(255, 230, 184, 0.07), rgba(35, 22, 15, 0.22)),
-    rgba(18, 11, 7, 0.22);
-  border: 1px solid rgba(233, 199, 139, 0.12);
-  text-align: left;
-}
-
-.herramienta-texto h4 {
-  margin: 18px 0 7px;
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1.28rem;
-  font-weight: 500;
-  color: rgba(255, 239, 208, 0.96);
-}
-
-.herramienta-texto h4:first-child {
-  margin-top: 0;
-}
-
-.herramienta-texto p {
-  margin: 0;
-  font-size: 0.98rem;
-  line-height: 1.65;
-  color: rgba(238, 216, 180, 0.82);
-}
-
-@media (max-width: 900px) {
-  .herramienta-texto {
-    text-align: center;
-  }
-}
-/* ==============================
-   AJUSTE PREVIEW PERGAMINOS
-   ============================== */
-
-.herramienta-imagen {
-  margin-bottom: 26px;
-}
-
-.herramienta-link {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  border-radius: 20px;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.herramienta-link::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.02) 0%,
-      rgba(0, 0, 0, 0.08) 42%,
-      rgba(18, 11, 7, 0.72) 100%
-    );
-  opacity: 1;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.ver-pergamino {
-  position: absolute;
-  left: 50%;
-  bottom: 22px;
-  transform: translateX(-50%);
-  z-index: 4;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: max-content;
-  max-width: calc(100% - 34px);
-  padding: 11px 18px;
-  border-radius: 999px;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(245, 209, 144, 0.18), transparent 65%),
-    rgba(30, 19, 12, 0.88);
-  border: 1px solid rgba(236, 203, 145, 0.36);
-  color: rgba(255, 236, 202, 0.98);
-  font-size: 0.86rem;
-  line-height: 1;
-  letter-spacing: 0.03em;
-  white-space: nowrap;
-  opacity: 1;
-  box-shadow:
-    0 12px 28px rgba(0, 0, 0, 0.34),
-    0 0 24px rgba(226, 168, 82, 0.10);
-  pointer-events: none;
-}
-
-.ver-pergamino::after {
-  content: "↗";
-  margin-left: 8px;
-  font-size: 0.9rem;
-  opacity: 0.85;
-}
-
-.herramienta-link:hover img {
-  transform: scale(1.035);
-  filter: brightness(1.06);
-}
-
-.herramienta-link:hover .ver-pergamino {
-  background:
-    radial-gradient(circle at 50% 0%, rgba(245, 209, 144, 0.24), transparent 65%),
-    rgba(48, 30, 18, 0.94);
-  border-color: rgba(236, 203, 145, 0.55);
-}
-
-.descargar-pergamino {
-  display: none !important;
-}
-/* ==============================
-   AJUSTE HERO MÁS LIMPIO
-   ============================== */
-
-.hero-contenido {
-  max-width: 620px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-.hero-eyebrow {
-  margin-bottom: 26px;
-  font-size: 0.78rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(72, 49, 29, 0.62);
-}
-
-.hero-title {
-  max-width: 560px;
-  margin: 0 auto 18px;
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(3.4rem, 7vw, 6.6rem);
-  font-weight: 400;
-  line-height: 0.92;
-  letter-spacing: -0.035em;
-  color: rgba(39, 24, 11, 0.94);
-}
-
-.hero-title em {
-  font-style: normal;
-}
-
-.hero-frase {
-  max-width: 520px;
-  margin: 0 auto 30px;
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(1.8rem, 3.3vw, 3rem);
-  font-weight: 400;
-  line-height: 1.05;
-  color: rgba(64, 39, 18, 0.82);
-}
-
-.hero-subtitle {
-  max-width: 500px;
-  margin: 0 auto 34px;
-  font-size: clamp(1.05rem, 1.7vw, 1.22rem);
-  line-height: 1.65;
-  color: rgba(61, 39, 23, 0.74);
-}
-
-.hero-subtitle strong {
-  font-weight: 500;
-}
-
-.hero .btn-primary {
-  padding: 15px 30px;
-  border-radius: 999px;
-  background: rgba(98, 62, 28, 0.16);
-  border: 1px solid rgba(82, 49, 20, 0.22);
-  color: rgba(38, 24, 12, 0.88);
-  letter-spacing: 0.12em;
-  box-shadow:
-    0 14px 34px rgba(59, 35, 13, 0.12),
-    inset 0 0 18px rgba(255, 238, 190, 0.12);
-}
-
-.hero .btn-primary:hover {
-  background: rgba(98, 62, 28, 0.24);
-  border-color: rgba(82, 49, 20, 0.34);
-  transform: translateY(-2px);
-}
-
-@media (max-width: 700px) {
-  .hero-contenido {
-    padding: 0 18px;
-  }
-
-  .hero-title {
-    font-size: clamp(3rem, 15vw, 4.8rem);
-    line-height: 0.96;
-  }
-
-  .hero-frase {
-    font-size: clamp(1.55rem, 8vw, 2.3rem);
-    margin-bottom: 24px;
-  }
-
-  .hero-subtitle {
-    font-size: 1rem;
-    line-height: 1.58;
-  }
-
-  .hero-eyebrow {
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-  }
-}
-/* ==============================
-CUENTO MUESTRA
-============================== */
-
-.cuento-muestra {
-width: min(980px, calc(100% - 36px));
-margin: 80px auto 40px;
-padding: 0;
-}
-
-.cuento-card {
-position: relative;
-overflow: hidden;
-padding: 58px 34px;
-border-radius: 34px;
-text-align: center;
-background:
-radial-gradient(circle at 50% 0%, rgba(221, 177, 103, 0.14), transparent 42%),
-linear-gradient(180deg, rgba(52, 34, 22, 0.56), rgba(20, 13, 9, 0.34));
-border: 1px solid rgba(226, 198, 148, 0.14);
-box-shadow:
-0 30px 80px rgba(0, 0, 0, 0.24),
-inset 0 0 70px rgba(224, 167, 79, 0.035);
-}
-
-.cuento-card h2 {
-max-width: 760px;
-margin: 0 auto 22px;
-font-family: "Cormorant Garamond", serif;
-font-size: clamp(2.1rem, 4.6vw, 4.2rem);
-font-weight: 400;
-line-height: 1;
-color: rgba(255, 240, 211, 0.96);
-}
-
-.cuento-intro,
-.cuento-cierre {
-max-width: 760px;
-margin: 0 auto 34px;
-font-size: 1.06rem;
-line-height: 1.72;
-color: rgba(241, 221, 186, 0.82);
-}
-
-.cuento-preview {
-max-width: 720px;
-margin: 36px auto;
-padding: 36px 30px;
-border-radius: 26px;
-text-align: left;
-background:
-linear-gradient(180deg, rgba(255, 230, 184, 0.07), rgba(35, 22, 15, 0.28)),
-rgba(18, 11, 7, 0.28);
-border: 1px solid rgba(233, 199, 139, 0.14);
-box-shadow:
-0 22px 55px rgba(0, 0, 0, 0.22),
-inset 0 0 45px rgba(255, 214, 146, 0.035);
-}
-
-.cuento-etiqueta {
-margin: 0 0 14px;
-text-transform: uppercase;
-letter-spacing: 0.18em;
-font-size: 0.74rem;
-color: rgba(234, 207, 159, 0.68);
-}
-
-.cuento-preview h3 {
-margin: 0 0 22px;
-font-family: "Cormorant Garamond", serif;
-font-size: clamp(2rem, 3.4vw, 3rem);
-font-weight: 500;
-line-height: 1.05;
-color: rgba(255, 239, 208, 0.96);
-}
-
-.cuento-preview p {
-margin: 0 0 18px;
-font-size: 1.08rem;
-line-height: 1.75;
-color: rgba(238, 216, 180, 0.84);
-}
-
-.cuento-detalle {
-margin-top: 24px;
-border-top: 1px solid rgba(233, 199, 139, 0.14);
-padding-top: 20px;
-}
-
-.cuento-detalle summary {
-display: inline-flex;
-align-items: center;
-justify-content: center;
-cursor: pointer;
-list-style: none;
-padding: 12px 18px;
-border-radius: 999px;
-border: 1px solid rgba(236, 203, 145, 0.22);
-background: rgba(42, 27, 18, 0.72);
-color: rgba(255, 235, 198, 0.92);
-}
-
-.cuento-detalle summary::-webkit-details-marker {
-display: none;
-}
-
-.cuento-detalle summary::after {
-content: "↓";
-margin-left: 8px;
-}
-
-.cuento-detalle[open] summary::after {
-content: "↑";
-}
-
-.cuento-texto {
-margin-top: 22px;
-}
-
-@media (max-width: 700px) {
-.cuento-card {
-padding: 44px 20px;
-}
-
-.cuento-preview {
-padding: 30px 22px;
-text-align: center;
-}
-
-.cuento-preview p {
-font-size: 1rem;
-}
-}
-/* ==============================
-   RESET LIMPIO HERRAMIENTAS
-   ============================== */
-
-.herramientas-muestra {
-  width: min(1120px, calc(100% - 36px));
-  margin: 90px auto 50px;
-  padding: 56px 28px;
-  text-align: center;
-  position: relative;
-}
-
-.tarjetas-herramientas {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  margin-top: 42px;
-  align-items: stretch;
-}
-
-.tarjeta-herramienta {
-  display: flex;
-  flex-direction: column;
-  padding: 28px;
-  border-radius: 28px;
-  overflow: hidden;
-  background:
-    linear-gradient(180deg, rgba(84, 55, 31, 0.42), rgba(25, 16, 11, 0.62));
-  border: 1px solid rgba(233, 199, 139, 0.18);
-  box-shadow:
-    0 24px 58px rgba(0, 0, 0, 0.28),
-    inset 0 0 45px rgba(255, 214, 146, 0.035);
-  text-align: left;
-}
-
-.herramienta-preview {
-  position: relative;
-  display: block;
-  width: 100%;
-  margin-bottom: 28px;
-  border-radius: 20px;
-  overflow: hidden;
-  text-decoration: none;
-  background: rgba(18, 11, 7, 0.3);
-  border: 1px solid rgba(233, 199, 139, 0.14);
-  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.26);
-}
-
-.herramienta-preview img {
-  width: 100%;
-  display: block;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: center;
-  transition: transform 0.35s ease, filter 0.35s ease;
-}
-
-.herramienta-preview::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0) 45%,
-      rgba(18, 11, 7, 0.72) 100%
-    );
-  pointer-events: none;
-}
-
-.herramienta-preview span {
-  position: absolute;
-  left: 50%;
-  bottom: 18px;
-  transform: translateX(-50%);
-  z-index: 2;
-  width: max-content;
-  max-width: calc(100% - 32px);
-  padding: 11px 18px;
-  border-radius: 999px;
-  background: rgba(31, 20, 13, 0.92);
-  border: 1px solid rgba(236, 203, 145, 0.38);
-  color: rgba(255, 236, 202, 0.98);
-  font-size: 0.86rem;
-  line-height: 1;
-  letter-spacing: 0.03em;
-  white-space: nowrap;
-  box-shadow:
-    0 12px 28px rgba(0, 0, 0, 0.34),
-    0 0 24px rgba(226, 168, 82, 0.10);
-}
-
-.herramienta-preview span::after {
-  content: " ↗";
-  opacity: 0.85;
-}
-
-.herramienta-preview:hover img {
-  transform: scale(1.035);
-  filter: brightness(1.06);
-}
-
-.herramienta-contenido {
-  position: relative;
-  z-index: 1;
-}
-
-.numero-herramienta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  margin-bottom: 20px;
-  border-radius: 999px;
-  background: rgba(232, 190, 116, 0.12);
-  border: 1px solid rgba(232, 190, 116, 0.18);
-  color: rgba(245, 217, 166, 0.78);
-  font-size: 0.78rem;
-}
-
-.tarjeta-herramienta h3 {
-  margin: 0 0 16px;
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1.85rem;
-  font-weight: 500;
-  line-height: 1.08;
-  color: rgba(255, 239, 208, 0.96);
-}
-
-.tarjeta-herramienta p {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.68;
-  color: rgba(238, 216, 180, 0.82);
-}
-
-/* Apaga estilos viejos que estaban ensuciando */
-.herramienta-detalle,
-.herramienta-texto,
-.descargar-pergamino,
-.herramienta-link,
-.ver-pergamino {
-  display: none !important;
-}
-
-@media (max-width: 900px) {
-  .tarjetas-herramientas {
-    grid-template-columns: 1fr;
-    max-width: 560px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .tarjeta-herramienta {
-    text-align: center;
-  }
-
-  .numero-herramienta {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-/* Ajuste final landing venta pública */
-
-.muestra-paginas {
-  display: none !important;
-}
-
-.cuento-muestra {
-  width: min(920px, calc(100% - 36px));
-  margin: 70px auto 20px;
-  padding: 0;
-}
-
-.cuento-card {
-  position: relative;
-  padding: clamp(2rem, 5vw, 3.5rem);
-  border-radius: 30px;
-  text-align: center;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(221, 177, 103, 0.14), transparent 42%),
-    linear-gradient(180deg, rgba(50, 34, 22, 0.46), rgba(20, 13, 9, 0.28));
-  border: 1px solid rgba(226, 198, 148, 0.14);
-  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.24);
-}
-
-.cuento-card h2 {
-  max-width: 760px;
-  margin: 0 auto 1rem;
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(2rem, 5vw, 3.6rem);
-  font-weight: 400;
-  line-height: 1.02;
-  color: rgba(255, 240, 211, 0.96);
-}
-
-.cuento-intro,
-.cuento-cierre {
-  max-width: 680px;
-  margin: 0 auto 1.6rem;
-  font-size: 1.05rem;
-  line-height: 1.75;
-  color: rgba(241, 221, 186, 0.82);
-}
-
-.cuento-preview {
-  max-width: 720px;
-  margin: 2rem auto;
-  padding: clamp(1.4rem, 4vw, 2.2rem);
-  border-radius: 24px;
-  text-align: left;
-  background: rgba(255, 222, 168, 0.06);
-  border: 1px solid rgba(236, 203, 145, 0.13);
-}
-
-.cuento-etiqueta {
-  margin: 0 0 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 0.72rem;
-  color: rgba(238, 190, 111, 0.84);
-}
-
-.cuento-preview h3 {
-  margin: 0 0 1rem;
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  font-weight: 400;
-  color: rgba(255, 239, 208, 0.96);
-}
-
-.cuento-preview p {
-  margin: 0 0 1rem;
-  font-size: 1.05rem;
-  line-height: 1.75;
-  color: rgba(238, 216, 180, 0.84);
-}
-
-.cuento-detalle {
-  margin-top: 1.2rem;
-}
-
-.cuento-detalle summary {
-  cursor: pointer;
-  color: rgba(238, 190, 111, 0.95);
-  font-size: 0.95rem;
-  letter-spacing: 0.08em;
-}
-
-.cuento-texto {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(236, 203, 145, 0.13);
-}
-
-@media (max-width: 520px) {
-  .cuento-muestra {
-    width: min(100% - 24px, 920px);
-    margin-top: 50px;
-  }
-
-  .cuento-preview {
-    text-align: center;
-  }
-}
-/* Fondo con imagen para la sección del cuento */
-
-.cuento-card {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  background:
-    linear-gradient(180deg, rgba(24, 14, 9, 0.88), rgba(12, 8, 5, 0.92));
-}
-
-.cuento-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("fondo-cuento.png");
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  opacity: 0.20; /* probá entre 0.10 y 0.18 */
-  z-index: 0;
-  transform: scale(1.03);
-  filter: blur(1px);
-}
-
-.cuento-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(22, 13, 8, 0.30), rgba(10, 7, 5, 0.52)),
-    radial-gradient(circle at center, rgba(191, 133, 67, 0.10), transparent 60%);
-  z-index: 1;
-}
-
-.cuento-card > * {
-  position: relative;
-  z-index: 2;
-}
-/* Botón de ambiente dentro del hero */
-
-.btn-ambiente {
-  margin-top: 1rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
-  padding: 0.68rem 1rem;
-  border-radius: 999px;
-  border: 1px solid rgba(126, 86, 38, 0.32);
-  background: rgba(47, 28, 13, 0.16);
-  color: rgba(68, 43, 20, 0.84);
-  font-family: "Crimson Pro", serif;
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
-}
-
-.btn-ambiente:hover {
-  transform: translateY(-2px);
-  background: rgba(91, 59, 25, 0.18);
-  border-color: rgba(126, 86, 38, 0.48);
-}
-
-.btn-ambiente.activo {
-  background: rgba(91, 59, 25, 0.23);
-  border-color: rgba(126, 86, 38, 0.58);
-}
-
-@media (max-width: 520px) {
-  .btn-ambiente {
-    width: 100%;
-    max-width: 260px;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 0.9rem;
-  }
-}
-.pergamino-regalo {
-  max-width: 980px;
-  margin: 70px auto;
-  padding: 0 20px;
-}
-
-.pergamino-regalo-contenido {
-  background: rgba(28, 18, 12, 0.72);
-  border: 1px solid rgba(218, 184, 120, 0.28);
-  border-radius: 28px;
-  padding: 42px 30px;
-  text-align: center;
-  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(6px);
-}
-
-.etiqueta-regalo {
-  display: inline-block;
-  margin-bottom: 14px;
-  padding: 7px 16px;
-  border-radius: 999px;
-  background: rgba(218, 184, 120, 0.14);
-  color: #e4c98d;
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.pergamino-regalo h2 {
-  margin: 0 0 18px;
-  font-size: clamp(2rem, 5vw, 3.4rem);
-  font-family: "Cormorant Garamond", serif;
-  color: #f4e3bd;
-  font-weight: 500;
-}
-
-.pergamino-regalo p {
-  max-width: 680px;
-  margin: 0 auto 16px;
-  color: rgba(250, 235, 205, 0.88);
-  font-size: 1.08rem;
-  line-height: 1.7;
-}
-
-.pergamino-regalo .texto-suave {
-  color: rgba(250, 235, 205, 0.68);
-  font-style: italic;
-}
-
-.btn-pergamino-descarga {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 15px 28px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #d6a84f, #f0d58a);
-  color: #24150b;
-  text-decoration: none;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn-pergamino-descarga:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.42);
-}
-
-@media (max-width: 640px) {
-  .pergamino-regalo {
-    margin: 48px auto;
-  }
-
-  .pergamino-regalo-contenido {
-    padding: 32px 20px;
-    border-radius: 22px;
-  }
-
-  .btn-pergamino-descarga {
-    width: 100%;
-    max-width: 320px;
-  }
-}
-.lista-pergamino {
-  max-width: 620px;
-  margin: 24px auto 0;
-  padding: 0;
-  list-style: none;
-  text-align: left;
-}
-
-.lista-pergamino li {
-  position: relative;
-  margin-bottom: 12px;
-  padding-left: 28px;
-  color: rgba(250, 235, 205, 0.82);
-  font-family: "Crimson Pro", serif;
-  font-size: 1.08rem;
-  line-height: 1.55;
-}
-
-.lista-pergamino li::before {
-  content: "✦";
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: #e4c98d;
-  font-size: 0.95rem;
-}
-/* ================================
-   AJUSTE HERO PERGAMINO INICIAL
-   ================================ */
-
-body {
-  font-family: "Crimson Pro", serif;
-}
-
-.hero-title,
-.hero h1,
-.intro-title {
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0;
-  max-width: 92%;
-  font-family: "Cinzel", "Cormorant Garamond", serif;
-  font-weight: 500;
-  font-size: clamp(3.2rem, 6.2vw, 5.7rem);
-  line-height: 0.96;
-  letter-spacing: 0.01em;
-  color: rgba(45, 25, 12, 0.96);
-  text-align: center;
-  text-shadow: 0 1px 0 rgba(255, 236, 200, 0.2);
-}
-
-.hero-title span {
-  display: block;
-}
-
-.hero-subtitle,
-.hero .subtitle,
-.intro-subtitle {
-  margin: 34px auto 0;
-  max-width: 520px;
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  line-height: 1.08;
-  font-weight: 400;
-  color: rgba(78, 45, 24, 0.92);
-  text-align: center;
-}
-
-.hero-description,
-.hero .description,
-.intro-description {
-  margin: 28px auto 0;
-  max-width: 540px;
-  font-family: "Crimson Pro", serif;
-  font-size: 1.22rem;
-  line-height: 1.8;
-  color: rgba(82, 55, 35, 0.9);
-  text-align: center;
-}
-
-/* BOTONES DEL HERO */
-
-.hero-actions,
-.intro-actions,
-.actions {
-  margin-top: 42px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-.hero-actions a,
-.hero-actions button,
-.intro-actions a,
-.intro-actions button,
-.actions a,
-.actions button,
-#playPauseBtn {
-  appearance: none;
-  min-height: 48px;
-  padding: 13px 24px;
-  border-radius: 999px;
-  border: 1px solid rgba(95, 58, 28, 0.34);
-  background: rgba(232, 202, 154, 0.48);
-  color: rgba(48, 27, 13, 0.96);
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1.12rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-  box-shadow: 0 10px 26px rgba(24, 13, 7, 0.22);
-  backdrop-filter: blur(5px);
-  cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-}
-
-.hero-actions a:hover,
-.hero-actions button:hover,
-.intro-actions a:hover,
-.intro-actions button:hover,
-.actions a:hover,
-.actions button:hover,
-#playPauseBtn:hover {
-  transform: translateY(-2px);
-  background: rgba(241, 219, 181, 0.68);
-  box-shadow: 0 14px 34px rgba(24, 13, 7, 0.3);
-}
-
-/* BOTÓN PRINCIPAL: ENTRAR A LA MUESTRA */
-
-.btn-primary,
-.btn-principal,
-#entrarMuestra {
-  background: rgba(226, 186, 112, 0.64) !important;
-  color: #2a170c !important;
-  border: 1px solid rgba(93, 54, 22, 0.38) !important;
-}
-
-/* BOTÓN DE LLUVIA */
-
-#playPauseBtn,
-.btn-audio,
-.btn-lluvia,
-.audio-button {
-  min-width: 170px;
-  background: rgba(222, 194, 151, 0.62) !important;
-  color: #3e2412 !important;
-  border: 1px solid rgba(83, 50, 25, 0.38) !important;
-}
-
-/* MENÚ SUPERIOR */
-
-header nav a,
-.nav a,
-.top-nav a {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 0.95rem;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: rgba(243, 222, 188, 0.76);
-}
-
-header nav a:hover,
-.nav a:hover,
-.top-nav a:hover {
-  color: rgba(255, 239, 211, 0.98);
-}
-
-/* AJUSTE GENERAL DEL PERGAMINO / HERO */
-
-.hero,
-.hero-section,
-.intro,
-.portada {
-  overflow: hidden;
-}
-
-.hero-content,
-.hero-card,
-.intro-content,
-.pergamino-content {
-  max-width: 760px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-/* MOBILE */
-
-@media (max-width: 768px) {
-  .hero-title,
-  .hero h1,
-  .intro-title {
-    font-size: clamp(2.6rem, 10vw, 4.1rem);
-    line-height: 0.98;
-    max-width: 96%;
-  }
-
-  .hero-subtitle,
-  .hero .subtitle,
-  .intro-subtitle {
-    margin-top: 28px;
-    font-size: clamp(1.7rem, 7vw, 2.4rem);
-    max-width: 92%;
-  }
-
-  .hero-description,
-  .hero .description,
-  .intro-description {
-    font-size: 1.05rem;
-    line-height: 1.65;
-    max-width: 92%;
-  }
-
-  .hero-actions,
-  .intro-actions,
-  .actions {
-    margin-top: 34px;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .hero-actions a,
-  .hero-actions button,
-  .intro-actions a,
-  .intro-actions button,
-  .actions a,
-  .actions button,
-  #playPauseBtn {
-    width: min(100%, 310px);
-  }
-}
-/* ================================
-   AJUSTE FINAL PORTADA PERGAMINO
-   ================================ */
-
-/* Paso 4: achicar título principal */
-.hero-title,
-.hero h1,
-.intro-title {
-  font-size: clamp(3rem, 5.6vw, 5.1rem) !important;
-  line-height: 0.98 !important;
-}
-
-/* Paso 5: hacer más visible el botón de lluvia */
-#playPauseBtn,
-.btn-audio,
-.btn-lluvia,
-.audio-button {
-  background: rgba(235, 207, 164, 0.78) !important;
-  color: #3e2412 !important;
-  border: 1px solid rgba(83, 50, 25, 0.45) !important;
-  box-shadow: 0 10px 26px rgba(24, 13, 7, 0.28) !important;
-}
-/* ==================================
-   ARREGLO URGENTE PORTADA RINCÓN
-   ================================== */
-
-/* Sacar estilo duro / mayúsculas del título */
-.hero-title,
-.hero h1,
-.intro-title {
-  font-family: "Cormorant Garamond", serif !important;
-  text-transform: none !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.01em !important;
-  color: rgba(48, 27, 13, 0.95) !important;
-  text-align: center !important;
-
-  font-size: clamp(3.2rem, 6vw, 5.8rem) !important;
-  line-height: 0.9 !important;
-
-  max-width: 620px !important;
-  margin: 35px auto 0 !important;
-
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-}
-
-/* Asegura que quede en 3 líneas lindas */
-.hero-title span {
-  display: block !important;
-}
-
-/* Subtítulo más chico y elegante */
-.hero-subtitle,
-.hero .subtitle,
-.intro-subtitle {
-  font-family: "Cormorant Garamond", serif !important;
-  font-size: clamp(1.9rem, 3.2vw, 2.65rem) !important;
-  line-height: 1.12 !important;
-  font-weight: 400 !important;
-  max-width: 460px !important;
-  margin: 28px auto 0 !important;
-  color: rgba(72, 43, 24, 0.9) !important;
-  text-align: center !important;
-}
-
-/* Texto de abajo más controlado */
-.hero-description,
-.hero .description,
-.intro-description {
-  font-family: "Crimson Pro", serif !important;
-  font-size: 1.22rem !important;
-  line-height: 1.65 !important;
-  max-width: 460px !important;
-  margin: 26px auto 0 !important;
-  color: rgba(78, 50, 31, 0.9) !important;
-  text-align: center !important;
-}
-
-/* Botones más visibles pero no gigantes */
-.hero-actions,
-.intro-actions,
-.actions {
-  margin-top: 34px !important;
-  display: flex !important;
-  justify-content: center !important;
-  gap: 12px !important;
-  flex-wrap: wrap !important;
-}
-
-.hero-actions a,
-.hero-actions button,
-.intro-actions a,
-.intro-actions button,
-.actions a,
-.actions button,
-#playPauseBtn {
-  font-family: "Crimson Pro", serif !important;
-  font-size: 1rem !important;
-  letter-spacing: 0.08em !important;
-  text-transform: lowercase !important;
-
-  padding: 13px 26px !important;
-  border-radius: 999px !important;
-
-  background: rgba(238, 210, 161, 0.72) !important;
-  color: #2f1b0e !important;
-  border: 1px solid rgba(91, 54, 24, 0.35) !important;
-  box-shadow: 0 8px 22px rgba(20, 10, 4, 0.22) !important;
-}
-
-/* Botón lluvia */
-#playPauseBtn,
-.btn-audio,
-.btn-lluvia,
-.audio-button {
-  background: rgba(226, 197, 151, 0.6) !important;
-  color: #3e2412 !important;
-  min-width: 155px !important;
-}
-
-/* Menú superior más suave */
-header nav a,
-.nav a,
-.top-nav a {
-  font-family: "Crimson Pro", serif !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.16em !important;
-  font-size: 0.82rem !important;
-  color: rgba(92, 63, 42, 0.65) !important;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .hero-title,
-  .hero h1,
-  .intro-title {
-    font-size: clamp(2.7rem, 12vw, 4rem) !important;
-    max-width: 92% !important;
-    margin-top: 28px !important;
-  }
-
-  .hero-subtitle,
-  .hero .subtitle,
-  .intro-subtitle {
-    font-size: clamp(1.6rem, 7vw, 2.25rem) !important;
-    max-width: 88% !important;
-  }
-
-  .hero-description,
-  .hero .description,
-  .intro-description {
-    font-size: 1.05rem !important;
-    max-width: 88% !important;
-  }
-
-  .hero-actions,
-  .intro-actions,
-  .actions {
-    flex-direction: column !important;
-    align-items: center !important;
-  }
-
-  .hero-actions a,
-  .hero-actions button,
-  .intro-actions a,
-  .intro-actions button,
-  .actions a,
-  .actions button,
-  #playPauseBtn {
-    width: min(100%, 300px) !important;
-  }
-}
-/* ================================
-   BOTÓN LLUVIA IGUAL AL PRINCIPAL
-   ================================ */
-
-#ambienteToggle,
-.btn-ambiente {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 8px !important;
-
-  min-height: 48px !important;
-  padding: 13px 24px !important;
-  border-radius: 999px !important;
-
-  background: rgba(226, 186, 112, 0.64) !important;
-  color: #2a170c !important;
-  border: 1px solid rgba(93, 54, 22, 0.38) !important;
-
-  font-family: "Cormorant Garamond", serif !important;
-  font-size: 1.12rem !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.04em !important;
-  text-decoration: none !important;
-  white-space: nowrap !important;
-
-  box-shadow: 0 10px 26px rgba(24, 13, 7, 0.22) !important;
-  backdrop-filter: blur(5px) !important;
-  cursor: pointer !important;
-  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease !important;
-
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-#ambienteToggle:hover,
-.btn-ambiente:hover {
-  transform: translateY(-2px) !important;
-  background: rgba(241, 219, 181, 0.68) !important;
-  box-shadow: 0 14px 34px rgba(24, 13, 7, 0.3) !important;
-}
-
-/* opcional cuando está activa */
-#ambienteToggle.activo {
-  background: rgba(235, 200, 132, 0.78) !important;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  #ambienteToggle,
-  .btn-ambiente {
-    width: min(100%, 310px) !important;
-    justify-content: center !important;
-  }
-}
-/* ================================
-   CORREGIR MAYÚSCULAS EN BOTONES
-   ================================ */
-
-.btn-primary,
-.btn-primary span,
-.btn-ambiente,
-#ambienteToggle,
-.btn-pergamino-descarga,
-.btn-hotmart,
-.btn-hotmart span,
-.hero-actions a,
-.hero-actions button,
-.intro-actions a,
-.intro-actions button,
-.actions a,
-.actions button {
-  text-transform: none !important;
-}
-
-/* Botón lluvia igual al principal pero con texto normal */
-#ambienteToggle,
-.btn-ambiente {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 8px !important;
-
-  min-height: 48px !important;
-  padding: 13px 24px !important;
-  border-radius: 999px !important;
-
-  background: rgba(226, 186, 112, 0.64) !important;
-  color: #2a170c !important;
-  border: 1px solid rgba(93, 54, 22, 0.38) !important;
-
-  font-family: "Cormorant Garamond", serif !important;
-  font-size: 1.12rem !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.04em !important;
-  white-space: nowrap !important;
-
-  box-shadow: 0 10px 26px rgba(24, 13, 7, 0.22) !important;
-  backdrop-filter: blur(5px) !important;
-}
-/* ================================
-   IGUALAR BOTONES HERO
-   Entrar a la muestra + lluvia
-   ================================ */
-
-#entrarMuestra,
-#ambienteToggle {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 10px !important;
-
-  width: 230px !important;
-  min-width: 230px !important;
-  height: 56px !important;
-  padding: 0 24px !important;
-
-  border-radius: 999px !important;
-  background: rgba(226, 186, 112, 0.72) !important;
-  color: #2a170c !important;
-  border: 1px solid rgba(93, 54, 22, 0.38) !important;
-
-  font-family: "Cormorant Garamond", serif !important;
-  font-size: 1.08rem !important;
-  font-weight: 600 !important;
-  line-height: 1 !important;
-  letter-spacing: 0.08em !important;
-  text-transform: none !important;
-  text-decoration: none !important;
-  white-space: nowrap !important;
-
-  box-shadow: 0 10px 26px rgba(24, 13, 7, 0.22) !important;
-  backdrop-filter: blur(5px) !important;
-  cursor: pointer !important;
-}
-
-/* Texto interno del botón principal */
-#entrarMuestra span {
-  font-family: "Cormorant Garamond", serif !important;
-  font-size: 1.08rem !important;
-  font-weight: 600 !important;
-  line-height: 1 !important;
-  letter-spacing: 0.08em !important;
-  text-transform: none !important;
-}
-
-/* Iconos */
-#entrarMuestra svg {
-  width: 16px !important;
-  height: 16px !important;
-  flex-shrink: 0 !important;
-}
-
-/* Botón lluvia */
-#ambienteToggle {
-  font-size: 1.08rem !important;
-}
-
-/* Hover igual para ambos */
-#entrarMuestra:hover,
-#ambienteToggle:hover {
-  transform: translateY(-2px) !important;
-  background: rgba(241, 219, 181, 0.78) !important;
-  box-shadow: 0 14px 34px rgba(24, 13, 7, 0.3) !important;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  #entrarMuestra,
-  #ambienteToggle {
-    width: 235px !important;
-    min-width: 235px !important;
-    height: 54px !important;
-    font-size: 1.04rem !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-
-  #entrarMuestra span {
-    font-size: 1.04rem !important;
-  }
-}
-/* ================================
-   AJUSTE FINAL BOTONES HERO
-   Más chicos, más finos y en tono
-   ================================ */
-
-#entrarMuestra,
-#ambienteToggle {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 8px !important;
-
-  width: 205px !important;
-  min-width: 205px !important;
-  max-width: 205px !important;
-  height: 45px !important;
-
-  padding: 0 18px !important;
-  border-radius: 999px !important;
-
-  background: rgba(224, 185, 112, 0.58) !important;
-  color: #2d190c !important;
-  border: 1px solid rgba(91, 54, 24, 0.28) !important;
-
-  font-family: "Cormorant Garamond", serif !important;
-  font-size: 0.95rem !important;
-  font-weight: 500 !important;
-  line-height: 1 !important;
-  letter-spacing: 0.08em !important;
-  text-transform: none !important;
-  text-decoration: none !important;
-  white-space: nowrap !important;
-
-  box-shadow: 0 7px 18px rgba(24, 13, 7, 0.18) !important;
-  backdrop-filter: blur(4px) !important;
-  cursor: pointer !important;
-}
-
-/* Texto interno del botón Entrar */
-#entrarMuestra span {
-  font-family: "Cormorant Garamond", serif !important;
-  font-size: 0.95rem !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.08em !important;
-  text-transform: none !important;
-}
-
-/* Flecha del botón entrar */
-#entrarMuestra svg {
-  width: 14px !important;
-  height: 14px !important;
-  flex-shrink: 0 !important;
-}
-
-/* Botón lluvia más sobrio */
-#ambienteToggle {
-  font-size: 0.95rem !important;
-}
-
-/* Hover suave */
-#entrarMuestra:hover,
-#ambienteToggle:hover {
-  transform: translateY(-1px) !important;
-  background: rgba(232, 199, 139, 0.68) !important;
-  box-shadow: 0 10px 22px rgba(24, 13, 7, 0.24) !important;
-}
-
-/* Cuando la lluvia está activa */
-#ambienteToggle.activo {
-  background: rgba(220, 178, 104, 0.68) !important;
-}
-
-/* Separación entre botones */
-#entrarMuestra {
-  margin-bottom: 12px !important;
-}
-
-#ambienteToggle {
-  margin-top: 0 !important;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  #entrarMuestra,
-  #ambienteToggle {
-    width: 205px !important;
-    min-width: 205px !important;
-    max-width: 205px !important;
-    height: 44px !important;
-
-    font-size: 0.92rem !important;
-    padding: 0 16px !important;
-    letter-spacing: 0.07em !important;
-
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-
-  #entrarMuestra span {
-    font-size: 0.92rem !important;
-    letter-spacing: 0.07em !important;
-  }
-
-  #entrarMuestra svg {
-    width: 13px !important;
-    height: 13px !important;
-  }
-}
-/* ================================
-   SECCIÓN QUÉ ES RINCÓN
-   ================================ */
-
-.que-es-rincon {
-  width: 100%;
-  padding: 80px 20px 40px;
-  box-sizing: border-box;
-}
-
-.que-es-card {
-  width: min(92vw, 980px);
-  margin: 0 auto;
-  padding: 48px 36px;
-  border-radius: 28px;
-  background: rgba(24, 15, 10, 0.72);
-  border: 1px solid rgba(218, 184, 120, 0.24);
-  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.34);
-  text-align: center;
-  box-sizing: border-box;
-}
-
-.que-es-card h2 {
-  max-width: 760px;
-  margin: 12px auto 24px;
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(2.4rem, 5vw, 4.2rem);
-  font-weight: 500;
-  line-height: 1.05;
-  color: #f4e3bd;
-}
-
-.que-es-card p {
-  max-width: 760px;
-  margin: 0 auto 18px;
-  font-family: "Crimson Pro", serif;
-  font-size: 1.16rem;
-  line-height: 1.75;
-  color: rgba(250, 235, 205, 0.82);
-}
-
-.rincon-incluye {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-  max-width: 820px;
-  margin: 34px auto;
-  text-align: left;
-}
-
-.rincon-incluye div {
-  padding: 22px 22px;
-  border-radius: 20px;
-  background: rgba(218, 184, 120, 0.09);
-  border: 1px solid rgba(218, 184, 120, 0.16);
-}
-
-.rincon-incluye span {
-  display: block;
-  margin-bottom: 10px;
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1.15rem;
-  letter-spacing: 0.12em;
-  color: #e4c98d;
-}
-
-.rincon-incluye p {
-  margin: 0;
-  font-size: 1.06rem;
-  line-height: 1.55;
-  color: rgba(250, 235, 205, 0.78);
-}
-
-.que-es-cierre {
-  margin-top: 26px !important;
-  font-style: italic;
-  color: rgba(250, 235, 205, 0.68) !important;
-}
-
-@media (max-width: 768px) {
-  .que-es-rincon {
-    padding: 58px 16px 28px;
-  }
-
-  .que-es-card {
-    padding: 36px 22px;
-    border-radius: 24px;
-  }
-
-  .rincon-incluye {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .que-es-card p {
-    font-size: 1.06rem;
-    line-height: 1.65;
-  }
-}
-/* ================================
-   HERO NUEVO - RINCÓN
-   Pegar al final del style.css
-================================ */
-
-.hero {
-  min-height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 0.7rem 0.75rem 2.5rem;
-}
-
-.hero-pergamino {
-  width: calc(100vw - 24px) !important;
-  max-width: 430px !important;
-  min-height: 690px;
-  margin: 0 auto !important;
-  background-color: #d8b77c !important;
-  background-image: url("pergamino-farol.jpeg");
-  background-size: 100% 100% !important;
-  background-position: center !important;
-  background-repeat: no-repeat;
-  transform: none !important;
-  filter: drop-shadow(0 18px 36px rgba(0,0,0,.58));
-  border-radius: 18px;
-  overflow: hidden;
-}
-
-.hero-contenido {
-  width: 68%;
-  max-width: 285px;
-  margin: 0 auto !important;
-  padding-top: 6.8rem;
-  transform: translateX(0);
-  color: #211207 !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-.hero-title,
-.hero-title em,
-.hero-subtitle,
-.hero-eyebrow {
-  color: #211207 !important;
-  opacity: 1 !important;
-}
-
-.hero-eyebrow {
-  font-size: .54rem;
-  letter-spacing: .18em;
-  margin-bottom: .55rem;
-}
-
-.hero-title {
-  font-size: clamp(1.85rem, 8.8vw, 2.55rem);
-  line-height: .98;
-}
-
-.hero-subtitle {
-  font-size: .95rem;
-  line-height: 1.28;
-  margin: .75rem auto .7rem;
-  font-weight: 600;
-}
-
-.hero-description {
-  font-size: .72rem;
-  line-height: 1.45;
-  margin: 0 auto .7rem;
-}
-
-.hero-description-main {
-  max-width: 255px;
-}
-
-.hero-benefits {
-  display: grid;
-  gap: .38rem;
-  margin: .75rem auto .85rem;
-}
-
-.hero-benefit {
-  padding: .46rem .55rem;
-  border: 1px solid rgba(65, 36, 13, .18);
-  border-radius: 12px;
-  background: rgba(255, 239, 199, .34);
-  box-shadow: 0 4px 12px rgba(60, 30, 8, .08);
-}
-
-.hero-benefit-title {
-  display: block;
-  font-size: .68rem;
-  line-height: 1.15;
-  font-weight: 700;
-  letter-spacing: .02em;
-  color: #211207;
-}
-
-.hero-benefit-text {
-  display: block;
-  margin-top: .16rem;
-  font-size: .58rem;
-  line-height: 1.25;
-  color: rgba(33, 18, 7, .82);
-}
-
-.hero-actions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .48rem;
-  margin-top: .4rem;
-}
-
-.btn-primary {
-  padding: .68rem .95rem;
-  font-size: .69rem;
-  letter-spacing: .08em;
-  line-height: 1;
-}
-
-.btn-pergamino-descarga {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 230px;
-  padding: .58rem .78rem;
-  border-radius: 999px;
-  font-size: .6rem;
-  line-height: 1.2;
-  text-align: center;
-  text-decoration: none;
-  color: #211207;
-  background: rgba(255, 246, 220, .42);
-  border: 1px solid rgba(65, 36, 13, .22);
-}
-
-.btn-ambiente {
-  display: block;
-  margin: .65rem auto 0;
-  padding: .45rem .72rem;
-  border-radius: 999px;
-  border: 1px solid rgba(65, 36, 13, .2);
-  background: rgba(255, 246, 220, .28);
-  color: #211207;
-  font-size: .58rem;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.hero-note {
-  margin: .55rem auto 0;
-  font-size: .52rem;
-  line-height: 1.3;
-  color: rgba(33, 18, 7, .72);
-  text-align: center;
-}
-
-.hero-scroll-hint {
-  position: static;
-  transform: none;
-  text-align: center;
-  margin-top: -1.3rem;
-  width: 100%;
-}
-
-/* Que las animaciones no oculten el hero si falla el reveal */
-.reveal {
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-.reveal.visible {
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-/* Ajuste para pantallas chicas */
-@media (max-width: 370px) {
-  .hero-pergamino {
-    min-height: 660px;
-  }
-
-  .hero-contenido {
-    width: 70%;
-    max-width: 250px;
-    padding-top: 6.45rem;
-  }
-
-  .hero-title {
-    font-size: clamp(1.7rem, 8vw, 2.25rem);
-  }
-
-  .hero-subtitle {
-    font-size: .84rem;
-    line-height: 1.25;
-    margin-top: .6rem;
-  }
-
-  .hero-description {
-    font-size: .66rem;
-    line-height: 1.38;
-  }
-
-  .hero-benefit {
-    padding: .38rem .48rem;
-  }
-
-  .hero-benefit-title {
-    font-size: .62rem;
-  }
-
-  .hero-benefit-text {
-    font-size: .54rem;
-  }
-
-  .btn-primary {
-    padding: .6rem .8rem;
-    font-size: .64rem;
-  }
-
-  .btn-pergamino-descarga {
-    max-width: 210px;
-    font-size: .55rem;
-    padding: .5rem .65rem;
-  }
-
-  .btn-ambiente {
-    font-size: .54rem;
-  }
-
-  .hero-note {
-    font-size: .49rem;
-  }
-}
-/* =========================================
-   FIX HERO RESPONSIVE - PC + CELULAR
-   Pegar al final del style.css
-========================================= */
-
-.hero {
-  min-height: auto !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  padding: 1.1rem 1rem 2.8rem !important;
-}
-
-.hero-pergamino {
-  width: min(92vw, 560px) !important;
-  max-width: 560px !important;
-  min-height: 640px !important;
-  margin: 0 auto !important;
-  background-color: #d8b77c !important;
-  background-image: url("pergamino-farol.jpeg") !important;
-  background-size: 100% 100% !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  border-radius: 18px !important;
-  overflow: hidden !important;
-  transform: none !important;
-  filter: drop-shadow(0 18px 36px rgba(0,0,0,.58)) !important;
-}
-
-.hero-contenido {
-  width: 58% !important;
-  max-width: 320px !important;
-  margin: 0 auto !important;
-  padding-top: 5.7rem !important;
-  transform: translateX(0) !important;
-  color: #211207 !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  text-align: center !important;
-}
-
-.hero-title,
-.hero-title em,
-.hero-subtitle,
-.hero-eyebrow {
-  color: #211207 !important;
-  opacity: 1 !important;
-}
-
-.hero-eyebrow {
-  font-size: .52rem !important;
-  letter-spacing: .18em !important;
-  margin-bottom: .42rem !important;
-}
-
-.hero-title {
-  font-size: clamp(2rem, 3.4vw, 2.55rem) !important;
-  line-height: .92 !important;
-  letter-spacing: -0.03em !important;
-  margin: 0 auto !important;
-  max-width: 100% !important;
-}
-
-.hero-subtitle {
-  font-size: 1.04rem !important;
-  line-height: 1.2 !important;
-  margin: .7rem auto .5rem !important;
-  font-weight: 600 !important;
-}
-
-.hero-description {
-  font-size: .72rem !important;
-  line-height: 1.38 !important;
-  margin: 0 auto .58rem !important;
-}
-
-.hero-description-main {
-  max-width: 270px !important;
-}
-
-.hero-benefits {
-  display: grid !important;
-  gap: .32rem !important;
-  margin: .58rem auto .72rem !important;
-}
-
-.hero-benefit {
-  padding: .36rem .48rem !important;
-  border: 1px solid rgba(65, 36, 13, .18) !important;
-  border-radius: 999px !important;
-  background: rgba(255, 239, 199, .32) !important;
-  box-shadow: 0 4px 12px rgba(60, 30, 8, .07) !important;
-}
-
-.hero-benefit-title {
-  display: block !important;
-  font-size: .62rem !important;
-  line-height: 1.1 !important;
-  font-weight: 700 !important;
-  color: #211207 !important;
-}
-
-.hero-benefit-text {
-  display: none !important;
-}
-
-.hero-actions {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  gap: .45rem !important;
-  margin-top: .2rem !important;
-}
-
-.btn-primary {
-  padding: .64rem .9rem !important;
-  font-size: .66rem !important;
-  letter-spacing: .08em !important;
-  line-height: 1 !important;
-  white-space: nowrap !important;
-}
-
-.btn-pergamino-descarga {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  max-width: 220px !important;
-  padding: .58rem .78rem !important;
-  border-radius: 999px !important;
-  font-size: .6rem !important;
-  line-height: 1.15 !important;
-  text-align: center !important;
-  text-decoration: none !important;
-  color: #211207 !important;
-  background: rgba(255, 246, 220, .5) !important;
-  border: 1px solid rgba(65, 36, 13, .22) !important;
-}
-
-.btn-ambiente {
-  display: block !important;
-  margin: .48rem auto 0 !important;
-  padding: .42rem .7rem !important;
-  border-radius: 999px !important;
-  border: 1px solid rgba(65, 36, 13, .2) !important;
-  background: rgba(255, 246, 220, .28) !important;
-  color: #211207 !important;
-  font-size: .55rem !important;
-  line-height: 1 !important;
-  cursor: pointer !important;
-}
-
-.hero-note {
-  display: none !important;
-}
-
-.hero-scroll-hint {
-  position: static !important;
-  transform: none !important;
-  text-align: center !important;
-  margin-top: -1.2rem !important;
-  width: 100% !important;
-}
-
-/* Celular */
-@media (max-width: 768px) {
-  .hero {
-    padding: .7rem .75rem 2.5rem !important;
-  }
-
-  .hero-pergamino {
-    width: calc(100vw - 24px) !important;
-    max-width: 390px !important;
-    min-height: 610px !important;
-  }
-
-  .hero-contenido {
-    width: 68% !important;
-    max-width: 255px !important;
-    padding-top: 6.55rem !important;
-  }
-
-  .hero-title {
-    font-size: clamp(1.85rem, 8vw, 2.35rem) !important;
-    line-height: .95 !important;
-  }
-
-  .hero-subtitle {
-    font-size: .9rem !important;
-    line-height: 1.24 !important;
-    margin: .6rem auto .45rem !important;
-  }
-
-  .hero-description {
-    font-size: .65rem !important;
-    line-height: 1.34 !important;
-    margin-bottom: .5rem !important;
-  }
-
-  .hero-benefits {
-    gap: .28rem !important;
-    margin: .48rem auto .62rem !important;
-  }
-
-  .hero-benefit {
-    padding: .32rem .44rem !important;
-  }
-
-  .hero-benefit-title {
-    font-size: .57rem !important;
-  }
-
-  .btn-primary {
-    padding: .58rem .76rem !important;
-    font-size: .6rem !important;
-  }
-
-  .btn-pergamino-descarga {
-    max-width: 200px !important;
-    padding: .5rem .66rem !important;
-    font-size: .54rem !important;
-  }
-
-  .btn-ambiente {
-    font-size: .51rem !important;
-    padding: .38rem .62rem !important;
-  }
-}
-
-/* Celulares muy chicos */
-@media (max-width: 370px) {
-  .hero-pergamino {
-    min-height: 585px !important;
-  }
-
-  .hero-contenido {
-    width: 70% !important;
-    max-width: 245px !important;
-    padding-top: 6.25rem !important;
-  }
-
-  .hero-title {
-    font-size: 1.75rem !important;
-  }
-
-  .hero-subtitle {
-    font-size: .82rem !important;
-  }
-
-  .hero-description {
-    font-size: .6rem !important;
-  }
-
-  .hero-benefit-title {
-    font-size: .52rem !important;
-  }
-}
-/* =========================================
-   HERO LIMPIO - BOTONES UNIFICADOS
-   Pegar al final del style.css
-========================================= */
-
-.hero-contenido {
-  padding-top: 5.6rem !important;
-}
-
-.hero-title {
-  font-size: clamp(2.05rem, 4.2vw, 3.45rem) !important;
-  line-height: .94 !important;
-  letter-spacing: -0.035em !important;
-  max-width: 100% !important;
-  margin: 0 auto !important;
-}
-
-.hero-subtitle {
-  max-width: 270px !important;
-  margin: .78rem auto .75rem !important;
-  font-size: 1rem !important;
-  line-height: 1.22 !important;
-  font-weight: 600 !important;
-  color: #211207 !important;
-}
-
-.hero-description,
-.hero-description-main,
-.hero-note {
-  display: none !important;
-}
-
-.hero-benefits {
-  display: grid !important;
-  gap: .34rem !important;
-  width: 100% !important;
-  max-width: 235px !important;
-  margin: .65rem auto .85rem !important;
-}
-
-.hero-benefit {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  min-height: 25px !important;
-  padding: .32rem .55rem !important;
-  border-radius: 999px !important;
-  background: rgba(255, 246, 220, .48) !important;
-  border: 1px solid rgba(73, 39, 13, .18) !important;
-  box-shadow: 0 3px 10px rgba(60, 30, 8, .07) !important;
-}
-
-.hero-benefit-title {
-  display: block !important;
-  font-size: .61rem !important;
-  line-height: 1.1 !important;
-  font-weight: 700 !important;
-  color: #211207 !important;
-  text-align: center !important;
-}
-
-.hero-benefit-text {
-  display: none !important;
-}
-
-.hero-actions,
-.hero-actions-clean {
-  display: grid !important;
-  gap: .55rem !important;
-  width: 100% !important;
-  max-width: 225px !important;
-  margin: 0 auto !important;
-}
-
-.hero-action-btn,
-.hero-action-btn:visited,
-.btn-ambiente {
-  width: 100% !important;
-  min-height: 38px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: .62rem .85rem !important;
-  border-radius: 999px !important;
-  background: rgba(255, 246, 220, .66) !important;
-  border: 1px solid rgba(73, 39, 13, .24) !important;
-  color: #211207 !important;
-  text-decoration: none !important;
-  text-align: center !important;
-  font-family: inherit !important;
-  font-size: .63rem !important;
-  font-weight: 700 !important;
-  line-height: 1.15 !important;
-  letter-spacing: .04em !important;
-  cursor: pointer !important;
-  box-shadow: 0 8px 18px rgba(56, 28, 7, .12) !important;
-  white-space: normal !important;
-  overflow: visible !important;
-}
-
-.hero-action-main {
-  background: rgba(255, 238, 188, .78) !important;
-  border-color: rgba(73, 39, 13, .32) !important;
-}
-
-.hero-action-btn span,
-.btn-ambiente span {
-  display: block !important;
-  width: 100% !important;
-  text-align: center !important;
-}
-
-.btn-ambiente {
-  margin: 0 !important;
-}
-
-.hero-scroll-hint {
-  margin-top: -1.1rem !important;
-}
-
-/* CELULAR */
-@media (max-width: 768px) {
-  .hero-contenido {
-    padding-top: 6.2rem !important;
-  }
-
-  .hero-title {
-    font-size: clamp(1.9rem, 8vw, 2.45rem) !important;
-    line-height: .95 !important;
-  }
-
-  .hero-subtitle {
-    max-width: 230px !important;
-    font-size: .86rem !important;
-    line-height: 1.22 !important;
-    margin: .62rem auto .62rem !important;
-  }
-
-  .hero-benefits {
-    max-width: 215px !important;
-    gap: .3rem !important;
-    margin: .5rem auto .72rem !important;
-  }
-
-  .hero-benefit {
-    min-height: 23px !important;
-    padding: .28rem .48rem !important;
-  }
-
-  .hero-benefit-title {
-    font-size: .55rem !important;
-  }
-
-  .hero-actions,
-  .hero-actions-clean {
-    max-width: 205px !important;
-    gap: .5rem !important;
-  }
-
-  .hero-action-btn,
-  .btn-ambiente {
-    min-height: 35px !important;
-    padding: .55rem .72rem !important;
-    font-size: .56rem !important;
-    line-height: 1.15 !important;
-  }
-}
-
-/* CELULAR MUY CHICO */
-@media (max-width: 370px) {
-  .hero-contenido {
-    padding-top: 6rem !important;
-  }
-
-  .hero-title {
-    font-size: 1.78rem !important;
-  }
-
-  .hero-subtitle {
-    font-size: .8rem !important;
-  }
-
-  .hero-benefit-title,
-  .hero-action-btn,
-  .btn-ambiente {
-    font-size: .52rem !important;
-  }
-}
-.hero-pergamino {
-  width: min(92vw, 560px) !important;
-  max-width: 560px !important;
-  min-height: 640px !important;
-  margin: 0 auto !important;
-
-  background-color: #d8b77c !important;
-  background-image: url("./pergamino-farol.png?v=2") !important;
-  background-size: 100% 100% !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-
-  border-radius: 18px !important;
-  overflow: hidden !important;
-  transform: none !important;
-  filter: drop-shadow(0 18px 36px rgba(0,0,0,.58)) !important;
-}
-
-@media (max-width: 768px) {
-  .hero-pergamino {
-    width: calc(100vw - 24px) !important;
-    max-width: 390px !important;
-    min-height: 610px !important;
-  }
-}
-
-@media (max-width: 370px) {
-  .hero-pergamino {
-    min-height: 585px !important;
-  }
-}
-/* BOTONES HERO UNIFORMES */
-.hero-actions-clean {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  width: 100%;
-  margin-top: 28px;
-}
-
-.hero-actions-clean .hero-action-btn {
-  width: min(100%, 370px);
-  min-height: 58px;
-  padding: 0 28px;
-  border-radius: 999px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1.18rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  line-height: 1.1;
-  text-align: center;
-
-  white-space: nowrap;
-}
-
-.hero-actions-clean .hero-action-btn span {
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  letter-spacing: inherit;
-  line-height: inherit;
-}
-
-.hero-actions-clean .btn-ambiente {
-  width: min(100%, 370px);
-}
-
-@media (max-width: 480px) {
-  .hero-actions-clean .hero-action-btn {
-    width: min(100%, 330px);
-    min-height: 56px;
-    font-size: 1.02rem;
-    letter-spacing: 0.06em;
-    padding: 0 20px;
-  }
-}
-/* =========================
-   ARREGLO HERO: TÍTULO + BOTONES
+<!DOCTYPE html>
+<html lang="es"> 
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLC4N5CQHX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-BLC4N5CQHX");
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Rincón Entre Pensamientos</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Crimson+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- ESTILOS NUEVOS: CUENTO GRATIS EN PERGAMINO + NARRADOR -->
+  <style>
+    .cuento-gratis-pergamino {
+      position: relative;
+      padding: 78px 18px 86px;
+      overflow: hidden;
+    }
+
+    .cuento-gratis-pergamino::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(255, 199, 112, 0.13), transparent 44%),
+        radial-gradient(circle at 20% 80%, rgba(255, 182, 85, 0.08), transparent 36%);
+      pointer-events: none;
+    }
+
+    .cuento-gratis-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1040px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .cuento-gratis-intro {
+      max-width: 760px;
+      margin: 0 auto 34px;
+    }
+
+    .cuento-gratis-intro h2 {
+      margin: 10px 0 18px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 5vw, 3.45rem);
+      font-weight: 500;
+      line-height: 1.05;
+      color: #fff0c9;
+    }
+
+    .cuento-gratis-intro p {
+      margin: 0 auto 16px;
+      font-family: "Crimson Pro", serif;
+      font-size: clamp(1.08rem, 2.4vw, 1.24rem);
+      line-height: 1.75;
+      color: rgba(247, 225, 185, 0.88);
+    }
+
+    .cuento-audio-box {
+      max-width: 760px;
+      margin: 26px auto 34px;
+      padding: 16px 18px;
+      border: 1px solid rgba(255, 219, 153, 0.22);
+      border-radius: 22px;
+      background: rgba(22, 14, 8, 0.46);
+      box-shadow: 0 18px 52px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .btn-narrador {
+      appearance: none;
+      border: 1px solid rgba(255, 226, 170, 0.42);
+      border-radius: 999px;
+      padding: 12px 24px;
+      background: linear-gradient(180deg, rgba(255, 221, 153, 0.17), rgba(122, 73, 28, 0.22));
+      color: #fff1cb;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.18rem;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-narrador:hover {
+      transform: translateY(-1px);
+      border-color: rgba(255, 226, 170, 0.68);
+      background: linear-gradient(180deg, rgba(255, 221, 153, 0.24), rgba(122, 73, 28, 0.28));
+    }
+
+    .btn-narrador.activo {
+      border-color: rgba(255, 210, 130, 0.75);
+      box-shadow: 0 0 26px rgba(255, 181, 82, 0.16);
+    }
+
+    .cuento-volumen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      color: rgba(247, 225, 185, 0.86);
+      font-family: "Crimson Pro", serif;
+      font-size: 1.03rem;
+    }
+
+    .cuento-volumen input[type="range"] {
+      width: min(220px, 48vw);
+      accent-color: #d9a75f;
+      cursor: pointer;
+    }
+
+    .pergamino-cuento-imagen {
+      max-width: 980px;
+      margin: 0 auto;
+      border-radius: 24px;
+      overflow: hidden;
+      filter: drop-shadow(0 24px 70px rgba(0, 0, 0, 0.55));
+    }
+
+    .pergamino-cuento-imagen img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cuento-gratis-cierre {
+      max-width: 760px;
+      margin: 34px auto 0;
+      font-family: "Crimson Pro", serif;
+      font-size: clamp(1.05rem, 2.4vw, 1.22rem);
+      line-height: 1.75;
+      color: rgba(247, 225, 185, 0.86);
+    }
+
+    .cuento-gratis-cierre a {
+      color: #fff0c9;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 240, 201, 0.38);
+    }
+
+    .cuento-gratis-cierre a:hover {
+      border-bottom-color: rgba(255, 240, 201, 0.8);
+    }
+
+    @media (max-width: 640px) {
+      .cuento-gratis-pergamino {
+        padding: 58px 12px 68px;
+      }
+
+      .cuento-audio-box {
+        margin-top: 22px;
+        padding: 14px 12px;
+        gap: 14px;
+      }
+
+      .btn-narrador {
+        width: 100%;
+        max-width: 260px;
+      }
+
+      .cuento-volumen {
+        width: 100%;
+      }
+
+      .pergamino-cuento-imagen {
+        border-radius: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="bg-layer bg-noise" aria-hidden="true"></div>
+<div class="bg-layer bg-vignette" aria-hidden="true"></div>
+<div class="bg-layer polvo-dorado" aria-hidden="true"></div>
+<div class="bg-layer lluvia-visual" aria-hidden="true"></div>
+<div class="ember-glow" aria-hidden="true"></div>
+
+  <!-- AUDIOS -->
+  <audio id="audioAmbiente" src="./ambiente-lluvia.mp3" preload="auto" loop></audio>
+  <audio id="sonidoPagina" src="./pasar-pagina.mp3" preload="auto"></audio>
+  <audio id="audioNarrador" src="./narracion-cuento-tren.mp3" preload="metadata"></audio>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-pergamino reveal">
+      <div class="hero-contenido">
+        <p class="hero-eyebrow">lectura inmersiva · calma · herramientas</p>
+
+        <h1 class="hero-title">
+          <span>Rincón</span>
+          <span>entre</span>
+          <span>Pensamientos</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Cuando la cabeza no se apaga, entrá un momento al Rincón.
+        </p>
+
+        <div class="hero-benefits" aria-label="Qué encontrás en Rincón entre Pensamientos">
+          <div class="hero-benefit">
+            <span class="hero-benefit-title">Lecturas para pausar la mente</span>
+          </div>
+
+          <div class="hero-benefit">
+            <span class="hero-benefit-title">Cuentos reflexivos</span>
+          </div>
+
+          <div class="hero-benefit">
+            <span class="hero-benefit-title">Herramientas simples</span>
+          </div>
+        </div>
+
+<div class="hero-actions hero-actions-clean" id="heroActions">
+  <a href="#lectura" class="hero-action-btn hero-action-main" id="entrarMuestra" data-ga-event="click_muestra_gratis">
+    <span>Leer muestra</span>
+  </a>
+
+  <a href="#pergamino-gratis" class="hero-action-btn" id="botonCuentoHero" data-ga-event="click_pergamino_gratis">
+  <span>Necesito bajar el ruido</span>
+</a>
+
+  <button class="hero-action-btn btn-ambiente" id="ambienteToggle" type="button" data-ga-event="click_activar_lluvia">
+    <span>☂ Activar lluvia para leer</span>
+  </button>
+</div>
+
+        <p class="hero-note">
+          Muestra gratis · audio ambiente · cuentos reflexivos · ejercicios simples
+        </p>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">deslizá para entrar</div>
+  </section>
+
+ 
+
+    <!-- CUENTO GRATIS EN PERGAMINO -->
+    <section class="cuento-gratis-pergamino reveal" id="cuento-gratis">
+      <div class="cuento-gratis-inner">
+        <div class="cuento-gratis-intro">
+          <p class="section-mini">cuentos</p>
+
+          <h2>El tren que no esperaba ser perfecto</h2>
+
+          <p>
+            Una lectura breve para esos momentos en los que uno sigue esperando sentirse listo,
+            mientras la vida pasa como trenes que no siempre avisan dos veces.
+          </p>
+
+          <p>
+            Podés leerla directamente en el pergamino o activar el narrador para acompañar la pausa.
+          </p>
+        </div>
+
+        <div class="cuento-audio-box" aria-label="Controles del narrador del cuento gratis">
+          <button
+            class="btn-narrador"
+            id="narradorToggle"
+            type="button"
+            data-ga-event="click_narrador_cuento"
+          >
+            Narrador
+          </button>
+
+          <label class="cuento-volumen" for="volumenNarrador">
+            <span>Volumen</span>
+            <input
+              id="volumenNarrador"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.82"
+              aria-label="Volumen del narrador"
+            >
+          </label>
+        </div>
+
+<div class="pergamino-cuento-imagen">
+  <img
+    src="pergamino-cuento-tren.png"
+    alt="Cuento gratis del Rincón: El tren que no esperaba ser perfecto"
+    loading="lazy"
+    decoding="async"
+  />
+</div>
+
+        <p class="cuento-gratis-cierre">
+          Si esta historia te dejó una pregunta dando vueltas, la experiencia completa sigue por ese mismo camino:
+          lecturas, cuentos, audio ambiente y herramientas simples para volver a vos cuando el ruido se vuelve demasiado.
+          <br>
+          <a href="#ebook">Ver experiencia completa</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- INTRO MUESTRA -->
+    <section class="intro-muestra" id="lectura">
+      <div class="intro-inner reveal">
+        <p class="section-mini">muestra</p>
+
+        <h2>Abrí la puerta y quedate un momento leyendo las bases de este rincón</h2>
+
+        <p>
+          Leé una parte y fijate si te toca. Sentí si esta experiencia habla con ese lugar tuyo
+          que muchas veces no encuentra palabras. La versión completa suma lectura inmersiva,
+          audio ambiente, cuentos reflexivos y herramientas prácticas para esos momentos en los que no sabés cómo seguir.
+        </p>
+      </div>
+    </section>
+
+    <!-- VISOR INTERACTIVO -->
+    <section class="visor-ebook reveal" aria-label="Visor interactivo de muestra gratis">
+      <div class="visor-ebook-header">
+        <p class="section-mini">lectura interactiva</p>
+
+        <h2>Pasá las páginas como si entraras al libro</h2>
+
+        <p>
+          Usá los botones para recorrer la muestra, parte de la experiencia digital completa.
+          Un espacio privado en crecimiento, creado para quienes buscan leer, pausar y volver a escucharse.
+        </p>
+      </div>
+
+      <div class="libro-demo" id="libroDemo">
+        <button class="libro-btn libro-prev" type="button" aria-label="Página anterior">‹</button>
+
+        <div class="libro-marco">
+          <div class="libro-pagina activa">
+            <img src="./muestra/pagina-04.png" alt="Página 1 de la muestra" loading="eager" decoding="async" />
+          </div>
+
+          <div class="libro-pagina">
+            <img src="./muestra/pagina-05.png" alt="Página 2 de la muestra" loading="eager" decoding="async" />
+          </div>
+
+          <div class="libro-pagina">
+            <img src="./muestra/pagina-06.png" alt="Página 3 de la muestra" loading="eager" decoding="async" />
+          </div>
+
+          <div class="libro-pagina">
+            <img src="./muestra/pagina-07.png" alt="Página 4 de la muestra" loading="eager" decoding="async" />
+          </div>
+
+          <div class="libro-pagina">
+            <img src="./muestra/pagina-08.png" alt="Página 5 de la muestra" loading="eager" decoding="async" />
+          </div>
+
+          <div class="libro-pagina">
+            <img src="./muestra/pagina-09.png" alt="Página 6 de la muestra" loading="eager" decoding="async" />
+          </div>
+
+          <div class="libro-pagina">
+            <img src="./muestra/pagina-10.png" alt="Página 7 de la muestra" loading="eager" decoding="async" />
+          </div>
+
+          <div class="libro-pagina">
+            <img src="./muestra/pagina-11.png" alt="Página 8 de la muestra" loading="eager" decoding="async" />
+          </div>
+
+          <div class="libro-pagina">
+            <img src="./muestra/pagina-12.png" alt="Página 9 de la muestra" loading="eager" decoding="async" />
+          </div>
+
+          <div class="libro-pagina">
+            <img src="./muestra/pagina-13.png" alt="Página 10 de la muestra" loading="eager" decoding="async" />
+          </div>
+        </div>
+
+        <button class="libro-btn libro-next" type="button" aria-label="Página siguiente">›</button>
+      </div>
+
+      <p class="contador-libro" id="contadorLibro">Página 1 de 10</p>
+    </section>
+ <main class="site-main">
+    <!-- QUÉ ES RINCÓN -->
+    <section class="que-es-rincon reveal" id="que-es-rincon">
+      <div class="que-es-card">
+        <p class="section-mini">qué es esto</p>
+
+        <h2>¿Qué es Rincón entre Pensamientos?</h2>
+
+        <p>
+          <strong>Rincón</strong> es una experiencia digital de lectura, calma y herramientas simples
+          para momentos donde la mente pesa más de la cuenta.
+        </p>
+
+        <p>
+          No es solo un PDF. Es un espacio para entrar despacio, leer sin apuro,
+          acompañarte con audio ambiente y encontrar palabras, cuentos y ejercicios
+          que te ayuden a ordenar lo que sentís.
+        </p>
+
+        <p>
+          Adentro vas a encontrar una lectura completa en formato PDF, una versión inmersiva
+          desde la página, sonidos para acompañar la experiencia, cuentos reflexivos,
+          interludios y herramientas prácticas para volver a vos cuando el ruido se vuelve demasiado.
+        </p>
+
+        <div class="rincon-incluye">
+          <div>
+            <span>01</span>
+            <p>PDFs completos descargables para leer a tu ritmo.</p>
+          </div>
+
+          <div>
+            <span>02</span>
+            <p>Lectura inmersiva desde la página.</p>
+          </div>
+
+          <div>
+            <span>03</span>
+            <p>Audio ambiente para acompañar la experiencia con calma.</p>
+          </div>
+
+          <div>
+            <span>04</span>
+            <p>Cuentos, interludios y herramientas prácticas para momentos reales.</p>
+          </div>
+        </div>
+
+        <p>
+          También es un espacio en crecimiento. Rincón se va actualizando con nuevos contenidos,
+          nuevas pausas y nuevas herramientas.
+        </p>
+
+        <p class="que-es-cierre">
+          Está creado para acompañar, no para darte respuestas cerradas. Para esos momentos
+          en los que no necesitás más información, sino una pausa real y un lugar donde volver a escucharte.
+        </p>
+      </div>
+    </section>
+<!-- PERGAMINO GRATIS -->
+<section class="pergamino-regalo fondo-preguntas-section" id="pergamino-gratis">
+  <div class="pergamino-regalo-contenido">
+    <span class="etiqueta-regalo">Herramientas gratuitas del Rincón</span>
+
+    <h2>Las 7 preguntas para bajar el ruido</h2>
+
+    <p>
+      Es una pequeña guía con herramientas simples para esos momentos en los que la mente se llena de ruido, cuesta ordenar lo que sentís o no sabés por dónde empezar.
+    </p>
+
+    <p class="texto-suave">
+      Adentro vas a encontrar ejercicios breves para bajar la ansiedad, volver al presente, soltar un poco la carga y dar un primer paso sin exigirte tener todo resuelto.
+    </p>
+
+<ul class="lista-pergamino">
+  <li>Para cuando estás saturado mentalmente.</li>
+  <li>Para cuando venís postergando algo que te pesa.</li>
+  <li>Para cuando necesitás volver a vos sin presión.</li>
+  <li>Para cuando querés una pausa real, no solo distraerte.</li>
+</ul>
+
+<div class="preguntas-pergamino">
+  <p class="preguntas-titulo">Dentro vas a encontrar preguntas como estas:</p>
+
+  <div class="preguntas-grid">
+    <p>¿Qué estoy cargando hoy que no necesito resolver ahora?</p>
+    <p>¿Qué parte de mí está intentando sostener más de lo que puede?</p>
+    <p>Si tuviera que ponerle un nombre a lo que siento hoy, ¿cuál sería?</p>
+    <p>¿Qué parte de mí necesita silencio y no explicación?</p>
+    <p>¿Qué estoy midiendo en mí con una vara que no me pertenece?</p>
+    <p>¿Qué estoy intentando mantener vivo aunque ya me está pidiendo cierre?</p>
+    <p>¿Qué pequeño gesto puedo hacer hoy para volver a sentirme cerca de mí?</p>
+  </div>
+
+  <p class="preguntas-cierre">
+    Te dejo una herramienta para encontrar tus respuestas.
+  </p>
+</div>
+
+    <a 
+      href="./el-primer-pergamino-del-rincon-liviano.pdf" 
+      download="el-primer-pergamino-del-rincon-liviano.pdf"
+      class="btn-pergamino-descarga"
+      data-ga-event="click_descargar_herramientas"
+    >
+      Descargar herramientas gratis
+    </a>
+  </div>
+</section>
+
+    <!-- HERRAMIENTAS -->
+    <section class="herramientas-muestra reveal">
+      <p class="etiqueta">también incluye herramientas</p>
+
+      <h2>No es solo una lectura.<br>Es un rincón para volver a vos.</h2>
+
+      <p>
+        La experiencia completa de <strong>Rincón entre Pensamientos</strong> no se queda solo en leer.
+        También incluye herramientas simples para esos momentos en los que necesitás ordenar lo que sentís,
+        bajar el ruido o dar un primer paso sin exigirte de más.
+      </p>
+
+      <div class="tarjetas-herramientas">
+
+        <article class="tarjeta-herramienta">
+          <a class="herramienta-preview" href="./herramientas/mascara-carton.png" target="_blank" rel="noopener" data-ga-event="click_ver_pergamino">
+            <img src="./herramientas/mascara-carton.png" alt="Pergamino de La máscara de cartón" loading="lazy" />
+            <span>Ver pergamino completo</span>
+          </a>
+
+      <div class="herramienta-contenido">
+  <span class="numero-herramienta">01</span>
+
+  <h3>Para cuando estás cansado de sostener una versión de vos que ya pesa demasiado.</h3>
+
+  <p>
+    La máscara de cartón
+  </p>
+</div>
+        </article>
+
+        <article class="tarjeta-herramienta">
+          <a class="herramienta-preview" href="./herramientas/ruido-no-alcanza.png" target="_blank" rel="noopener" data-ga-event="click_ver_pergamino">
+            <img src="./herramientas/ruido-no-alcanza.png" alt="Pergamino de Cuando el ruido ya no alcanza" loading="lazy" />
+            <span>Ver pergamino completo</span>
+          </a>
+
+          <div class="herramienta-contenido">
+  <span class="numero-herramienta">02</span>
+
+  <h3>Para esos días en los que la cabeza no se apaga y todo parece demasiado.</h3>
+
+  <p>
+    Cuando el ruido ya no alcanza
+  </p>
+</div>
+        </article>
+
+        <article class="tarjeta-herramienta">
+          <a class="herramienta-preview" href="./herramientas/tren-10-minutos.png" target="_blank" rel="noopener" data-ga-event="click_ver_pergamino">
+            <img src="./herramientas/tren-10-minutos.png" alt="Pergamino de Subir al tren por 10 minutos" loading="lazy" />
+            <span>Ver pergamino completo</span>
+          </a>
+
+          <div class="herramienta-contenido">
+  <span class="numero-herramienta">03</span>
+
+  <h3>Para cuando venís postergando algo importante y no sabés cómo empezar.</h3>
+
+  <p>
+    Subir al tren por 10 minutos
+  </p>
+</div>
+        </article>
+
+      </div>
+
+      <p class="cierre-herramientas">
+        Estas son solo algunas puertas de entrada. En la versión completa encontrás más lecturas, interludios y herramientas para acompañar distintos momentos:
+        cansancio emocional, ruido mental, cierres pendientes, soledad, pausa y nuevos comienzos.
+      </p>
+    </section>
+
+    <!-- CUENTO -->
+    <section class="cuento-muestra reveal" id="cuento">
+      <div class="cuento-card">
+        <p class="section-mini">cuento incluido</p>
+
+        <h2>Un cuento para leer cuando algo por dentro pide pausa</h2>
+
+        <p class="cuento-intro">
+          Además de herramientas, la versión completa incluye cuentos e interludios pensados para acompañar esos momentos donde no siempre hay respuestas claras, pero sí una necesidad de volver a mirar hacia adentro.
+        </p>
+
+        <article class="cuento-preview">
+          <p class="cuento-etiqueta">Muestra breve</p>
+
+          <h3>La habitación donde nadie entraba</h3>
+
+          <p>
+            Durante mucho tiempo, creyó que cerrar la puerta era una forma de protegerse.
+            No de los demás, sino de todo aquello que no sabía explicar sin romperse un poco.
+          </p>
+
+          <p>
+            La habitación no era grande. Tenía una silla, una mesa antigua y una ventana que apenas dejaba entrar la luz.
+            Pero ahí, entre el polvo y el silencio, guardaba pensamientos que nunca se habían animado a salir.
+          </p>
+
+          <p>
+            Una noche, cansado de sostener el ruido afuera, se sentó frente a la mesa y dejó de escapar.
+            No encontró una respuesta. Encontró algo más simple: un lugar donde poder escucharse sin tener que fingir.
+          </p>
+
+          <details class="cuento-detalle">
+            <summary>Leer cierre del cuento</summary>
+
+            <div class="cuento-texto">
+              <p>
+                A veces, sanar no empieza cuando alguien abre la puerta desde afuera.
+                A veces empieza cuando uno deja de tener miedo de entrar a la habitación que venía evitando.
+              </p>
+
+              <p>
+                Y esa noche, por primera vez en mucho tiempo, no salió corriendo de sí mismo.
+              </p>
+            </div>
+          </details>
+        </article>
+
+        <p class="cuento-cierre">
+          En la versión completa encontrás más cuentos, interludios y pausas para leer cuando necesitás bajar el ruido y volver a vos.
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final reveal" id="ebook">
+      <div class="cta-card">
+        <p class="section-mini">versión completa</p>
+
+        <h2>Accedé a la experiencia completa</h2>
+
+        <p>
+          Si esta muestra te dejó una pregunta dando vueltas, la versión completa te invita a seguir entrando:
+          lectura en PDF, experiencia inmersiva, audio ambiente, cuentos reflexivos y herramientas para acompañar
+          lo que muchas veces no se sabe cómo explicar.
+        </p>
+
+        <ul class="cta-lista">
+          <li>PDF completo descargable</li>
+          <li>Lectura inmersiva desde la página</li>
+          <li>Audio ambiente para leer con calma</li>
+          <li>Interludios y cuentos reflexivos</li>
+          <li>Herramientas prácticas para momentos reales</li>
+        </ul>
+
+        <a href="https://go.hotmart.com/L106304893W" class="btn-primary btn-hotmart" target="_blank" rel="noopener" data-ga-event="click_comprar click_hotmart">
+          <span>Acceder a la experiencia completa</span>
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+            <path d="M3 12L12 3M5 3h7v7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SCRIPT ÚNICO: GA4 + LLUVIA + NARRADOR + PÁGINAS + SONIDO + REVEAL -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      /* =========================
+         TRACKING GA4
+         ========================= */
+
+      function trackGAEvent(eventName, params) {
+        if (typeof gtag === "function") {
+          gtag("event", eventName, Object.assign({
+            event_category: "landing_github",
+            page_location: window.location.href,
+            transport_type: "beacon"
+          }, params || {}));
+        }
+      }
+
+      document.querySelectorAll("[data-ga-event]").forEach(function (elemento) {
+        elemento.addEventListener("click", function () {
+          const atributoEventos = elemento.getAttribute("data-ga-event") || "";
+          const eventos = atributoEventos.split(/\s+/).filter(Boolean);
+          const texto = elemento.innerText ? elemento.innerText.trim() : "";
+          const href = elemento.getAttribute("href") || "";
+
+          eventos.forEach(function (evento) {
+            trackGAEvent(evento, {
+              event_label: texto,
+              link_url: href
+            });
+          });
+        });
+      });
+
+      const scrollMarcado = {
+        50: false,
+        75: false,
+        90: false
+      };
+
+      function porcentajeScroll() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const altoDocumento = document.documentElement.scrollHeight - window.innerHeight;
+
+        if (altoDocumento <= 0) return 100;
+
+        return Math.round((scrollTop / altoDocumento) * 100);
+      }
+
+      function revisarScroll() {
+        const porcentaje = porcentajeScroll();
+
+        [50, 75, 90].forEach(function (punto) {
+          if (porcentaje >= punto && !scrollMarcado[punto]) {
+            scrollMarcado[punto] = true;
+
+            trackGAEvent("scroll_" + punto, {
+              event_label: punto + "% de scroll"
+            });
+          }
+        });
+      }
+
+      window.addEventListener("scroll", revisarScroll, { passive: true });
+      revisarScroll();
+
+      /* =========================
+         AUDIO AMBIENTE / LLUVIA
+         ========================= */
+
+const audioAmbiente = document.getElementById("audioAmbiente");
+const ambienteToggle = document.getElementById("ambienteToggle");
+
+if (audioAmbiente && ambienteToggle) {
+  audioAmbiente.volume = 0.42;
+
+  function actualizarBotonAmbiente(texto) {
+    ambienteToggle.innerHTML = "<span>" + texto + "</span>";
+  }
+
+  actualizarBotonAmbiente("☂ Activar lluvia ambientativa");
+
+  ambienteToggle.addEventListener("click", function () {
+    if (audioAmbiente.paused) {
+      audioAmbiente.play()
+        .then(function () {
+          actualizarBotonAmbiente("☂ Pausar lluvia ambientativa");
+          ambienteToggle.classList.add("activo");
+        })
+        .catch(function (error) {
+          console.log("No se pudo reproducir la lluvia:", error);
+        });
+    } else {
+      audioAmbiente.pause();
+      actualizarBotonAmbiente("☂ Activar lluvia ambientativa");
+      ambienteToggle.classList.remove("activo");
+    }
+  });
+}
+      /* =========================
+   LLUVIA VISUAL
+   Se activa junto al audio ambiente
    ========================= */
 
-/* Hace que el título no se salga del pergamino */
-.hero-title {
-  font-size: clamp(3.1rem, 6vw, 4.65rem) !important;
-  line-height: 0.92 !important;
-  letter-spacing: 0.01em !important;
-  max-width: 100% !important;
-  margin: 18px auto 20px !important;
-  overflow-wrap: normal !important;
-}
-
-.hero-title span {
-  display: block !important;
-  white-space: nowrap !important;
-}
-
-/* Ajuste especial para que Pensamientos no se desborde */
-.hero-title span:last-child {
-  font-size: 0.88em !important;
-}
-
-/* Botones del hero todos iguales */
-.hero-actions.hero-actions-clean {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 14px !important;
-  width: 100% !important;
-  margin-top: 26px !important;
-}
-
-.hero-actions.hero-actions-clean .hero-action-btn {
-  width: 340px !important;
-  min-width: 340px !important;
-  max-width: 340px !important;
-  min-height: 58px !important;
-  height: 58px !important;
-  padding: 0 24px !important;
-  border-radius: 999px !important;
-
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  font-family: "Cormorant Garamond", serif !important;
-  font-size: 1.18rem !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.08em !important;
-  line-height: 1.1 !important;
-  text-align: center !important;
-  text-decoration: none !important;
-
-  white-space: nowrap !important;
-}
-
-.hero-actions.hero-actions-clean .hero-action-btn span {
-  display: inline-block !important;
-  font-family: "Cormorant Garamond", serif !important;
-  font-size: 1.18rem !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.08em !important;
-  line-height: 1.1 !important;
-  white-space: nowrap !important;
-}
-
-/* Corrige el botón de lluvia para que no quede distinto */
-.hero-actions.hero-actions-clean .btn-ambiente {
-  width: 340px !important;
-  min-width: 340px !important;
-  max-width: 340px !important;
-}
-
-/* En celular achica todo un poco */
-@media (max-width: 640px) {
-  .hero-title {
-    font-size: clamp(2.65rem, 14vw, 4rem) !important;
-    line-height: 0.94 !important;
-  }
-
-  .hero-title span:last-child {
-    font-size: 0.82em !important;
-  }
-
-  .hero-actions.hero-actions-clean .hero-action-btn,
-  .hero-actions.hero-actions-clean .btn-ambiente {
-    width: 300px !important;
-    min-width: 300px !important;
-    max-width: 300px !important;
-    height: 54px !important;
-    min-height: 54px !important;
-    font-size: 1.02rem !important;
-    letter-spacing: 0.06em !important;
-  }
-
-  .hero-actions.hero-actions-clean .hero-action-btn span {
-    font-size: 1.02rem !important;
-    letter-spacing: 0.06em !important;
-  }
-}
-/* refresh deploy */
-/* =========================
-   FIX DEFINITIVO HERO MOBILE/DESKTOP
-   TÍTULO + BOTONES
-   ========================= */
-
-.hero {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  min-height: 100vh !important;
-  padding: 32px 16px 90px !important;
-  box-sizing: border-box !important;
-}
-
-.hero-pergamino {
-  width: min(92vw, 560px) !important;
-  max-width: 560px !important;
-  margin: 0 auto !important;
-  padding: 74px 34px 82px !important;
-  box-sizing: border-box !important;
-  overflow: visible !important;
-}
-
-.hero-contenido {
-  width: 100% !important;
-  max-width: 430px !important;
-  margin: 0 auto !important;
-  text-align: center !important;
-  box-sizing: border-box !important;
-}
-
-.hero-title {
-  width: 100% !important;
-  max-width: 100% !important;
-  margin: 16px auto 18px !important;
-
-  font-family: "Cormorant Garamond", serif !important;
-  font-size: clamp(2.8rem, 7vw, 4.05rem) !important;
-  line-height: 0.9 !important;
-  letter-spacing: 0.01em !important;
-  text-align: center !important;
-
-  overflow: visible !important;
-  word-break: normal !important;
-}
-
-.hero-title span {
-  display: block !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  text-align: center !important;
-  white-space: normal !important;
-}
-
-/* Achica solo "Pensamientos" para que no se salga */
-.hero-title span:last-child {
-  font-size: 0.72em !important;
-  letter-spacing: -0.01em !important;
-}
-
-/* Subtítulo */
-.hero-subtitle {
-  max-width: 330px !important;
-  margin: 0 auto 18px !important;
-  font-size: 1.05rem !important;
-  line-height: 1.35 !important;
-}
-
-/* Botoncitos de beneficios */
-.hero-benefits {
-  width: 100% !important;
-  max-width: 330px !important;
-  margin: 0 auto 24px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 9px !important;
-}
-
-.hero-benefit {
-  width: 100% !important;
-  height: 28px !important;
-  min-height: 28px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  box-sizing: border-box !important;
-}
-
-.hero-benefit-title {
-  font-size: 0.78rem !important;
-  line-height: 1 !important;
-  white-space: nowrap !important;
-}
-
-/* Botones principales: los 3 iguales */
-.hero-actions.hero-actions-clean {
-  width: 100% !important;
-  max-width: 340px !important;
-  margin: 0 auto !important;
-
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 14px !important;
-}
-
-.hero-actions.hero-actions-clean .hero-action-btn,
-.hero-actions.hero-actions-clean a.hero-action-btn,
-.hero-actions.hero-actions-clean button.hero-action-btn,
-.hero-actions.hero-actions-clean .btn-ambiente {
-  width: 340px !important;
-  min-width: 340px !important;
-  max-width: 340px !important;
-
-  height: 58px !important;
-  min-height: 58px !important;
-  max-height: 58px !important;
-
-  padding: 0 22px !important;
-  margin: 0 auto !important;
-  border-radius: 999px !important;
-  box-sizing: border-box !important;
-
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  font-family: "Cormorant Garamond", serif !important;
-  font-size: 1.12rem !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.055em !important;
-  line-height: 1 !important;
-  text-align: center !important;
-  text-decoration: none !important;
-
-  white-space: nowrap !important;
-  overflow: hidden !important;
-}
-
-.hero-actions.hero-actions-clean .hero-action-btn span {
-  display: inline-block !important;
-  font-family: "Cormorant Garamond", serif !important;
-  font-size: 1.12rem !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.055em !important;
-  line-height: 1 !important;
-  white-space: nowrap !important;
-}
-
-/* Celular */
-@media (max-width: 640px) {
-  .hero {
-    padding: 24px 12px 78px !important;
-    align-items: flex-start !important;
-  }
-
-  .hero-pergamino {
-    width: min(94vw, 430px) !important;
-    max-width: 430px !important;
-    padding: 62px 24px 74px !important;
-  }
-
-  .hero-contenido {
-    max-width: 330px !important;
-  }
-
-  .hero-title {
-    font-size: clamp(2.35rem, 12vw, 3.35rem) !important;
-    line-height: 0.92 !important;
-    margin-top: 14px !important;
-    margin-bottom: 16px !important;
-  }
-
-  .hero-title span:last-child {
-    font-size: 0.72em !important;
-  }
-
-  .hero-subtitle {
-    max-width: 290px !important;
-    font-size: 0.98rem !important;
-  }
-
-  .hero-benefits {
-    max-width: 300px !important;
-  }
-
-  .hero-actions.hero-actions-clean {
-    max-width: 300px !important;
-    gap: 12px !important;
-  }
-
-  .hero-actions.hero-actions-clean .hero-action-btn,
-  .hero-actions.hero-actions-clean a.hero-action-btn,
-  .hero-actions.hero-actions-clean button.hero-action-btn,
-  .hero-actions.hero-actions-clean .btn-ambiente {
-    width: 300px !important;
-    min-width: 300px !important;
-    max-width: 300px !important;
-
-    height: 54px !important;
-    min-height: 54px !important;
-    max-height: 54px !important;
-
-    font-size: 0.98rem !important;
-    letter-spacing: 0.035em !important;
-  }
-
-  .hero-actions.hero-actions-clean .hero-action-btn span {
-    font-size: 0.98rem !important;
-    letter-spacing: 0.035em !important;
-  }
-}
-/* =========================
-   FIX BOTONES HERO GRANDES
-   ========================= */
-
-.hero-actions.hero-actions-clean {
-  width: 100% !important;
-  max-width: 380px !important;
-  margin: 26px auto 0 !important;
-
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 14px !important;
-}
-
-/* Los 3 botones iguales */
-.hero-actions.hero-actions-clean .hero-action-btn,
-.hero-actions.hero-actions-clean a.hero-action-btn,
-.hero-actions.hero-actions-clean button.hero-action-btn,
-.hero-actions.hero-actions-clean .btn-ambiente,
-.hero-actions.hero-actions-clean .hero-action-main {
-  width: 360px !important;
-  min-width: 360px !important;
-  max-width: 360px !important;
-
-  height: 58px !important;
-  min-height: 58px !important;
-  max-height: 58px !important;
-
-  padding: 0 18px !important;
-  margin: 0 auto !important;
-  border-radius: 999px !important;
-  box-sizing: border-box !important;
-
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  font-family: "Cormorant Garamond", serif !important;
-  font-size: 1.06rem !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.04em !important;
-  line-height: 1 !important;
-  text-align: center !important;
-  text-decoration: none !important;
-
-  white-space: nowrap !important;
-  overflow: visible !important;
-}
-
-/* Texto interno de los botones */
-.hero-actions.hero-actions-clean .hero-action-btn span,
-.hero-actions.hero-actions-clean .btn-ambiente span {
-  display: inline-block !important;
-  width: auto !important;
-  max-width: none !important;
-
-  font-family: "Cormorant Garamond", serif !important;
-  font-size: 1.06rem !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.04em !important;
-  line-height: 1 !important;
-  white-space: nowrap !important;
-}
-
-/* Celular */
-@media (max-width: 640px) {
-  .hero-actions.hero-actions-clean {
-    max-width: 330px !important;
-    gap: 12px !important;
-  }
-
-  .hero-actions.hero-actions-clean .hero-action-btn,
-  .hero-actions.hero-actions-clean a.hero-action-btn,
-  .hero-actions.hero-actions-clean button.hero-action-btn,
-  .hero-actions.hero-actions-clean .btn-ambiente,
-  .hero-actions.hero-actions-clean .hero-action-main {
-    width: 320px !important;
-    min-width: 320px !important;
-    max-width: 320px !important;
-
-    height: 54px !important;
-    min-height: 54px !important;
-    max-height: 54px !important;
-
-    font-size: 0.92rem !important;
-    letter-spacing: 0.025em !important;
-    padding: 0 14px !important;
-  }
-
-  .hero-actions.hero-actions-clean .hero-action-btn span,
-  .hero-actions.hero-actions-clean .btn-ambiente span {
-    font-size: 0.92rem !important;
-    letter-spacing: 0.025em !important;
-  }
-}
-/* =========================
-   FIX FINAL BOTONES HERO
-   ========================= */
-
-#heroActions {
-  width: 100% !important;
-  max-width: 380px !important;
-  margin: 26px auto 0 !important;
-  padding: 0 !important;
-
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 14px !important;
-}
-
-#heroActions #entrarMuestra,
-#heroActions #botonCuentoHero,
-#heroActions #ambienteToggle {
-  width: 360px !important;
-  min-width: 360px !important;
-  max-width: 360px !important;
-
-  height: 58px !important;
-  min-height: 58px !important;
-  max-height: 58px !important;
-
-  padding: 0 18px !important;
-  margin: 0 auto !important;
-
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  box-sizing: border-box !important;
-  border-radius: 999px !important;
-
-  font-family: "Cormorant Garamond", serif !important;
-  font-size: 1.04rem !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.035em !important;
-  line-height: 1 !important;
-  text-align: center !important;
-  text-decoration: none !important;
-
-  white-space: nowrap !important;
-  overflow: visible !important;
-  transform: none !important;
-  position: relative !important;
-  left: auto !important;
-  right: auto !important;
-}
-
-#heroActions #entrarMuestra span,
-#heroActions #botonCuentoHero span,
-#heroActions #ambienteToggle span {
-  display: block !important;
-  width: 100% !important;
-
-  font-family: "Cormorant Garamond", serif !important;
-  font-size: 1.04rem !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.035em !important;
-  line-height: 1 !important;
-  text-align: center !important;
-
-  white-space: nowrap !important;
-  overflow: visible !important;
-}
-
-/* Para que el botón de lluvia no se achique por estilos anteriores */
-#heroActions button#ambienteToggle {
-  appearance: none !important;
-  -webkit-appearance: none !important;
-}
-
-/* Celular */
-@media (max-width: 640px) {
-  #heroActions {
-    max-width: 330px !important;
-    gap: 12px !important;
-  }
-
-  #heroActions #entrarMuestra,
-  #heroActions #botonCuentoHero,
-  #heroActions #ambienteToggle {
-    width: 320px !important;
-    min-width: 320px !important;
-    max-width: 320px !important;
-
-    height: 54px !important;
-    min-height: 54px !important;
-    max-height: 54px !important;
-
-    padding: 0 12px !important;
-
-    font-size: 0.91rem !important;
-    letter-spacing: 0.015em !important;
-  }
-
-  #heroActions #entrarMuestra span,
-  #heroActions #botonCuentoHero span,
-  #heroActions #ambienteToggle span {
-    font-size: 0.91rem !important;
-    letter-spacing: 0.015em !important;
-  }
-}
-/* Fondo ambiental del hero */
-.hero {
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(circle at center, rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.88)),
-    url("./fondo-hero.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.35;
-  filter: blur(1px);
-  z-index: 0;
-  pointer-events: none;
-}
-
-.hero > * {
-  position: relative;
-  z-index: 1;
-}
-/* Fondo ambiental para la sección de Las 7 preguntas */
-.preguntas-section {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-}
-
-/* Imagen de fondo suave */
-.preguntas-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(
-      rgba(14, 8, 4, 0.78),
-      rgba(14, 8, 4, 0.88)
-    ),
-    url("./fondo-preguntas.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.28;
-  filter: blur(1px);
-  z-index: -2;
-  pointer-events: none;
-}
-
-/* Oscurece bordes y mantiene legibilidad */
-.preguntas-section::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at center,
-    rgba(0, 0, 0, 0.05),
-    rgba(0, 0, 0, 0.65)
-  );
-  z-index: -1;
-  pointer-events: none;
-}
-/* ==========================================
-   FONDO AMBIENTAL - LAS 7 PREGUNTAS
-   Imagen: fondo-preguntas.png
-   ========================================== */
-
-.fondo-preguntas-section .pergamino-regalo-contenido {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-}
-
-/* Imagen de fondo visible pero suave */
-.fondo-preguntas-section .pergamino-regalo-contenido::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("./fondo-preguntas.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.50;
-  filter: blur(1px);
-  transform: scale(1.03);
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* Capa oscura para que el texto siga leyendo bien */
-.fondo-preguntas-section .pergamino-regalo-contenido::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(18, 10, 6, 0.58),
-      rgba(12, 7, 4, 0.78)
-    ),
-    radial-gradient(
-      circle at center,
-      rgba(214, 157, 74, 0.10),
-      rgba(0, 0, 0, 0.58)
-    );
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* Todo el contenido queda arriba del fondo */
-.fondo-preguntas-section .pergamino-regalo-contenido > * {
-  position: relative;
-  z-index: 2;
-}
-/* ==========================================
-   FONDO AMBIENTAL WEB - LECTURA INTERACTIVA
-   Imagen: fondo-lectura.png
-   Va detrás de la zona, no dentro del bloque
-   ========================================== */
-
-.intro-muestra {
-  position: relative;
-  isolation: isolate;
-  overflow: visible;
-}
-
-/* Fondo grande detrás de la intro + visor */
-.intro-muestra::before {
-  content: "";
-  position: absolute;
-  top: -140px;
-  left: 50%;
-  width: 100vw;
-  height: 1150px;
-  transform: translateX(-50%);
-  background-image:
-    linear-gradient(
-      180deg,
-      rgba(7, 5, 3, 0.82) 0%,
-      rgba(7, 5, 3, 0.42) 34%,
-      rgba(7, 5, 3, 0.52) 66%,
-      rgba(7, 5, 3, 0.92) 100%
-    ),
-    radial-gradient(
-      circle at center,
-      rgba(218, 157, 78, 0.08),
-      rgba(0, 0, 0, 0.76) 72%
-    ),
-    url("./fondo-lectura.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.50;
-  filter: blur(1px);
-  z-index: -2;
-  pointer-events: none;
-}
-
-/* Asegura que el texto de la intro quede arriba */
-.intro-muestra > * {
-  position: relative;
-  z-index: 2;
-}
-
-/* Asegura que el visor quede arriba del fondo */
-.visor-ebook {
-  position: relative;
-  z-index: 2;
-}
-/* ==========================================
-   ANIMACIÓN INMERSIVA - FUEGO DEL FAROL HERO
-   No requiere tocar el HTML
-   ========================================== */
-
-.hero-pergamino {
-  position: relative !important;
-  isolation: isolate;
-}
-
-/* Resplandor vivo del farol */
-.hero-pergamino::before {
-  content: "";
-  position: absolute;
-  left: 27%;
-  top: 38%;
-  width: 8.5rem;
-  height: 8.5rem;
-  border-radius: 999px;
-  background:
-    radial-gradient(circle,
-      rgba(255, 233, 156, 0.70) 0%,
-      rgba(255, 180, 70, 0.46) 18%,
-      rgba(205, 92, 25, 0.24) 38%,
-      transparent 70%
-    );
-  filter: blur(9px);
-  opacity: 0.68;
-  mix-blend-mode: screen;
-  transform: translate(-50%, -50%) scale(1);
-  animation: fuegoFarol 2.4s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Pequeñas chispas suaves cerca del farol */
-.hero-pergamino::after {
-  content: "";
-  position: absolute;
-  left: 27%;
-  top: 43%;
-  width: 10rem;
-  height: 14rem;
-  background:
-    radial-gradient(circle at 35% 80%, rgba(255, 201, 111, 0.42) 0 2px, transparent 4px),
-    radial-gradient(circle at 58% 70%, rgba(255, 166, 66, 0.32) 0 1.5px, transparent 4px),
-    radial-gradient(circle at 42% 55%, rgba(255, 219, 146, 0.28) 0 1.5px, transparent 4px),
-    radial-gradient(circle at 64% 46%, rgba(255, 176, 77, 0.22) 0 1px, transparent 4px);
-  filter: blur(0.2px);
-  opacity: 0.34;
-  mix-blend-mode: screen;
-  transform: translate(-50%, 20px);
-  animation: chispasFarol 5.8s linear infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* El contenido del pergamino queda arriba */
-.hero-contenido {
-  position: relative;
-  z-index: 3;
-}
-
-@keyframes fuegoFarol {
-  0%, 100% {
-    opacity: 0.54;
-    transform: translate(-50%, -50%) scale(0.94);
-    filter: blur(9px);
-  }
-
-  18% {
-    opacity: 0.78;
-    transform: translate(-50.5%, -51%) scale(1.04);
-    filter: blur(10px);
-  }
-
-  37% {
-    opacity: 0.62;
-    transform: translate(-49%, -49.5%) scale(0.98);
-    filter: blur(8px);
-  }
-
-  61% {
-    opacity: 0.86;
-    transform: translate(-51%, -50%) scale(1.08);
-    filter: blur(11px);
-  }
-
-  82% {
-    opacity: 0.58;
-    transform: translate(-50%, -49%) scale(0.96);
-    filter: blur(8px);
-  }
-}
-
-@keyframes chispasFarol {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, 24px) scale(0.96);
-  }
-
-  18% {
-    opacity: 0.36;
-  }
-
-  55% {
-    opacity: 0.24;
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -38px) scale(1.04);
-  }
-}
-
-/* Ajuste para celular */
-@media (max-width: 700px) {
-  .hero-pergamino::before {
-    left: 25%;
-    top: 35%;
-    width: 5.8rem;
-    height: 5.8rem;
-    opacity: 0.62;
-    filter: blur(7px);
-  }
-
-  .hero-pergamino::after {
-    left: 25%;
-    top: 40%;
-    width: 7rem;
-    height: 10rem;
-    opacity: 0.26;
-  }
-}
-/* =====================================================
-   FAROLES VIVOS + CHISPAS
-   Rincón entre Pensamientos
-   Pegar al final de style.css
-   ===================================================== */
-
-
-/* =========================
-   1) FAROL DEL HERO
-   ========================= */
-
-.hero-pergamino {
-  position: relative !important;
-  isolation: isolate;
-  overflow: visible !important;
-}
-
-/* Luz principal del farol del hero */
-.hero-pergamino::before {
-  content: "";
-  position: absolute;
-
-  /* Ajustado para caer más arriba y más sobre el fuego */
-  left: 18%;
-  top: 31.5%;
-
-  width: 9.5rem;
-  height: 9.5rem;
-  border-radius: 999px;
-
-  background:
-    radial-gradient(circle,
-      rgba(255, 239, 176, 0.95) 0%,
-      rgba(255, 194, 82, 0.72) 18%,
-      rgba(224, 105, 30, 0.42) 38%,
-      rgba(173, 70, 18, 0.18) 58%,
-      transparent 74%
-    );
-
-  filter: blur(8px);
-  opacity: 0.86;
-  mix-blend-mode: screen;
-  transform: translate(-50%, -50%) scale(1);
-  animation: fuegoHeroVivo 2.15s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Chispas del farol del hero */
-.hero-pergamino::after {
-  content: "";
-  position: absolute;
-
-  left: 28%;
-  top: 29%;
-
-  width: 9rem;
-  height: 12rem;
-
-  background:
-    radial-gradient(circle at 42% 76%, rgba(255, 221, 139, 0.72) 0 1.6px, transparent 3px),
-    radial-gradient(circle at 57% 66%, rgba(255, 174, 67, 0.58) 0 1.4px, transparent 3px),
-    radial-gradient(circle at 38% 52%, rgba(255, 236, 173, 0.46) 0 1.2px, transparent 3px),
-    radial-gradient(circle at 62% 42%, rgba(255, 166, 59, 0.38) 0 1px, transparent 3px),
-    radial-gradient(circle at 50% 28%, rgba(255, 211, 121, 0.28) 0 1px, transparent 3px);
-
-  opacity: 0.52;
-  mix-blend-mode: screen;
-  transform: translate(-50%, 16px);
-  animation: chispasHero 4.8s linear infinite;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.hero-contenido {
-  position: relative;
-  z-index: 4;
-}
-
-
-/* =========================
-   2) FAROLES DE HERRAMIENTAS
-   Aplica a las 3 tarjetas actuales
-   ========================= */
-
-.herramienta-preview {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-}
-
-/* Variables base: farol grande arriba izquierda + farol chico abajo centro */
-.herramienta-preview {
-  --farol-alto-x: 12%;
-  --farol-alto-y: 15%;
-  --farol-bajo-x: 50%;
-  --farol-bajo-y: 94%;
-}
-
-/* Ajuste fino tarjeta 01: Máscara */
-.tarjeta-herramienta:nth-child(1) .herramienta-preview {
-  --farol-alto-x: 10.5%;
-  --farol-alto-y: 15.5%;
-  --farol-bajo-x: 50%;
-  --farol-bajo-y: 94%;
-}
-
-/* Ajuste fino tarjeta 02: Ruido */
-.tarjeta-herramienta:nth-child(2) .herramienta-preview {
-  --farol-alto-x: 12%;
-  --farol-alto-y: 15%;
-  --farol-bajo-x: 50%;
-  --farol-bajo-y: 94%;
-}
-
-/* Ajuste fino tarjeta 03: Tren */
-.tarjeta-herramienta:nth-child(3) .herramienta-preview {
-  --farol-alto-x: 9%;
-  --farol-alto-y: 15%;
-  --farol-bajo-x: 50%;
-  --farol-bajo-y: 94%;
-}
-
-/* Luz + chispas sobre los faroles de las imágenes */
-.herramienta-preview::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background:
-    /* Luz del farol grande */
-    radial-gradient(circle at var(--farol-alto-x) var(--farol-alto-y),
-      rgba(255, 239, 174, 0.96) 0%,
-      rgba(255, 188, 72, 0.72) 4.2%,
-      rgba(219, 94, 24, 0.36) 9%,
-      transparent 18%
-    ),
-
-    /* Luz del farol chico inferior */
-    radial-gradient(circle at var(--farol-bajo-x) var(--farol-bajo-y),
-      rgba(255, 231, 151, 0.86) 0%,
-      rgba(255, 178, 63, 0.54) 3.2%,
-      rgba(209, 91, 22, 0.26) 7%,
-      transparent 13%
-    ),
-
-    /* Chispas cerca del farol grande */
-    radial-gradient(circle at calc(var(--farol-alto-x) + 4%) calc(var(--farol-alto-y) + 8%),
-      rgba(255, 225, 143, 0.74) 0 1.2px,
-      transparent 2.8px
-    ),
-    radial-gradient(circle at calc(var(--farol-alto-x) + 8%) calc(var(--farol-alto-y) + 1%),
-      rgba(255, 168, 58, 0.55) 0 1px,
-      transparent 2.5px
-    ),
-    radial-gradient(circle at calc(var(--farol-alto-x) - 2%) calc(var(--farol-alto-y) + 11%),
-      rgba(255, 238, 178, 0.42) 0 1px,
-      transparent 2.5px
-    ),
-
-    /* Chispas cerca del farol chico inferior */
-    radial-gradient(circle at calc(var(--farol-bajo-x) + 3%) calc(var(--farol-bajo-y) - 6%),
-      rgba(255, 219, 132, 0.54) 0 1px,
-      transparent 2.5px
-    ),
-    radial-gradient(circle at calc(var(--farol-bajo-x) - 3%) calc(var(--farol-bajo-y) - 9%),
-      rgba(255, 168, 58, 0.38) 0 1px,
-      transparent 2.4px
-    );
-
-  opacity: 0.88;
-  mix-blend-mode: screen;
-  filter: blur(0.25px);
-  animation: fuegoImagenes 2.4s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 3;
-}
-
-/* Mantiene la sombra/gradiente de la preview, pero debajo del texto */
-.herramienta-preview::after {
-  z-index: 2;
-}
-
-/* Botón "Ver pergamino completo" siempre por encima */
-.herramienta-preview span {
-  position: absolute;
-  z-index: 5;
-}
-
-
-/* =========================
-   3) FAROL DEL CUENTO/PERGAMINO
-   Para pergamino-cuento-tren.png si lo usás
-   ========================= */
-
-.pergamino-cuento-imagen {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-}
-
-/* Si el farol del cuento no cae exacto, tocás estos valores */
-.pergamino-cuento-imagen {
- --cuento-farol-alto-x: 18%;
-  --cuento-farol-alto-y: 44%;
-  --cuento-farol-bajo-x: 50%;
-  --cuento-farol-bajo-y: 94%;
-}
-
-.pergamino-cuento-imagen::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background:
-    radial-gradient(circle at var(--cuento-farol-alto-x) var(--cuento-farol-alto-y),
-      rgba(255, 239, 174, 0.92) 0%,
-      rgba(255, 188, 72, 0.68) 4%,
-      rgba(219, 94, 24, 0.34) 9%,
-      transparent 18%
-    ),
-    radial-gradient(circle at var(--cuento-farol-bajo-x) var(--cuento-farol-bajo-y),
-      rgba(255, 231, 151, 0.82) 0%,
-      rgba(255, 178, 63, 0.50) 3%,
-      rgba(209, 91, 22, 0.24) 7%,
-      transparent 13%
-    ),
-    radial-gradient(circle at calc(var(--cuento-farol-alto-x) + 5%) calc(var(--cuento-farol-alto-y) + 7%),
-      rgba(255, 225, 143, 0.70) 0 1.3px,
-      transparent 2.8px
-    ),
-    radial-gradient(circle at calc(var(--cuento-farol-alto-x) + 8%) calc(var(--cuento-farol-alto-y) + 1%),
-      rgba(255, 168, 58, 0.48) 0 1px,
-      transparent 2.5px
-    ),
-    radial-gradient(circle at calc(var(--cuento-farol-bajo-x) + 3%) calc(var(--cuento-farol-bajo-y) - 6%),
-      rgba(255, 219, 132, 0.46) 0 1px,
-      transparent 2.5px
-    );
-
-  opacity: 0.82;
-  mix-blend-mode: screen;
-  animation: fuegoImagenes 2.5s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.pergamino-cuento-imagen img {
-  position: relative;
-  z-index: 1;
-}
-
-
-/* =========================
-   ANIMACIONES
-   ========================= */
-
-@keyframes fuegoHeroVivo {
-  0%, 100% {
-    opacity: 0.74;
-    transform: translate(-50%, -50%) scale(0.94);
-    filter: blur(8px);
-  }
-
-  18% {
-    opacity: 0.96;
-    transform: translate(-50.5%, -51%) scale(1.04);
-    filter: blur(9px);
-  }
-
-  38% {
-    opacity: 0.78;
-    transform: translate(-49.5%, -49.5%) scale(0.98);
-    filter: blur(7px);
-  }
-
-  63% {
-    opacity: 1;
-    transform: translate(-51%, -50%) scale(1.08);
-    filter: blur(10px);
-  }
-
-  82% {
-    opacity: 0.80;
-    transform: translate(-50%, -49%) scale(0.96);
-    filter: blur(8px);
-  }
-}
-
-@keyframes chispasHero {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, 24px) scale(0.96);
-  }
-
-  18% {
-    opacity: 0.58;
-  }
-
-  52% {
-    opacity: 0.42;
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -42px) scale(1.04);
-  }
-}
-
-@keyframes fuegoImagenes {
-  0%, 100% {
-    opacity: 0.72;
-    transform: scale(0.995) translateY(0);
-    filter: brightness(1) blur(0.2px);
-  }
-
-  22% {
-    opacity: 0.96;
-    transform: scale(1.01) translateY(-1px);
-    filter: brightness(1.08) blur(0.3px);
-  }
-
-  46% {
-    opacity: 0.80;
-    transform: scale(1.002) translateY(1px);
-    filter: brightness(1.02) blur(0.2px);
-  }
-
-  71% {
-    opacity: 1;
-    transform: scale(1.014) translateY(-2px);
-    filter: brightness(1.10) blur(0.3px);
-  }
-}
-
-
-/* =========================
-   MÁS VISIBLE EN CELULAR
-   ========================= */
-
-@media (max-width: 700px) {
-  .hero-pergamino::before {
-    left: 29%;
-    top: 30.5%;
-    width: 7.4rem;
-    height: 7.4rem;
-    opacity: 0.98;
-    filter: blur(7px);
-  }
-
-  .hero-pergamino::after {
-    left: 29%;
-    top: 32%;
-    width: 7rem;
-    height: 10rem;
-    opacity: 0.72;
-  }
-
-  .herramienta-preview::before {
-    opacity: 1;
-    filter: brightness(1.12) blur(0.15px);
-  }
-
-  .pergamino-cuento-imagen::before {
-    opacity: 0.96;
-    filter: brightness(1.1);
-  }
-}
-
-@media (max-width: 420px) {
-  .hero-pergamino::before {
-    left: 28.5%;
-    top: 30%;
-    width: 6.6rem;
-    height: 6.6rem;
-    opacity: 1;
-  }
-
-  .hero-pergamino::after {
-    left: 28.5%;
-    top: 31.5%;
-    opacity: 0.78;
-  }
-}
-/* =====================================================
-   CORRECCIÓN HERRAMIENTAS:
-   quitar brillo inferior y dejar solo el farol superior
-   ===================================================== */
-
-.herramienta-preview {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-}
-
-/* Posición del farol superior en cada tarjeta */
-.tarjeta-herramienta:nth-child(1) .herramienta-preview {
-  --farol-x: 12%;
-  --farol-y: 16%;
-}
-
-.tarjeta-herramienta:nth-child(2) .herramienta-preview {
-  --farol-x: 12%;
-  --farol-y: 16%;
-}
-
-.tarjeta-herramienta:nth-child(3) .herramienta-preview {
-  --farol-x: 12%;
-  --farol-y: 16%;
-}
-
-/* Solo luz y chispas del farol de arriba */
-.herramienta-preview::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background:
-    radial-gradient(circle at var(--farol-x) var(--farol-y),
-      rgba(255, 239, 174, 0.92) 0%,
-      rgba(255, 188, 72, 0.66) 4.5%,
-      rgba(219, 94, 24, 0.34) 9%,
-      transparent 17%
-    ),
-
-    radial-gradient(circle at calc(var(--farol-x) + 4%) calc(var(--farol-y) + 6%),
-      rgba(255, 225, 143, 0.62) 0 1.2px,
-      transparent 2.8px
-    ),
-
-    radial-gradient(circle at calc(var(--farol-x) + 8%) calc(var(--farol-y) + 1%),
-      rgba(255, 168, 58, 0.46) 0 1px,
-      transparent 2.5px
-    ),
-
-    radial-gradient(circle at calc(var(--farol-x) - 2%) calc(var(--farol-y) + 9%),
-      rgba(255, 238, 178, 0.34) 0 1px,
-      transparent 2.5px
-    );
-
-  opacity: 0.82;
-  mix-blend-mode: screen;
-  filter: blur(0.2px);
-  animation: fuegoImagenes 2.4s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 3;
-}
-
-/* Mantiene el degradado oscuro de abajo, pero sin fuego */
-.herramienta-preview::after {
-  z-index: 2;
-}
-
-/* Botón por arriba de la luz */
-.herramienta-preview span {
-  position: absolute;
-  z-index: 5;
-}
-
-/* Más visible en celular, sin crear brillo abajo */
-@media (max-width: 700px) {
-  .herramienta-preview::before {
-    opacity: 0.98;
-    filter: brightness(1.12) blur(0.15px);
-  }
-}
-/* =====================================================
-   CORRECCIÓN FINAL - FAROL DEL CUENTO
-   Elimina brillo inferior y centra la luz en la vela
-   ===================================================== */
-
-.pergamino-cuento-imagen {
-  position: relative !important;
-  isolation: isolate !important;
-  overflow: hidden !important;
-
-  /* Punto exacto del fuego del farol del cuento */
-  --cuento-fuego-x: 11%;
-  --cuento-fuego-y: 32%;
-}
-
-.pergamino-cuento-imagen::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background:
-    radial-gradient(circle at var(--cuento-fuego-x) var(--cuento-fuego-y),
-      rgba(255, 242, 180, 0.95) 0%,
-      rgba(255, 190, 72, 0.68) 3.2%,
-      rgba(220, 96, 24, 0.34) 7%,
-      rgba(150, 54, 12, 0.12) 11%,
-      transparent 15%
-    ),
-
-    radial-gradient(circle at calc(var(--cuento-fuego-x) + 3%) calc(var(--cuento-fuego-y) - 5%),
-      rgba(255, 226, 145, 0.56) 0 1.2px,
-      transparent 2.7px
-    ),
-
-    radial-gradient(circle at calc(var(--cuento-fuego-x) - 3%) calc(var(--cuento-fuego-y) - 8%),
-      rgba(255, 170, 62, 0.40) 0 1px,
-      transparent 2.5px
-    ),
-
-    radial-gradient(circle at calc(var(--cuento-fuego-x) + 6%) calc(var(--cuento-fuego-y) - 11%),
-      rgba(255, 236, 176, 0.32) 0 1px,
-      transparent 2.5px
-    );
-
-  opacity: 0.82;
-  mix-blend-mode: screen;
-  filter: blur(0.15px);
-  animation: fuegoImagenes 2.4s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.pergamino-cuento-imagen::after {
-  content: none !important;
-}
-
-.pergamino-cuento-imagen img {
-  position: relative;
-  z-index: 1;
-}
-
-/* Mobile: un poco más visible pero sin mancha abajo */
-@media (max-width: 700px) {
-  .pergamino-cuento-imagen::before {
-    opacity: 0.96;
-    filter: brightness(1.08) blur(0.12px);
-  }
-}
-/* =====================================================
-   POLVO DORADO AMBIENTAL
-   Partículas sutiles flotando en toda la web
-   ===================================================== */
-
-.polvo-dorado {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-  opacity: 0.48;
-  mix-blend-mode: screen;
-}
-
-/* Capa de partículas grandes y lentas */
-.polvo-dorado::before {
-  content: "";
-  position: absolute;
-  inset: -20%;
-
-  background-image:
-    radial-gradient(circle, rgba(255, 222, 150, 0.42) 0 1px, transparent 2.6px),
-    radial-gradient(circle, rgba(255, 183, 86, 0.28) 0 1px, transparent 2.4px),
-    radial-gradient(circle, rgba(255, 239, 190, 0.22) 0 1px, transparent 2.8px);
-
-  background-size:
-    220px 220px,
-    340px 340px,
-    480px 480px;
-
-  background-position:
-    20px 40px,
-    130px 220px,
-    260px 120px;
-
-  filter: blur(0.25px);
-  animation: polvoFlotante 46s linear infinite;
-}
-
-/* Capa de polvo más fino */
-.polvo-dorado::after {
-  content: "";
-  position: absolute;
-  inset: -20%;
-
-  background-image:
-    radial-gradient(circle, rgba(255, 215, 138, 0.26) 0 0.8px, transparent 2.2px),
-    radial-gradient(circle, rgba(255, 245, 205, 0.18) 0 0.7px, transparent 2px);
-
-  background-size:
-    160px 160px,
-    290px 290px;
-
-  background-position:
-    80px 120px,
-    200px 40px;
-
-  filter: blur(0.35px);
-  animation: polvoFlotanteSuave 68s linear infinite;
-}
-
-/* Movimiento lento: sube y se desplaza apenas */
-@keyframes polvoFlotante {
-  0% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-  }
-
-  100% {
-    transform: translate3d(-90px, -180px, 0) rotate(2deg);
-  }
-}
-
-@keyframes polvoFlotanteSuave {
-  0% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-  }
-
-  100% {
-    transform: translate3d(120px, -240px, 0) rotate(-2deg);
-  }
-}
-
-/* Más visible en celular */
-@media (max-width: 700px) {
-  .polvo-dorado {
-    opacity: 0.62;
-  }
-
-  .polvo-dorado::before {
-    background-size:
-      150px 150px,
-      230px 230px,
-      320px 320px;
-  }
-
-  .polvo-dorado::after {
-    background-size:
-      120px 120px,
-      210px 210px;
-  }
-}
-
-/* Respeta usuarios con reducción de movimiento */
-@media (prefers-reduced-motion: reduce) {
-  .polvo-dorado::before,
-  .polvo-dorado::after {
-    animation: none;
-  }
-}
-/* =====================================================
-   FONDOS QUE RESPIRAN
-   Movimiento lento y sutil para dar profundidad
-   Pegar al final de style.css
-   ===================================================== */
-
-
-/* HERO: fondo ambiental detrás del pergamino */
-.hero::before {
-  animation: respirarFondoHero 24s ease-in-out infinite;
-  will-change: transform, opacity, filter;
-}
-
-
-/* SECCIÓN LECTURA: fondo ambiental grande detrás del visor */
-.intro-muestra::before {
-  animation: respirarFondoLectura 28s ease-in-out infinite;
-  will-change: transform, opacity, filter;
-}
-
-
-/* LAS 7 PREGUNTAS: fondo dentro de la caja */
-.fondo-preguntas-section .pergamino-regalo-contenido::before {
-  animation: respirarFondoCaja 22s ease-in-out infinite;
-  will-change: transform, opacity, filter;
-}
-
+const lluviaVisual = document.querySelector(".lluvia-visual");
+
+function actualizarLluviaVisual() {
+  if (!audioAmbiente || !lluviaVisual) return;
 
-/* CUENTO: fondo ambiental si usás fondo-cuento.png */
-.cuento-card::before {
-  animation: respirarFondoCaja 24s ease-in-out infinite;
-  will-change: transform, opacity, filter;
-}
-
-
-/* CUENTO GRATIS: luz ambiental general */
-.cuento-gratis-pergamino::before {
-  animation: respirarLuzSuave 20s ease-in-out infinite;
-  will-change: opacity, transform;
-}
-
-
-/* HERRAMIENTAS: luz de fondo de la sección */
-.herramientas-muestra::before {
-  animation: respirarLuzSuave 24s ease-in-out infinite;
-  will-change: opacity, transform;
-}
-
-
-/* =========================
-   ANIMACIONES
-   ========================= */
-
-@keyframes respirarFondoHero {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.25;
-    filter: blur(1px) brightness(1);
-  }
-
-  50% {
-    transform: scale(1.035);
-    opacity: 0.34;
-    filter: blur(1.2px) brightness(1.08);
-  }
-}
-
-
-/* Esta mantiene el translateX(-50%) porque tu fondo de lectura está centrado así */
-@keyframes respirarFondoLectura {
-  0%, 100% {
-    transform: translateX(-50%) scale(1);
-    opacity: 0.34;
-    filter: blur(1px) brightness(1);
-  }
-
-  50% {
-    transform: translateX(-50%) scale(1.035);
-    opacity: 0.44;
-    filter: blur(1.2px) brightness(1.08);
-  }
-}
-
-
-@keyframes respirarFondoCaja {
-  0%, 100% {
-    transform: scale(1.03);
-    opacity: 0.32;
-    filter: blur(1px) brightness(1);
-  }
-
-  50% {
-    transform: scale(1.07);
-    opacity: 0.42;
-    filter: blur(1.2px) brightness(1.08);
-  }
-}
-
-
-@keyframes respirarLuzSuave {
-  0%, 100% {
-    opacity: 0.82;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1.025);
-  }
-}
-
-
-/* En celular, un poco más visible */
-@media (max-width: 700px) {
-  .hero::before {
-    animation-duration: 22s;
-  }
-
-  .fondo-preguntas-section .pergamino-regalo-contenido::before,
-  .cuento-card::before {
-    opacity: 0.42;
-  }
-}
-
-
-/* Respeta usuarios con reducción de movimiento */
-@media (prefers-reduced-motion: reduce) {
-  .hero::before,
-  .intro-muestra::before,
-  .fondo-preguntas-section .pergamino-regalo-contenido::before,
-  .cuento-card::before,
-  .cuento-gratis-pergamino::before,
-  .herramientas-muestra::before {
-    animation: none !important;
-  }
-}
-/* =====================================================
-   LLUVIA VISUAL ACTIVABLE
-   Aparece solo cuando se activa el audio de lluvia
-   ===================================================== */
-
-.lluvia-visual {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-  opacity: 0;
-  transition: opacity 1.2s ease;
-  mix-blend-mode: screen;
-}
-
-/* Se activa cuando el JS agrega la clase al body */
-body.lluvia-activa .lluvia-visual {
-  opacity: 0.34;
-}
-
-/* Capa principal de lluvia */
-.lluvia-visual::before {
-  content: "";
-  position: absolute;
-  inset: -25%;
-
-  background-image:
-    linear-gradient(
-      115deg,
-      transparent 0%,
-      transparent 46%,
-      rgba(210, 226, 242, 0.24) 47%,
-      transparent 49%,
-      transparent 100%
-    );
-
-  background-size: 95px 150px;
-  background-position: 0 0;
-  filter: blur(0.25px);
-  animation: lluviaCae 0.95s linear infinite;
-}
-
-/* Segunda capa: gotas más finas y lentas */
-.lluvia-visual::after {
-  content: "";
-  position: absolute;
-  inset: -25%;
-
-  background-image:
-    linear-gradient(
-      115deg,
-      transparent 0%,
-      transparent 54%,
-      rgba(235, 244, 255, 0.16) 55%,
-      transparent 57%,
-      transparent 100%
-    );
-
-  background-size: 140px 210px;
-  background-position: 40px 80px;
-  filter: blur(0.35px);
-  animation: lluviaCaeSuave 1.45s linear infinite;
-}
-
-@keyframes lluviaCae {
-  0% {
-    transform: translate3d(0, -8%, 0);
-  }
-
-  100% {
-    transform: translate3d(-7%, 10%, 0);
-  }
-}
-
-@keyframes lluviaCaeSuave {
-  0% {
-    transform: translate3d(0, -10%, 0);
-  }
-
-  100% {
-    transform: translate3d(-5%, 12%, 0);
-  }
-}
-
-/* Un poco más visible en celular */
-@media (max-width: 700px) {
-  body.lluvia-activa .lluvia-visual {
-    opacity: 0.48;
-  }
-
-  .lluvia-visual::before {
-    background-size: 70px 120px;
-  }
-
-  .lluvia-visual::after {
-    background-size: 105px 170px;
-  }
-}
-
-/* Respeta reducción de movimiento */
-@media (prefers-reduced-motion: reduce) {
-  .lluvia-visual::before,
-  .lluvia-visual::after {
-    animation: none !important;
-  }
-}
-/* =====================================================
-   LLUVIA VISUAL MÁS NATURAL
-   Reemplaza visualmente la lluvia anterior
-   ===================================================== */
-
-.lluvia-visual {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-  opacity: 0;
-  transition: opacity 1.2s ease;
-  mix-blend-mode: screen;
-
-  background:
-    radial-gradient(circle at 50% 20%, rgba(180, 205, 230, 0.035), transparent 42%),
-    linear-gradient(180deg, rgba(255,255,255,0.015), transparent 55%);
-}
-
-body.lluvia-activa .lluvia-visual {
-  opacity: 0.80;
-}
-
-/* Gotas principales: más largas y separadas */
-.lluvia-visual::before {
-  content: "";
-  position: absolute;
-  inset: auto !important;
-  top: -120vh;
-  left: -18vw;
-  right: auto !important;
-  bottom: auto !important;
-
-  width: 1px;
-  height: 78px;
-  border-radius: 999px;
-
-  background: rgba(225, 238, 255, 0.18);
-  box-shadow:
-    4vw 10vh 0 0 rgba(225,238,255,0.12),
-    12vw 42vh 0 0 rgba(225,238,255,0.18),
-    21vw 18vh 0 0 rgba(225,238,255,0.10),
-    29vw 66vh 0 0 rgba(225,238,255,0.16),
-    36vw 28vh 0 0 rgba(225,238,255,0.12),
-    43vw 82vh 0 0 rgba(225,238,255,0.20),
-    51vw 36vh 0 0 rgba(225,238,255,0.11),
-    58vw 95vh 0 0 rgba(225,238,255,0.18),
-    65vw 22vh 0 0 rgba(225,238,255,0.13),
-    73vw 74vh 0 0 rgba(225,238,255,0.17),
-    82vw 48vh 0 0 rgba(225,238,255,0.12),
-    91vw 90vh 0 0 rgba(225,238,255,0.19),
-    100vw 30vh 0 0 rgba(225,238,255,0.11),
-    108vw 70vh 0 0 rgba(225,238,255,0.15),
-
-    8vw 130vh 0 0 rgba(225,238,255,0.14),
-    17vw 166vh 0 0 rgba(225,238,255,0.18),
-    26vw 118vh 0 0 rgba(225,238,255,0.10),
-    34vw 188vh 0 0 rgba(225,238,255,0.17),
-    42vw 142vh 0 0 rgba(225,238,255,0.12),
-    50vw 205vh 0 0 rgba(225,238,255,0.20),
-    59vw 126vh 0 0 rgba(225,238,255,0.13),
-    68vw 176vh 0 0 rgba(225,238,255,0.18),
-    77vw 112vh 0 0 rgba(225,238,255,0.11),
-    86vw 196vh 0 0 rgba(225,238,255,0.17),
-    96vw 148vh 0 0 rgba(225,238,255,0.13),
-    106vw 220vh 0 0 rgba(225,238,255,0.18);
-
-  filter: blur(0.45px);
-  transform: translate3d(0, 0, 0) rotate(17deg);
-  animation: lluviaNaturalPrincipal 1.05s linear infinite;
-}
+  const lluviaActiva = !audioAmbiente.paused;
+
+  document.body.classList.toggle("lluvia-activa", lluviaActiva);
+  lluviaVisual.classList.toggle("activa", lluviaActiva);
+}
+
+if (audioAmbiente && lluviaVisual) {
+  audioAmbiente.addEventListener("play", actualizarLluviaVisual);
+  audioAmbiente.addEventListener("pause", actualizarLluviaVisual);
+  audioAmbiente.addEventListener("ended", actualizarLluviaVisual);
 
-/* Gotas finas: más cantidad, más suaves */
-.lluvia-visual::after {
-  content: "";
-  position: absolute;
-  inset: auto !important;
-  top: -120vh;
-  left: -22vw;
-  right: auto !important;
-  bottom: auto !important;
-
-  width: 1px;
-  height: 42px;
-  border-radius: 999px;
-
-  background: rgba(235, 244, 255, 0.10);
-  box-shadow:
-    2vw 22vh 0 0 rgba(235,244,255,0.08),
-    7vw 58vh 0 0 rgba(235,244,255,0.13),
-    15vw 34vh 0 0 rgba(235,244,255,0.07),
-    20vw 88vh 0 0 rgba(235,244,255,0.12),
-    27vw 14vh 0 0 rgba(235,244,255,0.08),
-    33vw 72vh 0 0 rgba(235,244,255,0.11),
-    39vw 46vh 0 0 rgba(235,244,255,0.07),
-    46vw 98vh 0 0 rgba(235,244,255,0.12),
-    53vw 26vh 0 0 rgba(235,244,255,0.08),
-    61vw 80vh 0 0 rgba(235,244,255,0.13),
-    69vw 40vh 0 0 rgba(235,244,255,0.07),
-    76vw 108vh 0 0 rgba(235,244,255,0.11),
-    84vw 18vh 0 0 rgba(235,244,255,0.08),
-    92vw 64vh 0 0 rgba(235,244,255,0.12),
-    101vw 38vh 0 0 rgba(235,244,255,0.07),
-    111vw 92vh 0 0 rgba(235,244,255,0.11),
-
-    5vw 138vh 0 0 rgba(235,244,255,0.09),
-    13vw 172vh 0 0 rgba(235,244,255,0.13),
-    22vw 124vh 0 0 rgba(235,244,255,0.07),
-    30vw 202vh 0 0 rgba(235,244,255,0.12),
-    37vw 156vh 0 0 rgba(235,244,255,0.08),
-    45vw 226vh 0 0 rgba(235,244,255,0.11),
-    52vw 132vh 0 0 rgba(235,244,255,0.07),
-    60vw 186vh 0 0 rgba(235,244,255,0.13),
-    67vw 146vh 0 0 rgba(235,244,255,0.08),
-    75vw 214vh 0 0 rgba(235,244,255,0.12),
-    83vw 128vh 0 0 rgba(235,244,255,0.07),
-    91vw 194vh 0 0 rgba(235,244,255,0.11),
-    99vw 152vh 0 0 rgba(235,244,255,0.08),
-    109vw 232vh 0 0 rgba(235,244,255,0.12);
-
-  filter: blur(0.25px);
-  transform: translate3d(0, 0, 0) rotate(17deg);
-  animation: lluviaNaturalFina 1.55s linear infinite;
+  actualizarLluviaVisual();
 }
 
-@keyframes lluviaNaturalPrincipal {
-  0% {
-    transform: translate3d(0, -8vh, 0) rotate(17deg);
-  }
-
-  100% {
-    transform: translate3d(-18vw, 120vh, 0) rotate(17deg);
-  }
-}
-
-@keyframes lluviaNaturalFina {
-  0% {
-    transform: translate3d(0, -10vh, 0) rotate(17deg);
-  }
-
-  100% {
-    transform: translate3d(-14vw, 125vh, 0) rotate(17deg);
-  }
-}
+      /* =========================
+         NARRADOR DEL CUENTO GRATIS
+         ========================= */
 
-/* Celular: más visible, pero sin exagerar */
-@media (max-width: 700px) {
-  body.lluvia-activa .lluvia-visual {
-    opacity: 0.54;
-  }
-
-  .lluvia-visual::before {
-    height: 64px;
-    filter: blur(0.35px);
-  }
-
-  .lluvia-visual::after {
-    height: 36px;
-  }
-}
+      const audioNarrador = document.getElementById("audioNarrador");
+      const narradorToggle = document.getElementById("narradorToggle");
+      const volumenNarrador = document.getElementById("volumenNarrador");
 
-/* Respeta reducción de movimiento */
-@media (prefers-reduced-motion: reduce) {
-  .lluvia-visual::before,
-  .lluvia-visual::after {
-    animation: none !important;
-  }
-}
-/* =====================================================
-   FIX LLUVIA VISIBLE EN CELULAR
-   Hace la lluvia más presente sin tapar la lectura
-   ===================================================== */
-
-.lluvia-visual {
-  z-index: 20 !important;
-  pointer-events: none !important;
-}
+      let volumenAmbientePrevio = 0.42;
 
-body.lluvia-activa .lluvia-visual {
-  opacity: 0.52 !important;
-}
+      function bajarAmbienteParaNarrador() {
+        if (!audioAmbiente) return;
 
-/* Celular: lluvia más visible */
-@media (max-width: 700px) {
-  body.lluvia-activa .lluvia-visual {
-    opacity: 0.82 !important;
-  }
-
-  .lluvia-visual::before {
-    height: 82px !important;
-    width: 1.4px !important;
-    background: rgba(235, 244, 255, 0.28) !important;
-    filter: blur(0.25px) brightness(1.35) !important;
-  }
-
-  .lluvia-visual::after {
-    height: 52px !important;
-    width: 1.1px !important;
-    background: rgba(235, 244, 255, 0.20) !important;
-    filter: blur(0.2px) brightness(1.25) !important;
-  }
-}
+        volumenAmbientePrevio = audioAmbiente.volume || 0.42;
 
-/* Celulares muy chicos: todavía un poco más marcada */
-@media (max-width: 430px) {
-  body.lluvia-activa .lluvia-visual {
-    opacity: 0.92 !important;
-  }
-
-  .lluvia-visual::before {
-    height: 88px !important;
-  }
-
-  .lluvia-visual::after {
-    height: 58px !important;
-  }
-}
-/* ==========================================
-   BLOQUE DE PREGUNTAS - PERGAMINO GRATIS
-   ========================================== */
-
-.preguntas-pergamino {
-  max-width: 760px;
-  margin: 34px auto 28px;
-  padding: 26px 28px 24px;
-  border-radius: 24px;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(222, 176, 100, 0.12), transparent 48%),
-    rgba(14, 8, 5, 0.34);
-  border: 1px solid rgba(232, 196, 134, 0.14);
-  box-shadow:
-    inset 0 0 42px rgba(255, 210, 135, 0.035),
-    0 18px 46px rgba(0, 0, 0, 0.18);
-}
+        if (!audioAmbiente.paused) {
+          audioAmbiente.volume = 0.16;
+        }
+      }
 
-.preguntas-titulo {
-  margin: 0 auto 18px !important;
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(1.25rem, 2.8vw, 1.65rem);
-  line-height: 1.25;
-  color: rgba(255, 235, 196, 0.95);
-  text-align: center;
-}
+      function restaurarAmbienteDespuesNarrador() {
+        if (!audioAmbiente) return;
 
-.preguntas-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  margin: 0 auto;
-}
+        audioAmbiente.volume = volumenAmbientePrevio || 0.42;
+      }
 
-.preguntas-grid p {
-  position: relative;
-  margin: 0 !important;
-  padding: 13px 16px 13px 38px;
-  border-radius: 16px;
-  background: rgba(255, 232, 184, 0.055);
-  border: 1px solid rgba(232, 196, 134, 0.105);
-  color: rgba(243, 224, 190, 0.88);
-  font-size: clamp(0.98rem, 2.2vw, 1.08rem);
-  line-height: 1.45;
-  text-align: left;
-}
+      if (audioNarrador && narradorToggle) {
+        audioNarrador.volume = volumenNarrador ? Number(volumenNarrador.value) : 0.82;
 
-.preguntas-grid p::before {
-  content: "✦";
-  position: absolute;
-  left: 16px;
-  top: 13px;
-  color: rgba(235, 190, 110, 0.86);
-  font-size: 0.78rem;
-}
+        narradorToggle.addEventListener("click", function () {
+          if (audioNarrador.paused) {
+            bajarAmbienteParaNarrador();
 
-.preguntas-cierre {
-  margin: 22px auto 0 !important;
-  font-style: italic;
-  color: rgba(236, 212, 174, 0.78) !important;
-  font-size: clamp(1rem, 2.3vw, 1.12rem) !important;
-  line-height: 1.5 !important;
-  text-align: center;
-}
+            audioNarrador.play()
+              .then(function () {
+                narradorToggle.textContent = "Pausar narrador";
+                narradorToggle.classList.add("activo");
 
-/* Ajuste mobile */
-@media (max-width: 640px) {
-  .preguntas-pergamino {
-    margin: 28px auto 24px;
-    padding: 22px 16px 20px;
-    border-radius: 20px;
-  }
-
-  .preguntas-grid {
-    gap: 10px;
-  }
-
-  .preguntas-grid p {
-    padding: 12px 14px 12px 34px;
-    line-height: 1.42;
-  }
-
-  .preguntas-grid p::before {
-    left: 14px;
-    top: 12px;
-  }
-}
+                trackGAEvent("narrador_play", {
+                  event_label: "Narrador cuento gratis"
+                });
+              })
+              .catch(function (error) {
+                console.log("No se pudo reproducir el narrador:", error);
+              });
+          } else {
+            audioNarrador.pause();
+            narradorToggle.textContent = "Narrador";
+            narradorToggle.classList.remove("activo");
+            restaurarAmbienteDespuesNarrador();
+
+            trackGAEvent("narrador_pause", {
+              event_label: "Narrador cuento gratis"
+            });
+          }
+        });
+
+        audioNarrador.addEventListener("ended", function () {
+          narradorToggle.textContent = "Narrador";
+          narradorToggle.classList.remove("activo");
+          restaurarAmbienteDespuesNarrador();
+
+          trackGAEvent("narrador_ended", {
+            event_label: "Narrador cuento gratis"
+          });
+        });
+      }
+
+      if (audioNarrador && volumenNarrador) {
+        volumenNarrador.addEventListener("input", function () {
+          audioNarrador.volume = Number(volumenNarrador.value);
+        });
+      }
+
+      /* =========================
+         VISOR DE PÁGINAS
+         ========================= */
+
+      const paginas = Array.from(document.querySelectorAll("#libroDemo .libro-pagina"));
+      const botonAnterior = document.querySelector(".libro-prev");
+      const botonSiguiente = document.querySelector(".libro-next");
+      const contadorLibro = document.getElementById("contadorLibro");
+      const sonidoPagina = document.getElementById("sonidoPagina");
+
+      let paginaActual = paginas.findIndex(function (pagina) {
+        return pagina.classList.contains("activa");
+      });
+
+      if (paginaActual === -1) {
+        paginaActual = 0;
+      }
+
+      function reproducirSonidoPagina() {
+        if (!sonidoPagina) return;
+
+        sonidoPagina.volume = 0.42;
+        sonidoPagina.currentTime = 0;
+
+        sonidoPagina.play().catch(function (error) {
+          console.log("No se pudo reproducir el sonido de página:", error);
+        });
+      }
+
+      function mostrarPagina(indice) {
+        if (!paginas.length) return;
+
+        if (indice < 0) {
+          indice = 0;
+        }
+
+        if (indice >= paginas.length) {
+          indice = paginas.length - 1;
+        }
+
+        paginas.forEach(function (pagina) {
+          pagina.classList.remove("activa");
+        });
+
+        paginas[indice].classList.add("activa");
+        paginaActual = indice;
+
+        if (contadorLibro) {
+          contadorLibro.textContent = "Página " + (paginaActual + 1) + " de " + paginas.length;
+        }
+
+        if (botonAnterior) {
+          botonAnterior.disabled = paginaActual === 0;
+        }
+
+        if (botonSiguiente) {
+          botonSiguiente.disabled = paginaActual === paginas.length - 1;
+        }
+      }
+
+      if (botonAnterior) {
+        botonAnterior.addEventListener("click", function () {
+          if (paginaActual > 0) {
+            reproducirSonidoPagina();
+            mostrarPagina(paginaActual - 1);
+          }
+        });
+      }
+
+      if (botonSiguiente) {
+        botonSiguiente.addEventListener("click", function () {
+          if (paginaActual < paginas.length - 1) {
+            reproducirSonidoPagina();
+            mostrarPagina(paginaActual + 1);
+          }
+        });
+      }
+
+      mostrarPagina(paginaActual);
+
+      /* =========================
+         REVEAL AL HACER SCROLL
+         ========================= */
+
+      const elementosReveal = document.querySelectorAll(".reveal");
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(function (entradas) {
+          entradas.forEach(function (entrada) {
+            if (entrada.isIntersecting) {
+              entrada.target.classList.add("visible");
+            }
+          });
+        }, {
+          threshold: 0.12
+        });
+
+        elementosReveal.forEach(function (elemento) {
+          observer.observe(elemento);
+        });
+      } else {
+        elementosReveal.forEach(function (elemento) {
+          elemento.classList.add("visible");
+        });
+      }
+
+    });
+  </script>
+<!-- refresh deploy 2026-07-04 -->
+</body>
+</html>
