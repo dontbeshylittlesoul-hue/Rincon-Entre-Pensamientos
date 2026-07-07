@@ -476,12 +476,12 @@
           <div class="hero-benefit">
             <span class="hero-benefit-title">Herramientas prácticas</span>
           </div>
-        </div>
-           <div class="hero-benefit">
+
+          <div class="hero-benefit">
             <span class="hero-benefit-title">Actualizaciones por semana</span>
           </div>
-        </div>
-      <div class="hero-benefit">
+
+          <div class="hero-benefit">
             <span class="hero-benefit-title">Acceso de por vida</span>
           </div>
         </div>
@@ -494,6 +494,10 @@
   <a href="#pergamino-gratis" class="hero-action-btn" id="botonCuentoHero" data-ga-event="click_pergamino_gratis">
   <span>Ver guía "Las 7 preguntas" gratis</span>
 </a>
+
+  <a href="#asi-se-vive-adentro" class="hero-action-btn" id="botonAdentroHero" data-ga-event="click_asi_se_vive_adentro">
+    <span>Así se vive adentro →</span>
+  </a>
 
   <button class="hero-action-btn btn-ambiente" id="ambienteToggle" type="button" data-ga-event="click_activar_lluvia">
     <span>☂ Activar lluvia para leer</span>
@@ -512,6 +516,75 @@
     </div>
 
     <div class="hero-scroll-hint">deslizá para entrar</div>
+  </section>
+
+  <!-- ASÍ SE VIVE ADENTRO - CARRUSEL -->
+  <section class="showcase-adentro reveal" id="asi-se-vive-adentro">
+    <div class="showcase-adentro-inner">
+      <p class="section-mini">vista por dentro</p>
+
+      <h2>Así se vive el Rincón adentro</h2>
+
+      <p class="showcase-adentro-texto">
+        Una mirada a la experiencia completa: lectura inmersiva, herramientas, notas, cuentos,
+        pausas visuales y espacios para volver a escucharte.
+      </p>
+
+      <div class="showcase-carousel" aria-label="Vista previa del interior del Rincón">
+        <button class="showcase-arrow showcase-prev" type="button" aria-label="Imagen anterior">
+          ‹
+        </button>
+
+        <div class="showcase-frame">
+          <img
+            src="./showcase/asi-se-vive-adentro.png"
+            alt="Vista general del interior de Rincón entre Pensamientos"
+            class="showcase-slide activa"
+            loading="eager"
+            decoding="async"
+          >
+
+          <img
+            src="./showcase/herramientas-notas-caminos.png"
+            alt="Herramientas, notas y caminos del Rincón"
+            class="showcase-slide"
+            loading="lazy"
+            decoding="async"
+          >
+
+          <img
+            src="./showcase/cuentos-biblioteca-lectura.png"
+            alt="Cuentos, biblioteca emocional y lectura inmersiva"
+            class="showcase-slide"
+            loading="lazy"
+            decoding="async"
+          >
+
+          <img
+            src="./showcase/paginas-pausas-refugios.png"
+            alt="Páginas, pausas visuales y herramientas prácticas"
+            class="showcase-slide"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+
+        <button class="showcase-arrow showcase-next" type="button" aria-label="Imagen siguiente">
+          ›
+        </button>
+      </div>
+
+      <div class="showcase-dots" aria-label="Elegir imagen del carrusel">
+        <button class="activo" type="button" aria-label="Ver imagen 1"></button>
+        <button type="button" aria-label="Ver imagen 2"></button>
+        <button type="button" aria-label="Ver imagen 3"></button>
+        <button type="button" aria-label="Ver imagen 4"></button>
+      </div>
+
+      <a href="#ebook" class="showcase-cta" data-ga-event="click_showcase_acceso_completo">
+        Ver acceso completo →
+      </a>
+    </div>
   </section>
 
  <!-- INVITACIÓN A LA MUESTRA -->
@@ -1570,5 +1643,87 @@
 
     });
   </script>
+
+  <!-- SCRIPT CARRUSEL: ASÍ SE VIVE ADENTRO -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const slides = Array.from(document.querySelectorAll(".showcase-slide"));
+      const dots = Array.from(document.querySelectorAll(".showcase-dots button"));
+      const prev = document.querySelector(".showcase-prev");
+      const next = document.querySelector(".showcase-next");
+      const carousel = document.querySelector(".showcase-carousel");
+
+      if (!slides.length) return;
+
+      let actual = 0;
+      let intervalo = null;
+
+      function mostrarSlide(indice) {
+        if (indice < 0) indice = slides.length - 1;
+        if (indice >= slides.length) indice = 0;
+
+        slides.forEach(function (slide, i) {
+          slide.classList.toggle("activa", i === indice);
+        });
+
+        dots.forEach(function (dot, i) {
+          dot.classList.toggle("activo", i === indice);
+        });
+
+        actual = indice;
+      }
+
+      function siguienteSlide() {
+        mostrarSlide(actual + 1);
+      }
+
+      function iniciarAuto() {
+        detenerAuto();
+        intervalo = setInterval(siguienteSlide, 5200);
+      }
+
+      function detenerAuto() {
+        if (intervalo) {
+          clearInterval(intervalo);
+          intervalo = null;
+        }
+      }
+
+      if (prev) {
+        prev.addEventListener("click", function () {
+          detenerAuto();
+          mostrarSlide(actual - 1);
+          iniciarAuto();
+        });
+      }
+
+      if (next) {
+        next.addEventListener("click", function () {
+          detenerAuto();
+          mostrarSlide(actual + 1);
+          iniciarAuto();
+        });
+      }
+
+      dots.forEach(function (dot, i) {
+        dot.addEventListener("click", function () {
+          detenerAuto();
+          mostrarSlide(i);
+          iniciarAuto();
+        });
+      });
+
+      if (carousel) {
+        carousel.addEventListener("mouseenter", detenerAuto);
+        carousel.addEventListener("mouseleave", iniciarAuto);
+        carousel.addEventListener("focusin", detenerAuto);
+        carousel.addEventListener("focusout", iniciarAuto);
+      }
+
+      mostrarSlide(0);
+      iniciarAuto();
+    });
+  </script>
+
 </body>
 </html>
