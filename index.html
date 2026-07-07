@@ -1656,5 +1656,356 @@ if (audioAmbiente && lluviaVisual) {
   }
 })();
 </script>
+  <!-- =====================================================
+FIX FINAL MENÚ DE AMBIENTES - RINCÓN ENTRE PENSAMIENTOS
+Pegarlo justo arriba de </body>
+===================================================== -->
+
+<style>
+  /* Oculta definitivamente el botón viejo de lluvia */
+  #ambienteToggle {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    min-width: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+  }
+
+  /* Botón nuevo de ambiente */
+  #rinconAmbienteControl {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    z-index: 9999 !important;
+    margin: 12px auto 0 !important;
+    width: auto !important;
+    max-width: 100% !important;
+  }
+
+  #rinconAmbienteToggle {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+
+    min-height: 52px !important;
+    padding: 13px 24px !important;
+    border-radius: 999px !important;
+
+    background: rgba(226, 186, 112, 0.72) !important;
+    color: #2a170c !important;
+    border: 1px solid rgba(93, 54, 22, 0.38) !important;
+
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: 1.08rem !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+    letter-spacing: 0.04em !important;
+    text-transform: none !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+
+    box-shadow: 0 10px 26px rgba(24, 13, 7, 0.22) !important;
+    backdrop-filter: blur(5px) !important;
+    cursor: pointer !important;
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease !important;
+  }
+
+  #rinconAmbienteToggle:hover {
+    transform: translateY(-2px) !important;
+    background: rgba(241, 219, 181, 0.76) !important;
+    box-shadow: 0 14px 34px rgba(24, 13, 7, 0.3) !important;
+  }
+
+  /* Fondo oscuro cuando se abre el menú */
+  #rinconMenuBackdrop {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 2147483646 !important;
+    display: none !important;
+    background: rgba(5, 3, 2, 0.58) !important;
+    backdrop-filter: blur(3px) !important;
+  }
+
+  #rinconMenuBackdrop.rincon-backdrop-visible {
+    display: block !important;
+  }
+
+  /* Menú de ambientes como ventana centrada */
+  .rincon-ambiente-menu {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: translate(-50%, -50%) !important;
+
+    z-index: 2147483647 !important;
+
+    width: min(340px, calc(100vw - 36px)) !important;
+    max-height: calc(100dvh - 90px) !important;
+    overflow-y: auto !important;
+
+    display: none !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+
+    padding: 16px !important;
+    border-radius: 24px !important;
+    border: 1px solid rgba(230, 185, 110, 0.38) !important;
+
+    background:
+      radial-gradient(circle at 50% 0%, rgba(255, 215, 145, 0.14), transparent 220px),
+      rgba(18, 10, 5, 0.985) !important;
+
+    box-shadow:
+      0 28px 90px rgba(0, 0, 0, 0.74),
+      0 0 40px rgba(214, 147, 66, 0.14) !important;
+
+    backdrop-filter: blur(8px) !important;
+  }
+
+  body.rincon-menu-abierto .rincon-ambiente-menu,
+  .rincon-ambiente-menu.rincon-menu-visible {
+    display: grid !important;
+  }
+
+  .rincon-ambiente-menu::before {
+    content: "Elegí el ambiente" !important;
+    display: block !important;
+    margin: 2px 0 8px !important;
+    text-align: center !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: 1.35rem !important;
+    font-weight: 500 !important;
+    line-height: 1.1 !important;
+    color: rgba(255, 235, 198, 0.96) !important;
+  }
+
+  .rincon-ambiente-menu button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 100% !important;
+    min-height: 50px !important;
+    padding: 12px 16px !important;
+
+    border-radius: 999px !important;
+    border: 1px solid rgba(220, 175, 105, 0.42) !important;
+    background: rgba(255, 230, 180, 0.14) !important;
+    color: #f4dbac !important;
+
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: 1.05rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.03em !important;
+    text-align: center !important;
+    text-transform: none !important;
+
+    cursor: pointer !important;
+    box-shadow: none !important;
+    transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease !important;
+  }
+
+  .rincon-ambiente-menu button:hover {
+    transform: translateY(-2px) !important;
+    background: rgba(255, 226, 170, 0.22) !important;
+    border-color: rgba(240, 200, 130, 0.66) !important;
+  }
+
+  .rincon-ambiente-menu button.activo {
+    background: rgba(255, 218, 150, 0.28) !important;
+    border-color: rgba(245, 205, 135, 0.76) !important;
+    color: #fff2d0 !important;
+  }
+
+  body.rincon-menu-abierto {
+    overflow: hidden !important;
+  }
+
+  @media (max-width: 620px) {
+    #rinconAmbienteControl {
+      display: flex !important;
+      width: 100% !important;
+      margin: 12px auto 0 !important;
+    }
+
+    #rinconAmbienteToggle {
+      width: min(100%, 300px) !important;
+      min-height: 50px !important;
+      font-size: 1rem !important;
+    }
+
+    .rincon-ambiente-menu {
+      width: min(330px, calc(100vw - 30px)) !important;
+      max-height: calc(100dvh - 70px) !important;
+      padding: 14px !important;
+      border-radius: 22px !important;
+    }
+
+    .rincon-ambiente-menu button {
+      min-height: 48px !important;
+      font-size: 1rem !important;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    "use strict";
+
+    function aplicarFixMenuAmbiente() {
+      const botonViejo = document.getElementById("ambienteToggle");
+      const control = document.getElementById("rinconAmbienteControl");
+      const toggle = document.getElementById("rinconAmbienteToggle");
+      const menu = document.querySelector(".rincon-ambiente-menu");
+
+      if (botonViejo) {
+        botonViejo.setAttribute("aria-hidden", "true");
+        botonViejo.setAttribute("tabindex", "-1");
+        botonViejo.style.setProperty("display", "none", "important");
+      }
+
+      if (!control || !toggle || !menu) {
+        return false;
+      }
+
+      let backdrop = document.getElementById("rinconMenuBackdrop");
+
+      if (!backdrop) {
+        backdrop = document.createElement("div");
+        backdrop.id = "rinconMenuBackdrop";
+        document.body.appendChild(backdrop);
+      }
+
+      menu.classList.add("rincon-menu-modal");
+
+      if (menu.parentElement !== document.body) {
+        document.body.appendChild(menu);
+      }
+
+      function cerrarMenu() {
+        control.classList.remove("abierto");
+        document.body.classList.remove("rincon-menu-abierto");
+        menu.classList.remove("rincon-menu-visible");
+        backdrop.classList.remove("rincon-backdrop-visible");
+        toggle.setAttribute("aria-expanded", "false");
+      }
+
+      function abrirMenu() {
+        control.classList.add("abierto");
+        document.body.classList.add("rincon-menu-abierto");
+        menu.classList.add("rincon-menu-visible");
+        backdrop.classList.add("rincon-backdrop-visible");
+        toggle.setAttribute("aria-expanded", "true");
+      }
+
+      function sincronizarMenu() {
+        const abierto = control.classList.contains("abierto");
+
+        if (abierto) {
+          document.body.classList.add("rincon-menu-abierto");
+          menu.classList.add("rincon-menu-visible");
+          backdrop.classList.add("rincon-backdrop-visible");
+          toggle.setAttribute("aria-expanded", "true");
+        } else {
+          document.body.classList.remove("rincon-menu-abierto");
+          menu.classList.remove("rincon-menu-visible");
+          backdrop.classList.remove("rincon-backdrop-visible");
+          toggle.setAttribute("aria-expanded", "false");
+        }
+      }
+
+      if (control.dataset.fixMenuAmbienteAplicado === "1") {
+        sincronizarMenu();
+        return true;
+      }
+
+      control.dataset.fixMenuAmbienteAplicado = "1";
+
+      toggle.setAttribute("aria-haspopup", "true");
+      toggle.setAttribute("aria-expanded", "false");
+
+      const observer = new MutationObserver(sincronizarMenu);
+
+      observer.observe(control, {
+        attributes: true,
+        attributeFilter: ["class"]
+      });
+
+      toggle.addEventListener("click", function () {
+        setTimeout(function () {
+          if (control.classList.contains("abierto")) {
+            abrirMenu();
+          } else {
+            cerrarMenu();
+          }
+        }, 0);
+      });
+
+      menu.addEventListener("click", function (event) {
+        const opcion = event.target.closest("[data-rincon-ambiente-opcion]");
+
+        if (!opcion) return;
+
+        setTimeout(function () {
+          cerrarMenu();
+        }, 40);
+      });
+
+      backdrop.addEventListener("click", function () {
+        cerrarMenu();
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          cerrarMenu();
+        }
+      });
+
+      document.addEventListener("click", function (event) {
+        const tocoToggle = event.target.closest("#rinconAmbienteToggle");
+        const tocoMenu = event.target.closest(".rincon-ambiente-menu");
+
+        if (tocoToggle || tocoMenu) return;
+
+        if (control.classList.contains("abierto")) {
+          cerrarMenu();
+        }
+      });
+
+      sincronizarMenu();
+
+      return true;
+    }
+
+    let intentos = 0;
+
+    function intentarAplicarFix() {
+      intentos += 1;
+
+      const aplicado = aplicarFixMenuAmbiente();
+
+      if (!aplicado && intentos < 40) {
+        setTimeout(intentarAplicarFix, 150);
+      }
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", intentarAplicarFix);
+    } else {
+      intentarAplicarFix();
+    }
+  })();
+</script>
 </body>
 </html>
