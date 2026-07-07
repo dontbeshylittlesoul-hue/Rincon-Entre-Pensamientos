@@ -199,6 +199,35 @@
   <audio id="audioAmbiente" src="./ambiente-lluvia.mp3" preload="auto" loop></audio>
   <audio id="sonidoPagina" src="./pasar-pagina.mp3" preload="auto"></audio>
   <audio id="audioNarrador" src="./narracion-cuento-tren.mp3" preload="metadata"></audio>
+  <audio id="sonidoPuerta" src="./sounds/puerta-rincon.mp3" preload="auto"></audio>
+
+<audio id="sonidoClickPergamino" src="./sounds/click-pergamino.mp3" preload="auto"></audio>
+
+<audio id="ambienteFuego" src="./sounds/fuego-suave.mp3" preload="auto" loop></audio>
+
+<audio id="ambienteBosque" src="./sounds/bosque-noche.mp3" preload="auto" loop></audio>
+
+<audio id="ambienteSelva" src="./sounds/selva-noche.mp3" preload="auto" loop></audio>
+
+  <div id="entradaSonora" class="entrada-sonora" role="dialog" aria-modal="true">
+  <div class="entrada-sonora-card">
+    <p class="entrada-sonora-mini">Antes de entrar</p>
+
+    <h2>Elegí cómo llega el Rincón hoy</h2>
+
+    <p class="entrada-sonora-texto">
+      Una pequeña pausa antes de leer. Activá un ambiente o entrá en silencio.
+    </p>
+
+    <div class="entrada-sonora-opciones">
+      <button type="button" data-rincon-ambiente="lluvia">☂ Lluvia suave</button>
+      <button type="button" data-rincon-ambiente="fuego">🔥 Fuego bajo</button>
+      <button type="button" data-rincon-ambiente="bosque">🌙 Bosque noche</button>
+      <button type="button" data-rincon-ambiente="selva">🌿 Selva noche</button>
+      <button type="button" data-rincon-ambiente="silencio" class="entrada-silencio">Entrar en silencio</button>
+    </div>
+  </div>
+</div>
 
   <!-- HERO -->
   <section class="hero" id="inicio">
