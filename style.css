@@ -8181,3 +8181,338 @@ body .showcase-slide {
   text-decoration: none;
   cursor: pointer;
 }
+
+/* =====================================================
+   HERO RINCÓN FINAL — PERGAMINO NUEVO + TEXTO REAL
+   Usa la imagen subida al root: pergamino-farol.png
+   ===================================================== */
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+.hero-rincon {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  width: 100%;
+  max-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(22px, 4vw, 48px) 16px clamp(38px, 6vw, 76px);
+  overflow: hidden;
+}
+
+.hero-rincon-inner {
+  width: min(100%, 1120px);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-rincon-art {
+  position: relative;
+  width: min(94vw, 680px);
+  aspect-ratio: 3 / 4;
+  margin: 0 auto;
+  filter: drop-shadow(0 28px 74px rgba(0, 0, 0, 0.64));
+}
+
+.hero-rincon-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.hero-rincon-content {
+  position: absolute;
+  z-index: 3;
+  left: 58%;
+  top: 51%;
+  transform: translate(-50%, -50%);
+  width: 44%;
+  max-width: 310px;
+  min-width: 250px;
+  text-align: center;
+  color: #211207;
+  text-shadow: 0 1px 0 rgba(255, 238, 188, 0.26);
+}
+
+.hero-rincon-eyebrow {
+  margin: 0 auto 10px;
+  font-family: var(--font-body);
+  font-size: clamp(0.48rem, 0.85vw, 0.64rem);
+  letter-spacing: 0.18em;
+  line-height: 1.25;
+  text-transform: uppercase;
+  color: rgba(72, 42, 18, 0.68);
+}
+
+.hero-rincon-title {
+  margin: 0 auto 8px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.55rem, 4.75vw, 4.25rem);
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+  color: #211207;
+}
+
+.hero-rincon-title span {
+  display: block;
+  white-space: normal;
+}
+
+.hero-rincon-title span:last-child {
+  font-size: 0.74em;
+  letter-spacing: -0.04em;
+}
+
+.hero-rincon-subtitle {
+  max-width: 250px;
+  margin: 8px auto 12px;
+  font-family: var(--font-body);
+  font-size: clamp(0.82rem, 1.15vw, 0.98rem);
+  line-height: 1.25;
+  font-weight: 500;
+  color: rgba(42, 25, 12, 0.82);
+}
+
+.hero-rincon-benefits {
+  width: min(100%, 250px);
+  margin: 10px auto 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+
+.hero-rincon-benefits span {
+  min-height: 25px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 240, 207, 0.78);
+  color: #2a170c;
+  font-family: var(--font-body);
+  font-size: clamp(0.56rem, 0.85vw, 0.68rem);
+  line-height: 1.05;
+  font-weight: 700;
+  box-shadow: 0 7px 16px rgba(34, 18, 8, 0.12);
+}
+
+.hero-rincon-actions {
+  width: min(100%, 285px);
+  margin: 16px auto 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 9px;
+}
+
+.hero-rincon-btn,
+.hero-rincon-actions a,
+.hero-rincon-actions button,
+.hero-rincon .btn-ambiente,
+.hero-rincon .btn-ambientes,
+.hero-rincon #ambienteToggle,
+.hero-rincon #ambientesToggle {
+  appearance: none !important;
+  width: 100% !important;
+  min-height: 42px !important;
+  margin: 0 auto !important;
+  padding: 9px 16px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(95, 58, 28, 0.34) !important;
+  background: rgba(232, 202, 154, 0.74) !important;
+  color: rgba(48, 27, 13, 0.96) !important;
+  font-family: var(--font-display) !important;
+  font-size: clamp(0.88rem, 1.25vw, 1.02rem) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.035em !important;
+  line-height: 1.08 !important;
+  text-decoration: none !important;
+  text-align: center !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 10px 22px rgba(24, 13, 7, 0.20) !important;
+  cursor: pointer !important;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.hero-rincon-btn:hover,
+.hero-rincon-actions a:hover,
+.hero-rincon-actions button:hover {
+  transform: translateY(-2px) !important;
+  background: rgba(241, 219, 181, 0.82) !important;
+}
+
+.hero-rincon-btn-main,
+.hero-rincon #entrarMuestra {
+  background: rgba(226, 186, 112, 0.86) !important;
+}
+
+.hero-rincon-btn-light,
+.hero-rincon #botonCuentoHero,
+.hero-rincon #botonAdentroHero {
+  background: rgba(255, 232, 190, 0.78) !important;
+}
+
+.hero-rincon-scroll {
+  display: inline-flex;
+  justify-content: center;
+  margin-top: 14px;
+  color: rgba(232, 201, 154, 0.55);
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* Oculta cualquier resto del hero viejo si quedó en el CSS */
+.hero-v2,
+.hero,
+.hero-pergamino,
+.hero-contenido,
+.hero-scroll-hint {
+  max-width: 100vw;
+}
+
+/* =====================================================
+   MOBILE HERO RINCÓN
+   ===================================================== */
+
+@media (max-width: 760px) {
+  .hero-rincon {
+    min-height: auto;
+    padding: 16px 10px 46px;
+    justify-content: flex-start;
+  }
+
+  .hero-rincon-inner {
+    width: 100%;
+  }
+
+  .hero-rincon-art {
+    width: min(100%, 430px);
+    aspect-ratio: 3 / 4;
+    filter: drop-shadow(0 20px 48px rgba(0, 0, 0, 0.58));
+  }
+
+  .hero-rincon-content {
+    left: 60%;
+    top: 52%;
+    width: 49%;
+    max-width: 210px;
+    min-width: 0;
+  }
+
+  .hero-rincon-eyebrow {
+    margin-bottom: 6px;
+    font-size: 0.35rem;
+    letter-spacing: 0.13em;
+    line-height: 1.18;
+  }
+
+  .hero-rincon-title {
+    margin-bottom: 6px;
+    font-size: clamp(1.86rem, 8.6vw, 2.45rem);
+    line-height: 0.88;
+  }
+
+  .hero-rincon-title span:last-child {
+    font-size: 0.72em;
+  }
+
+  .hero-rincon-subtitle {
+    max-width: 178px;
+    margin: 6px auto 8px;
+    font-size: 0.62rem;
+    line-height: 1.16;
+  }
+
+  .hero-rincon-benefits {
+    display: none;
+  }
+
+  .hero-rincon-actions {
+    width: min(100%, 205px);
+    margin-top: 10px;
+    gap: 7px;
+  }
+
+  .hero-rincon-btn,
+  .hero-rincon-actions a,
+  .hero-rincon-actions button,
+  .hero-rincon .btn-ambiente,
+  .hero-rincon .btn-ambientes,
+  .hero-rincon #ambienteToggle,
+  .hero-rincon #ambientesToggle {
+    min-height: 34px !important;
+    padding: 7px 10px !important;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.02em !important;
+    box-shadow: 0 8px 18px rgba(24, 13, 7, 0.18) !important;
+  }
+
+  .hero-rincon-scroll {
+    margin-top: 10px;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+  }
+
+  .bg-noise,
+  .ember-glow {
+    display: none !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-rincon-art {
+    width: min(100%, 370px);
+  }
+
+  .hero-rincon-content {
+    left: 60%;
+    top: 52%;
+    width: 50%;
+    max-width: 188px;
+  }
+
+  .hero-rincon-title {
+    font-size: clamp(1.65rem, 8.1vw, 2.08rem);
+  }
+
+  .hero-rincon-subtitle {
+    font-size: 0.58rem;
+    max-width: 160px;
+  }
+
+  .hero-rincon-actions {
+    width: min(100%, 188px);
+    gap: 6px;
+  }
+
+  .hero-rincon-btn,
+  .hero-rincon-actions a,
+  .hero-rincon-actions button,
+  .hero-rincon .btn-ambiente,
+  .hero-rincon .btn-ambientes,
+  .hero-rincon #ambienteToggle,
+  .hero-rincon #ambientesToggle {
+    min-height: 31px !important;
+    font-size: 0.70rem !important;
+    padding: 6px 8px !important;
+  }
+}
