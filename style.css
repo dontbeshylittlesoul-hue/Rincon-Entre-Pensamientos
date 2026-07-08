@@ -8108,4 +8108,76 @@ body .showcase-slide {
     width: min(100%, 310px);
   }
 }
+/* =====================================================
+   FIX MOBILE: EVITAR CRASH AL HACER ZOOM
+   + BOTÓN VER IMAGEN EN GRANDE
+===================================================== */
 
+@media (max-width: 760px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden !important;
+  }
+
+  /* Baja carga visual en mobile */
+  .bg-noise,
+  .ember-glow {
+    display: none !important;
+  }
+
+  .bg-layer {
+    position: fixed;
+  }
+
+  .showcase-adentro {
+    padding: 58px 12px !important;
+    overflow-x: hidden !important;
+  }
+
+  .showcase-carousel {
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .showcase-frame {
+    width: 100% !important;
+    max-width: 100% !important;
+    aspect-ratio: 16 / 9 !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+  }
+
+  .showcase-slide {
+    object-fit: contain !important;
+    background: #080604 !important;
+    cursor: zoom-in !important;
+  }
+
+  .showcase-arrow {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  .showcase-zoom-btn {
+    display: inline-flex !important;
+  }
+}
+
+.showcase-zoom-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  margin: 18px auto 0;
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(218, 174, 104, 0.34);
+  background: rgba(255, 226, 170, 0.12);
+  color: #f0d29a;
+  font-family: "Crimson Pro", Georgia, serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  cursor: pointer;
+}
