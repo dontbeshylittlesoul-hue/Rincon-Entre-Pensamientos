@@ -1714,6 +1714,47 @@
       iniciarAuto();
     });
   </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const showcase = document.querySelector(".showcase-adentro");
+    const frame = document.querySelector(".showcase-frame");
 
+    if (!showcase || !frame) return;
+
+    let zoomBtn = document.querySelector(".showcase-zoom-btn");
+
+    if (!zoomBtn) {
+      zoomBtn = document.createElement("button");
+      zoomBtn.type = "button";
+      zoomBtn.className = "showcase-zoom-btn";
+      zoomBtn.textContent = "Ver imagen en grande";
+      frame.insertAdjacentElement("afterend", zoomBtn);
+    }
+
+    function obtenerImagenActiva() {
+      return document.querySelector(".showcase-slide.activa");
+    }
+
+    function abrirImagenGrande() {
+      const img = obtenerImagenActiva();
+
+      if (!img) return;
+
+      const src = img.currentSrc || img.src;
+
+      if (src) {
+        window.open(src, "_blank", "noopener");
+      }
+    }
+
+    zoomBtn.addEventListener("click", abrirImagenGrande);
+
+    frame.addEventListener("click", function () {
+      if (window.innerWidth <= 760) {
+        abrirImagenGrande();
+      }
+    });
+  });
+</script>
 </body>
 </html>
