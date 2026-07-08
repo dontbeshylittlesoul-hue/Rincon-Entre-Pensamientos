@@ -6600,3 +6600,390 @@ body.lluvia-activa .lluvia-visual {
     margin-top: 14px !important;
   }
 }
+/* =====================================================
+   FIX DEFINITIVO HERO + PERGAMINO FAROL
+   Pegarlo al final de style.css
+===================================================== */
+
+.hero {
+  min-height: 100svh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 28px 16px 68px !important;
+}
+
+.hero-pergamino {
+  position: relative !important;
+  isolation: isolate !important;
+  width: min(94vw, 760px) !important;
+  min-height: min(92svh, 900px) !important;
+  display: grid !important;
+  place-items: center !important;
+
+  background-color: transparent !important;
+  background-image: url("./pergamino-farol.png?v=4") !important;
+  background-size: 100% 100% !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+
+  border-radius: 0 !important;
+  overflow: visible !important;
+  filter: drop-shadow(0 28px 60px rgba(0,0,0,.68)) !important;
+  transform: none !important;
+}
+
+/* Luz del farol, suave */
+.hero-pergamino::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 25% !important;
+  top: 35% !important;
+  width: 8.4rem !important;
+  height: 8.4rem !important;
+  border-radius: 999px !important;
+  background:
+    radial-gradient(circle,
+      rgba(255, 236, 166, 0.74) 0%,
+      rgba(255, 185, 72, 0.48) 22%,
+      rgba(210, 95, 28, 0.22) 44%,
+      transparent 72%
+    ) !important;
+  filter: blur(9px) !important;
+  opacity: 0.72 !important;
+  mix-blend-mode: screen !important;
+  transform: translate(-50%, -50%) !important;
+  animation: fuegoFarolHeroFinal 2.8s ease-in-out infinite !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
+
+/* Chispas suaves */
+.hero-pergamino::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 25% !important;
+  top: 40% !important;
+  width: 9rem !important;
+  height: 12rem !important;
+  background:
+    radial-gradient(circle at 35% 78%, rgba(255, 221, 139, 0.46) 0 1.4px, transparent 3px),
+    radial-gradient(circle at 58% 68%, rgba(255, 166, 66, 0.34) 0 1.2px, transparent 3px),
+    radial-gradient(circle at 42% 54%, rgba(255, 219, 146, 0.28) 0 1.2px, transparent 3px),
+    radial-gradient(circle at 64% 46%, rgba(255, 176, 77, 0.22) 0 1px, transparent 3px) !important;
+  opacity: 0.30 !important;
+  mix-blend-mode: screen !important;
+  transform: translate(-50%, 10px) !important;
+  animation: chispasFarolHeroFinal 6s linear infinite !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
+
+.hero-contenido {
+  position: relative !important;
+  z-index: 3 !important;
+  width: min(62%, 405px) !important;
+  max-width: 405px !important;
+  margin: 0 !important;
+  margin-left: 8% !important;
+  margin-top: 3% !important;
+  padding: 0 !important;
+  text-align: center !important;
+  color: #211207 !important;
+  text-shadow: 0 1px 0 rgba(255, 232, 170, .22) !important;
+}
+
+.hero-eyebrow {
+  margin: 0 auto 12px !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.54rem !important;
+  letter-spacing: 0.18em !important;
+  line-height: 1.25 !important;
+  text-transform: uppercase !important;
+  color: rgba(72, 42, 18, .72) !important;
+}
+
+.hero-title {
+  margin: 0 auto 8px !important;
+  font-family: var(--font-display) !important;
+  font-size: clamp(2.65rem, 5.45vw, 4.7rem) !important;
+  font-weight: 400 !important;
+  line-height: 0.88 !important;
+  letter-spacing: -0.03em !important;
+  color: #211207 !important;
+  text-align: center !important;
+}
+
+.hero-title span {
+  display: block !important;
+  white-space: nowrap !important;
+}
+
+.hero-title span:last-child {
+  font-size: 0.86em !important;
+}
+
+.hero-subtitle {
+  max-width: 315px !important;
+  margin: 8px auto 12px !important;
+  font-family: var(--font-body) !important;
+  font-size: clamp(0.86rem, 1.5vw, 1.02rem) !important;
+  line-height: 1.25 !important;
+  font-weight: 500 !important;
+  color: rgba(42, 25, 12, .78) !important;
+}
+
+.hero-benefits {
+  width: min(100%, 330px) !important;
+  max-width: 330px !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 6px !important;
+  margin: 8px auto 0 !important;
+}
+
+.hero-benefit {
+  width: 100% !important;
+  min-height: 26px !important;
+  padding: 5px 12px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 239, 205, 0.72) !important;
+  color: #2a170c !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1.05 !important;
+  box-shadow: 0 6px 14px rgba(34, 18, 8, 0.10) !important;
+}
+
+.hero-benefit-title {
+  display: block !important;
+  font-size: clamp(0.62rem, 1.08vw, 0.74rem) !important;
+  line-height: 1.05 !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+}
+
+.hero-actions,
+.hero-actions-clean {
+  width: min(100%, 350px) !important;
+  margin: 20px auto 0 !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 10px !important;
+  justify-items: center !important;
+}
+
+.hero-action-btn,
+.hero-actions a,
+.hero-actions button,
+#ambienteToggle,
+#ambientesToggle {
+  appearance: none !important;
+  width: min(100%, 325px) !important;
+  min-height: 48px !important;
+  margin: 0 auto !important;
+  padding: 10px 20px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(95, 58, 28, 0.34) !important;
+  background: rgba(232, 202, 154, 0.62) !important;
+  color: rgba(48, 27, 13, 0.96) !important;
+  font-family: var(--font-display) !important;
+  font-size: 1.04rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  line-height: 1.1 !important;
+  text-decoration: none !important;
+  text-align: center !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 10px 24px rgba(24, 13, 7, 0.20) !important;
+  cursor: pointer !important;
+}
+
+#entrarMuestra,
+.hero-action-main {
+  background: rgba(226, 186, 112, 0.74) !important;
+}
+
+#botonAsiSeVive {
+  background: rgba(255, 232, 190, 0.68) !important;
+}
+
+.hero-action-btn:hover,
+.hero-actions a:hover,
+.hero-actions button:hover {
+  transform: translateY(-2px) !important;
+  background: rgba(241, 219, 181, 0.78) !important;
+}
+
+.hero-note {
+  display: none !important;
+}
+
+.hero-scroll-hint {
+  position: static !important;
+  transform: none !important;
+  margin-top: 14px !important;
+  text-align: center !important;
+  width: 100% !important;
+  color: rgba(232, 201, 154, .55) !important;
+  font-size: .72rem !important;
+  letter-spacing: .2em !important;
+  text-transform: uppercase !important;
+}
+
+@keyframes fuegoFarolHeroFinal {
+  0%, 100% {
+    opacity: 0.58;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+
+  45% {
+    opacity: 0.84;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+}
+
+@keyframes chispasFarolHeroFinal {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 24px);
+  }
+
+  25% {
+    opacity: 0.34;
+  }
+
+  60% {
+    opacity: 0.22;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -36px);
+  }
+}
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media (max-width: 700px) {
+  .hero {
+    min-height: auto !important;
+    padding: 12px 12px 54px !important;
+    justify-content: flex-start !important;
+  }
+
+  .hero-pergamino {
+    width: calc(100vw - 24px) !important;
+    max-width: 390px !important;
+    min-height: 690px !important;
+    background-image: url("./pergamino-farol.png?v=4") !important;
+    background-size: 100% 100% !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    overflow: visible !important;
+  }
+
+  .hero-pergamino::before {
+    left: 25% !important;
+    top: 33% !important;
+    width: 6.8rem !important;
+    height: 6.8rem !important;
+    opacity: 0.70 !important;
+  }
+
+  .hero-pergamino::after {
+    left: 25% !important;
+    top: 38% !important;
+    width: 7rem !important;
+    height: 10rem !important;
+    opacity: 0.26 !important;
+  }
+
+  .hero-contenido {
+    width: 66% !important;
+    max-width: 255px !important;
+    margin: 0 auto !important;
+    padding-top: 6.2rem !important;
+    transform: translateX(6%) !important;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.42rem !important;
+    letter-spacing: 0.14em !important;
+    margin-bottom: 7px !important;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 9.4vw, 2.75rem) !important;
+    line-height: 0.9 !important;
+    margin-bottom: 7px !important;
+  }
+
+  .hero-subtitle {
+    max-width: 220px !important;
+    margin: 6px auto 9px !important;
+    font-size: 0.76rem !important;
+    line-height: 1.18 !important;
+  }
+
+  .hero-benefits {
+    max-width: 220px !important;
+    gap: 5px !important;
+    margin-top: 6px !important;
+  }
+
+  .hero-benefit {
+    min-height: 23px !important;
+    padding: 4px 8px !important;
+  }
+
+  .hero-benefit-title {
+    font-size: 0.52rem !important;
+  }
+
+  .hero-actions,
+  .hero-actions-clean {
+    width: min(100%, 315px) !important;
+    margin-top: 18px !important;
+    gap: 10px !important;
+  }
+
+  .hero-action-btn,
+  .hero-actions a,
+  .hero-actions button,
+  #ambienteToggle,
+  #ambientesToggle {
+    width: min(100%, 300px) !important;
+    min-height: 48px !important;
+    font-size: 0.95rem !important;
+  }
+
+  .hero-scroll-hint {
+    margin-top: 12px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-pergamino {
+    min-height: 660px !important;
+  }
+
+  .hero-contenido {
+    max-width: 242px !important;
+    padding-top: 5.95rem !important;
+  }
+
+  .hero-title {
+    font-size: 2.22rem !important;
+  }
+
+  .hero-benefit-title {
+    font-size: 0.50rem !important;
+  }
+}
