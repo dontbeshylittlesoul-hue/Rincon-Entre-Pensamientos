@@ -389,10 +389,10 @@
     }
   </style>
 
-  <!-- FIX FINAL HERO + CARRUSEL: pegado dentro del index para que pise style.css -->
+  <!-- FIX FINAL HERO + CARRUSEL: versión limpia y estable -->
   <style id="fix-final-hero-y-carrusel">
     /* =====================================================
-       HERO PERGAMINO CON FAROL — VERSIÓN ESTABLE
+       HERO ESTABLE — PERGAMINO + BOTONES SEPARADOS
        ===================================================== */
 
     .hero {
@@ -400,50 +400,54 @@
       display: flex !important;
       flex-direction: column !important;
       align-items: center !important;
-      justify-content: center !important;
-      padding: 28px 16px 68px !important;
+      justify-content: flex-start !important;
+      padding: 42px 16px 80px !important;
     }
 
     .hero-pergamino {
       position: relative !important;
       isolation: isolate !important;
-      width: min(94vw, 760px) !important;
-      min-height: min(92svh, 900px) !important;
-      display: grid !important;
-      place-items: center !important;
+      width: min(92vw, 620px) !important;
+      height: 760px !important;
+      min-height: 760px !important;
+      margin: 0 auto 340px !important;
+
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
 
       background-color: transparent !important;
       background-image:
-        url("./pergamino-farol.png?v=7"),
-        url("./pergamino-farol.jpeg?v=7"),
-        url("./pergamino-farol.jpg?v=7") !important;
+        url("./pergamino-farol.png?v=12"),
+        url("./pergamino-farol.jpeg?v=12"),
+        url("./pergamino-farol.jpg?v=12") !important;
       background-size: contain !important;
       background-position: center !important;
       background-repeat: no-repeat !important;
 
       border-radius: 0 !important;
       overflow: visible !important;
-      filter: drop-shadow(0 28px 60px rgba(0,0,0,.68)) !important;
+      filter: drop-shadow(0 26px 58px rgba(0,0,0,.68)) !important;
       transform: none !important;
     }
 
     .hero-pergamino::before {
       content: "" !important;
       position: absolute !important;
-      left: 25% !important;
-      top: 35% !important;
-      width: 8.4rem !important;
-      height: 8.4rem !important;
+      left: 27% !important;
+      top: 38% !important;
+      width: 7.4rem !important;
+      height: 7.4rem !important;
       border-radius: 999px !important;
       background:
         radial-gradient(circle,
-          rgba(255, 236, 166, 0.72) 0%,
-          rgba(255, 185, 72, 0.46) 22%,
-          rgba(210, 95, 28, 0.20) 44%,
+          rgba(255, 236, 166, 0.66) 0%,
+          rgba(255, 185, 72, 0.40) 22%,
+          rgba(210, 95, 28, 0.18) 44%,
           transparent 72%
         ) !important;
       filter: blur(9px) !important;
-      opacity: 0.68 !important;
+      opacity: 0.62 !important;
       mix-blend-mode: screen !important;
       transform: translate(-50%, -50%) !important;
       animation: fuegoFarolHeroFinal 2.8s ease-in-out infinite !important;
@@ -454,16 +458,16 @@
     .hero-pergamino::after {
       content: "" !important;
       position: absolute !important;
-      left: 25% !important;
-      top: 40% !important;
-      width: 9rem !important;
-      height: 12rem !important;
+      left: 27% !important;
+      top: 43% !important;
+      width: 8rem !important;
+      height: 10rem !important;
       background:
-        radial-gradient(circle at 35% 78%, rgba(255, 221, 139, 0.44) 0 1.4px, transparent 3px),
-        radial-gradient(circle at 58% 68%, rgba(255, 166, 66, 0.32) 0 1.2px, transparent 3px),
-        radial-gradient(circle at 42% 54%, rgba(255, 219, 146, 0.26) 0 1.2px, transparent 3px),
-        radial-gradient(circle at 64% 46%, rgba(255, 176, 77, 0.20) 0 1px, transparent 3px) !important;
-      opacity: 0.28 !important;
+        radial-gradient(circle at 35% 78%, rgba(255, 221, 139, 0.34) 0 1.4px, transparent 3px),
+        radial-gradient(circle at 58% 68%, rgba(255, 166, 66, 0.26) 0 1.2px, transparent 3px),
+        radial-gradient(circle at 42% 54%, rgba(255, 219, 146, 0.22) 0 1.2px, transparent 3px),
+        radial-gradient(circle at 64% 46%, rgba(255, 176, 77, 0.16) 0 1px, transparent 3px) !important;
+      opacity: 0.24 !important;
       mix-blend-mode: screen !important;
       transform: translate(-50%, 10px) !important;
       animation: chispasFarolHeroFinal 6s linear infinite !important;
@@ -472,75 +476,76 @@
     }
 
     .hero-contenido {
-      position: relative !important;
+      position: static !important;
       z-index: 3 !important;
-      width: min(62%, 405px) !important;
-      max-width: 405px !important;
+      width: 270px !important;
+      max-width: 270px !important;
       margin: 0 !important;
-      margin-left: 8% !important;
-      margin-top: 3% !important;
       padding: 0 !important;
       text-align: center !important;
       color: #211207 !important;
       text-shadow: 0 1px 0 rgba(255, 232, 170, .22) !important;
+      transform: translate(74px, -58px) !important;
     }
 
     .hero-eyebrow {
-      margin: 0 auto 12px !important;
+      margin: 0 auto 10px !important;
       font-family: var(--font-body) !important;
-      font-size: 0.54rem !important;
-      letter-spacing: 0.18em !important;
+      font-size: 0.42rem !important;
+      letter-spacing: 0.16em !important;
       line-height: 1.25 !important;
       text-transform: uppercase !important;
-      color: rgba(72, 42, 18, .72) !important;
+      color: rgba(72, 42, 18, .66) !important;
     }
 
     .hero-title {
+      width: 100% !important;
+      max-width: 100% !important;
       margin: 0 auto 8px !important;
       font-family: var(--font-display) !important;
-      font-size: clamp(2.65rem, 5.45vw, 4.7rem) !important;
+      font-size: 3.05rem !important;
       font-weight: 400 !important;
       line-height: 0.88 !important;
-      letter-spacing: -0.03em !important;
+      letter-spacing: -0.035em !important;
       color: #211207 !important;
       text-align: center !important;
-      display: block !important;
     }
 
     .hero-title span {
       display: block !important;
-      white-space: nowrap !important;
+      white-space: normal !important;
     }
 
     .hero-title span:last-child {
-      font-size: 0.86em !important;
+      font-size: 0.70em !important;
+      letter-spacing: -0.04em !important;
     }
 
     .hero-subtitle {
-      max-width: 315px !important;
-      margin: 8px auto 12px !important;
+      max-width: 230px !important;
+      margin: 7px auto 10px !important;
       font-family: var(--font-body) !important;
-      font-size: clamp(0.86rem, 1.5vw, 1.02rem) !important;
-      line-height: 1.25 !important;
+      font-size: 0.76rem !important;
+      line-height: 1.20 !important;
       font-weight: 500 !important;
-      color: rgba(42, 25, 12, .78) !important;
+      color: rgba(42, 25, 12, .82) !important;
     }
 
     .hero-benefits {
-      width: min(100%, 330px) !important;
-      max-width: 330px !important;
+      width: 220px !important;
+      max-width: 220px !important;
       display: grid !important;
       grid-template-columns: 1fr !important;
-      gap: 6px !important;
+      gap: 5px !important;
       margin: 8px auto 0 !important;
     }
 
     .hero-benefit {
       width: 100% !important;
-      min-height: 26px !important;
-      padding: 5px 12px !important;
+      min-height: 22px !important;
+      padding: 4px 8px !important;
       border-radius: 999px !important;
-      background: rgba(255, 239, 205, 0.72) !important;
+      background: rgba(255, 239, 205, 0.80) !important;
       color: #2a170c !important;
       display: flex !important;
       align-items: center !important;
@@ -551,20 +556,26 @@
 
     .hero-benefit-title {
       display: block !important;
-      font-size: clamp(0.62rem, 1.08vw, 0.74rem) !important;
+      font-size: 0.48rem !important;
       line-height: 1.05 !important;
-      font-weight: 600 !important;
+      font-weight: 700 !important;
       text-align: center !important;
     }
 
     .hero-actions,
     .hero-actions-clean {
-      width: min(100%, 350px) !important;
-      margin: 20px auto 0 !important;
+      position: absolute !important;
+      left: 50% !important;
+      top: calc(100% + 18px) !important;
+      transform: translateX(-50%) !important;
+      width: min(100vw - 32px, 390px) !important;
+      max-width: 390px !important;
+      margin: 0 !important;
       display: grid !important;
       grid-template-columns: 1fr !important;
-      gap: 10px !important;
+      gap: 12px !important;
       justify-items: center !important;
+      z-index: 20 !important;
     }
 
     .hero-action-btn,
@@ -573,16 +584,16 @@
     #ambienteToggle,
     #ambientesToggle {
       appearance: none !important;
-      width: min(100%, 325px) !important;
-      min-height: 48px !important;
+      width: 100% !important;
+      min-height: 52px !important;
       margin: 0 auto !important;
-      padding: 10px 20px !important;
+      padding: 12px 22px !important;
       border-radius: 999px !important;
       border: 1px solid rgba(95, 58, 28, 0.34) !important;
-      background: rgba(232, 202, 154, 0.62) !important;
+      background: rgba(232, 202, 154, 0.72) !important;
       color: rgba(48, 27, 13, 0.96) !important;
       font-family: var(--font-display) !important;
-      font-size: 1.04rem !important;
+      font-size: 1.08rem !important;
       font-weight: 600 !important;
       letter-spacing: 0.04em !important;
       line-height: 1.1 !important;
@@ -591,25 +602,25 @@
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
-      box-shadow: 0 10px 24px rgba(24, 13, 7, 0.20) !important;
+      box-shadow: 0 12px 28px rgba(24, 13, 7, 0.24) !important;
       cursor: pointer !important;
     }
 
     #entrarMuestra,
     .hero-action-main {
-      background: rgba(226, 186, 112, 0.74) !important;
+      background: rgba(226, 186, 112, 0.82) !important;
     }
 
-    #botonAsiSeVive,
-    #botonAdentroHero {
-      background: rgba(255, 232, 190, 0.68) !important;
+    #botonAdentroHero,
+    #botonAsiSeVive {
+      background: rgba(255, 232, 190, 0.76) !important;
     }
 
     .hero-action-btn:hover,
     .hero-actions a:hover,
     .hero-actions button:hover {
       transform: translateY(-2px) !important;
-      background: rgba(241, 219, 181, 0.78) !important;
+      background: rgba(241, 219, 181, 0.82) !important;
     }
 
     .hero-note {
@@ -617,47 +628,30 @@
     }
 
     .hero-scroll-hint {
-      position: static !important;
+      position: relative !important;
+      left: auto !important;
+      bottom: auto !important;
       transform: none !important;
-      margin-top: 14px !important;
+      margin-top: 8px !important;
       text-align: center !important;
       width: 100% !important;
       color: rgba(232, 201, 154, .55) !important;
-      font-size: .72rem !important;
-      letter-spacing: .2em !important;
+      font-size: .68rem !important;
+      letter-spacing: .22em !important;
       text-transform: uppercase !important;
+      z-index: 2 !important;
     }
 
     @keyframes fuegoFarolHeroFinal {
-      0%, 100% {
-        opacity: 0.58;
-        transform: translate(-50%, -50%) scale(0.96);
-      }
-
-      45% {
-        opacity: 0.82;
-        transform: translate(-50%, -50%) scale(1.06);
-      }
+      0%, 100% { opacity: 0.52; transform: translate(-50%, -50%) scale(0.96); }
+      45% { opacity: 0.76; transform: translate(-50%, -50%) scale(1.05); }
     }
 
     @keyframes chispasFarolHeroFinal {
-      0% {
-        opacity: 0;
-        transform: translate(-50%, 24px);
-      }
-
-      25% {
-        opacity: 0.32;
-      }
-
-      60% {
-        opacity: 0.20;
-      }
-
-      100% {
-        opacity: 0;
-        transform: translate(-50%, -36px);
-      }
+      0% { opacity: 0; transform: translate(-50%, 24px); }
+      25% { opacity: 0.28; }
+      60% { opacity: 0.18; }
+      100% { opacity: 0; transform: translate(-50%, -36px); }
     }
 
     /* =====================================================
@@ -665,32 +659,32 @@
        ===================================================== */
 
     .showcase-adentro {
-      position: relative !important;
-      z-index: 1 !important;
-      padding: clamp(70px, 9vw, 120px) 20px !important;
+      position: relative;
+      z-index: 1;
+      padding: clamp(70px, 9vw, 120px) 20px;
       background:
         radial-gradient(circle at 50% 0%, rgba(209, 151, 71, 0.13), transparent 420px),
-        linear-gradient(180deg, rgba(9, 6, 4, 0.96), rgba(16, 10, 6, 0.98)) !important;
-      border-top: 1px solid rgba(210, 168, 102, 0.10) !important;
-      border-bottom: 1px solid rgba(210, 168, 102, 0.10) !important;
-      overflow: hidden !important;
+        linear-gradient(180deg, rgba(9, 6, 4, 0.96), rgba(16, 10, 6, 0.98));
+      border-top: 1px solid rgba(210, 168, 102, 0.10);
+      border-bottom: 1px solid rgba(210, 168, 102, 0.10);
+      overflow: hidden;
     }
 
     .showcase-adentro::before {
-      content: "" !important;
-      position: absolute !important;
-      inset: 0 !important;
+      content: "";
+      position: absolute;
+      inset: 0;
       background:
         radial-gradient(circle at 12% 24%, rgba(255, 192, 102, 0.08), transparent 260px),
-        radial-gradient(circle at 88% 72%, rgba(255, 192, 102, 0.06), transparent 300px) !important;
-      pointer-events: none !important;
+        radial-gradient(circle at 88% 72%, rgba(255, 192, 102, 0.06), transparent 300px);
+      pointer-events: none;
     }
 
     .showcase-adentro-inner {
-      position: relative !important;
-      max-width: 1180px !important;
-      margin: 0 auto !important;
-      text-align: center !important;
+      position: relative;
+      max-width: 1180px;
+      margin: 0 auto;
+      text-align: center;
     }
 
     .showcase-adentro .section-mini {
@@ -698,229 +692,203 @@
     }
 
     .showcase-adentro h2 {
-      margin: 0 auto 18px !important;
-      font-family: var(--font-display) !important;
-      font-size: clamp(2.3rem, 6vw, 4.8rem) !important;
-      font-weight: 300 !important;
-      line-height: 1 !important;
-      color: #f0d29a !important;
+      margin: 0 auto 18px;
+      font-family: var(--font-display);
+      font-size: clamp(2.3rem, 6vw, 4.8rem);
+      font-weight: 300;
+      line-height: 1;
+      color: #f0d29a;
     }
 
     .showcase-adentro-texto {
-      max-width: 720px !important;
-      margin: 0 auto 42px !important;
-      font-family: var(--font-body) !important;
-      font-size: clamp(1.05rem, 2.4vw, 1.25rem) !important;
-      line-height: 1.7 !important;
-      color: rgba(233, 221, 205, 0.74) !important;
+      max-width: 720px;
+      margin: 0 auto 42px;
+      font-family: var(--font-body);
+      font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+      line-height: 1.7;
+      color: rgba(233, 221, 205, 0.74);
     }
 
     .showcase-carousel {
-      position: relative !important;
-      display: grid !important;
-      grid-template-columns: 58px minmax(0, 1fr) 58px !important;
-      gap: 18px !important;
-      align-items: center !important;
-      max-width: 1120px !important;
-      margin: 0 auto !important;
+      position: relative;
+      display: grid;
+      grid-template-columns: 58px minmax(0, 1fr) 58px;
+      gap: 18px;
+      align-items: center;
+      max-width: 1120px;
+      margin: 0 auto;
     }
 
     .showcase-frame {
-      position: relative !important;
-      width: 100% !important;
-      aspect-ratio: 16 / 9 !important;
-      border-radius: 26px !important;
-      overflow: hidden !important;
-      background: rgba(12, 8, 5, 0.82) !important;
-      border: 1px solid rgba(218, 174, 104, 0.22) !important;
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 26px;
+      overflow: hidden;
+      background: rgba(12, 8, 5, 0.82);
+      border: 1px solid rgba(218, 174, 104, 0.22);
       box-shadow:
         0 28px 80px rgba(0, 0, 0, 0.48),
-        0 0 42px rgba(218, 151, 66, 0.08) !important;
+        0 0 42px rgba(218, 151, 66, 0.08);
     }
 
     .showcase-frame::after {
-      content: "" !important;
-      position: absolute !important;
-      inset: 0 !important;
-      box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.35) !important;
-      pointer-events: none !important;
-      z-index: 3 !important;
+      content: "";
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.35);
+      pointer-events: none;
+      z-index: 4;
     }
 
     .showcase-slide {
-      position: absolute !important;
-      inset: 0 !important;
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      opacity: 0 !important;
-      transform: scale(1.015) !important;
-      transition: opacity 0.65s ease, transform 0.65s ease !important;
-      z-index: 1 !important;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(1.015);
+      transition: opacity 0.65s ease, transform 0.65s ease;
     }
 
     .showcase-slide.activa {
-      opacity: 1 !important;
-      transform: scale(1) !important;
-      z-index: 2 !important;
+      opacity: 1;
+      transform: scale(1);
+      z-index: 1;
     }
 
     .showcase-arrow {
-      width: 54px !important;
-      height: 54px !important;
-      border-radius: 999px !important;
-      border: 1px solid rgba(218, 174, 104, 0.32) !important;
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      border: 1px solid rgba(218, 174, 104, 0.32);
       background:
         radial-gradient(circle at 50% 0%, rgba(244, 205, 142, 0.12), transparent 60%),
-        rgba(24, 15, 9, 0.78) !important;
-      color: #f0d29a !important;
-      font-family: var(--font-display) !important;
-      font-size: 2.3rem !important;
-      line-height: 1 !important;
-      cursor: pointer !important;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.32) !important;
-      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease !important;
+        rgba(24, 15, 9, 0.78);
+      color: #f0d29a;
+      font-family: var(--font-display);
+      font-size: 2.3rem;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.32);
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
     }
 
     .showcase-arrow:hover {
-      transform: translateY(-2px) !important;
-      border-color: rgba(240, 210, 154, 0.58) !important;
-      background: rgba(44, 28, 16, 0.9) !important;
+      transform: translateY(-2px);
+      border-color: rgba(240, 210, 154, 0.58);
+      background: rgba(44, 28, 16, 0.9);
     }
 
     .showcase-dots {
-      display: flex !important;
-      justify-content: center !important;
-      gap: 10px !important;
-      margin: 24px auto 0 !important;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 24px auto 0;
     }
 
     .showcase-dots button {
-      width: 9px !important;
-      height: 9px !important;
-      padding: 0 !important;
-      border-radius: 999px !important;
-      border: 1px solid rgba(218, 174, 104, 0.44) !important;
-      background: rgba(218, 174, 104, 0.18) !important;
-      cursor: pointer !important;
-      transition: width 0.25s ease, background 0.25s ease !important;
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(218, 174, 104, 0.44);
+      background: rgba(218, 174, 104, 0.18);
+      cursor: pointer;
+      transition: width 0.25s ease, background 0.25s ease;
     }
 
     .showcase-dots button.activo {
-      width: 32px !important;
-      background: #d8a85b !important;
+      width: 32px;
+      background: #d8a85b;
     }
 
     .showcase-cta {
-      display: inline-flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      margin-top: 34px !important;
-      padding: 14px 28px !important;
-      border-radius: 999px !important;
-      border: 1px solid rgba(218, 174, 104, 0.34) !important;
-      background: rgba(255, 226, 170, 0.10) !important;
-      color: #f0d29a !important;
-      font-family: var(--font-body) !important;
-      font-size: 1rem !important;
-      letter-spacing: 0.08em !important;
-      text-decoration: none !important;
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.24) !important;
-      transition: transform 0.22s ease, background 0.22s ease !important;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 34px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(218, 174, 104, 0.34);
+      background: rgba(255, 226, 170, 0.10);
+      color: #f0d29a;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.24);
+      transition: transform 0.22s ease, background 0.22s ease;
     }
 
     .showcase-cta:hover {
-      transform: translateY(-2px) !important;
-      background: rgba(255, 226, 170, 0.16) !important;
+      transform: translateY(-2px);
+      background: rgba(255, 226, 170, 0.16);
     }
-
-    /* =====================================================
-       MOBILE
-       ===================================================== */
 
     @media (max-width: 700px) {
       .hero {
         min-height: auto !important;
-        padding: 12px 12px 54px !important;
-        justify-content: flex-start !important;
+        padding: 24px 12px 72px !important;
       }
 
       .hero-pergamino {
-        width: calc(100vw - 24px) !important;
-        max-width: 390px !important;
-        min-height: 690px !important;
-        background-image:
-          url("./pergamino-farol.png?v=7"),
-          url("./pergamino-farol.jpeg?v=7"),
-          url("./pergamino-farol.jpg?v=7") !important;
+        width: min(100%, 390px) !important;
+        height: 650px !important;
+        min-height: 650px !important;
+        margin-bottom: 300px !important;
         background-size: contain !important;
         background-position: center top !important;
-        background-repeat: no-repeat !important;
-        overflow: visible !important;
-      }
-
-      .hero-pergamino::before {
-        left: 25% !important;
-        top: 33% !important;
-        width: 6.8rem !important;
-        height: 6.8rem !important;
-        opacity: 0.66 !important;
-      }
-
-      .hero-pergamino::after {
-        left: 25% !important;
-        top: 38% !important;
-        width: 7rem !important;
-        height: 10rem !important;
-        opacity: 0.24 !important;
       }
 
       .hero-contenido {
-        width: 66% !important;
-        max-width: 255px !important;
-        margin: 0 auto !important;
-        padding-top: 6.2rem !important;
-        transform: translateX(6%) !important;
+        width: 218px !important;
+        max-width: 218px !important;
+        transform: translate(54px, -58px) !important;
       }
 
       .hero-eyebrow {
-        font-size: 0.42rem !important;
-        letter-spacing: 0.14em !important;
+        font-size: 0.34rem !important;
+        letter-spacing: 0.12em !important;
         margin-bottom: 7px !important;
       }
 
       .hero-title {
-        font-size: clamp(2rem, 9.4vw, 2.75rem) !important;
-        line-height: 0.9 !important;
+        font-size: 2.36rem !important;
+        line-height: 0.88 !important;
         margin-bottom: 7px !important;
       }
 
+      .hero-title span:last-child {
+        font-size: 0.70em !important;
+      }
+
       .hero-subtitle {
-        max-width: 220px !important;
-        margin: 6px auto 9px !important;
-        font-size: 0.76rem !important;
-        line-height: 1.18 !important;
+        max-width: 190px !important;
+        margin: 6px auto 8px !important;
+        font-size: 0.68rem !important;
+        line-height: 1.16 !important;
       }
 
       .hero-benefits {
-        max-width: 220px !important;
+        max-width: 198px !important;
+        width: 198px !important;
         gap: 5px !important;
-        margin-top: 6px !important;
       }
 
       .hero-benefit {
-        min-height: 23px !important;
-        padding: 4px 8px !important;
+        min-height: 21px !important;
+        padding: 4px 7px !important;
       }
 
       .hero-benefit-title {
-        font-size: 0.50rem !important;
+        font-size: 0.44rem !important;
       }
 
       .hero-actions,
       .hero-actions-clean {
-        width: min(100%, 315px) !important;
-        margin-top: 18px !important;
+        top: calc(100% + 14px) !important;
+        width: min(100vw - 34px, 330px) !important;
         gap: 10px !important;
       }
 
@@ -929,72 +897,73 @@
       .hero-actions button,
       #ambienteToggle,
       #ambientesToggle {
-        width: min(100%, 300px) !important;
         min-height: 48px !important;
-        font-size: 0.95rem !important;
-      }
-
-      .hero-scroll-hint {
-        margin-top: 12px !important;
+        font-size: 0.98rem !important;
+        padding: 11px 18px !important;
       }
 
       .showcase-carousel {
-        grid-template-columns: 1fr !important;
-        gap: 14px !important;
+        grid-template-columns: 1fr;
+        gap: 14px;
       }
 
       .showcase-frame {
-        border-radius: 18px !important;
+        border-radius: 18px;
       }
 
       .showcase-arrow {
-        position: absolute !important;
-        top: 50% !important;
-        z-index: 5 !important;
-        width: 44px !important;
-        height: 44px !important;
-        font-size: 1.9rem !important;
-        transform: translateY(-50%) !important;
-        background: rgba(18, 10, 5, 0.84) !important;
+        position: absolute;
+        top: 50%;
+        z-index: 5;
+        width: 44px;
+        height: 44px;
+        font-size: 1.9rem;
+        transform: translateY(-50%);
+        background: rgba(18, 10, 5, 0.84);
       }
 
       .showcase-arrow:hover {
-        transform: translateY(-50%) !important;
+        transform: translateY(-50%);
       }
 
-      .showcase-prev {
-        left: 8px !important;
-      }
-
-      .showcase-next {
-        right: 8px !important;
-      }
+      .showcase-prev { left: 8px; }
+      .showcase-next { right: 8px; }
 
       .showcase-adentro-texto {
-        margin-bottom: 28px !important;
+        margin-bottom: 28px;
       }
     }
 
     @media (max-width: 390px) {
       .hero-pergamino {
-        min-height: 660px !important;
+        height: 620px !important;
+        min-height: 620px !important;
       }
 
       .hero-contenido {
-        max-width: 242px !important;
-        padding-top: 5.95rem !important;
+        width: 205px !important;
+        max-width: 205px !important;
+        transform: translate(50px, -54px) !important;
       }
 
       .hero-title {
-        font-size: 2.22rem !important;
+        font-size: 2.18rem !important;
+      }
+
+      .hero-subtitle {
+        font-size: 0.64rem !important;
+      }
+
+      .hero-benefits {
+        width: 188px !important;
+        max-width: 188px !important;
       }
 
       .hero-benefit-title {
-        font-size: 0.49rem !important;
+        font-size: 0.42rem !important;
       }
     }
   </style>
-
 </head>
 
 <body>
@@ -1052,6 +1021,8 @@
     <button type="button" data-ambiente-menu="silencio">🔇 Apagar ambiente</button>
   </div>
 </div>
+
+
   <!-- HERO -->
   <section class="hero" id="inicio">
     <div class="hero-pergamino reveal">
@@ -1090,27 +1061,28 @@
           </div>
         </div>
 
-        <div class="hero-actions hero-actions-clean" id="heroActions">
-          <a href="#lectura" class="hero-action-btn hero-action-main" id="entrarMuestra" data-ga-event="click_muestra_gratis">
-            <span>Leer muestra</span>
-          </a>
+<div class="hero-actions hero-actions-clean" id="heroActions">
+  <a href="#lectura" class="hero-action-btn hero-action-main" id="entrarMuestra" data-ga-event="click_muestra_gratis">
+    <span>Leer muestra</span>
+  </a>
 
-          <a href="#pergamino-gratis" class="hero-action-btn" id="botonCuentoHero" data-ga-event="click_pergamino_gratis">
-            <span>Ver guía "Las 7 preguntas" gratis</span>
-          </a>
+  <a href="#pergamino-gratis" class="hero-action-btn" id="botonCuentoHero" data-ga-event="click_pergamino_gratis">
+  <span>Ver guía "Las 7 preguntas" gratis</span>
+</a>
 
-          <a href="#asi-se-vive-adentro" class="hero-action-btn" id="botonAsiSeVive" data-ga-event="click_asi_se_vive_adentro">
-            <span>Así se vive adentro →</span>
-          </a>
+  <a href="#asi-se-vive-adentro" class="hero-action-btn" id="botonAdentroHero" data-ga-event="click_asi_se_vive_adentro">
+    <span>Así se vive adentro →</span>
+  </a>
 
-          <button class="hero-action-btn btn-ambiente" id="ambienteToggle" type="button" data-ga-event="click_activar_lluvia">
-            <span>☂ Activar lluvia para leer</span>
-          </button>
+  <button class="hero-action-btn btn-ambiente" id="ambienteToggle" type="button" data-ga-event="click_activar_lluvia">
+    <span>☂ Activar lluvia para leer</span>
+  </button>
 
-          <button class="hero-action-btn btn-ambientes" id="ambientesToggle" type="button" data-ga-event="click_cambiar_ambiente">
-            <span>🌙 Ambiente: silencio</span>
-          </button>
-        </div>
+  <button class="hero-action-btn btn-ambientes" id="ambientesToggle" type="button" data-ga-event="click_cambiar_ambiente">
+    <span>🌙 Ambiente: silencio</span>
+  </button>
+
+</div>
 
         <p class="hero-note">
           Muestra gratis · audio ambiente · cuentos reflexivos · ejercicios simples
@@ -1121,7 +1093,7 @@
     <div class="hero-scroll-hint">deslizá para entrar</div>
   </section>
 
-<!-- ASÍ SE VIVE ADENTRO - CARRUSEL -->
+  <!-- ASÍ SE VIVE ADENTRO - CARRUSEL -->
   <section class="showcase-adentro reveal" id="asi-se-vive-adentro">
     <div class="showcase-adentro-inner">
       <p class="section-mini">vista por dentro</p>
