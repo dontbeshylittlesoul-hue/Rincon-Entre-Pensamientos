@@ -6369,3 +6369,234 @@ body.lluvia-activa .lluvia-visual {
     right: 5px;
   }
 }
+/* =====================================================
+   FIX FINAL HERO PERGAMINO CON FAROL
+   Pegarlo al final de style.css
+===================================================== */
+
+.hero {
+  min-height: 100svh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 34px 16px 70px !important;
+}
+
+.hero-pergamino {
+  position: relative !important;
+  width: min(94vw, 760px) !important;
+  min-height: min(92svh, 900px) !important;
+  display: grid !important;
+  place-items: center !important;
+
+  background-color: transparent !important;
+  background-image: url("./pergamino-farol.jpeg") !important;
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+
+  border-radius: 0 !important;
+  overflow: visible !important;
+  filter: drop-shadow(0 28px 60px rgba(0,0,0,.68)) !important;
+}
+
+.hero-contenido {
+  width: min(62%, 410px) !important;
+  max-width: 410px !important;
+  margin: 0 !important;
+  margin-left: 8% !important;
+  margin-top: 2% !important;
+  padding: 0 !important;
+  text-align: center !important;
+  color: var(--ink) !important;
+  text-shadow: 0 1px 0 rgba(255, 232, 170, .22) !important;
+}
+
+.hero-eyebrow {
+  margin-bottom: 12px !important;
+  font-size: 0.58rem !important;
+  letter-spacing: 0.18em !important;
+  color: rgba(72, 42, 18, .72) !important;
+}
+
+.hero-title {
+  margin: 0 auto 8px !important;
+  font-family: var(--font-display) !important;
+  font-size: clamp(2.8rem, 5.7vw, 4.95rem) !important;
+  font-weight: 400 !important;
+  line-height: 0.88 !important;
+  letter-spacing: -0.03em !important;
+  color: #211207 !important;
+}
+
+.hero-title span {
+  display: block !important;
+}
+
+.hero-subtitle {
+  max-width: 320px !important;
+  margin: 8px auto 12px !important;
+  font-family: var(--font-body) !important;
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem) !important;
+  line-height: 1.28 !important;
+  color: rgba(42, 25, 12, .78) !important;
+}
+
+.hero-benefits {
+  width: min(100%, 340px) !important;
+  max-width: 340px !important;
+  display: grid !important;
+  gap: 6px !important;
+  margin: 8px auto 0 !important;
+}
+
+.hero-benefit {
+  width: 100% !important;
+  min-height: 27px !important;
+  padding: 5px 12px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 239, 205, 0.72) !important;
+  color: #2a170c !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1.05 !important;
+  box-shadow: 0 6px 14px rgba(34, 18, 8, 0.10) !important;
+}
+
+.hero-benefit-title {
+  font-size: clamp(0.64rem, 1.15vw, 0.76rem) !important;
+  line-height: 1.05 !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+}
+
+.hero-actions,
+.hero-actions-clean {
+  width: min(100%, 360px) !important;
+  margin: 22px auto 0 !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 11px !important;
+  justify-items: center !important;
+}
+
+.hero-action-btn,
+.hero-actions a,
+.hero-actions button,
+#ambienteToggle,
+#ambientesToggle {
+  width: min(100%, 330px) !important;
+  min-height: 50px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  border-radius: 999px !important;
+}
+
+.hero-note {
+  max-width: 330px !important;
+  margin: 14px auto 0 !important;
+  font-size: 0.72rem !important;
+  line-height: 1.28 !important;
+  opacity: 0.72 !important;
+}
+
+.hero-scroll-hint {
+  position: static !important;
+  transform: none !important;
+  margin-top: 14px !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+/* ==============================
+   MOBILE HERO
+============================== */
+
+@media (max-width: 700px) {
+  .hero {
+    min-height: auto !important;
+    padding: 14px 12px 54px !important;
+    justify-content: flex-start !important;
+  }
+
+  .hero-pergamino {
+    width: min(100%, 430px) !important;
+    min-height: 670px !important;
+    background-image: url("./pergamino-farol.jpeg") !important;
+    background-size: contain !important;
+    background-position: center top !important;
+    background-repeat: no-repeat !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+  }
+
+  .hero-contenido {
+    width: 62% !important;
+    max-width: 270px !important;
+    margin-left: 8% !important;
+    margin-top: 0 !important;
+    transform: translateY(34px) !important;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.46rem !important;
+    letter-spacing: 0.14em !important;
+    margin-bottom: 8px !important;
+  }
+
+  .hero-title {
+    font-size: clamp(2.35rem, 11vw, 3.35rem) !important;
+    line-height: 0.88 !important;
+    margin-bottom: 8px !important;
+  }
+
+  .hero-subtitle {
+    max-width: 230px !important;
+    margin: 6px auto 10px !important;
+    font-size: 0.82rem !important;
+    line-height: 1.22 !important;
+  }
+
+  .hero-benefits {
+    max-width: 235px !important;
+    gap: 5px !important;
+    margin-top: 6px !important;
+  }
+
+  .hero-benefit {
+    min-height: 24px !important;
+    padding: 4px 8px !important;
+  }
+
+  .hero-benefit-title {
+    font-size: 0.56rem !important;
+  }
+
+  .hero-actions,
+  .hero-actions-clean {
+    width: min(100%, 330px) !important;
+    margin-top: 18px !important;
+    gap: 10px !important;
+  }
+
+  .hero-action-btn,
+  .hero-actions a,
+  .hero-actions button,
+  #ambienteToggle,
+  #ambientesToggle {
+    width: min(100%, 310px) !important;
+    min-height: 48px !important;
+    font-size: 0.95rem !important;
+  }
+
+  .hero-note {
+    font-size: 0.68rem !important;
+    margin-top: 14px !important;
+  }
+}
