@@ -9119,3 +9119,18 @@ body {
     font-size: 1.08rem;
   }
 }
+/* BOTÓN HOTMART MISMO ESTILO QUE DESCARGAR HERRAMIENTAS GRATIS */
+
+.btn-hotmart-final {
+  margin-top: 10px;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.btn-hotmart-final::after {
+  content: " →";
+  margin-left: 6px;
+}
