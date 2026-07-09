@@ -9134,3 +9134,139 @@ body {
   content: " →";
   margin-left: 6px;
 }
+/* =====================================================
+   HERO — BOTONES UNIFICADOS FAROL / PERGAMINO
+   ===================================================== */
+
+#inicio .hero-rincon-actions {
+  width: 100%;
+  max-width: 430px;
+  margin: 22px auto 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+#inicio .hero-rincon-actions .hero-rincon-btn,
+#inicio .hero-rincon-actions .btn-ambiente,
+#inicio .hero-rincon-actions .btn-ambientes {
+  width: 100% !important;
+  min-height: 52px !important;
+  padding: 13px 22px !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  border-radius: 999px !important;
+  border: 1px solid rgba(96, 55, 22, 0.38) !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 229, 174, 0.96) 0%,
+      rgba(220, 165, 87, 0.92) 48%,
+      rgba(168, 101, 42, 0.9) 100%
+    ) !important;
+
+  color: rgba(39, 22, 9, 0.96) !important;
+
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-size: clamp(1rem, 2.4vw, 1.13rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0.035em !important;
+  text-align: center !important;
+  text-decoration: none !important;
+
+  box-shadow:
+    0 12px 26px rgba(34, 17, 6, 0.24),
+    inset 0 1px 0 rgba(255, 247, 219, 0.55),
+    inset 0 -8px 18px rgba(103, 55, 18, 0.14),
+    0 0 22px rgba(229, 169, 83, 0.13) !important;
+
+  cursor: pointer !important;
+  transform: none;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    filter 0.22s ease,
+    border-color 0.22s ease !important;
+}
+
+#inicio .hero-rincon-actions .hero-rincon-btn span,
+#inicio .hero-rincon-actions .btn-ambiente span,
+#inicio .hero-rincon-actions .btn-ambientes span {
+  color: inherit !important;
+  font: inherit !important;
+  line-height: 1.1 !important;
+}
+
+#inicio .hero-rincon-actions .hero-rincon-btn:hover,
+#inicio .hero-rincon-actions .btn-ambiente:hover,
+#inicio .hero-rincon-actions .btn-ambientes:hover {
+  transform: translateY(-2px) !important;
+  filter: brightness(1.06) saturate(1.04) !important;
+  border-color: rgba(255, 226, 170, 0.68) !important;
+  box-shadow:
+    0 17px 36px rgba(34, 17, 6, 0.3),
+    inset 0 1px 0 rgba(255, 247, 219, 0.65),
+    inset 0 -8px 18px rgba(103, 55, 18, 0.13),
+    0 0 32px rgba(232, 177, 92, 0.24) !important;
+}
+
+#inicio .hero-rincon-actions .hero-rincon-btn:active,
+#inicio .hero-rincon-actions .btn-ambiente:active,
+#inicio .hero-rincon-actions .btn-ambientes:active {
+  transform: translateY(0) scale(0.99) !important;
+  filter: brightness(0.98) !important;
+}
+
+#inicio .hero-rincon-actions .btn-ambiente.activo,
+#inicio .hero-rincon-actions .btn-ambientes.activo {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 238, 195, 0.98) 0%,
+      rgba(230, 178, 95, 0.95) 48%,
+      rgba(177, 105, 43, 0.94) 100%
+    ) !important;
+
+  box-shadow:
+    0 16px 34px rgba(34, 17, 6, 0.3),
+    inset 0 1px 0 rgba(255, 250, 225, 0.68),
+    0 0 34px rgba(240, 184, 91, 0.28) !important;
+}
+
+/* MOBILE */
+@media (max-width: 640px) {
+  #inicio .hero-rincon-actions {
+    max-width: 300px;
+    gap: 9px;
+    margin-top: 16px;
+  }
+
+  #inicio .hero-rincon-actions .hero-rincon-btn,
+  #inicio .hero-rincon-actions .btn-ambiente,
+  #inicio .hero-rincon-actions .btn-ambientes {
+    min-height: 46px !important;
+    padding: 10px 15px !important;
+    font-size: 0.94rem !important;
+    letter-spacing: 0.02em !important;
+  }
+}
+
+@media (max-width: 390px) {
+  #inicio .hero-rincon-actions {
+    max-width: 270px;
+    gap: 8px;
+  }
+
+  #inicio .hero-rincon-actions .hero-rincon-btn,
+  #inicio .hero-rincon-actions .btn-ambiente,
+  #inicio .hero-rincon-actions .btn-ambientes {
+    min-height: 43px !important;
+    font-size: 0.88rem !important;
+    padding: 9px 13px !important;
+  }
+}
