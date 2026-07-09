@@ -9136,6 +9136,7 @@ body {
 }
 /* =====================================================
    HERO — BOTONES UNIFICADOS FAROL / PERGAMINO
+   con borde sombreado tipo papel tostado
    ===================================================== */
 
 #inicio .hero-rincon-actions {
@@ -9159,17 +9160,17 @@ body {
   justify-content: center !important;
 
   border-radius: 999px !important;
-  border: 1px solid rgba(96, 55, 22, 0.38) !important;
+  border: 1px solid rgba(64, 34, 12, 0.46) !important;
 
   background:
-    linear-gradient(
-      180deg,
-      rgba(255, 229, 174, 0.96) 0%,
-      rgba(220, 165, 87, 0.92) 48%,
-      rgba(168, 101, 42, 0.9) 100%
+    radial-gradient(
+      ellipse at center,
+      rgba(255, 238, 190, 0.98) 0%,
+      rgba(232, 177, 94, 0.94) 52%,
+      rgba(150, 84, 31, 0.94) 100%
     ) !important;
 
-  color: rgba(39, 22, 9, 0.96) !important;
+  color: rgba(38, 21, 8, 0.98) !important;
 
   font-family: "Cormorant Garamond", Georgia, serif !important;
   font-size: clamp(1rem, 2.4vw, 1.13rem) !important;
@@ -9180,10 +9181,14 @@ body {
   text-decoration: none !important;
 
   box-shadow:
-    0 12px 26px rgba(34, 17, 6, 0.24),
-    inset 0 1px 0 rgba(255, 247, 219, 0.55),
-    inset 0 -8px 18px rgba(103, 55, 18, 0.14),
-    0 0 22px rgba(229, 169, 83, 0.13) !important;
+    0 14px 28px rgba(0, 0, 0, 0.30),
+    0 3px 10px rgba(20, 10, 4, 0.24),
+    inset 0 1px 0 rgba(255, 248, 222, 0.62),
+    inset 0 -11px 20px rgba(54, 25, 7, 0.22),
+    inset 3px 0 10px rgba(35, 17, 6, 0.18),
+    inset -3px 0 10px rgba(35, 17, 6, 0.18),
+    0 0 0 1px rgba(45, 21, 7, 0.16),
+    0 0 24px rgba(229, 169, 83, 0.12) !important;
 
   cursor: pointer !important;
   transform: none;
@@ -9191,7 +9196,8 @@ body {
     transform 0.22s ease,
     box-shadow 0.22s ease,
     filter 0.22s ease,
-    border-color 0.22s ease !important;
+    border-color 0.22s ease,
+    background 0.22s ease !important;
 }
 
 #inicio .hero-rincon-actions .hero-rincon-btn span,
@@ -9207,12 +9213,25 @@ body {
 #inicio .hero-rincon-actions .btn-ambientes:hover {
   transform: translateY(-2px) !important;
   filter: brightness(1.06) saturate(1.04) !important;
-  border-color: rgba(255, 226, 170, 0.68) !important;
+  border-color: rgba(255, 226, 170, 0.72) !important;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(255, 244, 210, 1) 0%,
+      rgba(237, 186, 104, 0.98) 52%,
+      rgba(166, 95, 36, 0.96) 100%
+    ) !important;
+
   box-shadow:
-    0 17px 36px rgba(34, 17, 6, 0.3),
-    inset 0 1px 0 rgba(255, 247, 219, 0.65),
-    inset 0 -8px 18px rgba(103, 55, 18, 0.13),
-    0 0 32px rgba(232, 177, 92, 0.24) !important;
+    0 18px 38px rgba(0, 0, 0, 0.36),
+    0 5px 14px rgba(20, 10, 4, 0.28),
+    inset 0 1px 0 rgba(255, 250, 230, 0.72),
+    inset 0 -11px 20px rgba(54, 25, 7, 0.20),
+    inset 3px 0 10px rgba(35, 17, 6, 0.20),
+    inset -3px 0 10px rgba(35, 17, 6, 0.20),
+    0 0 0 1px rgba(45, 21, 7, 0.18),
+    0 0 34px rgba(232, 177, 92, 0.24) !important;
 }
 
 #inicio .hero-rincon-actions .hero-rincon-btn:active,
@@ -9225,17 +9244,23 @@ body {
 #inicio .hero-rincon-actions .btn-ambiente.activo,
 #inicio .hero-rincon-actions .btn-ambientes.activo {
   background:
-    linear-gradient(
-      180deg,
-      rgba(255, 238, 195, 0.98) 0%,
-      rgba(230, 178, 95, 0.95) 48%,
-      rgba(177, 105, 43, 0.94) 100%
+    radial-gradient(
+      ellipse at center,
+      rgba(255, 244, 210, 1) 0%,
+      rgba(235, 184, 98, 0.98) 52%,
+      rgba(170, 96, 34, 0.96) 100%
     ) !important;
 
+  border-color: rgba(255, 226, 170, 0.74) !important;
+
   box-shadow:
-    0 16px 34px rgba(34, 17, 6, 0.3),
-    inset 0 1px 0 rgba(255, 250, 225, 0.68),
-    0 0 34px rgba(240, 184, 91, 0.28) !important;
+    0 17px 36px rgba(0, 0, 0, 0.36),
+    0 5px 14px rgba(20, 10, 4, 0.28),
+    inset 0 1px 0 rgba(255, 250, 225, 0.74),
+    inset 0 -11px 20px rgba(54, 25, 7, 0.18),
+    inset 3px 0 10px rgba(35, 17, 6, 0.18),
+    inset -3px 0 10px rgba(35, 17, 6, 0.18),
+    0 0 36px rgba(240, 184, 91, 0.28) !important;
 }
 
 /* MOBILE */
@@ -9253,6 +9278,15 @@ body {
     padding: 10px 15px !important;
     font-size: 0.94rem !important;
     letter-spacing: 0.02em !important;
+
+    box-shadow:
+      0 10px 22px rgba(0, 0, 0, 0.28),
+      0 2px 8px rgba(20, 10, 4, 0.22),
+      inset 0 1px 0 rgba(255, 248, 222, 0.58),
+      inset 0 -9px 16px rgba(54, 25, 7, 0.20),
+      inset 2px 0 8px rgba(35, 17, 6, 0.16),
+      inset -2px 0 8px rgba(35, 17, 6, 0.16),
+      0 0 0 1px rgba(45, 21, 7, 0.14) !important;
   }
 }
 
