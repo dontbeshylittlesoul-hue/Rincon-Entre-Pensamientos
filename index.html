@@ -505,78 +505,243 @@
       </div>
     </div>
 
-    <a class="hero-rincon-scroll" href="#asi-se-vive-adentro">deslizá para entrar</a>
+    <a class="hero-rincon-scroll" href="#cuento-gratis">deslizá para entrar</a>
   </section>
 
-  <!-- ASÍ SE VIVE ADENTRO - CARRUSEL -->
-  <section class="showcase-adentro reveal" id="asi-se-vive-adentro">
-    <div class="showcase-adentro-inner">
-      <p class="section-mini">vista por dentro</p>
+  <main class="site-main">
+    <!-- CUENTO GRATIS EN PERGAMINO -->
+    <section class="cuento-gratis-pergamino reveal" id="cuento-gratis">
+      <div class="cuento-gratis-inner">
+        <div class="cuento-gratis-intro">
+          <p class="section-mini">cuentos</p>
 
-      <h2>Así se vive el Rincón adentro</h2>
+          <h2>El tren que no esperaba ser perfecto</h2>
 
-      <p class="showcase-adentro-texto">
-        Una mirada a la experiencia completa: lectura inmersiva, herramientas, notas, cuentos,
-        pausas visuales y espacios para volver a escucharte.
-      </p>
+          <p>
+            Una lectura breve para esos momentos en los que uno sigue esperando sentirse listo,
+            mientras la vida pasa como trenes que no siempre avisan dos veces.
+          </p>
 
-      <div class="showcase-carousel" aria-label="Vista previa del interior del Rincón">
-        <button class="showcase-arrow showcase-prev" type="button" aria-label="Imagen anterior">
-          ‹
-        </button>
-
-        <div class="showcase-frame">
-          <img
-            src="./showcase/asi-se-vive-adentro.png"
-            alt="Vista general del interior de Rincón entre Pensamientos"
-            class="showcase-slide activa"
-            loading="eager"
-            decoding="async"
-          >
-
-          <img
-            src="./showcase/herramientas-notas-caminos.png"
-            alt="Herramientas, notas y caminos del Rincón"
-            class="showcase-slide"
-            loading="lazy"
-            decoding="async"
-          >
-
-          <img
-            src="./showcase/cuentos-biblioteca-lectura.png"
-            alt="Cuentos, biblioteca emocional y lectura inmersiva"
-            class="showcase-slide"
-            loading="lazy"
-            decoding="async"
-          >
-
-          <img
-            src="./showcase/paginas-pausas-refugios.png"
-            alt="Páginas, pausas visuales y herramientas prácticas"
-            class="showcase-slide"
-            loading="lazy"
-            decoding="async"
-          >
+          <p>
+            Podés leerla directamente en el pergamino o activar el narrador para acompañar la pausa.
+          </p>
         </div>
 
-        <button class="showcase-arrow showcase-next" type="button" aria-label="Imagen siguiente">
-          ›
-        </button>
+        <div class="cuento-audio-box" aria-label="Controles del narrador del cuento gratis">
+          <button
+            class="btn-narrador"
+            id="narradorToggle"
+            type="button"
+            data-ga-event="click_narrador_cuento"
+          >
+            Narrador
+          </button>
+
+          <label class="cuento-volumen" for="volumenNarrador">
+            <span>Volumen</span>
+            <input
+              id="volumenNarrador"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.82"
+              aria-label="Volumen del narrador"
+            >
+          </label>
+        </div>
+
+<div class="pergamino-cuento-imagen">
+  <img
+    src="pergamino-cuento-tren.png"
+    alt="Cuento gratis del Rincón: El tren que no esperaba ser perfecto"
+    loading="lazy"
+    decoding="async"
+  />
+</div>
+
+        <p class="cuento-gratis-cierre">
+          Si esta historia te dejó una pregunta dando vueltas, la experiencia completa sigue por ese mismo camino:
+          lecturas, cuentos, audio ambiente y herramientas simples para volver a vos cuando el ruido se vuelve demasiado.
+          <br>
+          <a href="#ebook">Ver experiencia completa</a>
+        </p>
+      </div>
+    </section>
+    <!-- CUENTO -->
+    <section class="cuento-muestra reveal" id="cuento">
+      <div class="cuento-card">
+        <p class="section-mini">cuento incluido</p>
+
+        <h2>Un cuento para leer cuando algo por dentro pide pausa</h2>
+
+        <p class="cuento-intro">
+          Además de herramientas, la versión completa incluye cuentos e interludios pensados para acompañar esos momentos donde no siempre hay respuestas claras, pero sí una necesidad de volver a mirar hacia adentro.
+        </p>
+
+        <article class="cuento-preview">
+          <p class="cuento-etiqueta">Muestra breve</p>
+
+          <h3>La habitación donde nadie entraba</h3>
+
+          <p>
+            Durante mucho tiempo, creyó que cerrar la puerta era una forma de protegerse.
+            No de los demás, sino de todo aquello que no sabía explicar sin romperse un poco.
+          </p>
+
+          <p>
+            La habitación no era grande. Tenía una silla, una mesa antigua y una ventana que apenas dejaba entrar la luz.
+            Pero ahí, entre el polvo y el silencio, guardaba pensamientos que nunca se habían animado a salir.
+          </p>
+
+          <p>
+            Una noche, cansado de sostener el ruido afuera, se sentó frente a la mesa y dejó de escapar.
+            No encontró una respuesta. Encontró algo más simple: un lugar donde poder escucharse sin tener que fingir.
+          </p>
+
+          <details class="cuento-detalle">
+            <summary>Leer cierre del cuento</summary>
+
+            <div class="cuento-texto">
+              <p>
+                A veces, sanar no empieza cuando alguien abre la puerta desde afuera.
+                A veces empieza cuando uno deja de tener miedo de entrar a la habitación que venía evitando.
+              </p>
+
+              <p>
+                Y esa noche, por primera vez en mucho tiempo, no salió corriendo de sí mismo.
+              </p>
+            </div>
+          </details>
+        </article>
+
+        <p class="cuento-cierre">
+          En la versión completa encontrás más cuentos, interludios y pausas para leer cuando necesitás bajar el ruido y volver a vos.
+        </p>
+      </div>
+    </section>
+<!-- PERGAMINO GRATIS -->
+<section class="pergamino-regalo fondo-preguntas-section" id="pergamino-gratis">
+  <div class="pergamino-regalo-contenido">
+    <span class="etiqueta-regalo">Herramientas gratuitas del Rincón</span>
+
+    <h2>Las 7 preguntas para bajar el ruido</h2>
+
+    <p>
+      Es una pequeña guía con herramientas simples para esos momentos en los que la mente se llena de ruido, cuesta ordenar lo que sentís o no sabés por dónde empezar.
+    </p>
+
+    <p class="texto-suave">
+      Adentro vas a encontrar ejercicios breves para bajar la ansiedad, volver al presente, soltar un poco la carga y dar un primer paso sin exigirte tener todo resuelto.
+    </p>
+
+<ul class="lista-pergamino">
+  <li>Para cuando estás saturado mentalmente.</li>
+  <li>Para cuando venís postergando algo que te pesa.</li>
+  <li>Para cuando necesitás volver a vos sin presión.</li>
+  <li>Para cuando querés una pausa real, no solo distraerte.</li>
+</ul>
+
+<div class="preguntas-pergamino">
+  <p class="preguntas-titulo">Dentro vas a encontrar preguntas como estas:</p>
+
+  <div class="preguntas-grid">
+    <p>¿Qué estoy cargando hoy que no necesito resolver ahora?</p>
+    <p>¿Qué parte de mí está intentando sostener más de lo que puede?</p>
+    <p>Si tuviera que ponerle un nombre a lo que siento hoy, ¿cuál sería?</p>
+    <p>¿Qué parte de mí necesita silencio y no explicación?</p>
+    <p>¿Qué estoy midiendo en mí con una vara que no me pertenece?</p>
+    <p>¿Qué estoy intentando mantener vivo aunque ya me está pidiendo cierre?</p>
+    <p>¿Qué pequeño gesto puedo hacer hoy para volver a sentirme cerca de mí?</p>
+  </div>
+
+  <p class="preguntas-cierre">
+    Te dejo una herramienta para encontrar tus respuestas.
+  </p>
+</div>
+
+    <a 
+      href="./el-primer-pergamino-del-rincon-liviano.pdf" 
+      download="el-primer-pergamino-del-rincon-liviano.pdf"
+      class="btn-pergamino-descarga"
+      data-ga-event="click_descargar_herramientas"
+    >
+      Descargar herramientas gratis
+    </a>
+  </div>
+</section>
+    <!-- HERRAMIENTAS -->
+    <section class="herramientas-muestra reveal">
+      <p class="etiqueta">también incluye herramientas</p>
+
+      <h2>No es solo una lectura.<br>Es un rincón para volver a vos.</h2>
+
+      <p>
+        La experiencia completa de <strong>Rincón entre Pensamientos</strong> no se queda solo en leer.
+        También incluye herramientas simples para esos momentos en los que necesitás ordenar lo que sentís,
+        bajar el ruido o dar un primer paso sin exigirte de más.
+      </p>
+
+      <div class="tarjetas-herramientas">
+
+        <article class="tarjeta-herramienta">
+          <a class="herramienta-preview" href="./herramientas/mascara-carton.png" target="_blank" rel="noopener" data-ga-event="click_ver_pergamino">
+            <img src="./herramientas/mascara-carton.png" alt="Pergamino de La máscara de cartón" loading="lazy" />
+            <span>Ver pergamino completo</span>
+          </a>
+
+      <div class="herramienta-contenido">
+  <span class="numero-herramienta">01</span>
+
+  <h3>Para cuando estás cansado de sostener una versión de vos que ya pesa demasiado.</h3>
+
+  <p>
+    La máscara de cartón
+  </p>
+</div>
+        </article>
+
+        <article class="tarjeta-herramienta">
+          <a class="herramienta-preview" href="./herramientas/ruido-no-alcanza.png" target="_blank" rel="noopener" data-ga-event="click_ver_pergamino">
+            <img src="./herramientas/ruido-no-alcanza.png" alt="Pergamino de Cuando el ruido ya no alcanza" loading="lazy" />
+            <span>Ver pergamino completo</span>
+          </a>
+
+          <div class="herramienta-contenido">
+  <span class="numero-herramienta">02</span>
+
+  <h3>Para esos días en los que la cabeza no se apaga y todo parece demasiado.</h3>
+
+  <p>
+    Cuando el ruido ya no alcanza
+  </p>
+</div>
+        </article>
+
+        <article class="tarjeta-herramienta">
+          <a class="herramienta-preview" href="./herramientas/tren-10-minutos.png" target="_blank" rel="noopener" data-ga-event="click_ver_pergamino">
+            <img src="./herramientas/tren-10-minutos.png" alt="Pergamino de Subir al tren por 10 minutos" loading="lazy" />
+            <span>Ver pergamino completo</span>
+          </a>
+
+          <div class="herramienta-contenido">
+  <span class="numero-herramienta">03</span>
+
+  <h3>Para cuando venís postergando algo importante y no sabés cómo empezar.</h3>
+
+  <p>
+    Subir al tren por 10 minutos
+  </p>
+</div>
+        </article>
+
       </div>
 
-      <div class="showcase-dots" aria-label="Elegir imagen del carrusel">
-        <button class="activo" type="button" aria-label="Ver imagen 1"></button>
-        <button type="button" aria-label="Ver imagen 2"></button>
-        <button type="button" aria-label="Ver imagen 3"></button>
-        <button type="button" aria-label="Ver imagen 4"></button>
-      </div>
-
-      <a href="#ebook" class="showcase-cta" data-ga-event="click_showcase_acceso_completo">
-        Ver acceso completo →
-      </a>
-    </div>
-  </section>
-
+      <p class="cierre-herramientas">
+        Estas son solo algunas puertas de entrada. En la versión completa encontrás más lecturas, interludios y herramientas para acompañar distintos momentos:
+        cansancio emocional, ruido mental, cierres pendientes, soledad, pausa y nuevos comienzos.
+      </p>
+    </section>
  <!-- INVITACIÓN A LA MUESTRA -->
 <section id="invitacion-rincon" style="
   position: relative;
@@ -650,67 +815,6 @@
     </a>
   </div>
 </section>
-
-    <!-- CUENTO GRATIS EN PERGAMINO -->
-    <section class="cuento-gratis-pergamino reveal" id="cuento-gratis">
-      <div class="cuento-gratis-inner">
-        <div class="cuento-gratis-intro">
-          <p class="section-mini">cuentos</p>
-
-          <h2>El tren que no esperaba ser perfecto</h2>
-
-          <p>
-            Una lectura breve para esos momentos en los que uno sigue esperando sentirse listo,
-            mientras la vida pasa como trenes que no siempre avisan dos veces.
-          </p>
-
-          <p>
-            Podés leerla directamente en el pergamino o activar el narrador para acompañar la pausa.
-          </p>
-        </div>
-
-        <div class="cuento-audio-box" aria-label="Controles del narrador del cuento gratis">
-          <button
-            class="btn-narrador"
-            id="narradorToggle"
-            type="button"
-            data-ga-event="click_narrador_cuento"
-          >
-            Narrador
-          </button>
-
-          <label class="cuento-volumen" for="volumenNarrador">
-            <span>Volumen</span>
-            <input
-              id="volumenNarrador"
-              type="range"
-              min="0"
-              max="1"
-              step="0.01"
-              value="0.82"
-              aria-label="Volumen del narrador"
-            >
-          </label>
-        </div>
-
-<div class="pergamino-cuento-imagen">
-  <img
-    src="pergamino-cuento-tren.png"
-    alt="Cuento gratis del Rincón: El tren que no esperaba ser perfecto"
-    loading="lazy"
-    decoding="async"
-  />
-</div>
-
-        <p class="cuento-gratis-cierre">
-          Si esta historia te dejó una pregunta dando vueltas, la experiencia completa sigue por ese mismo camino:
-          lecturas, cuentos, audio ambiente y herramientas simples para volver a vos cuando el ruido se vuelve demasiado.
-          <br>
-          <a href="#ebook">Ver experiencia completa</a>
-        </p>
-      </div>
-    </section>
-
     <!-- INTRO MUESTRA -->
     <section class="intro-muestra" id="lectura">
       <div class="intro-inner reveal">
@@ -725,7 +829,6 @@
         </p>
       </div>
     </section>
-
     <!-- VISOR INTERACTIVO -->
     <section class="visor-ebook reveal" aria-label="Visor interactivo de muestra gratis">
       <div class="visor-ebook-header">
@@ -789,7 +892,38 @@
 
       <p class="contador-libro" id="contadorLibro">Página 1 de 10</p>
     </section>
- <main class="site-main">
+    <!-- CTA FINAL -->
+    <section class="cta-final reveal" id="ebook">
+      <div class="cta-card">
+        <p class="section-mini">versión completa</p>
+
+        <h2>Accedé a la experiencia completa</h2>
+
+        <p>
+          Si esta muestra te dejó una pregunta dando vueltas, la versión completa te invita a seguir entrando:
+          lectura en PDF, experiencia inmersiva, audio ambiente, cuentos reflexivos y herramientas para acompañar
+          lo que muchas veces, no se sabe cómo explicar.
+        </p>
+
+        <ul class="cta-lista">
+          <li>PDF´s descargables</li>
+          <li>Acceso de por vida</li>
+          <li>Audio ambiente para leer con calma</li>
+          <li>Interludios y cuentos reflexivos narrados para la noche</li>
+          <li>Herramientas prácticas para momentos reales</li>
+          <li>Sonidos interactivos contemplativos</li>
+          <li>Lectura inmersiva desde la página</li>
+          <li>Actualizaciones cada semana</li>
+        </ul>
+
+        <a href="https://go.hotmart.com/L106304893W" class="btn-primary btn-hotmart" target="_blank" rel="noopener" data-ga-event="click_comprar click_hotmart">
+          <span>Acceder a la experiencia completa</span>
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+            <path d="M3 12L12 3M5 3h7v7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
     <!-- QUÉ ES RINCÓN -->
     <section class="que-es-rincon reveal" id="que-es-rincon">
       <div class="que-es-card">
@@ -847,218 +981,76 @@
         </p>
       </div>
     </section>
-<!-- PERGAMINO GRATIS -->
-<section class="pergamino-regalo fondo-preguntas-section" id="pergamino-gratis">
-  <div class="pergamino-regalo-contenido">
-    <span class="etiqueta-regalo">Herramientas gratuitas del Rincón</span>
+  <!-- ASÍ SE VIVE ADENTRO - CARRUSEL -->
+  <section class="showcase-adentro reveal" id="asi-se-vive-adentro">
+    <div class="showcase-adentro-inner">
+      <p class="section-mini">vista por dentro</p>
 
-    <h2>Las 7 preguntas para bajar el ruido</h2>
+      <h2>Así se vive el Rincón adentro</h2>
 
-    <p>
-      Es una pequeña guía con herramientas simples para esos momentos en los que la mente se llena de ruido, cuesta ordenar lo que sentís o no sabés por dónde empezar.
-    </p>
-
-    <p class="texto-suave">
-      Adentro vas a encontrar ejercicios breves para bajar la ansiedad, volver al presente, soltar un poco la carga y dar un primer paso sin exigirte tener todo resuelto.
-    </p>
-
-<ul class="lista-pergamino">
-  <li>Para cuando estás saturado mentalmente.</li>
-  <li>Para cuando venís postergando algo que te pesa.</li>
-  <li>Para cuando necesitás volver a vos sin presión.</li>
-  <li>Para cuando querés una pausa real, no solo distraerte.</li>
-</ul>
-
-<div class="preguntas-pergamino">
-  <p class="preguntas-titulo">Dentro vas a encontrar preguntas como estas:</p>
-
-  <div class="preguntas-grid">
-    <p>¿Qué estoy cargando hoy que no necesito resolver ahora?</p>
-    <p>¿Qué parte de mí está intentando sostener más de lo que puede?</p>
-    <p>Si tuviera que ponerle un nombre a lo que siento hoy, ¿cuál sería?</p>
-    <p>¿Qué parte de mí necesita silencio y no explicación?</p>
-    <p>¿Qué estoy midiendo en mí con una vara que no me pertenece?</p>
-    <p>¿Qué estoy intentando mantener vivo aunque ya me está pidiendo cierre?</p>
-    <p>¿Qué pequeño gesto puedo hacer hoy para volver a sentirme cerca de mí?</p>
-  </div>
-
-  <p class="preguntas-cierre">
-    Te dejo una herramienta para encontrar tus respuestas.
-  </p>
-</div>
-
-    <a 
-      href="./el-primer-pergamino-del-rincon-liviano.pdf" 
-      download="el-primer-pergamino-del-rincon-liviano.pdf"
-      class="btn-pergamino-descarga"
-      data-ga-event="click_descargar_herramientas"
-    >
-      Descargar herramientas gratis
-    </a>
-  </div>
-</section>
-
-    <!-- HERRAMIENTAS -->
-    <section class="herramientas-muestra reveal">
-      <p class="etiqueta">también incluye herramientas</p>
-
-      <h2>No es solo una lectura.<br>Es un rincón para volver a vos.</h2>
-
-      <p>
-        La experiencia completa de <strong>Rincón entre Pensamientos</strong> no se queda solo en leer.
-        También incluye herramientas simples para esos momentos en los que necesitás ordenar lo que sentís,
-        bajar el ruido o dar un primer paso sin exigirte de más.
+      <p class="showcase-adentro-texto">
+        Una mirada a la experiencia completa: lectura inmersiva, herramientas, notas, cuentos,
+        pausas visuales y espacios para volver a escucharte.
       </p>
 
-      <div class="tarjetas-herramientas">
+      <div class="showcase-carousel" aria-label="Vista previa del interior del Rincón">
+        <button class="showcase-arrow showcase-prev" type="button" aria-label="Imagen anterior">
+          ‹
+        </button>
 
-        <article class="tarjeta-herramienta">
-          <a class="herramienta-preview" href="./herramientas/mascara-carton.png" target="_blank" rel="noopener" data-ga-event="click_ver_pergamino">
-            <img src="./herramientas/mascara-carton.png" alt="Pergamino de La máscara de cartón" loading="lazy" />
-            <span>Ver pergamino completo</span>
-          </a>
+        <div class="showcase-frame">
+          <img
+            src="./showcase/asi-se-vive-adentro.png"
+            alt="Vista general del interior de Rincón entre Pensamientos"
+            class="showcase-slide activa"
+            loading="eager"
+            decoding="async"
+          >
 
-      <div class="herramienta-contenido">
-  <span class="numero-herramienta">01</span>
+          <img
+            src="./showcase/herramientas-notas-caminos.png"
+            alt="Herramientas, notas y caminos del Rincón"
+            class="showcase-slide"
+            loading="lazy"
+            decoding="async"
+          >
 
-  <h3>Para cuando estás cansado de sostener una versión de vos que ya pesa demasiado.</h3>
+          <img
+            src="./showcase/cuentos-biblioteca-lectura.png"
+            alt="Cuentos, biblioteca emocional y lectura inmersiva"
+            class="showcase-slide"
+            loading="lazy"
+            decoding="async"
+          >
 
-  <p>
-    La máscara de cartón
-  </p>
-</div>
-        </article>
+          <img
+            src="./showcase/paginas-pausas-refugios.png"
+            alt="Páginas, pausas visuales y herramientas prácticas"
+            class="showcase-slide"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
 
-        <article class="tarjeta-herramienta">
-          <a class="herramienta-preview" href="./herramientas/ruido-no-alcanza.png" target="_blank" rel="noopener" data-ga-event="click_ver_pergamino">
-            <img src="./herramientas/ruido-no-alcanza.png" alt="Pergamino de Cuando el ruido ya no alcanza" loading="lazy" />
-            <span>Ver pergamino completo</span>
-          </a>
-
-          <div class="herramienta-contenido">
-  <span class="numero-herramienta">02</span>
-
-  <h3>Para esos días en los que la cabeza no se apaga y todo parece demasiado.</h3>
-
-  <p>
-    Cuando el ruido ya no alcanza
-  </p>
-</div>
-        </article>
-
-        <article class="tarjeta-herramienta">
-          <a class="herramienta-preview" href="./herramientas/tren-10-minutos.png" target="_blank" rel="noopener" data-ga-event="click_ver_pergamino">
-            <img src="./herramientas/tren-10-minutos.png" alt="Pergamino de Subir al tren por 10 minutos" loading="lazy" />
-            <span>Ver pergamino completo</span>
-          </a>
-
-          <div class="herramienta-contenido">
-  <span class="numero-herramienta">03</span>
-
-  <h3>Para cuando venís postergando algo importante y no sabés cómo empezar.</h3>
-
-  <p>
-    Subir al tren por 10 minutos
-  </p>
-</div>
-        </article>
-
+        <button class="showcase-arrow showcase-next" type="button" aria-label="Imagen siguiente">
+          ›
+        </button>
       </div>
 
-      <p class="cierre-herramientas">
-        Estas son solo algunas puertas de entrada. En la versión completa encontrás más lecturas, interludios y herramientas para acompañar distintos momentos:
-        cansancio emocional, ruido mental, cierres pendientes, soledad, pausa y nuevos comienzos.
-      </p>
-    </section>
-
-    <!-- CUENTO -->
-    <section class="cuento-muestra reveal" id="cuento">
-      <div class="cuento-card">
-        <p class="section-mini">cuento incluido</p>
-
-        <h2>Un cuento para leer cuando algo por dentro pide pausa</h2>
-
-        <p class="cuento-intro">
-          Además de herramientas, la versión completa incluye cuentos e interludios pensados para acompañar esos momentos donde no siempre hay respuestas claras, pero sí una necesidad de volver a mirar hacia adentro.
-        </p>
-
-        <article class="cuento-preview">
-          <p class="cuento-etiqueta">Muestra breve</p>
-
-          <h3>La habitación donde nadie entraba</h3>
-
-          <p>
-            Durante mucho tiempo, creyó que cerrar la puerta era una forma de protegerse.
-            No de los demás, sino de todo aquello que no sabía explicar sin romperse un poco.
-          </p>
-
-          <p>
-            La habitación no era grande. Tenía una silla, una mesa antigua y una ventana que apenas dejaba entrar la luz.
-            Pero ahí, entre el polvo y el silencio, guardaba pensamientos que nunca se habían animado a salir.
-          </p>
-
-          <p>
-            Una noche, cansado de sostener el ruido afuera, se sentó frente a la mesa y dejó de escapar.
-            No encontró una respuesta. Encontró algo más simple: un lugar donde poder escucharse sin tener que fingir.
-          </p>
-
-          <details class="cuento-detalle">
-            <summary>Leer cierre del cuento</summary>
-
-            <div class="cuento-texto">
-              <p>
-                A veces, sanar no empieza cuando alguien abre la puerta desde afuera.
-                A veces empieza cuando uno deja de tener miedo de entrar a la habitación que venía evitando.
-              </p>
-
-              <p>
-                Y esa noche, por primera vez en mucho tiempo, no salió corriendo de sí mismo.
-              </p>
-            </div>
-          </details>
-        </article>
-
-        <p class="cuento-cierre">
-          En la versión completa encontrás más cuentos, interludios y pausas para leer cuando necesitás bajar el ruido y volver a vos.
-        </p>
+      <div class="showcase-dots" aria-label="Elegir imagen del carrusel">
+        <button class="activo" type="button" aria-label="Ver imagen 1"></button>
+        <button type="button" aria-label="Ver imagen 2"></button>
+        <button type="button" aria-label="Ver imagen 3"></button>
+        <button type="button" aria-label="Ver imagen 4"></button>
       </div>
-    </section>
 
-    <!-- CTA FINAL -->
-    <section class="cta-final reveal" id="ebook">
-      <div class="cta-card">
-        <p class="section-mini">versión completa</p>
-
-        <h2>Accedé a la experiencia completa</h2>
-
-        <p>
-          Si esta muestra te dejó una pregunta dando vueltas, la versión completa te invita a seguir entrando:
-          lectura en PDF, experiencia inmersiva, audio ambiente, cuentos reflexivos y herramientas para acompañar
-          lo que muchas veces, no se sabe cómo explicar.
-        </p>
-
-        <ul class="cta-lista">
-          <li>PDF´s descargables</li>
-          <li>Acceso de por vida</li>
-          <li>Audio ambiente para leer con calma</li>
-          <li>Interludios y cuentos reflexivos narrados para la noche</li>
-          <li>Herramientas prácticas para momentos reales</li>
-          <li>Sonidos interactivos contemplativos</li>
-          <li>Lectura inmersiva desde la página</li>
-          <li>Actualizaciones cada semana</li>
-        </ul>
-
-        <a href="https://go.hotmart.com/L106304893W" class="btn-primary btn-hotmart" target="_blank" rel="noopener" data-ga-event="click_comprar click_hotmart">
-          <span>Acceder a la experiencia completa</span>
-          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
-            <path d="M3 12L12 3M5 3h7v7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-    </section>
+      <a href="#ebook" class="showcase-cta" data-ga-event="click_showcase_acceso_completo">
+        Ver acceso completo →
+      </a>
+    </div>
+  </section>
 
   </main>
-
   <!-- SCRIPT ÚNICO LIMPIO: GA4 + LLUVIA + AMBIENTES + NARRADOR + PÁGINAS + REVEAL -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
