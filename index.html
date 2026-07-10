@@ -516,7 +516,119 @@
     <button type="button" data-ambiente-menu="silencio">🔇 Apagar ambiente</button>
   </div>
 </div>
+<!-- GUÍA INICIAL DEL RINCÓN -->
+<section class="guia-rincon reveal" id="guia-rincon" aria-label="Guía inicial del Rincón">
+  <div class="guia-rincon-card">
+    <p class="guia-mini">antes de entrar del todo</p>
 
+    <h2>No hace falta saber qué buscás.</h2>
+
+    <p class="guia-intro">
+      Respondé dos preguntas simples y te dejo una puerta de entrada para hoy.
+    </p>
+
+    <div class="guia-progreso" aria-label="Progreso de la guía">
+      <span class="activo" data-guia-paso="1">1</span>
+      <span data-guia-paso="2">2</span>
+      <span data-guia-paso="3">3</span>
+    </div>
+
+    <div class="guia-panel guia-panel-activo" data-guia-panel="1">
+      <h3>¿Cómo llegás hoy al Rincón?</h3>
+
+      <div class="guia-opciones">
+        <button type="button" data-guia-pregunta="estado" data-guia-valor="cabeza">
+          <strong>Con la cabeza llena</strong>
+          <span>Cuando los pensamientos no bajan.</span>
+        </button>
+
+        <button type="button" data-guia-pregunta="estado" data-guia-valor="sostener">
+          <strong>Cansado/a de sostener todo</strong>
+          <span>Cuando venís funcionando, pero por dentro pesa.</span>
+        </button>
+
+        <button type="button" data-guia-pregunta="estado" data-guia-valor="postergar">
+          <strong>Postergando algo que me pesa</strong>
+          <span>Cuando sabés que hay un primer paso, pero cuesta arrancar.</span>
+        </button>
+
+        <button type="button" data-guia-pregunta="estado" data-guia-valor="refugio">
+          <strong>Con ganas de desaparecer un rato</strong>
+          <span>Cuando necesitás silencio, pausa o refugio.</span>
+        </button>
+
+        <button type="button" data-guia-pregunta="estado" data-guia-valor="buscar">
+          <strong>Buscando algo que me acomode por dentro</strong>
+          <span>Cuando querés leer algo y ver si te toca.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="guia-panel" data-guia-panel="2">
+      <h3>¿Qué necesitás encontrar ahora?</h3>
+
+      <div class="guia-opciones">
+        <button type="button" data-guia-pregunta="necesidad" data-guia-valor="calmar">
+          <strong>Algo corto para calmarme</strong>
+          <span>Una pausa simple, sin exigirte pensar demasiado.</span>
+        </button>
+
+        <button type="button" data-guia-pregunta="necesidad" data-guia-valor="historia">
+          <strong>Una historia para quedarme un rato</strong>
+          <span>Leer algo que acompañe sin explicar de más.</span>
+        </button>
+
+        <button type="button" data-guia-pregunta="necesidad" data-guia-valor="ordenar">
+          <strong>Una pregunta que me ordene</strong>
+          <span>Algo para ponerle nombre a lo que pasa.</span>
+        </button>
+
+        <button type="button" data-guia-pregunta="necesidad" data-guia-valor="adentro">
+          <strong>Ver cómo se vive adentro</strong>
+          <span>Mirar la experiencia completa por dentro.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="guia-panel" data-guia-panel="3">
+      <h3>Tu rincón para hoy</h3>
+
+      <p class="guia-resultado-texto" id="guiaResultadoTexto">
+        Por cómo llegás, quizás podés empezar por acá.
+      </p>
+
+      <div class="guia-recomendaciones">
+        <article>
+          <span>Lectura sugerida</span>
+          <h4 id="guiaLecturaTitulo">El tren que no esperaba ser perfecto</h4>
+          <p id="guiaLecturaTexto">Una historia breve para empezar sin tener todo resuelto.</p>
+          <a id="guiaLecturaLink" href="#cuento-gratis" data-ga-event="click_guia_lectura">Empezar por esta lectura</a>
+        </article>
+
+        <article>
+          <span>Herramienta sugerida</span>
+          <h4 id="guiaHerramientaTitulo">Las 7 preguntas para bajar el ruido</h4>
+          <p id="guiaHerramientaTexto">Una guía simple para ordenar lo que sentís.</p>
+          <a id="guiaHerramientaLink" href="#pergamino-gratis" data-ga-event="click_guia_herramienta">Ver herramienta</a>
+        </article>
+      </div>
+
+      <div class="guia-acciones-finales">
+        <a class="guia-btn-principal" id="guiaAccionPrincipal" href="#cuento-gratis" data-ga-event="click_guia_recomendacion">
+          Ir a mi recomendación
+        </a>
+
+        <button type="button" class="guia-btn-secundario" id="guiaReiniciar">
+          Cambiar respuestas
+        </button>
+      </div>
+    </div>
+
+    <a class="guia-saltar" href="#inicio">
+      Prefiero entrar y mirar todo
+    </a>
+  </div>
+</section>
 
   <!-- HERO NUEVO CON PERGAMINO + FAROL -->
   <section class="hero-rincon" id="inicio">
@@ -817,7 +929,7 @@
   </div>
 </section>
     <!-- HERRAMIENTAS -->
-    <section class="herramientas-muestra reveal">
+    <section class="herramientas-muestra reveal" id="herramientas-rincon">
       <p class="etiqueta">también incluye herramientas</p>
 
       <h2>Es un mundo inmersivo.<br>Es un rincón para volver a vos, para relajar la mente.</h2>
@@ -1783,5 +1895,203 @@
       iniciarAuto();
     });
   </script>
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const guia = document.getElementById("guia-rincon");
+  if (!guia) return;
+
+  const estado = {
+    estado: null,
+    necesidad: null
+  };
+
+  const paneles = guia.querySelectorAll("[data-guia-panel]");
+  const pasos = guia.querySelectorAll("[data-guia-paso]");
+
+  const resultadoTexto = document.getElementById("guiaResultadoTexto");
+  const lecturaTitulo = document.getElementById("guiaLecturaTitulo");
+  const lecturaTexto = document.getElementById("guiaLecturaTexto");
+  const lecturaLink = document.getElementById("guiaLecturaLink");
+  const herramientaTitulo = document.getElementById("guiaHerramientaTitulo");
+  const herramientaTexto = document.getElementById("guiaHerramientaTexto");
+  const herramientaLink = document.getElementById("guiaHerramientaLink");
+  const accionPrincipal = document.getElementById("guiaAccionPrincipal");
+  const reiniciar = document.getElementById("guiaReiniciar");
+
+  const recomendaciones = {
+    cabeza: {
+      texto: "Cuando la cabeza llega llena, conviene empezar por algo que baje el ruido sin exigirte resolver todo.",
+      lectura: {
+        titulo: "Las 7 preguntas para bajar el ruido",
+        texto: "Una guía breve para ponerle nombre a lo que cargás hoy.",
+        href: "#pergamino-gratis",
+        cta: "Abrir las 7 preguntas"
+      },
+      herramienta: {
+        titulo: "Cuando el ruido ya no alcanza",
+        texto: "Una herramienta para esos días donde todo parece demasiado.",
+        href: "#herramientas-rincon",
+        cta: "Ver herramienta"
+      }
+    },
+
+    sostener: {
+      texto: "Cuando venís sosteniendo demasiado, quizás la primera pausa no sea hacer más, sino dejar de fingir calma un rato.",
+      lectura: {
+        titulo: "La máscara de cartón",
+        texto: "Para cuando pesa sostener una versión de vos que ya no da más.",
+        href: "#herramientas-rincon",
+        cta: "Ver herramienta"
+      },
+      herramienta: {
+        titulo: "Las 7 preguntas para bajar el ruido",
+        texto: "Una forma simple de soltar un poco la carga del día.",
+        href: "#pergamino-gratis",
+        cta: "Abrir guía gratis"
+      }
+    },
+
+    postergar: {
+      texto: "Cuando algo pendiente pesa, no siempre hace falta resolverlo todo. A veces alcanza con volver al primer movimiento.",
+      lectura: {
+        titulo: "El tren que no esperaba ser perfecto",
+        texto: "Una historia para cuando seguís esperando sentirte listo.",
+        href: "#cuento-gratis",
+        cta: "Leer el cuento"
+      },
+      herramienta: {
+        titulo: "Subir al tren por 10 minutos",
+        texto: "Una herramienta para empezar sin exigirte terminar todo.",
+        href: "#herramientas-rincon",
+        cta: "Ver herramienta"
+      }
+    },
+
+    refugio: {
+      texto: "Cuando querés desaparecer un rato, quizás no necesitás irte de todo. Quizás necesitás una habitación donde poder escucharte.",
+      lectura: {
+        titulo: "La habitación donde nadie entraba",
+        texto: "Una muestra breve para entrar despacio en ese lugar que venías evitando.",
+        href: "#cuento",
+        cta: "Leer esta historia"
+      },
+      herramienta: {
+        titulo: "Las 7 preguntas para bajar el ruido",
+        texto: "Una pausa para volver a vos sin presión.",
+        href: "#pergamino-gratis",
+        cta: "Abrir guía gratis"
+      }
+    },
+
+    buscar: {
+      texto: "Cuando venís buscando algo que te acomode por dentro, lo mejor es entrar despacio y ver qué parte te toca.",
+      lectura: {
+        titulo: "Abrí la puerta y quedate un momento",
+        texto: "Una muestra de lectura para sentir si este espacio habla con algo tuyo.",
+        href: "#lectura",
+        cta: "Leer muestra"
+      },
+      herramienta: {
+        titulo: "Así se vive el Rincón adentro",
+        texto: "Una mirada rápida a la experiencia completa.",
+        href: "#asi-se-vive-adentro",
+        cta: "Ver por dentro"
+      }
+    }
+  };
+
+  function mostrarPanel(numero) {
+    paneles.forEach(function (panel) {
+      panel.classList.toggle("guia-panel-activo", panel.getAttribute("data-guia-panel") === String(numero));
+    });
+
+    pasos.forEach(function (paso) {
+      paso.classList.toggle("activo", paso.getAttribute("data-guia-paso") === String(numero));
+    });
+  }
+
+  function trackGuia(nombre, parametros) {
+    if (typeof gtag === "function") {
+      gtag("event", nombre, parametros || {});
+    }
+  }
+
+  function aplicarResultado() {
+    const base = recomendaciones[estado.estado] || recomendaciones.buscar;
+
+    resultadoTexto.textContent = base.texto;
+
+    lecturaTitulo.textContent = base.lectura.titulo;
+    lecturaTexto.textContent = base.lectura.texto;
+    lecturaLink.href = base.lectura.href;
+    lecturaLink.textContent = base.lectura.cta;
+
+    herramientaTitulo.textContent = base.herramienta.titulo;
+    herramientaTexto.textContent = base.herramienta.texto;
+    herramientaLink.href = base.herramienta.href;
+    herramientaLink.textContent = base.herramienta.cta;
+
+    let accionHref = base.lectura.href;
+    let accionTexto = base.lectura.cta;
+
+    if (estado.necesidad === "calmar" || estado.necesidad === "ordenar") {
+      accionHref = base.herramienta.href;
+      accionTexto = base.herramienta.cta;
+    }
+
+    if (estado.necesidad === "historia") {
+      accionHref = base.lectura.href;
+      accionTexto = base.lectura.cta;
+    }
+
+    if (estado.necesidad === "adentro") {
+      accionHref = "#asi-se-vive-adentro";
+      accionTexto = "Ver cómo se vive adentro";
+    }
+
+    accionPrincipal.href = accionHref;
+    accionPrincipal.textContent = accionTexto;
+
+    mostrarPanel(3);
+
+    trackGuia("guia_resultado_rincon", {
+      estado: estado.estado,
+      necesidad: estado.necesidad
+    });
+  }
+
+  guia.querySelectorAll("[data-guia-pregunta]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      const pregunta = boton.getAttribute("data-guia-pregunta");
+      const valor = boton.getAttribute("data-guia-valor");
+
+      estado[pregunta] = valor;
+
+      trackGuia("guia_respuesta_rincon", {
+        pregunta: pregunta,
+        valor: valor
+      });
+
+      if (pregunta === "estado") {
+        mostrarPanel(2);
+      }
+
+      if (pregunta === "necesidad") {
+        aplicarResultado();
+      }
+    });
+  });
+
+  if (reiniciar) {
+    reiniciar.addEventListener("click", function () {
+      estado.estado = null;
+      estado.necesidad = null;
+      mostrarPanel(1);
+
+      trackGuia("guia_reiniciar_rincon");
+    });
+  }
+});
+</script>
 </body>
 </html>
