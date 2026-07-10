@@ -2010,11 +2010,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  function trackGuia(nombre, parametros) {
-    if (typeof gtag === "function") {
-      gtag("event", nombre, parametros || {});
-    }
+function trackGuia(nombre, parametros) {
+  if (typeof trackGAEvent === "function") {
+    trackGAEvent(nombre, parametros || {});
+    return;
   }
+
+  if (typeof gtag === "function") {
+    gtag("event", nombre, parametros || {});
+  }
+}
 
   function aplicarResultado() {
     const base = recomendaciones[estado.estado] || recomendaciones.buscar;
