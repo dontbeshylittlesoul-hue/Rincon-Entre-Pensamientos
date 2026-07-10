@@ -1302,7 +1302,64 @@
           }
         });
       }
+/* =========================
+   TRACKING LINKS IMPORTANTES
+   Hotmart + PDFs
+   ========================= */
 
+function textoLimpioLink(link) {
+  return link.innerText ? link.innerText.trim().replace(/\s+/g, " ") : "";
+}
+
+function tieneEventoManual(link, nombreEvento) {
+  const eventos = link.getAttribute("data-ga-event") || "";
+  return eventos.split(/\s+/).includes(nombreEvento);
+}
+
+document.querySelectorAll("a[href]").forEach(function (link) {
+  const hrefOriginal = link.getAttribute("href") || "";
+  let url;
+
+  try {
+    url = new URL(hrefOriginal, window.location.href);
+  } catch (e) {
+    return;
+  }
+
+  const href = url.href.toLowerCase();
+  const host = url.hostname.toLowerCase();
+  const path = url.pathname.toLowerCase();
+  const texto = textoLimpioLink(link);
+
+  const esHotmart =
+    host === "hotmart.com" ||
+    host.endsWith(".hotmart.com") ||
+    href.includes("hotmart");
+
+  const esPDF = path.endsWith(".pdf");
+
+  if (esHotmart && !tieneEventoManual(link, "click_hotmart")) {
+    link.addEventListener("click", function () {
+      trackGAEvent("click_hotmart", {
+        event_label: texto || "Click Hotmart",
+        link_url: url.href,
+        link_domain: host,
+        cta_text: texto
+      });
+    });
+  }
+
+  if (esPDF && !tieneEventoManual(link, "click_pdf")) {
+    link.addEventListener("click", function () {
+      trackGAEvent("click_pdf", {
+        event_label: texto || "Click PDF",
+        link_url: url.href,
+        file_name: path.split("/").pop(),
+        cta_text: texto
+      });
+    });
+  }
+});
       window.addEventListener("scroll", revisarScroll, { passive: true });
       revisarScroll();
 
