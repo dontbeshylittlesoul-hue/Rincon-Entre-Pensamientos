@@ -9555,3 +9555,73 @@ body {
     width: 100%;
   }
 }
+/* =====================================================
+   AJUSTE LEGIBILIDAD - MOMENTO RINCÓN
+   ===================================================== */
+
+.momento-rincon h2 {
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.02;
+}
+
+.momento-rincon-intro {
+  color: rgba(245, 226, 198, 0.88) !important;
+}
+
+.momento-rincon-card {
+  background:
+    radial-gradient(circle at 85% 5%, rgba(255, 244, 205, 0.30), transparent 120px),
+    linear-gradient(180deg, rgba(221, 185, 120, 0.94), rgba(150, 103, 53, 0.92)) !important;
+  border: 1px solid rgba(255, 226, 170, 0.58) !important;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.42);
+}
+
+.momento-rincon-card span {
+  color: rgba(42, 24, 10, 0.65) !important;
+  border-color: rgba(70, 40, 15, 0.18) !important;
+  background: rgba(70, 40, 15, 0.08) !important;
+}
+
+.momento-rincon-card h3 {
+  color: #241307 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.momento-rincon-card p {
+  color: rgba(36, 19, 7, 0.82) !important;
+  opacity: 1 !important;
+  line-height: 1.55;
+}
+
+.momento-rincon-cierre p {
+  color: rgba(245, 226, 198, 0.88) !important;
+}
+
+.momento-rincon-btn {
+  background: linear-gradient(180deg, #f0cf8b, #c58a3b) !important;
+  color: #211207 !important;
+  border: 1px solid rgba(255, 230, 175, 0.75) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.momento-rincon-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+@media (max-width: 720px) {
+  .momento-rincon-card {
+    padding: 24px 22px !important;
+  }
+
+  .momento-rincon-card h3 {
+    font-size: 1.55rem !important;
+  }
+
+  .momento-rincon-card p {
+    font-size: 1rem !important;
+  }
+}
