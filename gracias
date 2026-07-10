@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Tu pergamino está listo | Rincón entre Pensamientos</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Crimson+Pro:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLC4N5CQHX"></script>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag("js", new Date());
+    gtag("config", "G-BLC4N5CQHX");
+
+    document.addEventListener("DOMContentLoaded", function () {
+      if (!sessionStorage.getItem("lead_rincon_registrado")) {
+        gtag("event", "generate_lead", {
+          event_category: "mailerLite",
+          event_label: "Lead confirmado - 7 preguntas",
+          lead_magnet: "Las 7 preguntas para bajar el ruido"
+        });
+
+        sessionStorage.setItem("lead_rincon_registrado", "true");
+      }
+    });
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      color: #f4dfb7;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(213, 145, 61, 0.18), transparent 360px),
+        linear-gradient(180deg, #100a06, #211207);
+      font-family: "Crimson Pro", Georgia, serif;
+    }
+
+    .gracias-card {
+      width: min(680px, 100%);
+      padding: 48px 30px;
+      text-align: center;
+      border: 1px solid rgba(234, 192, 119, 0.32);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 222, 158, 0.12), transparent 300px),
+        rgba(31, 18, 9, 0.88);
+      box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.58),
+        0 0 44px rgba(211, 142, 56, 0.12);
+    }
+
+    .etiqueta {
+      margin: 0 0 12px;
+      color: rgba(231, 191, 124, 0.74);
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      color: #f5d79e;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(2.4rem, 7vw, 4rem);
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .texto {
+      max-width: 520px;
+      margin: 0 auto 28px;
+      color: rgba(245, 226, 193, 0.86);
+      font-size: 1.18rem;
+      line-height: 1.65;
+    }
+
+    .btn-descarga {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 56px;
+      padding: 15px 30px;
+      border: 1px solid rgba(255, 236, 186, 0.82);
+      border-radius: 999px;
+      color: #251407;
+      background: linear-gradient(180deg, #f2cb80, #c98432);
+      box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.35),
+        0 0 30px rgba(239, 181, 81, 0.2);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s ease;
+    }
+
+    .btn-descarga:hover {
+      transform: translateY(-2px);
+    }
+
+    .volver {
+      display: block;
+      width: fit-content;
+      margin: 24px auto 0;
+      color: rgba(244, 223, 184, 0.76);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(244, 223, 184, 0.28);
+    }
+
+    .nota {
+      margin: 28px auto 0;
+      color: rgba(230, 208, 174, 0.62);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 600px) {
+      .gracias-card {
+        padding: 40px 20px;
+        border-radius: 22px;
+      }
+
+      .btn-descarga {
+        width: 100%;
+        padding: 15px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="gracias-card">
+    <p class="etiqueta">Rincón entre Pensamientos</p>
+
+    <h1>Tu pergamino está listo</h1>
+
+    <p class="texto">
+      Gracias por confirmar tu correo. Ya podés descargar
+      Las 7 preguntas para bajar el ruido y guardarlas para cuando
+      necesites volver a vos.
+    </p>
+
+    <a
+      class="btn-descarga"
+      href="./el-primer-pergamino-del-rincon-liviano.pdf"
+      download="el-primer-pergamino-del-rincon-liviano.pdf"
+      onclick="gtag('event', 'download_lead_magnet', {
+        event_category: 'lead',
+        event_label: 'Las 7 preguntas'
+      });"
+    >
+      Descargar las 7 preguntas
+    </a>
+
+    <a class="volver" href="./index.html">
+      Volver al Rincón
+    </a>
+
+    <p class="nota">
+      También vas a recibir algunos mensajes del Rincón.
+      Podés darte de baja cuando quieras.
+    </p>
+  </main>
+</body>
+</html>
