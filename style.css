@@ -10135,3 +10135,141 @@ body {
     width: min(100%, 330px);
   }
 }
+
+
+/* =========================================================
+   CTA INTERMEDIO — ACCESO COMPLETO
+   Entre las 7 preguntas y la vista por dentro
+   ========================================================= */
+
+.cta-intermedio {
+  width: min(920px, calc(100% - 36px));
+  margin: clamp(2.5rem, 6vw, 5rem) auto;
+  padding: 0;
+  text-align: center;
+}
+
+.cta-intermedio-card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(2.25rem, 5vw, 3.8rem) clamp(1.25rem, 4vw, 3rem);
+  border: 1px solid rgba(236, 203, 145, 0.2);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(242, 187, 95, 0.15), transparent 42%),
+    linear-gradient(180deg, rgba(55, 35, 21, 0.64), rgba(20, 13, 9, 0.62));
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.3),
+    inset 0 0 52px rgba(255, 214, 146, 0.035);
+}
+
+.cta-intermedio-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(255, 224, 168, 0.06), transparent 26%),
+    radial-gradient(circle at 88% 80%, rgba(218, 151, 67, 0.07), transparent 30%);
+}
+
+.cta-intermedio-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-intermedio .section-mini {
+  margin-bottom: 0.85rem;
+  color: rgba(232, 201, 154, 0.62);
+}
+
+.cta-intermedio h2 {
+  max-width: 700px;
+  margin: 0 auto 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.55rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: rgba(255, 240, 211, 0.97);
+}
+
+.cta-intermedio p {
+  max-width: 680px;
+  margin: 0 auto 1.8rem;
+  font-size: clamp(1rem, 2.2vw, 1.14rem);
+  line-height: 1.72;
+  color: rgba(241, 221, 186, 0.82);
+}
+
+.btn-acceso-completo-intermedio {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 14px 30px;
+  border: 1px solid rgba(255, 230, 171, 0.72);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 249, 222, 0.38), transparent 65%),
+    linear-gradient(180deg, #edc47a 0%, #bd772d 100%);
+  color: #241307;
+  font-family: var(--font-display);
+  font-size: clamp(1.08rem, 2.6vw, 1.28rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.035em;
+  text-decoration: none;
+  box-shadow:
+    0 16px 36px rgba(0, 0, 0, 0.3),
+    0 0 28px rgba(239, 181, 88, 0.18),
+    inset 0 1px 0 rgba(255, 255, 235, 0.34);
+  transition:
+    transform 0.25s ease,
+    filter 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.btn-acceso-completo-intermedio:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.06);
+  box-shadow:
+    0 22px 46px rgba(0, 0, 0, 0.38),
+    0 0 38px rgba(239, 181, 88, 0.26),
+    inset 0 1px 0 rgba(255, 255, 235, 0.42);
+}
+
+.cta-intermedio-nota {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: rgba(232, 201, 154, 0.52);
+}
+
+@media (max-width: 560px) {
+  .cta-intermedio {
+    width: min(100% - 24px, 920px);
+    margin: 2.6rem auto 3.4rem;
+  }
+
+  .cta-intermedio-card {
+    padding: 2.25rem 1.1rem;
+    border-radius: 24px;
+  }
+
+  .cta-intermedio h2 {
+    font-size: clamp(2rem, 11vw, 2.75rem);
+  }
+
+  .btn-acceso-completo-intermedio {
+    width: min(100%, 320px);
+    padding: 15px 20px;
+  }
+
+  .cta-intermedio-nota {
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
