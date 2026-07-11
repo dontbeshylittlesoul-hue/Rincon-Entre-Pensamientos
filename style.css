@@ -10329,3 +10329,374 @@ body {
     border-color: rgba(244, 207, 145, 0.3) !important;
   }
 }
+
+
+/* =========================================================
+   RINCÓN EN EL CELULAR — ACCESO TIPO WEB APP
+   ========================================================= */
+
+.webapp-movil {
+  width: min(1080px, calc(100% - 36px));
+  margin: clamp(3rem, 7vw, 6rem) auto;
+}
+
+.webapp-movil-inner {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 5rem);
+  padding: clamp(2.2rem, 5vw, 4.3rem);
+  border: 1px solid rgba(236, 203, 145, 0.18);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 76% 18%, rgba(244, 190, 99, 0.16), transparent 31%),
+    linear-gradient(135deg, rgba(55, 35, 21, 0.66), rgba(19, 12, 8, 0.7));
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.32),
+    inset 0 0 60px rgba(255, 218, 151, 0.035);
+}
+
+.webapp-movil-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg, transparent 0 58%, rgba(255, 233, 187, 0.035) 58% 59%, transparent 59%);
+}
+
+.webapp-movil-copy,
+.webapp-movil-visual {
+  position: relative;
+  z-index: 1;
+}
+
+.webapp-movil .section-mini {
+  margin-bottom: 0.8rem;
+  color: rgba(232, 201, 154, 0.62);
+}
+
+.webapp-movil h2 {
+  max-width: 600px;
+  margin: 0 0 1.15rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 4.25rem);
+  font-weight: 400;
+  line-height: 0.98;
+  color: rgba(255, 240, 211, 0.98);
+}
+
+.webapp-movil-intro {
+  max-width: 630px;
+  margin: 0;
+  font-size: clamp(1rem, 2.1vw, 1.14rem);
+  line-height: 1.72;
+  color: rgba(241, 221, 186, 0.82);
+}
+
+.webapp-pasos {
+  display: grid;
+  gap: 0.95rem;
+  margin: 1.8rem 0 2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.webapp-pasos li {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  align-items: start;
+  gap: 0.9rem;
+  padding: 0.95rem 1rem;
+  border: 1px solid rgba(236, 203, 145, 0.11);
+  border-radius: 17px;
+  background: rgba(255, 229, 179, 0.045);
+}
+
+.webapp-pasos li > span {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(242, 197, 121, 0.32);
+  border-radius: 50%;
+  color: rgba(255, 231, 190, 0.92);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  background: rgba(244, 190, 99, 0.09);
+}
+
+.webapp-pasos strong {
+  display: block;
+  margin: 0 0 0.18rem;
+  color: rgba(255, 238, 205, 0.94);
+  font-family: var(--font-display);
+  font-size: 1.13rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.webapp-pasos p {
+  margin: 0;
+  color: rgba(237, 215, 179, 0.68);
+  font-size: 0.93rem;
+  line-height: 1.52;
+}
+
+.webapp-movil-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 14px 27px;
+  border: 1px solid rgba(255, 231, 178, 0.4);
+  border-radius: 999px;
+  color: rgba(255, 239, 211, 0.98);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 224, 165, 0.16), transparent 65%),
+    rgba(94, 58, 29, 0.4);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  text-decoration: none;
+  box-shadow:
+    0 16px 36px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 244, 215, 0.08);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
+}
+
+.webapp-movil-cta:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 231, 178, 0.66);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 224, 165, 0.23), transparent 65%),
+    rgba(116, 71, 34, 0.48);
+}
+
+.webapp-movil-visual {
+  min-height: 490px;
+  display: grid;
+  place-items: center;
+}
+
+.telefono-rincon {
+  position: relative;
+  width: min(260px, 75vw);
+  aspect-ratio: 0.52 / 1;
+  padding: 12px;
+  border: 1px solid rgba(255, 228, 178, 0.33);
+  border-radius: 38px;
+  background:
+    linear-gradient(145deg, rgba(68, 43, 26, 0.96), rgba(12, 8, 6, 0.98));
+  box-shadow:
+    0 32px 75px rgba(0, 0, 0, 0.52),
+    0 0 42px rgba(229, 159, 72, 0.12),
+    inset 0 0 0 1px rgba(255, 245, 220, 0.04);
+  transform: rotate(3deg);
+}
+
+.telefono-barra {
+  position: absolute;
+  top: 19px;
+  left: 50%;
+  z-index: 3;
+  width: 78px;
+  height: 19px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: rgba(5, 3, 2, 0.94);
+}
+
+.telefono-pantalla {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 29px;
+  background: #100b07;
+}
+
+.telefono-pantalla img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: brightness(0.88) saturate(0.88);
+}
+
+.telefono-pantalla::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 29px;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 231, 187, 0.03), transparent 38%),
+    radial-gradient(circle at 50% 0%, rgba(237, 173, 89, 0.08), transparent 43%);
+}
+
+.telefono-inicio {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  z-index: 3;
+  width: 82px;
+  height: 4px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: rgba(255, 239, 211, 0.62);
+}
+
+.webapp-icono-card {
+  position: absolute;
+  right: 0;
+  bottom: 26px;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-width: 220px;
+  padding: 0.8rem 0.95rem;
+  border: 1px solid rgba(243, 203, 136, 0.24);
+  border-radius: 19px;
+  background:
+    radial-gradient(circle at 0 0, rgba(255, 223, 163, 0.13), transparent 48%),
+    rgba(20, 13, 9, 0.92);
+  box-shadow:
+    0 20px 42px rgba(0, 0, 0, 0.38),
+    0 0 26px rgba(220, 150, 65, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+.webapp-icono-app {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+  border: 1px solid rgba(255, 229, 176, 0.46);
+  border-radius: 16px;
+  color: rgba(255, 238, 205, 0.96);
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255, 222, 151, 0.24), transparent 55%),
+    linear-gradient(145deg, #5c391e, #1e120b);
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-style: italic;
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.3),
+    inset 0 0 18px rgba(255, 221, 154, 0.07);
+}
+
+.webapp-icono-texto {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.18;
+}
+
+.webapp-icono-texto strong {
+  color: rgba(255, 239, 211, 0.96);
+  font-family: var(--font-display);
+  font-size: 1.22rem;
+  font-weight: 500;
+}
+
+.webapp-icono-texto small {
+  margin-top: 0.18rem;
+  color: rgba(236, 210, 168, 0.6);
+  font-size: 0.76rem;
+}
+
+@media (max-width: 880px) {
+  .webapp-movil-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .webapp-movil-copy {
+    text-align: center;
+  }
+
+  .webapp-movil h2,
+  .webapp-movil-intro {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .webapp-pasos {
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+
+  .webapp-movil-visual {
+    min-height: 450px;
+  }
+
+  .webapp-icono-card {
+    right: calc(50% - 205px);
+  }
+}
+
+@media (max-width: 560px) {
+  .webapp-movil {
+    width: min(100% - 24px, 1080px);
+    margin: 3rem auto 4rem;
+  }
+
+  .webapp-movil-inner {
+    gap: 2.2rem;
+    padding: 2.2rem 1rem 2.6rem;
+    border-radius: 25px;
+  }
+
+  .webapp-movil h2 {
+    font-size: clamp(2.25rem, 12vw, 3.2rem);
+  }
+
+  .webapp-pasos li {
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 0.7rem;
+    padding: 0.9rem 0.8rem;
+  }
+
+  .webapp-pasos li > span {
+    width: 32px;
+    height: 32px;
+  }
+
+  .webapp-movil-cta {
+    width: min(100%, 310px);
+  }
+
+  .webapp-movil-visual {
+    min-height: 400px;
+  }
+
+  .telefono-rincon {
+    width: min(225px, 68vw);
+  }
+
+  .webapp-icono-card {
+    right: 2px;
+    bottom: 12px;
+    min-width: 192px;
+    padding: 0.72rem 0.78rem;
+  }
+
+  .webapp-icono-app {
+    width: 50px;
+    height: 50px;
+    flex-basis: 50px;
+    font-size: 1.7rem;
+  }
+
+  .webapp-icono-texto strong {
+    font-size: 1.05rem;
+  }
+}
