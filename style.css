@@ -10273,3 +10273,29 @@ body {
     margin-right: auto;
   }
 }
+
+
+/* =========================================================
+   AJUSTE LLUVIA — MÁS VISIBLE SOLO EN ESCRITORIO
+   No modifica la intensidad definida para celular.
+   ========================================================= */
+
+@media (min-width: 701px) {
+  body.lluvia-activa .lluvia-visual {
+    opacity: 0.72 !important;
+  }
+
+  .lluvia-visual::before {
+    width: 1.25px !important;
+    height: 84px !important;
+    background: rgba(235, 244, 255, 0.24) !important;
+    filter: blur(0.22px) brightness(1.28) !important;
+  }
+
+  .lluvia-visual::after {
+    width: 1px !important;
+    height: 48px !important;
+    background: rgba(235, 244, 255, 0.15) !important;
+    filter: blur(0.18px) brightness(1.18) !important;
+  }
+}
