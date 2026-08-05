@@ -21,11 +21,18 @@
   </script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Rincón Entre Pensamientos</title>
+<title>Rincón entre Pensamientos — Calma, cuentos y herramientas para bajar el ruido</title>
+<meta name="description" content="Una experiencia digital nocturna con cuentos narrados, ambientes, herramientas y recorridos para bajar el ruido, descansar y volver a vos."/>
+<meta property="og:title" content="Rincón entre Pensamientos"/>
+<meta property="og:description" content="Un lugar para bajar el ruido, pensar sin prisa y volver a vos."/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&amp;family=Crimson+Pro:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
-<link href="style.css?v=landing-truthmode-4" rel="stylesheet"/>
+<link href="style.css?v=landing-lanzamiento-1" rel="stylesheet"/>
+<script defer src="./checkout.js"></script>
+<script defer src="./mapa.js"></script>
 <!-- ESTILOS NUEVOS: CUENTO GRATIS EN PERGAMINO + NARRADOR -->
 <style>
     .cuento-gratis-pergamino {
@@ -477,7 +484,7 @@
 <audio id="ambienteFuego" loop="" preload="auto" src="./sounds/fuego-suave.mp3"></audio>
 <audio id="ambienteBosque" loop="" preload="auto" src="./sounds/bosque-noche.mp3"></audio>
 <audio id="ambienteSelva" loop="" preload="auto" src="./sounds/selva-noche.mp3"></audio>
-<div aria-modal="true" class="entrada-sonora" id="entradaSonora" role="dialog">
+<div aria-hidden="true" aria-modal="true" class="entrada-sonora oculta" id="entradaSonora" role="dialog">
 <div class="entrada-sonora-card">
 <p class="entrada-sonora-mini">Antes de entrar</p>
 <h2>Elegí cómo llega el Rincón hoy</h2>
@@ -503,11 +510,108 @@
 <button data-ambiente-menu="silencio" type="button">🔇 Apagar ambiente</button>
 </div>
 </div>
-<!-- GUÍA INICIAL DEL RINCÓN -->
+<aside class="launch-banner" aria-label="Oferta de lanzamiento">
+  <a data-checkout-link data-ga-event="click_oferta_superior click_hotmart" href="#" rel="noopener" target="_blank">
+    <span>✦ Precio de lanzamiento</span>
+    <strong>Acceso completo por USD 11,90</strong>
+    <small>Precio habitual USD 30 · acceso de por vida</small>
+  </a>
+</aside>
+<!-- HERO NUEVO CON PERGAMINO + FAROL -->
+<section class="hero-rincon" id="inicio">
+<div class="hero-rincon-inner">
+<div aria-label="Rincón entre Pensamientos" class="hero-rincon-art reveal">
+<img alt="Pergamino iluminado con farol de Rincón entre Pensamientos" class="hero-rincon-img" decoding="async" loading="eager" onerror="this.onerror=null; this.src='./pergamino-farol.jpeg';" src="./pergamino-farol.png"/>
+<div class="hero-rincon-content">
+<p class="hero-rincon-eyebrow">cuentos · calma · herramientas para momentos reales</p>
+<h1 class="hero-rincon-title">
+<span>Rincón</span>
+<span>entre</span>
+<span>Pensamientos</span>
+</h1>
+<p class="hero-rincon-subtitle">Cuando la cabeza no se apaga, entrá un momento al Rincón.</p>
+<p class="hero-rincon-promise">
+      Cuentos narrados, ambientes, recorridos y herramientas para cuando necesitás bajar el ruido sin exigirte estar bien enseguida.
+    </p>
+<div class="hero-offer" aria-label="Precio de lanzamiento">
+  <span class="hero-offer-label">Precio de lanzamiento</span>
+  <div class="hero-offer-prices"><del>USD 30</del><strong>USD 11,90</strong></div>
+  <small>Un solo pago · acceso de por vida · 7 días de garantía</small>
+</div>
+<div class="hero-rincon-actions hero-rincon-actions-conversion" id="heroActions">
+<a class="hero-rincon-btn hero-rincon-btn-main" data-ga-event="click_muestra_real" href="https://rinconentrepensamientos.lovable.app/muestra" id="entrarMuestra" rel="noopener">
+<span>Entrar a la muestra gratis</span>
+</a>
+<a class="hero-rincon-btn hero-rincon-btn-buy" data-checkout-link data-ga-event="click_comprar_hero click_hotmart" href="#" rel="noopener" target="_blank">
+<span>Acceder ahora por USD 11,90</span>
+</a>
+<a class="hero-rincon-btn hero-rincon-btn-light" data-ga-event="click_pergamino_gratis" href="#pergamino-gratis" id="botonCuentoHero">
+<span>Llevarme las 7 preguntas gratis</span>
+</a>
+</div>
+<div class="hero-rincon-sound-actions" aria-label="Ambientes opcionales">
+<button class="hero-rincon-btn btn-ambiente" data-ga-event="click_activar_lluvia" id="ambienteToggle" type="button">
+<span>☂ Activar lluvia para leer</span>
+</button>
+<button class="hero-rincon-btn btn-ambientes" data-ga-event="click_cambiar_ambiente" id="ambientesToggle" type="button">
+<span>🌙 Elegir ambiente</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<a class="hero-rincon-scroll" href="#momento-rincon">deslizá para encontrar una puerta de entrada</a>
+</section>
+<!-- PERGAMINO GRATIS -->
+
+<!-- BLOQUE: PUEDE SER PARA VOS SI LLEGASTE ASÍ -->
+<section class="momento-rincon reveal" id="momento-rincon">
+<div class="momento-rincon-inner">
+<p class="momento-rincon-mini">antes de seguir</p>
+<h2>Puede ser para vos si llegaste así</h2>
+<p class="momento-rincon-intro">No necesitás tener todo claro para entrar. A veces alcanza con reconocer que algo por dentro pide una pausa, una historia o un lugar donde bajar el ruido.</p>
+<div class="momento-rincon-grid">
+<article class="momento-rincon-card">
+<span>01</span>
+<h3>Cuando la cabeza no se apaga</h3>
+<p>
+          Para esos momentos donde querés descansar, pero los pensamientos siguen hablando solos.
+        </p>
+</article>
+<article class="momento-rincon-card">
+<span>02</span>
+<h3>Cuando estás cansado/a de fingir calma</h3>
+<p>
+          Para cuando por fuera seguís, pero por dentro ya venís pidiendo aire.
+        </p>
+</article>
+<article class="momento-rincon-card">
+<span>03</span>
+<h3>Cuando te sentís solo/a aunque haya gente</h3>
+<p>
+          Para cuando no falta compañía, pero sí un lugar donde sentirte entendido/a.
+        </p>
+</article>
+<article class="momento-rincon-card">
+<span>04</span>
+<h3>Cuando venís postergando algo que te pesa</h3>
+<p>
+          Para cuando sabés que hay un primer paso, pero la presión te deja quieto/a.
+        </p>
+</article>
+
+
+</div>
+<div class="momento-rincon-cierre">
+<p>No hace falta que decidas nada ahora. Primero podés recorrer una parte real del Rincón y ver si alguna de sus puertas se parece a lo que necesitás hoy.</p>
+<a class="momento-rincon-btn" data-ga-event="click_ir_muestra_real" href="#muestra-real">Probar una parte real del Rincón</a>
+</div>
+</div>
+</section><!-- GUÍA INICIAL DEL RINCÓN -->
 <section aria-label="Guía inicial del Rincón" class="guia-rincon reveal" id="guia-rincon">
 <div class="guia-rincon-card">
-<p class="guia-mini">antes de entrar del todo</p>
-<h2>Respondé dos preguntas simples y te dejo una puerta de entrada para hoy.</h2>
+<p class="guia-mini">una entrada según cómo llegás</p>
+<h2>¿No sabés por dónde empezar? Respondé dos preguntas y te sugiero una puerta para hoy.</h2>
 <div aria-label="Progreso de la guía" class="guia-progreso">
 <span class="activo" data-guia-paso="1">1</span>
 <span data-guia-paso="2">2</span>
@@ -588,111 +692,58 @@
 </div>
 </div>
 <a class="guia-saltar" href="#inicio">
-      Prefiero entrar y mirar todo
+      Seguir recorriendo sin responder
     </a>
 </div>
 </section>
-<!-- HERO NUEVO CON PERGAMINO + FAROL -->
-<section class="hero-rincon" id="inicio">
-<div class="hero-rincon-inner">
-<div aria-label="Rincón entre Pensamientos" class="hero-rincon-art reveal">
-<img alt="Pergamino iluminado con farol de Rincón entre Pensamientos" class="hero-rincon-img" decoding="async" loading="eager" onerror="this.onerror=null; this.src='./pergamino-farol.jpeg';" src="./pergamino-farol.png"/>
-<div class="hero-rincon-content">
-<p class="hero-rincon-eyebrow">lectura · calma · herramientas para momentos reales</p>
-<h1 class="hero-rincon-title">
-<span>Rincón</span>
-<span>entre</span>
-<span>Pensamientos</span>
-</h1>
-<p class="hero-rincon-subtitle">Cuando la cabeza no se apaga, entrá un momento al Rincón.</p>
-<p class="hero-rincon-promise">
-      No siempre necesitás una respuesta. A veces necesitás un lugar donde bajar el ruido.
-    </p>
-<div class="hero-rincon-actions" id="heroActions">
-<a class="hero-rincon-btn hero-rincon-btn-main" data-ga-event="click_muestra_real" href="https://rinconentrepensamientos.lovable.app/muestra" id="entrarMuestra" rel="noopener">
-<span>Entrar a la muestra gratis</span>
-</a>
-<a class="hero-rincon-btn hero-rincon-btn-light" data-ga-event="click_pergamino_gratis" href="#pergamino-gratis" id="botonCuentoHero">
-<span>Llevarme las 7 preguntas gratis</span>
-</a>
-<button class="hero-rincon-btn btn-ambiente" data-ga-event="click_activar_lluvia" id="ambienteToggle" type="button">
-<span>☂ Activar lluvia para leer</span>
-</button>
-<button class="hero-rincon-btn btn-ambientes" data-ga-event="click_cambiar_ambiente" id="ambientesToggle" type="button">
-<span>🌙 Ambiente: silencio</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-<a class="hero-rincon-scroll" href="#momento-rincon">deslizá para encontrar una puerta de entrada</a>
-</section>
-<!-- PERGAMINO GRATIS -->
-
-<!-- BLOQUE: PUEDE SER PARA VOS SI LLEGASTE ASÍ -->
-<section class="momento-rincon reveal" id="momento-rincon">
-<div class="momento-rincon-inner">
-<p class="momento-rincon-mini">antes de seguir</p>
-<h2>Puede ser para vos si llegaste así</h2>
-<p class="momento-rincon-intro">No necesitás tener todo claro para entrar. A veces alcanza con reconocer que algo por dentro pide una pausa, una historia o un lugar donde bajar el ruido.</p>
-<div class="momento-rincon-grid">
-<article class="momento-rincon-card">
-<span>01</span>
-<h3>Cuando la cabeza no se apaga</h3>
-<p>
-          Para esos momentos donde querés descansar, pero los pensamientos siguen hablando solos.
-        </p>
-</article>
-<article class="momento-rincon-card">
-<span>02</span>
-<h3>Cuando estás cansado/a de fingir calma</h3>
-<p>
-          Para cuando por fuera seguís, pero por dentro ya venís pidiendo aire.
-        </p>
-</article>
-<article class="momento-rincon-card">
-<span>03</span>
-<h3>Cuando te sentís solo/a aunque haya gente</h3>
-<p>
-          Para cuando no falta compañía, pero sí un lugar donde sentirte entendido/a.
-        </p>
-</article>
-<article class="momento-rincon-card">
-<span>04</span>
-<h3>Cuando venís postergando algo que te pesa</h3>
-<p>
-          Para cuando sabés que hay un primer paso, pero la presión te deja quieto/a.
-        </p>
-</article>
-
-
-</div>
-<div class="momento-rincon-cierre">
-<p>No hace falta que decidas nada ahora. Primero podés recorrer una parte real del Rincón y ver si alguna de sus puertas se parece a lo que necesitás hoy.</p>
-<a class="momento-rincon-btn" data-ga-event="click_ir_muestra_real" href="#muestra-real">Probar una parte real del Rincón</a>
-</div>
-</div>
-</section><section class="muestra-real reveal" id="muestra-real">
+<section class="muestra-real reveal" id="muestra-real">
 <div class="muestra-real-card">
 <p class="section-mini">probalo sin registro</p>
 <h2>No tenés que imaginar cómo es por dentro</h2>
 <p class="muestra-real-intro">
       Entrá a una parte real del Rincón. Podés elegir cómo llegás hoy, abrir cuentos,
-      recorrer caminos, usar una herramienta, entrar al Botiquín o quedarte un rato
-      con los sonidos de lluvia y fuego.
+      recorrer caminos, usar herramientas, entrar al Botiquín, mirar el mapa o quedarte
+      con los sonidos de lluvia, fuego y noche.
     </p>
 <div aria-label="Contenido disponible en la muestra" class="muestra-real-resumen">
-<span>2 cuentos</span>
-<span>2 caminos</span>
-<span>1 herramienta</span>
-<span>1 guía</span>
-<span>pausas visuales</span>
+<span>Cuentos</span>
+<span>Caminos</span>
+<span>Herramientas</span>
+<span>Botiquín</span>
+<span>Ambientes</span>
+<span>Pausas</span>
 </div>
 <a class="muestra-real-btn" data-ga-event="click_muestra_real" href="https://rinconentrepensamientos.lovable.app/muestra" rel="noopener">
       Entrar al Rincón por un momento
     </a>
 <p class="muestra-real-nota">Sin registro · sin obligación de compra</p>
 </div>
+</section>
+
+<section class="mapa-landing reveal" id="mapa-rincon">
+  <div class="mapa-landing-inner">
+    <div class="mapa-landing-copy">
+      <p class="section-mini">todo el Rincón, de un vistazo</p>
+      <h2>No es una colección suelta. Es un lugar con distintas puertas.</h2>
+      <p>
+        Entrá según lo que necesitás: una noche preparada para vos, una pausa del
+        Botiquín, un camino, un cuento, sonidos para descansar o un recorrido de
+        siete noches. La muestra te deja abrir algunas puertas antes de comprar.
+      </p>
+      <div class="mapa-landing-legend" aria-label="Leyenda del mapa">
+        <span>✦ Algunas puertas abiertas en la muestra</span>
+        <span>🔒 Todo el recorrido en el acceso completo</span>
+      </div>
+      <div class="mapa-landing-actions">
+        <a data-ga-event="click_mapa_muestra" href="https://rinconentrepensamientos.lovable.app/muestra" rel="noopener">Recorrer la muestra</a>
+        <a data-checkout-link data-ga-event="click_mapa_comprar click_hotmart" href="#" rel="noopener" target="_blank">Acceder por USD 11,90</a>
+      </div>
+    </div>
+    <button class="mapa-landing-image-button" data-open-map type="button" aria-label="Ver el Mapa del Rincón en grande">
+      <img src="./mapa-del-rincon.png" alt="Mapa del Rincón entre Pensamientos con sus puertas principales: Esta noche, Botiquín, Caminos, Cuentos, Ambientes, 7 noches y otras experiencias" loading="lazy" decoding="async"/>
+      <span>Ver el mapa en grande</span>
+    </button>
+  </div>
 </section>
 <main class="site-main">
 <!-- CUENTO GRATIS EN PERGAMINO -->
@@ -771,25 +822,31 @@
 
 <section class="cta-intermedio reveal" aria-label="Acceso completo al Rincón">
   <div class="cta-intermedio-card">
-    <p class="section-mini">si sentís que este lugar puede acompañarte</p>
-    <h2>Podés entrar directamente al Rincón completo</h2>
+    <p class="section-mini">precio de lanzamiento</p>
+    <h2>Entrá al Rincón completo por USD 11,90</h2>
     <p>
-      Accedé a todas las lecturas, cuentos narrados, caminos, herramientas,
-      Botiquín, notas, pausas visuales y sonidos para volver cuando lo necesites.
+      Accedé de por vida a Esta noche, 7 noches, cuentos narrados, viajes sonoros,
+      caminos, herramientas, Botiquín, ambientes, notas, relatos y experiencias interactivas.
     </p>
+
+    <div class="offer-price offer-price-centered">
+      <del>Precio habitual USD 30</del>
+      <strong>Hoy: USD 11,90</strong>
+    </div>
 
     <a
       class="btn-acceso-completo-intermedio"
+      data-checkout-link
       data-ga-event="click_comprar_intermedio click_hotmart"
-      href="https://go.hotmart.com/L106304893W"
+      href="#"
       rel="noopener"
       target="_blank"
     >
-      Ver acceso completo
+      Acceder ahora por USD 11,90
     </a>
 
     <span class="cta-intermedio-nota">
-      Acceso de por vida · pago seguro por Hotmart · 7 días de garantía
+      Un solo pago · acceso de por vida · pago seguro por Hotmart · 7 días de garantía
     </span>
   </div>
 </section>
@@ -798,7 +855,7 @@
 <div class="showcase-adentro-inner">
 <p class="section-mini">vista por dentro</p>
 <h2>Hay distintas formas de entrar</h2>
-<p class="showcase-adentro-texto">Cuentos para quedarte un rato, caminos según cómo llegás, herramientas para ordenar algo concreto, Botiquín, notas, pausas visuales y sonidos que acompañan la experiencia.</p>
+<p class="showcase-adentro-texto">Esta noche prepara una experiencia según cómo llegás; 7 noches te acompaña paso a paso; y también encontrás cuentos narrados, viajes sonoros, caminos, herramientas, Botiquín, ambientes, notas, relatos y pausas interactivas.</p>
 <div aria-label="Vista previa del interior del Rincón" class="showcase-carousel">
 <button aria-label="Imagen anterior" class="showcase-arrow showcase-prev" type="button">
           ‹
@@ -824,6 +881,75 @@
 
 </section>
 
+<section aria-label="Visor interactivo de muestra gratis" class="visor-ebook reveal" id="lectura">
+<div class="visor-ebook-header">
+<p class="section-mini">todo comenzó con una lectura</p>
+<h2>Tres páginas para entrar despacio</h2>
+<p>La lectura fue el origen del Rincón. Hoy forma parte de una experiencia más amplia con sonidos, recorridos, cuentos y herramientas para volver cuando lo necesites.</p>
+</div>
+<div class="libro-demo" id="libroDemo">
+<button aria-label="Página anterior" class="libro-btn libro-prev" type="button">‹</button>
+<div class="libro-marco">
+<div class="libro-pagina activa">
+<img alt="Página 1 de la muestra" decoding="async" loading="eager" src="./muestra/pagina-04.png"/>
+</div>
+<div class="libro-pagina">
+<img alt="Página 2 de la muestra" decoding="async" loading="eager" src="./muestra/pagina-05.png"/>
+</div>
+<div class="libro-pagina">
+<img alt="Página 3 de la muestra" decoding="async" loading="eager" src="./muestra/pagina-06.png"/>
+</div>
+
+
+
+
+
+
+
+</div>
+<button aria-label="Página siguiente" class="libro-btn libro-next" type="button">›</button>
+</div>
+<p class="contador-libro" id="contadorLibro">Página 1 de 3</p>
+</section><section class="cta-final reveal" id="ebook">
+<div class="cta-card">
+<p class="section-mini">un lugar al que podés volver</p>
+<h2>Todo el Rincón. Un solo acceso.</h2>
+<p>Entrá cuando necesites bajar el ruido, dormir acompañado, atravesar algo difícil o simplemente quedarte un rato sin tener que explicar demasiado.</p>
+<ul class="cta-lista"><li>Esta noche: una experiencia preparada según cómo llegás</li><li>Recorrido de 7 noches</li><li>Cuentos narrados y viajes sonoros para dormir</li><li>Caminos, herramientas, Botiquín, notas y relatos</li><li>Ambientes, temporizador y modo inmersivo</li><li>Pausas interactivas, mapa y nuevas incorporaciones</li></ul>
+<div class="offer-price offer-price-final"><del>Precio habitual USD 30</del><strong>Precio de lanzamiento USD 11,90</strong><small>Un solo pago · acceso de por vida</small></div>
+<a class="btn-pergamino-descarga btn-hotmart-final" data-checkout-link data-ga-event="click_comprar click_hotmart" href="#" rel="noopener" target="_blank">Acceder ahora por USD 11,90</a>
+<a class="cta-final-demo-link" data-ga-event="click_muestra_final" href="https://rinconentrepensamientos.lovable.app/muestra" rel="noopener">Todavía no estoy seguro/a: recorrer la muestra</a>
+</div>
+</section><section class="faq-rincon reveal" id="faq">
+<div class="faq-rincon-inner">
+<p class="section-mini">antes de entrar</p>
+<h2>Preguntas frecuentes</h2>
+<details>
+<summary>¿Es solamente un ebook?</summary>
+<p>
+        No. Es una aplicación web privada y una experiencia digital interactiva para recorrer según lo que necesites: Esta noche, 7 noches, cuentos narrados, viajes sonoros, caminos, herramientas, Botiquín, ambientes, notas, relatos, pausas interactivas y lecturas. El libro fue el origen, pero la experiencia va mucho más allá.
+      </p>
+</details>
+<details>
+<summary>¿Necesito instalar algo?</summary>
+<p>No necesitás descargarlo desde una tienda. Podés usarlo directamente desde el navegador o agregarlo a la pantalla de inicio del celular para abrirlo desde su propio ícono, como una web app.</p>
+</details>
+<details>
+<summary>¿El acceso vence?</summary>
+<p>No. El acceso es de por vida e incluye las nuevas incorporaciones del Rincón.</p>
+</details>
+<details>
+<summary>¿Qué incluye el precio de lanzamiento?</summary>
+<p>Incluye el acceso completo y de por vida a las experiencias actuales del Rincón y a sus actualizaciones. El pago se procesa de forma segura mediante Hotmart y cuenta con 7 días de garantía.</p>
+</details>
+<details>
+<summary>¿Cómo recibo el acceso?</summary>
+<p>
+        Después de la compra recibís las indicaciones para crear tu cuenta y entrar a la experiencia completa.
+      </p>
+</details>
+</div>
+</section>
 <section class="webapp-movil reveal" id="webapp-movil" aria-label="Agregar Rincón a la pantalla de inicio">
   <div class="webapp-movil-inner">
     <div class="webapp-movil-copy">
@@ -893,81 +1019,23 @@
     </div>
   </div>
 </section>
+</main>
 
-<section class="intro-muestra" id="lectura">
-<div class="intro-inner reveal">
-<p class="section-mini">todo comenzó con una lectura</p>
-<h2>Leé una parte y fijate si algo de esto te toca</h2>
-<p>Rincón nació como una lectura para acompañar esos momentos en los que la cabeza hace demasiado ruido. Hoy esa lectura forma parte de una experiencia más amplia.</p>
-<div class="lectura-acciones">
-<a data-ga-event="click_muestra_desde_lectura" href="https://rinconentrepensamientos.lovable.app/muestra" rel="noopener">
-          Entrar a la experiencia interactiva
-        </a>
-<a href="#ebook">Ver acceso completo</a>
-</div></div>
-</section><section aria-label="Visor interactivo de muestra gratis" class="visor-ebook reveal">
-<div class="visor-ebook-header">
-<p class="section-mini">lectura interactiva</p>
-<h2>Tres páginas para entrar despacio</h2>
-<p>Una introducción breve al tono de la lectura. La experiencia completa continúa con el libro, los sonidos y las demás puertas del Rincón.</p>
+<div class="mapa-modal-landing" id="mapaModalLanding" aria-hidden="true">
+  <div class="mapa-modal-backdrop" data-close-map></div>
+  <div class="mapa-modal-panel" role="dialog" aria-modal="true" aria-labelledby="mapaModalTitle">
+    <header>
+      <div>
+        <p class="section-mini">explorá tu refugio interior</p>
+        <h2 id="mapaModalTitle">Mapa del Rincón</h2>
+      </div>
+      <button type="button" data-close-map aria-label="Cerrar el mapa">✕</button>
+    </header>
+    <div class="mapa-modal-scroll">
+      <img src="./mapa-del-rincon.png" alt="Mapa completo de Rincón entre Pensamientos"/>
+    </div>
+  </div>
 </div>
-<div class="libro-demo" id="libroDemo">
-<button aria-label="Página anterior" class="libro-btn libro-prev" type="button">‹</button>
-<div class="libro-marco">
-<div class="libro-pagina activa">
-<img alt="Página 1 de la muestra" decoding="async" loading="eager" src="./muestra/pagina-04.png"/>
-</div>
-<div class="libro-pagina">
-<img alt="Página 2 de la muestra" decoding="async" loading="eager" src="./muestra/pagina-05.png"/>
-</div>
-<div class="libro-pagina">
-<img alt="Página 3 de la muestra" decoding="async" loading="eager" src="./muestra/pagina-06.png"/>
-</div>
-
-
-
-
-
-
-
-</div>
-<button aria-label="Página siguiente" class="libro-btn libro-next" type="button">›</button>
-</div>
-<p class="contador-libro" id="contadorLibro">Página 1 de 3</p>
-</section><section class="cta-final reveal" id="ebook">
-<div class="cta-card">
-<p class="section-mini">un lugar al que podés volver</p>
-<h2>Entrá al Rincón completo</h2>
-<p>Accedé de por vida a la experiencia completa: lecturas, cuentos narrados, caminos, herramientas, Botiquín, notas, pausas visuales y ambientes para acompañar distintos momentos.</p>
-<ul class="cta-lista"><li>Acceso de por vida</li><li>Lectura completa y PDF descargable</li><li>Cuentos e interludios con narrador</li><li>Caminos, herramientas y Botiquín</li><li>Sonidos ambientales e inmersivos</li><li>Nuevos contenidos y actualizaciones</li></ul>
-<a class="btn-pergamino-descarga btn-hotmart-final" data-ga-event="click_comprar click_hotmart" href="https://go.hotmart.com/L106304893W" rel="noopener" target="_blank">Entrar al Rincón completo</a>
-</div>
-</section><section class="faq-rincon reveal" id="faq">
-<div class="faq-rincon-inner">
-<p class="section-mini">antes de entrar</p>
-<h2>Preguntas frecuentes</h2>
-<details>
-<summary>¿Es solamente un ebook?</summary>
-<p>
-        No, no es un ebook. Es una aplicación web privada y una experiencia digital interactiva para recorrer según lo que necesites: cuentos narrados, caminos, herramientas, Botiquín, notas, pausas visuales, sonidos ambientales y lecturas. El libro fue el origen del Rincón, pero la experiencia va mucho más allá.
-      </p>
-</details>
-<details>
-<summary>¿Necesito instalar algo?</summary>
-<p>No necesitás descargarlo desde una tienda. Podés usarlo directamente desde el navegador o agregarlo a la pantalla de inicio del celular para abrirlo desde su propio ícono, como una web app.</p>
-</details>
-<details>
-<summary>¿El acceso vence?</summary>
-<p>No. El acceso es de por vida e incluye las nuevas incorporaciones del Rincón.</p>
-</details>
-<details>
-<summary>¿Cómo recibo el acceso?</summary>
-<p>
-        Después de la compra recibís las indicaciones para crear tu cuenta y entrar a la experiencia completa.
-      </p>
-</details>
-</div>
-</section></main>
 <!-- SCRIPT ÚNICO LIMPIO: GA4 + LLUVIA + AMBIENTES + NARRADOR + PÁGINAS + REVEAL -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -1339,16 +1407,11 @@ document.querySelectorAll("a[href]").forEach(function (link) {
       }
 
       if (entradaSonora) {
-        try {
-          if (sessionStorage.getItem("entradaSonoraRincon") === "vista") {
-            entradaSonora.classList.add("oculta");
-            document.body.classList.remove("entrada-sonora-activa");
-          } else {
-            document.body.classList.add("entrada-sonora-activa");
-          }
-        } catch (error) {
-          document.body.classList.add("entrada-sonora-activa");
-        }
+        // La elección sonora dejó de ser una barrera de entrada.
+        // Los ambientes siguen disponibles desde los controles del hero.
+        entradaSonora.classList.add("oculta");
+        entradaSonora.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("entrada-sonora-activa");
 
         entradaSonora.querySelectorAll("[data-rincon-ambiente]").forEach(function (boton) {
           boton.addEventListener("click", function () {

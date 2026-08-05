@@ -10700,3 +10700,396 @@ body {
     font-size: 1.05rem;
   }
 }
+
+
+/* =========================================================
+   LANDING DE LANZAMIENTO — OFERTA + MAPA + JERARQUÍA DE CTA
+   ========================================================= */
+
+.launch-banner {
+  position: relative;
+  z-index: 40;
+  border-bottom: 1px solid rgba(218, 169, 83, 0.28);
+  background: rgba(14, 9, 6, 0.96);
+  text-align: center;
+}
+
+.launch-banner a {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px 18px;
+  color: #f5dfb2;
+  text-decoration: none;
+}
+
+.launch-banner span,
+.launch-banner small {
+  font-family: "Crimson Pro", serif;
+  color: rgba(245, 223, 178, 0.68);
+}
+
+.launch-banner strong {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: #f4bd5d;
+}
+
+.hero-offer {
+  width: min(100%, 560px);
+  margin: 26px auto 0;
+  padding: 16px 18px;
+  border: 1px solid rgba(222, 171, 82, 0.32);
+  background: rgba(8, 5, 3, 0.58);
+  backdrop-filter: blur(8px);
+}
+
+.hero-offer-label {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(244, 189, 93, 0.82);
+}
+
+.hero-offer-prices {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 7px;
+}
+
+.hero-offer-prices del {
+  color: rgba(247, 225, 185, 0.48);
+}
+
+.hero-offer-prices strong {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.65rem, 4vw, 2.15rem);
+  font-weight: 600;
+  color: #ffd789;
+}
+
+.hero-offer small {
+  display: block;
+  margin-top: 4px;
+  color: rgba(247, 225, 185, 0.55);
+}
+
+.hero-rincon-actions-conversion {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.hero-rincon-btn-buy {
+  border-color: rgba(248, 193, 93, 0.82) !important;
+  background: linear-gradient(135deg, #d89d3d, #f2c572) !important;
+  color: #1b1007 !important;
+  box-shadow: 0 16px 42px rgba(213, 151, 51, 0.28) !important;
+}
+
+.hero-rincon-sound-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 14px auto 0;
+}
+
+.hero-rincon-sound-actions .hero-rincon-btn {
+  width: auto !important;
+  min-height: 42px !important;
+  padding: 10px 16px !important;
+  border-color: rgba(218, 169, 83, 0.18) !important;
+  background: rgba(0, 0, 0, 0.2) !important;
+  font-size: 0.83rem !important;
+  color: rgba(247, 225, 185, 0.62) !important;
+}
+
+.mapa-landing {
+  position: relative;
+  overflow: hidden;
+  padding: 90px 20px;
+  border-top: 1px solid rgba(224, 179, 98, 0.12);
+  border-bottom: 1px solid rgba(224, 179, 98, 0.12);
+  background:
+    radial-gradient(circle at 75% 30%, rgba(225, 166, 65, 0.10), transparent 34%),
+    #0b0705;
+}
+
+.mapa-landing-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  align-items: center;
+  gap: clamp(30px, 6vw, 72px);
+  width: min(1180px, 100%);
+  margin: 0 auto;
+}
+
+.mapa-landing-copy h2 {
+  margin: 10px 0 20px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.15rem, 5vw, 3.7rem);
+  font-weight: 500;
+  line-height: 1.04;
+  color: #f6e3bc;
+}
+
+.mapa-landing-copy > p:not(.section-mini) {
+  font-family: "Crimson Pro", serif;
+  font-size: clamp(1.08rem, 2.1vw, 1.28rem);
+  line-height: 1.72;
+  color: rgba(247, 225, 185, 0.72);
+}
+
+.mapa-landing-legend {
+  display: grid;
+  gap: 8px;
+  margin-top: 24px;
+  color: rgba(247, 225, 185, 0.62);
+}
+
+.mapa-landing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.mapa-landing-actions a {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border: 1px solid rgba(226, 176, 87, 0.42);
+  color: #f5d798;
+  text-decoration: none;
+}
+
+.mapa-landing-actions a:last-child {
+  background: #d8a24d;
+  color: #1a1008;
+  font-weight: 600;
+}
+
+.mapa-landing-image-button {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(228, 177, 86, 0.34);
+  background: #090604;
+  cursor: zoom-in;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+}
+
+.mapa-landing-image-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.65s ease;
+}
+
+.mapa-landing-image-button:hover img {
+  transform: scale(1.015);
+}
+
+.mapa-landing-image-button span {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  padding: 10px 14px;
+  border: 1px solid rgba(237, 187, 96, 0.48);
+  background: rgba(5, 3, 2, 0.82);
+  color: #f3ca7b;
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+
+.mapa-modal-landing {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  padding: 18px;
+}
+
+.mapa-modal-landing.activo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mapa-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(7px);
+}
+
+.mapa-modal-panel {
+  position: relative;
+  display: flex;
+  width: min(1320px, 100%);
+  max-height: calc(100dvh - 36px);
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(231, 181, 92, 0.36);
+  background: #090604;
+}
+
+.mapa-modal-panel header {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(231, 181, 92, 0.18);
+}
+
+.mapa-modal-panel h2 {
+  margin: 2px 0 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.7rem;
+  color: #f5dfb4;
+}
+
+.mapa-modal-panel header button {
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid rgba(231, 181, 92, 0.32);
+  background: transparent;
+  color: #f5dfb4;
+  cursor: pointer;
+}
+
+.mapa-modal-scroll {
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 14px;
+}
+
+.mapa-modal-scroll img {
+  display: block;
+  width: min(1100px, 100%);
+  height: auto;
+  margin: 0 auto;
+}
+
+.offer-price {
+  display: grid;
+  gap: 5px;
+  margin: 24px 0;
+}
+
+.offer-price del {
+  color: rgba(247, 225, 185, 0.45);
+}
+
+.offer-price strong {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.7rem, 4vw, 2.35rem);
+  font-weight: 600;
+  color: #ffd789;
+}
+
+.offer-price small {
+  color: rgba(247, 225, 185, 0.55);
+}
+
+.offer-price-centered,
+.offer-price-final {
+  text-align: center;
+}
+
+.cta-final-demo-link {
+  display: block;
+  width: fit-content;
+  margin: 22px auto 0;
+  color: rgba(247, 225, 185, 0.64);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+@media (max-width: 900px) {
+  .launch-banner a {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .hero-rincon-actions-conversion {
+    grid-template-columns: 1fr;
+  }
+
+  .mapa-landing-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .mapa-landing-copy {
+    text-align: center;
+  }
+
+  .mapa-landing-actions {
+    justify-content: center;
+  }
+
+  .mapa-landing-legend {
+    justify-items: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .launch-banner small {
+    display: none;
+  }
+
+  .hero-offer-prices {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .hero-rincon-sound-actions {
+    flex-direction: column;
+  }
+
+  .hero-rincon-sound-actions .hero-rincon-btn {
+    width: 100% !important;
+  }
+
+  .mapa-landing {
+    padding: 70px 16px;
+  }
+
+  .mapa-landing-actions {
+    flex-direction: column;
+  }
+
+  .mapa-landing-actions a {
+    width: 100%;
+  }
+
+  .mapa-modal-landing {
+    padding: 0;
+  }
+
+  .mapa-modal-panel {
+    width: 100%;
+    max-height: 100dvh;
+    height: 100dvh;
+    border: 0;
+  }
+
+  .mapa-modal-scroll img {
+    width: 900px;
+    max-width: none;
+  }
+}
