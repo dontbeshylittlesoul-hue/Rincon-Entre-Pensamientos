@@ -5,7 +5,7 @@
     PEGÁ ACÁ EL ENLACE DEL CHECKOUT DE HOTMART DE USD 11,90.
     Es el único lugar que tenés que modificar.
   */
-  const CHECKOUT_URL = "https://pay.hotmart.com/L106304893W?off=v8kc4xyl&checkoutMode=10";
+  const CHECKOUT_URL = "https://pay.hotmart.com/L106304893W?off=v8kc4xyl";
 
   const checkoutLinks = document.querySelectorAll("[data-checkout-link]");
   const urlConfigurada = /^https?:\/\//i.test(CHECKOUT_URL);
