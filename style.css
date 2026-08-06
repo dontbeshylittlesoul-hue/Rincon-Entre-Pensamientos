@@ -11473,3 +11473,80 @@ body.landing-lanzamiento .telefono-pantalla {
     letter-spacing: 0.14em !important;
   }
 }
+
+/* BOTONES UNIFORMES — REGLA DEFINITIVA
+   Todos los CTA visibles comparten exactamente ancho y alto.
+   Esta capa queda al final para que ninguna regla anterior la pise.
+   ================================================================ */
+body.landing-lanzamiento {
+  --cta-uniform-width: 310px;
+  --cta-uniform-height: 56px;
+}
+
+body.landing-lanzamiento :is(
+  #inicio .hero-rincon-actions-conversion .hero-rincon-btn,
+  .hero-rincon-sound-actions .hero-rincon-btn,
+  .momento-rincon-btn,
+  .guia-recomendaciones a,
+  .guia-btn-principal,
+  .guia-btn-secundario,
+  .muestra-real-btn,
+  .mapa-landing-actions a,
+  .btn-narrador,
+  .btn-acceso-completo-intermedio,
+  .showcase-cta,
+  .btn-pergamino-descarga,
+  .webapp-movil-cta
+) {
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  flex: 0 0 var(--cta-uniform-width) !important;
+  width: var(--cta-uniform-width) !important;
+  min-width: var(--cta-uniform-width) !important;
+  max-width: var(--cta-uniform-width) !important;
+  height: var(--cta-uniform-height) !important;
+  min-height: var(--cta-uniform-height) !important;
+  max-height: var(--cta-uniform-height) !important;
+  padding: 0 18px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  line-height: 1.12 !important;
+  white-space: normal !important;
+}
+
+body.landing-lanzamiento :is(
+  .hero-rincon-actions-conversion,
+  .hero-rincon-sound-actions,
+  .guia-acciones-finales,
+  .mapa-landing-actions
+) {
+  justify-items: center !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+body.landing-lanzamiento .hero-rincon-actions-conversion,
+body.landing-lanzamiento #inicio .hero-rincon-actions-conversion,
+body.landing-lanzamiento .hero-rincon-sound-actions {
+  width: var(--cta-uniform-width) !important;
+  min-width: var(--cta-uniform-width) !important;
+  max-width: var(--cta-uniform-width) !important;
+}
+
+body.landing-lanzamiento .mapa-landing-actions {
+  flex-direction: column !important;
+}
+
+@media (max-width: 700px) {
+  body.landing-lanzamiento {
+    --cta-uniform-width: 270px;
+    --cta-uniform-height: 54px;
+  }
+}
+
+@media (max-width: 330px) {
+  body.landing-lanzamiento {
+    --cta-uniform-width: calc(100vw - 32px);
+  }
+}
