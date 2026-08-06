@@ -30,7 +30,7 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&amp;family=Crimson+Pro:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
-<link href="style.css?v=botones-uniformes-3" rel="stylesheet"/>
+<link href="style.css?v=landing-lanzamiento-4" rel="stylesheet"/>
 <script defer src="./checkout.js"></script>
 <script defer src="./mapa.js"></script>
 <!-- ESTILOS NUEVOS: CUENTO GRATIS EN PERGAMINO + NARRADOR -->
@@ -504,6 +504,7 @@
 <div class="ambientes-backdrop" data-cerrar-ambientes=""></div>
 <div aria-label="Elegir ambiente del Rincón" aria-modal="true" class="ambientes-modal-card" role="dialog">
 <h3>Elegí el ambiente</h3>
+<button data-ambiente-menu="lluvia" type="button">☂ Lluvia suave</button>
 <button data-ambiente-menu="fuego" type="button">🔥 Fuego bajo</button>
 <button data-ambiente-menu="bosque" type="button">🌙 Bosque noche</button>
 <button data-ambiente-menu="selva" type="button">🌿 Selva noche</button>
@@ -550,8 +551,11 @@
 </a>
 </div>
 <div class="hero-rincon-sound-actions" aria-label="Ambientes opcionales">
-<button class="hero-rincon-btn btn-ambiente cta-uniforme" data-ga-event="click_activar_lluvia" id="ambienteToggle" type="button">
-<span>☂ Activar lluvia para leer</span>
+<button class="hero-rincon-btn btn-ambiente" data-ga-event="click_activar_lluvia" id="ambienteToggle" type="button">
+<span>☂ Activar lluvia</span>
+</button>
+<button class="hero-rincon-btn btn-ambientes" data-ga-event="click_elegir_ambiente" id="ambientesToggle" type="button">
+<span>♫ Elegir ambiente</span>
 </button>
 </div>
 </div>
@@ -1234,8 +1238,8 @@ document.querySelectorAll("a[href]").forEach(function (link) {
         if (!ambienteToggle || !audioAmbiente) return;
 
         ambienteToggle.innerHTML = audioAmbiente.paused
-          ? "<span>☂ Activar lluvia para leer</span>"
-          : "<span>☂ Pausar lluvia para leer</span>";
+          ? "<span>☂ Activar lluvia</span>"
+          : "<span>☂ Pausar lluvia</span>";
 
         ambienteToggle.classList.toggle("activo", !audioAmbiente.paused);
       }
@@ -1243,10 +1247,14 @@ document.querySelectorAll("a[href]").forEach(function (link) {
       function activarLluvia() {
         if (!audioAmbiente) return;
 
+        pausarAmbientesExtra();
+        ambienteExtraActivo = "silencio";
+
         audioAmbiente.play()
           .then(function () {
             actualizarBotonLluvia();
             actualizarLluviaVisual();
+            actualizarBotonAmbienteExtra();
 
             trackGAEvent("lluvia_inicio", {
               event_label: "lluvia"
@@ -1265,6 +1273,7 @@ document.querySelectorAll("a[href]").forEach(function (link) {
 
         actualizarBotonLluvia();
         actualizarLluviaVisual();
+        actualizarBotonAmbienteExtra();
 
         trackGAEvent("lluvia_pausa", {
           event_label: "lluvia"
@@ -1285,15 +1294,23 @@ document.querySelectorAll("a[href]").forEach(function (link) {
       function actualizarBotonAmbienteExtra() {
         if (!ambientesToggle) return;
 
-        if (ambienteExtraActivo === "silencio") {
-          ambientesToggle.innerHTML = "<span>🌙 Ambiente: silencio</span>";
+        const lluviaActiva = audioAmbiente && !audioAmbiente.paused;
+
+        if (lluviaActiva) {
+          ambientesToggle.innerHTML = "<span>☂ Lluvia activa</span>";
+        } else if (ambienteExtraActivo === "silencio") {
+          ambientesToggle.innerHTML = "<span>♫ Elegir ambiente</span>";
         } else {
           ambientesToggle.innerHTML = "<span>" + ambientesExtra[ambienteExtraActivo].label + "</span>";
         }
 
         document.querySelectorAll("[data-ambiente-menu]").forEach(function (boton) {
           const valor = boton.getAttribute("data-ambiente-menu");
-          boton.classList.toggle("activo", valor === ambienteExtraActivo);
+          const activo = valor === "lluvia"
+            ? lluviaActiva
+            : !lluviaActiva && valor === ambienteExtraActivo;
+
+          boton.classList.toggle("activo", activo);
         });
       }
 
@@ -1303,6 +1320,13 @@ document.querySelectorAll("a[href]").forEach(function (link) {
         ambienteExtraActivo = nombre;
 
         if (nombre !== "silencio" && ambientesExtra[nombre] && ambientesExtra[nombre].audio) {
+          if (audioAmbiente && !audioAmbiente.paused) {
+            audioAmbiente.pause();
+            audioAmbiente.currentTime = 0;
+            actualizarBotonLluvia();
+            actualizarLluviaVisual();
+          }
+
           ambientesExtra[nombre].audio.play()
             .then(function () {
               trackGAEvent("ambiente_inicio", {
@@ -1439,7 +1463,19 @@ document.querySelectorAll("a[href]").forEach(function (link) {
           const ambiente = botonAmbiente.getAttribute("data-ambiente-menu");
 
           reproducirCorto(sonidoClickPergamino, 0.18);
-          activarAmbienteExtra(ambiente);
+
+          if (ambiente === "lluvia") {
+            pausarAmbientesExtra();
+            ambienteExtraActivo = "silencio";
+            actualizarBotonAmbienteExtra();
+            activarLluvia();
+          } else if (ambiente === "silencio") {
+            pausarLluvia();
+            activarAmbienteExtra("silencio");
+          } else {
+            activarAmbienteExtra(ambiente);
+          }
+
           cerrarModalAmbientes();
         });
       }

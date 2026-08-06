@@ -11113,10 +11113,14 @@ body.landing-lanzamiento :is(h1, h2, h3, h4, p, a, button, span) {
   overflow-wrap: break-word;
 }
 
-/* La entrada sonora antigua queda fuera de la experiencia pública. */
-body.landing-lanzamiento .entrada-sonora,
-body.landing-lanzamiento .ambientes-modal {
+/* La entrada sonora antigua queda fuera de la experiencia pública.
+   El selector opcional del hero continúa disponible. */
+body.landing-lanzamiento .entrada-sonora {
   display: none !important;
+}
+
+body.landing-lanzamiento .ambientes-modal.activo {
+  display: flex !important;
 }
 
 /* Oferta superior */
@@ -11338,12 +11342,12 @@ body.landing-lanzamiento .telefono-pantalla {
   }
 
   body.landing-lanzamiento .hero-rincon-content {
-    left: 60% !important;
+    left: 59% !important;
     top: 50% !important;
-    width: 300px !important;
-    max-width: 300px !important;
+    width: 68% !important;
+    max-width: 278px !important;
     min-width: 0 !important;
-    transform: translate(-50%, -50%) scale(0.69) !important;
+    transform: translate(-50%, -50%) !important;
     transform-origin: center center !important;
   }
 
@@ -11352,26 +11356,29 @@ body.landing-lanzamiento .telefono-pantalla {
   }
 
   body.landing-lanzamiento .hero-rincon-title {
-    margin-bottom: 6px !important;
-    font-size: 2.85rem !important;
+    margin-bottom: 5px !important;
+    font-size: clamp(2rem, 10.5vw, 2.45rem) !important;
+    line-height: 0.9 !important;
   }
 
   body.landing-lanzamiento .hero-rincon-subtitle {
-    margin: 6px auto 7px !important;
-    font-size: 0.9rem !important;
+    max-width: 235px !important;
+    margin: 6px auto !important;
+    font-size: 0.82rem !important;
+    line-height: 1.25 !important;
   }
 
   body.landing-lanzamiento .hero-rincon-promise {
-    max-width: 260px !important;
-    margin: 6px auto 8px !important;
-    font-size: 0.84rem !important;
-    line-height: 1.3 !important;
+    max-width: 245px !important;
+    margin: 5px auto 7px !important;
+    font-size: 0.76rem !important;
+    line-height: 1.25 !important;
   }
 
   body.landing-lanzamiento .hero-offer {
-    width: 270px !important;
-    margin-top: 8px !important;
-    padding: 8px 10px !important;
+    width: min(100%, 258px) !important;
+    margin-top: 7px !important;
+    padding: 7px 9px !important;
   }
 
   body.landing-lanzamiento .hero-offer-prices strong {
@@ -11381,21 +11388,32 @@ body.landing-lanzamiento .telefono-pantalla {
   body.landing-lanzamiento .hero-rincon-actions-conversion,
   body.landing-lanzamiento #inicio .hero-rincon-actions-conversion,
   body.landing-lanzamiento .hero-rincon-sound-actions {
-    width: 270px !important;
-    max-width: 270px !important;
+    width: min(100%, 258px) !important;
+    max-width: 258px !important;
   }
 
   body.landing-lanzamiento #inicio .hero-rincon-actions-conversion .hero-rincon-btn {
     width: 100% !important;
-    max-width: 270px !important;
-    min-height: 43px !important;
-    padding: 8px 13px !important;
-    font-size: 0.94rem !important;
+    max-width: 258px !important;
+    min-height: 42px !important;
+    padding: 8px 12px !important;
+    font-size: 0.88rem !important;
+    white-space: normal !important;
+  }
+
+  body.landing-lanzamiento .hero-rincon-sound-actions {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 7px !important;
   }
 
   body.landing-lanzamiento .hero-rincon-sound-actions .hero-rincon-btn {
     width: 100% !important;
-    max-width: 270px !important;
+    max-width: none !important;
+    min-height: 38px !important;
+    padding: 7px 8px !important;
+    font-size: 0.69rem !important;
+    line-height: 1.05 !important;
   }
 
   body.landing-lanzamiento :is(
@@ -11465,7 +11483,18 @@ body.landing-lanzamiento .telefono-pantalla {
 
 @media (max-width: 380px) {
   body.landing-lanzamiento .hero-rincon-content {
-    transform: translate(-50%, -50%) scale(0.63) !important;
+    left: 58.5% !important;
+    width: 66% !important;
+    max-width: 244px !important;
+    transform: translate(-50%, -50%) !important;
+  }
+
+  body.landing-lanzamiento .hero-rincon-title {
+    font-size: 1.95rem !important;
+  }
+
+  body.landing-lanzamiento .hero-rincon-promise {
+    font-size: 0.7rem !important;
   }
 
   body.landing-lanzamiento .hero-rincon-scroll {
@@ -11475,41 +11504,48 @@ body.landing-lanzamiento .telefono-pantalla {
 }
 
 /* ================================================================
-   BOTONES CTA — TAMAÑO ÚNICO DEFINITIVO
-   Todos los CTA reales usan la clase .cta-uniforme.
-   Los controles (flechas, puntos, cerrar mapa y opciones de la guía)
-   conservan su tamaño funcional.
+   BOTONES CTA — CONSISTENCIA SIN RECORTAR TEXTO
+   Mantienen una medida visual común, pero pueden crecer a dos líneas.
    ================================================================ */
 body.landing-lanzamiento .cta-uniforme {
   box-sizing: border-box !important;
   display: inline-flex !important;
-  flex: 0 0 310px !important;
+  flex: 0 1 auto !important;
   align-items: center !important;
   justify-content: center !important;
-  width: 310px !important;
-  min-width: 310px !important;
+  width: min(100%, 310px) !important;
+  min-width: 0 !important;
   max-width: 310px !important;
-  height: 56px !important;
+  height: auto !important;
   min-height: 56px !important;
-  max-height: 56px !important;
+  max-height: none !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding: 0 16px !important;
-  line-height: 1.1 !important;
+  padding: 11px 18px !important;
+  line-height: 1.15 !important;
   text-align: center !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: clip !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: initial !important;
 }
 
 body.landing-lanzamiento .hero-rincon-actions-conversion,
 body.landing-lanzamiento #inicio .hero-rincon-actions-conversion,
 body.landing-lanzamiento .hero-rincon-sound-actions {
-  width: 310px !important;
-  min-width: 310px !important;
+  width: min(100%, 310px) !important;
+  min-width: 0 !important;
   max-width: 310px !important;
   margin-left: auto !important;
   margin-right: auto !important;
+}
+
+/* La descarga gratuita queda deliberadamente más liviana que los dos CTA principales. */
+body.landing-lanzamiento #botonCuentoHero {
+  min-height: 44px !important;
+  border-color: rgba(92, 53, 23, 0.20) !important;
+  background: rgba(255, 238, 205, 0.34) !important;
+  box-shadow: none !important;
+  font-size: 0.88rem !important;
 }
 
 body.landing-lanzamiento .mapa-landing-actions,
@@ -11519,22 +11555,22 @@ body.landing-lanzamiento .guia-acciones-finales {
 
 @media (max-width: 700px) {
   body.landing-lanzamiento .cta-uniforme {
-    flex-basis: 270px !important;
-    width: 270px !important;
-    min-width: 270px !important;
-    max-width: 270px !important;
-    height: 56px !important;
-    min-height: 56px !important;
-    max-height: 56px !important;
-    padding: 0 14px !important;
-    font-size: 0.95rem !important;
+    width: min(100%, 300px) !important;
+    max-width: 300px !important;
+    min-height: 52px !important;
+    padding: 10px 15px !important;
+    font-size: 0.92rem !important;
   }
 
   body.landing-lanzamiento .hero-rincon-actions-conversion,
   body.landing-lanzamiento #inicio .hero-rincon-actions-conversion,
   body.landing-lanzamiento .hero-rincon-sound-actions {
-    width: 270px !important;
-    min-width: 270px !important;
-    max-width: 270px !important;
+    width: min(100%, 258px) !important;
+    max-width: 258px !important;
+  }
+
+  body.landing-lanzamiento #botonCuentoHero {
+    min-height: 40px !important;
+    font-size: 0.78rem !important;
   }
 }
