@@ -11093,3 +11093,383 @@ body {
     max-width: none;
   }
 }
+
+/* ================================================================
+   PROLIJIDAD VISUAL FINAL — LANDING PÚBLICA
+   Capa única de cierre para evitar que los ajustes históricos se pisen.
+   ================================================================ */
+
+body.landing-lanzamiento {
+  overflow-x: clip !important;
+}
+
+body.landing-lanzamiento img,
+body.landing-lanzamiento svg,
+body.landing-lanzamiento video {
+  max-width: 100%;
+}
+
+body.landing-lanzamiento :is(h1, h2, h3, h4, p, a, button, span) {
+  overflow-wrap: break-word;
+}
+
+/* La entrada sonora antigua queda fuera de la experiencia pública. */
+body.landing-lanzamiento .entrada-sonora,
+body.landing-lanzamiento .ambientes-modal {
+  display: none !important;
+}
+
+/* Oferta superior */
+body.landing-lanzamiento .launch-banner a {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  line-height: 1.18;
+}
+
+body.landing-lanzamiento .launch-banner span,
+body.landing-lanzamiento .launch-banner strong,
+body.landing-lanzamiento .launch-banner small {
+  white-space: normal;
+}
+
+/* Hero: una sola columna real para que ningún CTA quede comprimido. */
+body.landing-lanzamiento .hero-rincon {
+  padding-inline: clamp(12px, 2vw, 22px);
+}
+
+body.landing-lanzamiento .hero-rincon-content {
+  width: 47%;
+  max-width: 330px;
+  min-width: 270px;
+}
+
+body.landing-lanzamiento .hero-rincon-promise {
+  max-width: 300px;
+  margin: 8px auto 12px;
+  font-size: clamp(0.86rem, 1.15vw, 0.98rem);
+  line-height: 1.38;
+}
+
+body.landing-lanzamiento .hero-offer {
+  width: min(100%, 310px);
+  margin: 12px auto 0;
+  padding: 10px 13px;
+  border-radius: 18px;
+}
+
+body.landing-lanzamiento .hero-offer-prices {
+  gap: 10px;
+  margin-top: 4px;
+}
+
+body.landing-lanzamiento .hero-offer-prices strong {
+  font-size: clamp(1.45rem, 2.7vw, 1.85rem);
+  line-height: 1;
+}
+
+body.landing-lanzamiento .hero-offer small {
+  line-height: 1.28;
+}
+
+body.landing-lanzamiento .hero-rincon-actions-conversion,
+body.landing-lanzamiento #inicio .hero-rincon-actions-conversion {
+  width: min(100%, 310px) !important;
+  max-width: 310px !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 8px !important;
+  margin-top: 12px !important;
+}
+
+body.landing-lanzamiento #inicio .hero-rincon-actions-conversion .hero-rincon-btn {
+  min-height: 44px !important;
+  padding: 9px 15px !important;
+  font-size: clamp(0.86rem, 1.15vw, 0.98rem) !important;
+  line-height: 1.1 !important;
+}
+
+body.landing-lanzamiento .hero-rincon-sound-actions {
+  width: min(100%, 310px);
+  margin-top: 9px;
+}
+
+body.landing-lanzamiento .hero-rincon-sound-actions .hero-rincon-btn {
+  width: min(100%, 250px) !important;
+  min-height: 40px !important;
+  margin: 0 auto !important;
+  padding: 8px 14px !important;
+  font-size: 0.78rem !important;
+}
+
+body.landing-lanzamiento .hero-rincon-scroll {
+  max-width: calc(100% - 32px);
+  line-height: 1.35;
+}
+
+/* Ritmo y alineación de bloques */
+body.landing-lanzamiento .momento-rincon-grid,
+body.landing-lanzamiento .guia-opciones,
+body.landing-lanzamiento .guia-recomendaciones {
+  align-items: stretch;
+}
+
+body.landing-lanzamiento .momento-rincon-card,
+body.landing-lanzamiento .guia-opciones button,
+body.landing-lanzamiento .guia-recomendaciones article {
+  height: 100%;
+}
+
+body.landing-lanzamiento .guia-opciones button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+body.landing-lanzamiento .muestra-real-card,
+body.landing-lanzamiento .guia-rincon-card,
+body.landing-lanzamiento .cta-intermedio-card,
+body.landing-lanzamiento .cta-card,
+body.landing-lanzamiento .webapp-movil-inner {
+  box-sizing: border-box;
+}
+
+/* Botones principales: misma altura visual y texto siempre centrado. */
+body.landing-lanzamiento :is(
+  .momento-rincon-btn,
+  .guia-btn-principal,
+  .muestra-real-btn,
+  .mapa-landing-actions a,
+  .btn-acceso-completo-intermedio,
+  .showcase-cta,
+  .btn-pergamino-descarga,
+  .webapp-movil-cta
+) {
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.15;
+}
+
+body.landing-lanzamiento .mapa-landing-actions a {
+  min-width: 190px;
+  border-radius: 999px;
+}
+
+body.landing-lanzamiento .mapa-modal-panel header {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: rgba(9, 6, 4, 0.97);
+  backdrop-filter: blur(8px);
+}
+
+body.landing-lanzamiento .mapa-modal-panel header button {
+  flex: 0 0 44px;
+  border-radius: 50%;
+  font-size: 1rem;
+}
+
+body.landing-lanzamiento .showcase-frame,
+body.landing-lanzamiento .visor-shell,
+body.landing-lanzamiento .libro-wrap {
+  max-width: 100%;
+}
+
+body.landing-lanzamiento .faq-rincon summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+}
+
+body.landing-lanzamiento .faq-rincon summary::after {
+  float: none;
+}
+
+body.landing-lanzamiento .telefono-pantalla {
+  position: relative;
+}
+
+@media (min-width: 901px) {
+  body.landing-lanzamiento .hero-rincon-art {
+    width: min(92vw, 700px);
+  }
+
+  body.landing-lanzamiento .hero-rincon-content {
+    left: 58.5%;
+    top: 51%;
+  }
+}
+
+@media (max-width: 900px) {
+  body.landing-lanzamiento .launch-banner a {
+    padding-block: 9px;
+  }
+
+  body.landing-lanzamiento .mapa-landing-copy {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 700px) {
+  body.landing-lanzamiento .launch-banner a {
+    min-height: 54px;
+    gap: 1px;
+    padding: 8px 12px;
+  }
+
+  body.landing-lanzamiento .launch-banner span {
+    font-size: 0.72rem;
+  }
+
+  body.landing-lanzamiento .launch-banner strong {
+    font-size: 1rem;
+  }
+
+  body.landing-lanzamiento .hero-rincon {
+    padding: 8px 0 44px !important;
+  }
+
+  body.landing-lanzamiento .hero-rincon-art {
+    width: min(100vw, 410px) !important;
+    max-width: 410px !important;
+  }
+
+  body.landing-lanzamiento .hero-rincon-content {
+    left: 60% !important;
+    top: 50% !important;
+    width: 300px !important;
+    max-width: 300px !important;
+    min-width: 0 !important;
+    transform: translate(-50%, -50%) scale(0.69) !important;
+    transform-origin: center center !important;
+  }
+
+  body.landing-lanzamiento .hero-rincon-eyebrow {
+    margin-bottom: 5px !important;
+  }
+
+  body.landing-lanzamiento .hero-rincon-title {
+    margin-bottom: 6px !important;
+    font-size: 2.85rem !important;
+  }
+
+  body.landing-lanzamiento .hero-rincon-subtitle {
+    margin: 6px auto 7px !important;
+    font-size: 0.9rem !important;
+  }
+
+  body.landing-lanzamiento .hero-rincon-promise {
+    max-width: 260px !important;
+    margin: 6px auto 8px !important;
+    font-size: 0.84rem !important;
+    line-height: 1.3 !important;
+  }
+
+  body.landing-lanzamiento .hero-offer {
+    width: 270px !important;
+    margin-top: 8px !important;
+    padding: 8px 10px !important;
+  }
+
+  body.landing-lanzamiento .hero-offer-prices strong {
+    font-size: 1.65rem !important;
+  }
+
+  body.landing-lanzamiento .hero-rincon-actions-conversion,
+  body.landing-lanzamiento #inicio .hero-rincon-actions-conversion,
+  body.landing-lanzamiento .hero-rincon-sound-actions {
+    width: 270px !important;
+    max-width: 270px !important;
+  }
+
+  body.landing-lanzamiento #inicio .hero-rincon-actions-conversion .hero-rincon-btn {
+    width: 100% !important;
+    max-width: 270px !important;
+    min-height: 43px !important;
+    padding: 8px 13px !important;
+    font-size: 0.94rem !important;
+  }
+
+  body.landing-lanzamiento .hero-rincon-sound-actions .hero-rincon-btn {
+    width: 100% !important;
+    max-width: 270px !important;
+  }
+
+  body.landing-lanzamiento :is(
+    .momento-rincon-btn,
+    .guia-btn-principal,
+    .guia-btn-secundario,
+    .muestra-real-btn,
+    .mapa-landing-actions a,
+    .btn-acceso-completo-intermedio,
+    .showcase-cta,
+    .btn-pergamino-descarga,
+    .webapp-movil-cta
+  ) {
+    width: min(100%, 340px) !important;
+    min-width: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  body.landing-lanzamiento .mapa-landing-actions {
+    align-items: center;
+  }
+
+  body.landing-lanzamiento .mapa-landing-actions a {
+    min-width: 0;
+  }
+
+  body.landing-lanzamiento .faq-rincon summary {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 560px) {
+  body.landing-lanzamiento .momento-rincon,
+  body.landing-lanzamiento .guia-rincon,
+  body.landing-lanzamiento .mapa-landing,
+  body.landing-lanzamiento .faq-rincon {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  body.landing-lanzamiento .guia-rincon-card,
+  body.landing-lanzamiento .muestra-real-card,
+  body.landing-lanzamiento .cta-intermedio-card,
+  body.landing-lanzamiento .cta-card,
+  body.landing-lanzamiento .webapp-movil-inner {
+    border-radius: 24px;
+  }
+
+  body.landing-lanzamiento .webapp-icono-card {
+    left: 50%;
+    right: auto;
+    bottom: 8px;
+    width: min(calc(100% - 12px), 220px);
+    min-width: 0;
+    transform: translateX(-50%);
+  }
+
+  body.landing-lanzamiento .mapa-modal-panel header {
+    padding: 11px 12px;
+  }
+
+  body.landing-lanzamiento .mapa-modal-panel h2 {
+    font-size: 1.45rem;
+  }
+}
+
+@media (max-width: 380px) {
+  body.landing-lanzamiento .hero-rincon-content {
+    transform: translate(-50%, -50%) scale(0.63) !important;
+  }
+
+  body.landing-lanzamiento .hero-rincon-scroll {
+    font-size: 0.54rem !important;
+    letter-spacing: 0.14em !important;
+  }
+}
