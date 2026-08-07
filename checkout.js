@@ -2,26 +2,51 @@
   "use strict";
 
   /*
-    PEGÁ ACÁ EL ENLACE DEL CHECKOUT DE HOTMART DE USD 11,90.
-    Es el único lugar que tenés que modificar.
+    Enlace único del checkout de Hotmart de USD 11,90.
   */
-  const CHECKOUT_URL = "https://pay.hotmart.com/L106304893W?off=v8kc4xyl";
+  const CHECKOUT_URL =
+    "https://pay.hotmart.com/L106304893W?off=v8kc4xyl";
 
-  const checkoutLinks = document.querySelectorAll("[data-checkout-link]");
-  const urlConfigurada = /^https?:\/\//i.test(CHECKOUT_URL);
+  /*
+    Parámetros que deben viajar desde la landing hasta Hotmart.
+  */
+  const TRACKING_PARAMS = [
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_content",
+    "utm_term",
+    "gclid",
+    "gbraid",
+    "wbraid",
+    "sck",
+    "src"
+  ];
+
+  function buildCheckoutUrl() {
+    const checkoutUrl = new URL(CHECKOUT_URL);
+    const currentParams = new URLSearchParams(window.location.search);
+
+    TRACKING_PARAMS.forEach(function (param) {
+      const value = currentParams.get(param);
+
+      if (value) {
+        checkoutUrl.searchParams.set(param, value);
+      }
+    });
+
+    return checkoutUrl.toString();
+  }
+
+  const checkoutLinks = document.querySelectorAll(
+    "[data-checkout-link]"
+  );
 
   checkoutLinks.forEach(function (link) {
-    if (urlConfigurada) {
-      link.href = CHECKOUT_URL;
-      return;
-    }
+    link.href = buildCheckoutUrl();
 
-    link.href = "#";
-    link.addEventListener("click", function (event) {
-      event.preventDefault();
-      console.error(
-        "Falta configurar CHECKOUT_URL en checkout.js con el enlace de Hotmart de USD 11,90."
-      );
+    link.addEventListener("click", function () {
+      link.href = buildCheckoutUrl();
     });
   });
 })();
